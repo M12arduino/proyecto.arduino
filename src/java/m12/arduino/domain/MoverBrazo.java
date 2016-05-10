@@ -6,6 +6,6 @@ Curs 2015-2016
 
 @author Jordi
 */
-public class Processos {
+public class MoverBrazo extends Accion {
 
 }
