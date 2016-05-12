@@ -9,31 +9,39 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
-
-    <!--
-    Most controllers will use the ControllerClassNameHandlerMapping above, but
-    for the index controller we are using ParameterizableViewController, so we must
-    define an explicit mapping for it.
-    -->
-    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="mappings">
-            <props>
-                <prop key="index.htm">indexController</prop>
-            </props>
-        </property>
-    </bean>
-
-    <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-          p:prefix="/WEB-INF/jsp/"
-          p:suffix=".jsp" />
-
-    <!--
-    The index controller.
-    -->
-    <bean name="indexController"
-          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-          p:viewName="index" />
-
-</beans>
+        <bean id="viewResolver" class="org.springframework.web.servlet.view.
+    InternalResourceViewResolver" p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+	
+        <bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+            <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+            <property name="url" value="jdbc:hsqldb:hsql://localhost:9001"/>
+            <property name="username" value="sa"/>
+            <property name="password" value=""/>
+        </bean>
+	
+        <bean id="mySessionFactory" class="org.springframework.orm.hibernate3.
+    annotation.AnnotationSessionFactoryBean">
+            <property name="dataSource" ref="myDataSource" />
+            <property name="annotatedClasses">
+                <list>
+                    <value>com.vaannila.domain.User</value>
+                </list>
+            </property>
+            <property name="hibernateProperties">
+                <props>
+                    <prop key="hibernate.dialect"> org.hibernate.dialect.HSQLDialect</prop>
+                    <prop key="hibernate.show_sql">true</prop>
+                    <prop key="hibernate.hbm2ddl.auto">create</prop>
+                </props>
+            </property>
+        </bean>
+	
+        <bean id="myUserDAO" class="com.vaannila.dao.UserDAOImpl">
+            <property name="sessionFactory" ref="mySessionFactory"/>
+        </bean>
+	
+        <bean name="/user/*.htm" class="com.vaannila.web.UserController" >
+            <property name="userDAO" ref="myUserDAO" />
+        </bean>
+	
+    </beans>
