@@ -19,15 +19,17 @@ Curs 2015-2016
 @Controller
 public class ControllerLogin {
     
-    @RequestMapping(value="login",method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public void initForm(ModelMap model){
         Trabajador trab = new Trabajador();
         model.addAttribute("trabajadorForm",trab);
-              
+            
     }
     
-    @RequestMapping(value="login",method = RequestMethod.POST)
+    @RequestMapping(value="trabajadorDetalle",method = RequestMethod.POST)
     public String addTrabajador(@ModelAttribute("trabajadorForm")Trabajador trabajador,ModelMap model){
-        return "welcome";
+        
+        
+        return "trabajadorDetalle";
     }
 }

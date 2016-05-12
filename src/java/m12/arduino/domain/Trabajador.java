@@ -72,7 +72,7 @@ public class Trabajador {
 
     public void setCategoria(CategoriaTrabajador categoria) {
         this.categoria = categoria;
-    }
+    }    
     
     
     

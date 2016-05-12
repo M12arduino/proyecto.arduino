@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,11 +22,10 @@
             <div class="panel panel-primary">
                 <p class="text-uppercase panel-heading text-center"><strong>Create new employee</strong></p>
                 <form:form method="post" commandName="treballadorForm">
-                    <div class="form-group">NIF: <input type="text" maxlength="9" name="nif" /></div>
-                    <div class="form-group">Nombre: <input type="text" name="nombre" /></div>
-                    <div class="form-group">Movil: <input type="text" name="movil" /></div>
-                    <div class="form-group">Categoria: <input type="text" name="categoria" value="yes">Yes
-                        <input type="radio" name="e_admin" value="no" checked>No</div>
+                    <div class="form-group">NIF: <input type="text" maxlength="9" path="nif" /></div>
+                    <div class="form-group">Nombre: <input type="text" path="nombre" /></div>
+                    <div class="form-group">Movil: <input type="text" path="movil" /></div>
+                    <div class="form-group">Categoria: <input type="text" path="categoria" value="yes" /></div>
                     <input type="submit" class="btn btn-default" name="Submit" value="Send"/>
                 </form:form>
                 <br>
