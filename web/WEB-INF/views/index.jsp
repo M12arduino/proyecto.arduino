@@ -7,7 +7,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Arduino Central Web</title>
-        <spring:url value="/libs/bootstrap.min.css" var="mycss" />
         <jsp:include page="../../libsLoader.jsp"></jsp:include>
     </head>
 
