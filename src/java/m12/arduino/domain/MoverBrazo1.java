@@ -6,6 +6,6 @@ Curs 2015-2016
 
 @author Jordi
 */
-public class MoverBrazo extends Accion {
+public class MoverBrazo1 extends Accion {
 
 }
