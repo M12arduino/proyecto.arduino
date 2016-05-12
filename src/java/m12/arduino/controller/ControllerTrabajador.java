@@ -19,17 +19,19 @@ Curs 2015-2016
 */
 @Controller
 //@RequestMapping(value="/formTrabajadorAlta.htm")
-public class ControllerTrabajadorAlta {
+public class ControllerTrabajador {
 
     @RequestMapping(method = RequestMethod.GET)
     public void inicio(ModelMap model) {
         Trabajador trab = new Trabajador();
         model.addAttribute("trabajadorForm", trab);
+        System.out.println("In get");
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public void addTrabajador(@ModelAttribute("trabajadorForm")Trabajador trabajador,ModelMap model) {
-        System.out.println(trabajador.getNombre());
+    public String addTrabajador(@ModelAttribute("trabajadorForm")Trabajador trabajador,ModelMap model) {
+        System.out.println("In post" + trabajador.getNombre());
+        return "trabajadorDetalle.htm";
     }
     
 }
