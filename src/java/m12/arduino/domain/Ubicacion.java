@@ -6,7 +6,7 @@ Curs 2015-2016
 
 @author Jordi
 */
-class Ubicacion {
+public class Ubicacion {
 
     // ATTR
     private String lugar;
