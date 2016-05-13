@@ -3,7 +3,6 @@ package m12.arduino.controller;
 import m12.arduino.domain.Trabajador;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.portlet.ModelAndView;
@@ -19,10 +18,10 @@ import org.springframework.web.portlet.ModelAndView;
 public class ControllerTrabajador {
 
     @RequestMapping("/formularioTrabajadorAlta")
-    public String formularioInicial() {
+    public ModelAndView formularioInicial() {
         System.out.println("In form inicial");
-        return "trabajadorAlta";
-        //return new ModelAndView("trabajadorAlta", "command", new Trabajador());
+        //return "trabajadorAlta";
+        return new ModelAndView("trabajadorAlta", "command", new Trabajador());
     }
 
     @RequestMapping(value = "/darAltaTrabajador", method = RequestMethod.POST)

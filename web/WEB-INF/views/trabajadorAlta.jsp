@@ -13,19 +13,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <div class="container">
-            <br /><br />
-            <div class="panel panel-primary">
-                <p class="text-uppercase panel-heading text-center"><strong>Dar de alta un nuevo trabajador</strong></p>
+
                 <form:form method="post" modelAttribute="trabajadorForm" action="darAltaTrabajador.htm">
-                    <div class="form-group">NIF: <input type="text" maxlength="9" path="nif" /></div>
-                    <div class="form-group">Nombre: <input type="text" path="nombre" /></div>
-                    <div class="form-group">Movil: <input type="text" path="movil" /></div>
-                    <div class="form-group">Categoria: <input type="text" path="categoria" /></div>
+                    NIF: <input type="text" path="nif" />
+                    Nombre: <input type="text" path="nombre" />
+                    Movil: <input type="text" path="movil" />
+                    Categoria: <input type="text" path="categoria" />
                     <input type="submit" class="btn btn-default" name="Submit" value="Send"/>
                 </form:form>
-                <br>
-            </div>
-        </div>
+
     </body>
 </html>
