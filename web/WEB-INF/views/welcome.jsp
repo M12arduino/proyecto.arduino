@@ -12,7 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Nombre: ${trabajadorForm.nombre}</h1>
-        <h1>Password: ${trabajadorForm.password}</h1>
+        <a href="formularioTrabajadorAlta.htm">Dar alta trabajador</a>
     </body>
 </html>

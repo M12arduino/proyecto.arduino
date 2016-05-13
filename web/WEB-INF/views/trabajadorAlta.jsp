@@ -16,8 +16,8 @@
        <div class="container">
             <br /><br />
             <div class="panel panel-primary">
-                <p class="text-uppercase panel-heading text-center"><strong>Create new employee</strong></p>
-                <form:form method="post" modelAttribute="treballadorForm">
+                <p class="text-uppercase panel-heading text-center"><strong>Dar de alta un nuevo trabajador</strong></p>
+                <form:form method="post" modelAttribute="trabajadorForm" action="darAltaTrabajador.htm">
                     <div class="form-group">NIF: <input type="text" maxlength="9" path="nif" /></div>
                     <div class="form-group">Nombre: <input type="text" path="nombre" /></div>
                     <div class="form-group">Movil: <input type="text" path="movil" /></div>
