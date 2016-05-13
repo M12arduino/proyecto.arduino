@@ -14,13 +14,17 @@
     </head>
     <body>
 
-                <form:form method="post" modelAttribute="trabajadorForm" action="darAltaTrabajador.htm">
-                    NIF: <input type="text" path="nif" />
-                    Nombre: <input type="text" path="nombre" />
-                    Movil: <input type="text" path="movil" />
-                    Categoria: <input type="text" path="categoria" />
-                    <input type="submit" class="btn btn-default" name="Submit" value="Send"/>
-                </form:form>
+        <form:form action="darAltaTrabajador.htm" method="POST">
+            NIF: <form:input path="nif" />
+            Nombre: <form:input path="nombre" />
+            Movil: <form:input path="movil" />
+            Password: <form:input path="password" />
+            Categoria: 
+            <form:select path="categoria">
+                <form:options items="${categorias}" itemValue="code" itemLabel="name" />
+            </form:select>
+            <input type="submit" value="Send"/>
+        </form:form>
 
     </body>
 </html>

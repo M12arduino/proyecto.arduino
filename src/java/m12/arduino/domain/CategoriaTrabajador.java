@@ -10,9 +10,29 @@ package m12.arduino.domain;
  * @author Jordi
  */
 public enum CategoriaTrabajador { 
-    JUNIOR,
-    SENIOR,
-    LEADER,
-    MANAGER,
-    ADMINISTRATOR
+    // LIST
+    JUNIOR(1,"Junior"),
+    SENIOR(2, "Senior"),
+    LEADER(3, "Leader"),
+    MANAGER(4, "Manager"),
+    ADMINISTRADOR(5, "Administrador");
+    
+    // ATTR
+    private final int code;
+    private final String name;
+    
+    // CONST
+    private CategoriaTrabajador(int code, String name) {
+        this.code = code;
+        this.name = name;
+    }
+    
+    // GESETS
+    public int getCode() {
+        return code;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
