@@ -22,11 +22,11 @@
             <props>
                 <prop key="index.htm">indexController</prop>
                 <!-- Agregar redirección de login.htm a bean loginController -->
-                <prop key="login.htm">loginController</prop>
+                <prop key="login.*">loginController</prop>
             </props>
         </property>
     </bean>
-
+    
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/views/"
@@ -35,7 +35,9 @@
     <!--
     The index controller.
     -->
-    <bean name="loginController" class="m12.arduino.controller.ControllerLogin"/>
+    <bean name="loginController" 
+          class="m12.arduino.controller.ControllerLogin"/>
+    
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />

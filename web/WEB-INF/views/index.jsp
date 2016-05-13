@@ -1,5 +1,6 @@
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -30,12 +31,12 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form id="login-form" action="" method="post" role="form" style="display: block;">
+                                    <form:form modelAttribute="trabajadorForm" id="login-form" action="login.re" method="post" role="form" style="display: block;">
                                         <div class="form-group">
-                                            <input type="text" id="username" class="form-control" placeholder="Username">
+                                            <form:input path="nombre" type="text" id="username" class="form-control" placeholder="Username"/>
                                         </div>
                                         <div class="form-group">    
-                                            <input type="password"id="password" class="form-control" placeholder="Password">
+                                            <form:input path="password" type="password" id="password" class="form-control" placeholder="Password" />
                                         </div>
                                         <div class="form-group text-center">
                                             <input type="checkbox" id="remember">
@@ -48,7 +49,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+                                    </form:form>
                                     <form id="register-form" action="" method="post" role="form" style="display: none;">
                                         <div class="form-group">
                                             <input type="text" id="username" class="form-control" placeholder="Username" >
