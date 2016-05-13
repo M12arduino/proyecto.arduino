@@ -1,5 +1,7 @@
 package m12.arduino.controller;
 
+
+
 import m12.arduino.domain.Trabajador;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,22 +17,21 @@ Curs 2015-2016
 
 @author Jordi
 */
-
 @Controller
-public class ControllerLogin {
-    
+//@RequestMapping(value="/formTrabajadorAlta.htm")
+public class ControllerTrabajador {
+
     @RequestMapping(method = RequestMethod.GET)
-    public String initForm(ModelMap model){
+    public void inicio(ModelMap model) {
         Trabajador trab = new Trabajador();
-        model.addAttribute("trabajadorForm",trab);
-        return "index";
-              
+        model.addAttribute("trabajadorForm", trab);
+        System.out.println("In get");
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String addTrabajador(@ModelAttribute("trabajadorForm")Trabajador trabajador,ModelMap model){
-        
-        
-        return "trabajadorDetalle";
+    public String addTrabajador(@ModelAttribute("trabajadorForm")Trabajador trabajador,ModelMap model) {
+        System.out.println("In post" + trabajador.getNombre());
+        return "trabajadorDetalle.htm";
     }
+    
 }
