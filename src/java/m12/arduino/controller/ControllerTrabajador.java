@@ -5,7 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.portlet.ModelAndView;
+import org.springframework.web.servlet.ModelAndView;
+
 
 /*
  Jordi Puig Puig
@@ -17,11 +18,19 @@ import org.springframework.web.portlet.ModelAndView;
 @Controller
 public class ControllerTrabajador {
 
-    @RequestMapping("/formularioTrabajadorAlta")
+    @RequestMapping("/trabajador/form")
     public ModelAndView formularioInicial() {
         System.out.println("In form inicial");
         //return "trabajadorAlta";
-        return new ModelAndView("trabajadorAlta", "command", new Trabajador());
+        ModelAndView model =  new ModelAndView("trabajadorAlta", "trabajador", new Trabajador());
+        return model;
+    }
+    @RequestMapping("/trabajador/id")
+    public ModelAndView formularioInicia2l() {
+        System.out.println("In form inicial");
+        //return "trabajadorAlta";
+        ModelAndView model =  new ModelAndView("welcome", "command", new Trabajador());
+        return model;
     }
 
     @RequestMapping(value = "/darAltaTrabajador", method = RequestMethod.POST)

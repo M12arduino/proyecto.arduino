@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="formularioTrabajadorAlta.htm">Dar alta trabajador</a>
+        <a href="trabajador/form.htm">Dar alta trabajador</a>
     </body>
 </html>
