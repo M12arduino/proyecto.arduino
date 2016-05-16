@@ -4,9 +4,9 @@
   <session-factory>
     <!-- parametros para la conexion a la base de datos -->
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/ex4hibernate</property>
-        <property name="connection.username">jordi</property>
-        <property name="connection.password">usuari</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/proyecto</property>
+        <property name="connection.username">hibernateUser</property>
+        <property name="connection.password">7rnijwxe</property>
         <!-- Configuracion del pool interno -->
         <property name="connection.pool_size">1</property>
         <!-- Dialecto de la base de datos -->
@@ -15,6 +15,7 @@
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">create-drop</property>
         <!-- Archivos de mapeo -->
-        <mapping class="model.pojo.Usuari"/>
+        <mapping class="m12.arduino.domain.Trabajador"/>
+        <mapping class="m12.arduino.domain.CategoriaTrabajador"/>
   </session-factory>
 </hibernate-configuration>

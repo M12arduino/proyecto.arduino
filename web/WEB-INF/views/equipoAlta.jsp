@@ -18,6 +18,9 @@
        <form:form action="insertar.htm" method="POST">
             ID_EQUIPO: <form:input path="id_equipo" />
             Nombre: <form:input path="nombre" />
+            <form:select path="trabajadores">
+                <form:options items="${listaTrabajadfdsfdsfores}" itemValue="nif" itemLabel="nombre"/>
+            </form:select>
             <input type="submit" value="Send"/>
         </form:form>
 

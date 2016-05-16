@@ -10,7 +10,7 @@ public class HibernateUtil {
 
     static {
         try {
-            sessionFactory = new Configuration().configure().buildSessionFactory();
+            sessionFactory = new Configuration().configure("/m12/arduino/dao/hibernate.cfg.xml").buildSessionFactory();
         } catch (HibernateException he) {
             System.err.println("Ocurrió un error en la inicialización de la SessionFactory: " + he);
             throw new ExceptionInInitializerError(he);

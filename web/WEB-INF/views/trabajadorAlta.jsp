@@ -6,22 +6,16 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
+<jsp:include page="header.jsp"></jsp:include>
 
-       <form:form action="darAltaTrabajador.htm" method="POST">
+       <form:form action="${base}/trabajador/insertar.htm" method="POST">
             NIF: <form:input path="nif" />
             Nombre: <form:input path="nombre" />
             Movil: <form:input path="movil" />
             Password: <form:input path="password" />
             Categoria: 
             <form:select path="categoria">
-                <form:options items="${categorias}" itemValue="code" itemLabel="name" />
+                <form:options items="${categorias}" />
             </form:select>
             <input type="submit" value="Send"/>
         </form:form>

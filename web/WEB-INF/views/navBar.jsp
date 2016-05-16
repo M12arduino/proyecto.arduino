@@ -26,7 +26,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trabajadores<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="trabajador/alta.htm">Añadir trabajador</a></li>
+                        <li><a href="${base}/trabajador/alta.htm">Añadir trabajador</a></li>
                         <li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
@@ -36,7 +36,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Equipos<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="equipo/alta.htm">Añadir Equipo</a></li>
+                        <li><a href="${base}/equipo/alta.htm">Añadir Equipo</a></li>
                         <li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>

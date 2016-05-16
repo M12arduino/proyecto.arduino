@@ -1,6 +1,7 @@
 package m12.arduino.service;
 
 import m12.arduino.dao.DaoTrabajador;
+import m12.arduino.dao.DaoTrabajadorImpl;
 import m12.arduino.domain.Trabajador;
 
 /*
@@ -12,14 +13,18 @@ Curs 2015-2016
 */
 public class ServiceTrabajador {
 
-    public static boolean insertarTrabajador(Trabajador trab) {
-        DaoTrabajador dT = new DaoTrabajador();
-        Trabajador auxTrab = dT.buscarTrabajador(trab.getNif());
+    private DaoTrabajadorImpl dT = new DaoTrabajadorImpl();
+    
+    public boolean insertarTrabajador(Trabajador trab) {
+        dT.guardaActualizaTrabajador(trab);
+        return true;
+        /*Trabajador auxTrab = this.dT.buscarTrabajador(trab.getNif());
         if (auxTrab == null) {
-            return dT.guardaActualizaTrabajador(trab);
+            Trabajador aux = dT.guardaActualizaTrabajador(trab);
+            if (aux == null) return false; else return true;
         } else {
             return false;
-        }
+        }*/
     }
     
 }

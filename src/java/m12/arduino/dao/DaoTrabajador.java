@@ -1,5 +1,6 @@
 package m12.arduino.dao;
 
+import java.util.List;
 import m12.arduino.domain.Trabajador;
 
 /*
@@ -9,15 +10,10 @@ Curs 2015-2016
 
 @author Jordi
 */
-public class DaoTrabajador {
+public interface DaoTrabajador {
 
-    public Trabajador buscarTrabajador(String nif) {
-        
-        return null;
-    }
-
-    public boolean guardaActualizaTrabajador(Trabajador trab) {
-        return true;
-    }
+    public Trabajador buscarTrabajador(String nif);
+    public List<Trabajador> obtenListaTrabajador();
+    public Trabajador guardaActualizaTrabajador(Trabajador trab);
 
 }
