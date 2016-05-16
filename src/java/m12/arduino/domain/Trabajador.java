@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -34,12 +35,22 @@ public class Trabajador implements Serializable {
    // @Size(min = 4, max = 20, message = "La contrassenya ha de tenir entre 4 i 20 caracters")
     private String password;
     private CategoriaTrabajador categoria;   
+    @ManyToOne
+    private Equipo equipo;
+    
+    public Equipo getEquipo() {
+        return equipo;
+    }
 
     // GESETS
+    public void setEquipo(Equipo equipo) {    
+        this.equipo = equipo;
+    }
+
     public long getId_trab() {
         return id_trab;
     }
-
+    
     public void setId_trab(long id_trab) {
         this.id_trab = id_trab;
     }

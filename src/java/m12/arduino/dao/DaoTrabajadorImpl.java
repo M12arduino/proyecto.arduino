@@ -32,16 +32,13 @@ public class DaoTrabajadorImpl implements DaoTrabajador{
     }
 
     @Override
-    public Trabajador buscarTrabajador(String nif) {       
+    public Trabajador buscarTrabajador(String nif) {
+        iniciaOperacion();
         Query q =session.createQuery("FROM Trabajador t WHERE t.nif =:nif ");
         q.setParameter("nif",nif);
         Trabajador res = (Trabajador)q.uniqueResult();
-        session.close();
-        System.out.println(res+"~~~~~~");
-        return res;
-        
-        
-        
+        acabaOperacion();
+        return res;           
     }
 
     @Override

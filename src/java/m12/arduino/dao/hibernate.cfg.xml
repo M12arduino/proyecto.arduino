@@ -17,5 +17,6 @@
         <!-- Archivos de mapeo -->
         <mapping class="m12.arduino.domain.Trabajador"/>
         <mapping class="m12.arduino.domain.CategoriaTrabajador"/>
+        <mapping class="m12.arduino.domain.Equipo"/>
   </session-factory>
 </hibernate-configuration>

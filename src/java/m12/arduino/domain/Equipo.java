@@ -1,6 +1,13 @@
 package m12.arduino.domain;
 
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /*
 Jordi Puig Puig
@@ -9,11 +16,15 @@ Curs 2015-2016
  codi, nom, treballadors
 @author Jordi
 */
+@Entity
 public class Equipo {
 
     // ATTR
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id_equipo;
     private String nombre;
+    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="equipo")
     private List<Trabajador> trabajadores;
 
     public Equipo() {
