@@ -20,14 +20,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ControllerTrabajador {
 
-    @RequestMapping("/formularioTrabajadorAlta")
-    public ModelAndView formularioInicial(ModelAndView mV) {
+    @RequestMapping("/trabajador/alta")
+    public ModelAndView formularioInicial() {
+        ModelAndView mV = new ModelAndView("trabajadorAlta","command",new Trabajador());
         mV.addObject("categorias", CategoriaTrabajador.values());
-        return new ModelAndView("trabajadorAlta", "command", new Trabajador());
+        return mV;
     }
 
     @RequestMapping(value = "/darAltaTrabajador", method = {RequestMethod.POST})
     public void addTrabajador(Trabajador trabajador, ModelMap model) {
         ServiceTrabajador.insertarTrabajador(trabajador);
     }
+    
 }

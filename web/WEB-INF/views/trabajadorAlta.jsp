@@ -14,7 +14,7 @@
     </head>
     <body>
 
-        <form:form action="darAltaTrabajador.htm" method="POST">
+       <form:form action="darAltaTrabajador.htm" method="POST">
             NIF: <form:input path="nif" />
             Nombre: <form:input path="nombre" />
             Movil: <form:input path="movil" />
