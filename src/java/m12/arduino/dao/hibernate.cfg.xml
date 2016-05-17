@@ -5,8 +5,8 @@
     <!-- parametros para la conexion a la base de datos -->
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.url">jdbc:postgresql://localhost:5432/proyecto</property>
-        <property name="connection.username">hibernateUser</property>
-        <property name="connection.password">7rnijwxe</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">507550</property>
         <!-- Configuracion del pool interno -->
         <property name="connection.pool_size">1</property>
         <!-- Dialecto de la base de datos -->
@@ -16,7 +16,8 @@
         <property name="hbm2ddl.auto">create-drop</property>
         <!-- Archivos de mapeo -->
         <mapping class="m12.arduino.domain.Trabajador"/>
-        <mapping class="m12.arduino.domain.CategoriaTrabajador"/>
         <mapping class="m12.arduino.domain.Equipo"/>
+        <mapping class="m12.arduino.domain.Robot"/>
+        <mapping class="m12.arduino.domain.Ubicacion"/>
   </session-factory>
 </hibernate-configuration>

@@ -6,12 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <a href="trabajador/form.htm">Dar alta trabajador</a>
-    </body>
-</html>
+
+<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="navBar.jsp"></jsp:include>
+INSERT OK
+

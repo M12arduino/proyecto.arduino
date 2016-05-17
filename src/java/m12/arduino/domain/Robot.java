@@ -1,6 +1,11 @@
 package m12.arduino.domain;
 
 import java.io.Serializable;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /*
 Jordi Puig Puig
@@ -10,14 +15,23 @@ codi, nom, ubicació (lloc i/o coordenades), estat (lliure, ocupat,
 desconnectat, local)
 @author Jordi
 */
+@Entity
 public class Robot implements Serializable {
+    private static final long serialVersionUID = 3679568141321204536L;
 
     // ATTR
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id_robot;
     private String nombre;
+    @Embedded
     private Ubicacion ubicacion;
     private EstadoRobot estado;
 
+    {
+        ubicacion = new Ubicacion();
+    }
+    
     public Robot() {
     }
 
