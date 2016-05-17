@@ -24,6 +24,7 @@
 
         <!-- JS PARTICULARES -->
         <script type="text/javascript" src="${base}/resources/js/login.js"></script>
+        <script type="text/javascript" src="${base}/resources/js/procesoAlta.js"></script>
 
 
         <!-- MOVER!! CSS SIEMPRE ANTES QUE JS-->

@@ -12,10 +12,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <jsp:include page="header.jsp"></jsp:include>
+        <jsp:include page="navBar.jsp"></jsp:include>
     </head>
     <body>
 
-       <form:form action="${base}/equipo/insertar.htm" method="POST">
+        <form:form action="${base}/equipo/insertar.htm" method="POST">
             ID_EQUIPO: <form:input path="id_equipo" />
             Nombre: <form:input path="nombre" />
             <form:select path="listaTrabajadores" multiple="true">
