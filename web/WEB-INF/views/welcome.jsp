@@ -23,8 +23,3 @@
         <jsp:include page="tableMaker.jsp"></jsp:include>
     </body>
 </html>
-
-<jsp:include page="header.jsp"></jsp:include>
-<jsp:include page="navBar.jsp"></jsp:include>
-INSERT OK
-

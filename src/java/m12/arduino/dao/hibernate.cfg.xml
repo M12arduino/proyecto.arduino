@@ -16,8 +16,7 @@
         <!--<property name="hbm2ddl.auto">create-drop</property>-->
         <!-- Archivos de mapeo -->
         <mapping class="m12.arduino.domain.Trabajador"/>
+        <mapping class="m12.arduino.domain.CategoriaTrabajador"/>
         <mapping class="m12.arduino.domain.Equipo"/>
-        <mapping class="m12.arduino.domain.Robot"/>
-        <mapping class="m12.arduino.domain.Ubicacion"/>
   </session-factory>
 </hibernate-configuration>
