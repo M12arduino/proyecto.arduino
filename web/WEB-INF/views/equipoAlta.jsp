@@ -15,12 +15,11 @@
     </head>
     <body>
 
-       <form:form action="${base}/equipo/insertar.htm" method="POST">
+       <form:form action="${base}/equipo/insertar.htm" method="GET">
             ID_EQUIPO: <form:input path="id_equipo" />
             Nombre: <form:input path="nombre" />
-            <form:select path="listaTrabajadores" multiple="true">
-                <form:options items="${listaTrabajadores}" itemLabel="nombre"/>
-            </form:select>
+            <span icon="chorribootrstap icon">
+            <form:checkboxes items="${listaTrabajadores}"  itemValue="nif" path="nifs" itemLabel="nombre"/>
             <input type="submit" value="Send"/>
         </form:form>
 

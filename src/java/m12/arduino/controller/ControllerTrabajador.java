@@ -10,8 +10,10 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -25,26 +27,38 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/trabajador")
 public class ControllerTrabajador {
-    
+
     private ServiceTrabajador sT = new ServiceTrabajador();
 
     @RequestMapping("/alta")
     public ModelAndView formularioInicial() {
-        ModelAndView mV = new ModelAndView("trabajadorAlta","command",new Trabajador());
+        ModelAndView mV = new ModelAndView("trabajadorAlta", "command", new Trabajador());
         mV.addObject("categorias", CategoriaTrabajador.values());
         return mV;
     }
 
-    
     @RequestMapping(value = "/insertar")
-   public ModelAndView addTrabajador(Trabajador trabajador) {
-       try{
-           sT.insertarTrabajador(trabajador);
-       }catch(HibernateException he){
-           System.out.println(he.getMessage());
-       }
+    public ModelAndView addTrabajador(Trabajador trabajador) {
+        try {
+            sT.insertarTrabajador(trabajador);
+        } catch (HibernateException he) {
+            System.out.println(he.getMessage());
+        }
         return new ModelAndView("welcome");
-         
+
     }
-    
+
+    /* @RequestMapping(value="/create", method=RequestMethod.POST, 
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Smartphone createSmartphone(@RequestBody Smartphone smartphone) {
+        return smartphoneService.create(smartphone);
+    }
+
+    @RequestMapping(value = "/editar")
+    public ModelAndView editTrabajador() {
+
+        return new ModelAndView("t")
+    }*/
+
 }

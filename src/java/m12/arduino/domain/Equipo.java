@@ -1,5 +1,6 @@
 package m12.arduino.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -22,11 +23,16 @@ public class Equipo {
     // ATTR
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long id;
     private long id_equipo;
     private String nombre;
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="equipo")
     private List<Trabajador> trabajadores;
-
+    
+    {
+        trabajadores = new ArrayList<Trabajador>();
+    }
+    
     public Equipo() {
     }
 
@@ -53,6 +59,16 @@ public class Equipo {
 
     public void setTrabajadores(List<Trabajador> trabajadores) {
         this.trabajadores = trabajadores;
+    }
+    
+    public Trabajador addTrabajador(Trabajador treb){
+        treb.setEquipo(this);
+        this.getTrabajadores().add(treb);
+        return treb;
+    }
+    @Override
+    public String toString() {
+        return "Equipo{" + "id_equipo=" + id_equipo + ", nombre=" + nombre + ", trabajadores=" + trabajadores + '}';
     }
     
     
