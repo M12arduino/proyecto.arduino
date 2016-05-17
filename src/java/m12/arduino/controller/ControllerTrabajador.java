@@ -52,7 +52,7 @@ public class ControllerTrabajador {
 
     @RequestMapping(value = "/tabla")
     public ModelAndView printTable() {
-        ModelAndView mV = new ModelAndView("welcome");
+        ModelAndView mV = new ModelAndView("trabajadorTabla");
         mV.addObject("listado", sT.listaTrabajadores());
         return mV;
     }

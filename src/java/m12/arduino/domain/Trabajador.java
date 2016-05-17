@@ -107,10 +107,16 @@ public class Trabajador implements Serializable, Maketable {
 
     @Override
     public List<String> getFields() {
-        return new ArrayList(Arrays.asList("Nif", "Nombre", "Movil", "Categoria", "Equipo"));
+        return new ArrayList(Arrays.asList("ID", "Nif", "Nombre", "Movil", "Categoria", "Equipo"));
     }
     
     @Override
     public List<String> getInfo() {
-        return new ArrayList(Arrays.asList(nif, nombre, movil, categoria.toString(), equipo.getNombre()));    }
+        return new ArrayList(Arrays.asList(id_trab, nif, nombre, movil, categoria.toString(), equipo.getNombre()));    
+    }
+    
+    @Override
+    public long getPK() {
+        return id_trab;
+    }
 }
