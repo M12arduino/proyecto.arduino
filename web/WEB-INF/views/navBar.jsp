@@ -27,7 +27,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trabajadores<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="${base}/trabajador/alta.htm">Añadir trabajador</a></li>
-                        <li><a href="#">Another action</a></li>
+                        <li><a href="${base}/trabajador/tabla.htm">Tabla</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Separated link</a></li>

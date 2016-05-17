@@ -4,16 +4,16 @@
   <session-factory>
     <!-- parametros para la conexion a la base de datos -->
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/proyecto</property>
-        <property name="connection.username">postgres</property>
-        <property name="connection.password">507550</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/proves</property>
+        <property name="connection.username">jordi</property>
+        <property name="connection.password">usuari</property>
         <!-- Configuracion del pool interno -->
         <property name="connection.pool_size">1</property>
         <!-- Dialecto de la base de datos -->
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <!-- Otras propiedades importantes -->
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">create-drop</property>
+        <!--<property name="hbm2ddl.auto">create-drop</property>-->
         <!-- Archivos de mapeo -->
         <mapping class="m12.arduino.domain.Trabajador"/>
         <mapping class="m12.arduino.domain.Equipo"/>
