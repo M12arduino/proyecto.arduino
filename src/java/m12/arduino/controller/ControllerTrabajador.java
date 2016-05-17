@@ -2,6 +2,7 @@ package m12.arduino.controller;
 
 import m12.arduino.dao.HibernateUtil;
 import m12.arduino.domain.CategoriaTrabajador;
+import m12.arduino.domain.Maketable;
 import m12.arduino.domain.Trabajador;
 import m12.arduino.service.ServiceTrabajador;
 import org.hibernate.HibernateException;
@@ -25,26 +26,32 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/trabajador")
 public class ControllerTrabajador {
-    
+
     private ServiceTrabajador sT = new ServiceTrabajador();
 
     @RequestMapping("/alta")
     public ModelAndView formularioInicial() {
-        ModelAndView mV = new ModelAndView("trabajadorAlta","command",new Trabajador());
+        ModelAndView mV = new ModelAndView("trabajadorAlta", "command", new Trabajador());
         mV.addObject("categorias", CategoriaTrabajador.values());
         return mV;
     }
 
-    
     @RequestMapping(value = "/insertar")
-   public ModelAndView addTrabajador(Trabajador trabajador) {
-       try{
-           sT.insertarTrabajador(trabajador);
-       }catch(HibernateException he){
-           System.out.println(he.getMessage());
-       }
+    public ModelAndView addTrabajador(Trabajador trabajador) {
+
+        try {
+            sT.insertarTrabajador(trabajador);
+        } catch (HibernateException he) {
+            System.out.println(he.getMessage());
+        }
         return new ModelAndView("welcome");
-         
+
     }
-    
+
+    @RequestMapping(value = "/tabla")
+    public ModelAndView printTable() {
+        ModelAndView mV = new ModelAndView("welcome");
+        mV.addObject("listado", sT.listaTrabajadores());
+        return mV;
+    }
 }

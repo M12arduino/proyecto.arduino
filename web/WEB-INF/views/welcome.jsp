@@ -4,7 +4,15 @@
     Author     : enric
 --%>
 
+<%@page import="m12.arduino.domain.CategoriaTrabajador"%>
+<%@page import="m12.arduino.domain.Trabajador"%>
+<%@page import="m12.arduino.domain.Equipo"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +20,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="trabajador/form.htm">Dar alta trabajador</a>
+        <jsp:include page="tableMaker.jsp"></jsp:include>
     </body>
 </html>
