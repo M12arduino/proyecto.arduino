@@ -43,7 +43,16 @@
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
-                <li><a href="matricula.html"> Tal </a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Robots<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="${base}/robot/alta.htm">Añadir Robot</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
                 <li><a href="documents.html"> pascual</a></li>
                 <li><a href="http://www.cfavalles.org/moodle"> esto </a></li>
                 <li><a href="contacte.html"> lotoro </a></li>

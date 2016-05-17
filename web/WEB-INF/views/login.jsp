@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Arduino Central Web</title>
-        <jsp:include page="../../libsLoader.jsp"></jsp:include>
+        <jsp:include page="header.jsp"></jsp:include>
     </head>
 
     <body>
