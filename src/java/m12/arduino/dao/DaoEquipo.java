@@ -14,4 +14,7 @@ import m12.arduino.domain.Equipo;
 public interface DaoEquipo {
     
     public Equipo guardaActualizaEquipo(Equipo eq);
+    public Equipo actualizaEquipo(Equipo eq);
+    public Equipo buscarEquipo(String nombre);
+    public Equipo mergeEquipo(Equipo eq);
 }

@@ -11,8 +11,10 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -54,4 +56,18 @@ public class ControllerTrabajador {
         mV.addObject("listado", sT.listaTrabajadores());
         return mV;
     }
+
+    /* @RequestMapping(value="/create", method=RequestMethod.POST, 
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Smartphone createSmartphone(@RequestBody Smartphone smartphone) {
+        return smartphoneService.create(smartphone);
+    }
+
+    @RequestMapping(value = "/editar")
+    public ModelAndView editTrabajador() {
+
+        return new ModelAndView("t")
+    }*/
+
 }

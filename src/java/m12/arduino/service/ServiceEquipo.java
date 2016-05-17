@@ -19,5 +19,14 @@ public class ServiceEquipo {
         dE.guardaActualizaEquipo(eq);
         return true;
     }
+    public Equipo buscarEquipo(String nombre){
+        return dE.buscarEquipo(nombre);
+    }
+    public Equipo actualizaEquipo(Equipo eq){
+        return dE.actualizaEquipo(eq);
+    }
+    public Equipo mergeEquipo(Equipo eq){
+        return dE.mergeEquipo(eq);
+    }
 
 }

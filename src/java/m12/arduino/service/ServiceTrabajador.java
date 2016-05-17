@@ -34,6 +34,14 @@ public class ServiceTrabajador {
     }
 
     public List<Trabajador> listaTrabajador() {
+    
+    public Trabajador actualizaTrabajdor(Trabajador trab){
+        return dT.actualizaTrabajador(trab);
+    }
+    public Trabajador buscaTrabajador(String nif){
+        return dT.buscarTrabajador(nif);
+    }
+    public List<Trabajador> listaTrabajador(){
         return dT.obtenListaTrabajador();
     }
 

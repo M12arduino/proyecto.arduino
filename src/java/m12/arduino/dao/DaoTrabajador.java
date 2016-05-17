@@ -15,5 +15,6 @@ public interface DaoTrabajador {
     public Trabajador buscarTrabajador(String nif);
     public List<Trabajador> obtenListaTrabajador();
     public Trabajador guardaActualizaTrabajador(Trabajador trab);
+    public Trabajador actualizaTrabajador(Trabajador trab);
 
 }
