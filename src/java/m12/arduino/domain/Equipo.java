@@ -28,6 +28,7 @@ public class Equipo {
     private String nombre;
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="equipo")
     private List<Trabajador> trabajadores;
+   
     
     {
         trabajadores = new ArrayList<Trabajador>();

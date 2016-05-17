@@ -2,6 +2,7 @@ package m12.arduino.controller;
 
 import m12.arduino.dao.HibernateUtil;
 import m12.arduino.domain.CategoriaTrabajador;
+import m12.arduino.domain.Maketable;
 import m12.arduino.domain.Trabajador;
 import m12.arduino.service.ServiceTrabajador;
 import org.hibernate.HibernateException;
@@ -39,12 +40,13 @@ public class ControllerTrabajador {
 
     
     @RequestMapping(value = "/insertar")
-   public ModelAndView addTrabajador(Trabajador trabajador) {
-       try{
-           sT.insertarTrabajador(trabajador);
-       }catch(HibernateException he){
-           System.out.println(he.getMessage());
-       }
+    public ModelAndView addTrabajador(Trabajador trabajador) {
+
+        try {
+            sT.insertarTrabajador(trabajador);
+        } catch (HibernateException he) {
+            System.out.println(he.getMessage());
+        }
         return new ModelAndView("welcome");
          
     }
@@ -55,11 +57,25 @@ public class ControllerTrabajador {
 	return result;
 
     }
-    
-   @RequestMapping(value= "/editar")
-   public ModelAndView editTrabajador(){
-       
-       return new ModelAndView("t")
-   }*/
-    
+
+    @RequestMapping(value = "/tabla")
+    public ModelAndView printTable() {
+        ModelAndView mV = new ModelAndView("welcome");
+        mV.addObject("listado", sT.listaTrabajadores());
+        return mV;
+    }
+
+    /* @RequestMapping(value="/create", method=RequestMethod.POST, 
+            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Smartphone createSmartphone(@RequestBody Smartphone smartphone) {
+        return smartphoneService.create(smartphone);
+    }
+
+    @RequestMapping(value = "/editar")
+    public ModelAndView editTrabajador() {
+
+        return new ModelAndView("t")
+    }*/
+
 }
