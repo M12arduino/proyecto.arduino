@@ -11,7 +11,9 @@ import m12.arduino.service.RobotForm;
 import m12.arduino.service.ServiceRobot;
 import org.hibernate.HibernateException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -48,5 +50,22 @@ public class ControllerRobot {
         return new ModelAndView("welcome");
          
     }
+   
+    @RequestMapping(value="/buscar")
+    public @ResponseBody String buscaRobotAjax(@ModelAttribute("id_robot") String id_robot){
+        String response = "";
+        return response;
+    }
     
+    /*  @RequestMapping(value = "/buscar")
+    public @ResponseBody String buscaTrabajadorAjax(@ModelAttribute("nif") String nif) {
+        String response = "";
+       Trabajador treb = sT.buscaTrabajador(nif);
+        try {
+            response = treb.toJson();
+        } catch (IOException ex) {
+            response = ex.getMessage();
+        }
+        return response;
+    }*/
 }

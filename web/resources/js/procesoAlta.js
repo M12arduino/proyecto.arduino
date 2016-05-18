@@ -1,13 +1,36 @@
 
 function añadirAccion() {
-    var accion = "";
-    $(".accion").find('input').each(function () {
-        var elemento = this;
-        accion += elemento.value + "/";
-    });
-    
-    $(".accion").after("Pos X: <form:input name='acciones[1]' itemValue='' class='inpu'/> Pos Y: <input type='number' value=''/> Pos Z: <input type='number' value=''/> Pinza: <input type='number' value=''/><br />");
-    
-    $(".acciones").append(accion + "<br />");
+    var num = document.getElementById("numAcciones").value;
+    num++;
+    document.getElementById("numAcciones").value = num;
 
+    var newInput = "<div class='accion'>";
+    newInput += "Pos X: <input type='number' id='posX" + num + "'/>";
+    newInput += "Pos Y: <input type='number' id='posY" + num + "'/>";
+    newInput += "Pos Z: <input type='number' id='posZ" + num + "'/>";
+    newInput += "Pinza: <input type='number' id='pinza" + num + "'/>";
+    newInput += "</div>";
+
+    $("#buto").before(newInput);
+
+}
+
+function prepare() {
+    var json = "[";
+    var posX;
+    var posY;
+    var posZ;
+    var pinza;
+    for (var i = 1; i <= document.getElementById("numAcciones").value; i++) {
+        posX = document.getElementById("posX" + i).value;
+        posY = document.getElementById("posY" + i).value;
+        posZ = document.getElementById("posZ" + i).value;
+        pinza = document.getElementById("pinza" + i).value;
+        json += "{\"posX\": " + posX + ", \"posY\": " + posY + ", \"posZ\": " + posZ + ", \"pinza\": " + pinza + "},";
+    }
+    json = json.substring(0,json.length-1);
+    json += "]";
+    alert(json);
+    document.getElementById("accionesJSON").value = json;
+    document.getElementById("myForm").submit();
 }

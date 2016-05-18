@@ -1,6 +1,7 @@
 package m12.arduino.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.CascadeType;
@@ -31,6 +32,9 @@ public class Proceso implements Serializable {
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="proceso")
     private List<Accion> acciones;
 
+    {
+        acciones = new ArrayList();
+    }
     public long getId_proc() {
         return id_proc;
     }

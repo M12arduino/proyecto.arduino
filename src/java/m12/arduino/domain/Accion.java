@@ -76,9 +76,9 @@ public class Accion implements Serializable {
     public void setProceso(Proceso proceso) {
         this.proceso = proceso;
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Accion{" + "id_accion=" + id_accion + ", posX=" + posX + ", posY=" + posY + ", posZ=" + posZ + ", abrirPinza=" + abrirPinza + ", proceso=" + proceso + '}';
+    }   
 }

@@ -6,6 +6,7 @@
 package m12.arduino.dao;
 
 import java.util.List;
+import java.util.Map;
 import m12.arduino.domain.Robot;
 
 /**
@@ -17,5 +18,6 @@ public interface DaoRobot {
     public Robot buscarRobot(String nombre);
     public List<Robot> obtenListaRobot();
     public Robot guardaActualizaRobot(Robot rob);
+    public Robot buscarRobotByX(Map<String,Object> attrs);
 
 }

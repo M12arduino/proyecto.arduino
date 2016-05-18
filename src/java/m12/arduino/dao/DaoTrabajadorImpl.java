@@ -48,6 +48,14 @@ public class DaoTrabajadorImpl implements DaoTrabajador{
         acabaOperacion();
         return trab;
     }
+    
+    @Override
+    public void eliminarTrabajador(Trabajador trab){
+        iniciaOperacion();
+        session.delete(trab);
+        acabaOperacion();
+    }
+    
     @Override
     public Trabajador guardaActualizaTrabajador(Trabajador trab) {
         iniciaOperacion();

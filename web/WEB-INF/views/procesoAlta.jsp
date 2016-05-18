@@ -9,19 +9,20 @@
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
 
-       <form:form action="${base}/proceso/insertar.htm" method="POST">
-            Descripcion: <form:input path="descripcion" />
-            Acciones:
-            <div class="accion">
-                 Pos X: <form:input path="acciones[0]" itemValue="" class="inpu"/>
-                 Pos Y: <input type="number" value=""/>
-                 Pos Z: <input type="number" value=""/>
-                 Pinza: <input type="number" value=""/>
-            </div>
-            <button type="button" onclick="añadirAccion()">Añadir accion</button><br />
-            <div class="acciones"></div>
-            <input type="submit" value="Send" />
-        </form:form>
+<form:form id="myForm" action="${base}/proceso/insertar.htm" method="POST">
+    Descripcion: <form:input path="descripcion" />
+    Acciones:
+    <div class="accion">
+        Pos X: <input type="number" id="posX1" />
+        Pos Y: <input type="number" id="posY1" />
+        Pos Z: <input type="number" id="posZ1" />
+        Pinza: <input type="number" id="pinza1" />
+    </div>
+    <button id="buto"  type="button" onclick="añadirAccion()">Añadir accion</button><br />
+    <form:input type="hidden" id="accionesJSON" path="accionesJSON" value="" />
+    <input type="hidden" id="numAcciones" value="1" />
+    <input type="button" value="Send" onclick="prepare();"/>
+</form:form>
 
-    </body>
+</body>
 </html>

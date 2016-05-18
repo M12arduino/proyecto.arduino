@@ -113,17 +113,17 @@ public class Trabajador implements Serializable, Maketable {
         String jsonStr = mapperObj.writeValueAsString(this);
         return jsonStr;
     }
-
+    @JsonIgnore
     @Override
     public List<String> getFields() {
         return new ArrayList(Arrays.asList("ID", "Nif", "Nombre", "Movil", "Categoria", "Equipo"));
     }
-    
+    @JsonIgnore
     @Override
     public List<String> getInfo() {
         return new ArrayList(Arrays.asList(id_trab, nif, nombre, movil, categoria.toString(), equipo.getNombre()));    
     }
-    
+    @JsonIgnore
     @Override
     public long getPK() {
         return id_trab;

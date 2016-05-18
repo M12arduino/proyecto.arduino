@@ -22,6 +22,7 @@ public class Robot implements Serializable {
     // ATTR
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private long id;
     private long id_robot;
     private String nombre;
     @Embedded

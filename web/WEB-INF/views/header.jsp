@@ -25,6 +25,7 @@
         <!-- JS PARTICULARES -->
         <script type="text/javascript" src="${base}/resources/js/login.js"></script>
         <script type="text/javascript" src="${base}/resources/js/procesoAlta.js"></script>
+        <script type="text/javascript" src="${base}/resources/js/functions.js"></script>
        
 
 

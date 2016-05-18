@@ -5,8 +5,12 @@
  */
 package m12.arduino.dao;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import m12.arduino.domain.Robot;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -56,4 +60,38 @@ public class DaoRobotImpl implements DaoRobot{
         return res;
     }
     
+        public Robot buscarRobotByX(Map<String, Object> attrs) {
+
+        Robot res = new Robot();
+        try {
+            iniciaOperacion();
+            //Create Query String
+            String str = "";
+            Set keys = attrs.keySet();
+
+            for (Iterator<String> it = keys.iterator(); it.hasNext();) {
+                if (it.hasNext()) {
+                    String currentKey = it.next();
+                    str += currentKey + "=:" + currentKey + " ";
+                }
+                if (it.hasNext()) {
+                    str += " and ";
+                }
+            }
+            Query query = session.createQuery("FROM Robot r WHERE " + str);
+            //Initialize params
+            for (Map.Entry e : attrs.entrySet()) {
+                String attr = (String) e.getKey();
+                Object val = (Object) e.getValue();
+                query.setParameter(attr, val);
+            }
+            Object aux = query.uniqueResult();
+            res = (Robot) aux;
+            acabaOperacion();
+        }catch (Exception ex){
+            System.out.println(ex);;
+        } 
+
+        return res;
+    }
 }

@@ -12,7 +12,7 @@ Curs 2015-2016
 public class RobotForm {
 
     // ATTR
-    private long id;
+    private long id_robot;
     private String nombre;
     private String lugar;
     private float coorX;
@@ -20,13 +20,15 @@ public class RobotForm {
     private EstadoRobot estado;
 
     // GESETS
-    public long getId() {
-        return id;
+
+    public long getId_robot() {
+        return id_robot;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId_robot(long id_robot) {
+        this.id_robot = id_robot;
     }
+
 
     public String getNombre() {
         return nombre;

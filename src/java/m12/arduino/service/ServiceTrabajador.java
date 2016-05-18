@@ -33,6 +33,9 @@ public class ServiceTrabajador {
         }
     }
 
+    public void eliminarTrabajador(Trabajador trab){
+        dT.eliminarTrabajador(trab);
+    }
     public Trabajador actualizaTrabajdor(Trabajador trab) {
         return dT.actualizaTrabajador(trab);
     }

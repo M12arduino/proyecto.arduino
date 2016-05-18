@@ -16,5 +16,5 @@ public interface DaoTrabajador {
     public List<Trabajador> obtenListaTrabajador();
     public Trabajador guardaActualizaTrabajador(Trabajador trab);
     public Trabajador actualizaTrabajador(Trabajador trab);
-
+    public void eliminarTrabajador(Trabajador trab);
 }

@@ -5,26 +5,42 @@
  */
 
 
-$(document).ready(function () {
-    $("#search").click(function () {
+$(document).ready(function(){
+    
+   $("#nifSearch").on("click",function () {
         $.ajax({
-            url: "http://localhost:8080/A_Spring_Inicial/trabajador/buscar.htm",
-            data:"nif="+$("#nifSearch").val(),
+            url: getBasePath()+"trabajador/buscar.htm",
+            data:"nif="+$("#nifSearchVal").val(),
             success: function(response) {
                 var obj = JSON.parse(response);
                 $("#nombre").val(obj["nombre"]);
                 $("#movil").val(obj["movil"]);
                 $("#nif").val(obj["nif"]);
                 $("#password").val(obj["password"]);
+                $("#categoria").val(obj["categoria"]);
+                $("#id_trab").val(obj["id_trab"]);
                 $("#form").show();
+                $("#tableResults").find("p").hide();
             },
             error: function (xhr) {
-                alert("what?");
                 var err = eval("(" + xhr.responseText + ")");
                 alert(err.Message);
             }
         });
     })
+    
+    $("#editar").on("click",function(){
+        prepareForm("#form","actualizar.htm")
+        $("#form").submit();
+    })
+    
+    $("#eliminar").on("click",function(){
+        prepareForm("#form","eliminar.htm");
+        $("#form").submit();
+    })
+})
+    
 
+    
+  
 
-});
