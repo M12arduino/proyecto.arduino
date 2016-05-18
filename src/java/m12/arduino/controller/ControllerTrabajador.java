@@ -8,6 +8,7 @@ import m12.arduino.domain.CategoriaTrabajador;
 import m12.arduino.domain.Maketable;
 import m12.arduino.domain.Trabajador;
 import m12.arduino.service.ServiceTrabajador;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -53,11 +54,30 @@ public class ControllerTrabajador {
         return new ModelAndView("welcome");
 
     }
+    @RequestMapping(value="/actualizar")
+    public ModelAndView actualizarTrabajador(Trabajador trabajador){
+        
+        try {
+            sT.actualizaTrabajdor(trabajador);
+        } catch (Exception e) {
+        }
+        return new ModelAndView("welcome");
+    }
+    
+    @RequestMapping(value="/eliminar")
+    public ModelAndView eliminarTrabajador(Trabajador trabajador){
+        try {
+            sT.eliminarTrabajador(trabajador);
+        } catch (Exception e) {
+        }
+        return new ModelAndView("welcome");
+    }
     @RequestMapping(value="/administrar")
     public ModelAndView administrarTrabajador(){
         ModelAndView mV = new ModelAndView("trabajadorCrud","command",new Trabajador());
         mV.addObject("categorias",CategoriaTrabajador.values());
-
+        return mV;
+    }
     @RequestMapping(value = "/tabla")
     public ModelAndView printTable() {
         ModelAndView mV = new ModelAndView("trabajadorTabla");
@@ -69,7 +89,7 @@ public class ControllerTrabajador {
         String response = "";
        Trabajador treb = sT.buscaTrabajador(nif);
         try {
-            response= treb.toJson();
+            response = treb.toJson();
         } catch (IOException ex) {
             response = ex.getMessage();
         }
