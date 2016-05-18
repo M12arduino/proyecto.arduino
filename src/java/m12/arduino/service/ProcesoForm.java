@@ -5,6 +5,7 @@
  */
 package m12.arduino.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,7 +17,7 @@ public class ProcesoForm {
     
     // ATTR
     private String descripcion;
-    private List<String> acciones;
+    private String accionesJSON;
 
     public String getDescripcion() {
         return descripcion;
@@ -26,16 +27,12 @@ public class ProcesoForm {
         this.descripcion = descripcion;
     }
 
-    public List<String> getAcciones() {
-        return acciones;
+    public String getAccionesJSON() {
+        return accionesJSON;
     }
 
-    public void setAcciones(List<String> acciones) {
-        this.acciones = acciones;
+    public void setAccionesJSON(String accionesJSON) {
+        this.accionesJSON = accionesJSON;
     }
-    
-    public void addAccion(String accion){
-        this.getAcciones().add(accion);
-    }
-    
+
 }

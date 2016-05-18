@@ -5,11 +5,14 @@
  */
 package m12.arduino.controller;
 
-import m12.arduino.domain.EstadoRobot;
-import m12.arduino.domain.Robot;
+import com.thoughtworks.xstream.XStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import m12.arduino.domain.Accion;
+
 import m12.arduino.service.ProcesoForm;
 import m12.arduino.service.ServiceProceso;
-import org.hibernate.HibernateException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,25 +24,20 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/proceso")
 public class ControllerProceso {
-    
+
     private ServiceProceso sP = new ServiceProceso();
 
     @RequestMapping("/alta")
     public ModelAndView formularioInicial() {
-        ModelAndView mV = new ModelAndView("procesoAlta","command",new ProcesoForm());
+        ModelAndView mV = new ModelAndView("procesoAlta", "command", new ProcesoForm());
         return mV;
     }
 
-    
     @RequestMapping(value = "/insertar")
-   public ModelAndView addProceso(ProcesoForm pf) {
-       try{
-       }catch(HibernateException he){
-           System.out.println(he.getMessage());
-       }
-        return new ModelAndView("welcome");
-         
+    public String addProceso(ProcesoForm pf) {
+        System.out.println(pf.getAccionesJSON());
+        
+        return "welcome";
     }
-    
-}
 
+}
