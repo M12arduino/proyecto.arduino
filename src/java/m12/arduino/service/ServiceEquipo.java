@@ -5,6 +5,9 @@
  */
 package m12.arduino.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import m12.arduino.dao.DaoEquipoImpl;
 import m12.arduino.domain.Equipo;
 
@@ -13,20 +16,41 @@ import m12.arduino.domain.Equipo;
  * @author enric
  */
 public class ServiceEquipo {
-    private DaoEquipoImpl dE = new DaoEquipoImpl();
-    
-    public boolean insertarEquipo(Equipo eq){
-        dE.guardaActualizaEquipo(eq);
-        return true;
-    }
-    public Equipo buscarEquipo(String nombre){
+
+    private final DaoEquipoImpl dE = new DaoEquipoImpl();
+
+    public Equipo buscarEquipo(String nombre) {
         return dE.buscarEquipo(nombre);
     }
-    public Equipo actualizaEquipo(Equipo eq){
-        return dE.actualizaEquipo(eq);
-    }
-    public Equipo mergeEquipo(Equipo eq){
-        return dE.mergeEquipo(eq);
+
+    public Equipo buscarEquipo(Object... vars) {
+        Map<String, Object> condiciones = new HashMap();
+        for (int i = 0; i < vars.length; i++) {
+            condiciones.put((String) vars[i], vars[i + 1]);
+            i++;
+        }
+        return dE.buscarEquipo(condiciones);
     }
 
+    public List<Equipo> listarEquipos() {
+        return dE.obtenerListaEquipos();
+    }
+
+    public List<Equipo> listarEquipos(Object... vars) {
+        Map<String, Object> condiciones = new HashMap();
+        for (int i = 0; i < vars.length; i++) {
+            condiciones.put((String) vars[i], vars[i + 1]);
+            i++;
+        }
+        return dE.obtenerListaEquipos(condiciones);
+    }
+
+    public boolean insertarEquipo(Equipo equ) {
+        dE.guardarEquipo(equ);
+        return true;
+    }
+
+    public Equipo actualizarEquipo(Equipo equ) {
+        return dE.actualizarEquipo(equ);
+    }
 }

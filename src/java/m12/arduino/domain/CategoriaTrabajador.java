@@ -10,6 +10,7 @@ package m12.arduino.domain;
  * @author Jordi
  */
 public enum CategoriaTrabajador { 
+    
     // LIST
     JUNIOR(1,"Junior"),
     SENIOR(2, "Senior"),

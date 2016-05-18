@@ -5,6 +5,10 @@
  */
 package m12.arduino.dao;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import m12.arduino.domain.Equipo;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -30,22 +34,6 @@ public class DaoEquipoImpl implements DaoEquipo {
     }
 
     @Override
-    public Equipo guardaActualizaEquipo(Equipo eq) {
-        iniciaOperacion();
-        session.persist(eq);
-        acabaOperacion();
-        return eq;
-    }
-
-    @Override
-    public Equipo actualizaEquipo(Equipo eq) {
-        iniciaOperacion();
-        session.update(eq);
-        acabaOperacion();
-        return eq;
-    }
-
-    @Override
     public Equipo buscarEquipo(String nombre) {
         iniciaOperacion();
         Query q = session.createQuery("FROM Equipo e WHERE e.nombre =:nombre ");
@@ -56,11 +44,59 @@ public class DaoEquipoImpl implements DaoEquipo {
     }
 
     @Override
-    public Equipo mergeEquipo(Equipo eq) {
+    public List<Equipo> obtenerListaEquipos(Map<String, Object> whereMap) {
         iniciaOperacion();
-        session.merge(eq);
+        //Create where block
+        String str = "";
+        Set keys = whereMap.keySet();
+        for (Iterator<String> it = keys.iterator(); it.hasNext();) {
+            if (it.hasNext()) {
+                String currentKey = it.next();
+                str += currentKey + "=:" + currentKey + " ";
+            }
+            if (it.hasNext()) {
+                str += " and ";
+            }
+        }
+        // Complete query-string
+        Query query = session.createQuery("FROM Equipo WHERE " + str);
+        //set parameters
+        for (Map.Entry e : whereMap.entrySet()) {
+            String attr = (String) e.getKey();
+            Object val = e.getValue();
+            query.setParameter(attr, val);
+        }
+        acabaOperacion();
+        return query.list();
+    }
+
+    @Override
+    public List<Equipo> obtenerListaEquipos() {
+        iniciaOperacion();
+        Query q = session.createQuery("From Equipo");
+        List<Equipo> res = q.list();
+        acabaOperacion();
+        return res;
+    }
+
+    @Override
+    public Equipo guardarEquipo(Equipo eq) {
+        iniciaOperacion();
+        session.persist(eq);
         acabaOperacion();
         return eq;
     }
 
+    @Override
+    public Equipo actualizarEquipo(Equipo eq) {
+        iniciaOperacion();
+        session.update(eq);
+        acabaOperacion();
+        return eq;
+    }
+
+    @Override
+    public Equipo buscarEquipo(Map<String, Object> whereMap) {
+        return obtenerListaEquipos(whereMap).get(0);
+    }
 }

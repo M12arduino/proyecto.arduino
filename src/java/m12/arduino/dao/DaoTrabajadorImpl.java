@@ -5,51 +5,82 @@
  */
 package m12.arduino.dao;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import m12.arduino.domain.Trabajador;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
  *
  * @author enric
  */
-public class DaoTrabajadorImpl implements DaoTrabajador{
-    
+public class DaoTrabajadorImpl implements DaoTrabajador {
+
     private Session session;
     private Transaction tx;
-  
-    public void iniciaOperacion(){
+
+    public void iniciaOperacion() {
         session = HibernateUtil.getSessionFactory().openSession();
         tx = session.beginTransaction();
     }
-    
-    public void acabaOperacion(){
-         tx.commit();
+
+    public void acabaOperacion() {
+        tx.commit();
         session.close();
     }
 
     @Override
     public Trabajador buscarTrabajador(String nif) {
         iniciaOperacion();
-        Query q =session.createQuery("FROM Trabajador t WHERE t.nif =:nif ");
-        q.setParameter("nif",nif);
-        Trabajador res = (Trabajador)q.uniqueResult();
+        Query q = session.createQuery("FROM Trabajador t WHERE t.nif =:nif ");
+        q.setParameter("nif", nif);
+        Trabajador res = (Trabajador) q.uniqueResult();
         acabaOperacion();
-        return res;           
+        return res;
     }
-    
+
     @Override
-    public Trabajador actualizaTrabajador(Trabajador trab){
+    public List<Trabajador> obtenerListaTrabajadores(Map<String, Object> whereMap) {
         iniciaOperacion();
-        session.update(trab);
+        //Create where block
+        String str = "";
+        Set keys = whereMap.keySet();
+        for (Iterator<String> it = keys.iterator(); it.hasNext();) {
+            if (it.hasNext()) {
+                String currentKey = it.next();
+                str += currentKey + "=:" + currentKey + " ";
+            }
+            if (it.hasNext()) {
+                str += " and ";
+            }
+        }
+        // Complete query-string
+        Query query = session.createQuery("FROM Trabajador WHERE " + str);
+        //set parameters
+        for (Map.Entry e : whereMap.entrySet()) {
+            String attr = (String) e.getKey();
+            String val = (String) e.getValue();
+            query.setParameter(attr, val);
+        }
         acabaOperacion();
-        return trab;
+        return query.list();
     }
+
     @Override
-    public Trabajador guardaActualizaTrabajador(Trabajador trab) {
+    public List<Trabajador> obtenerListaTrabajadores() {
+        iniciaOperacion();
+        Query q = session.createQuery("From Trabajador");
+        List<Trabajador> res = q.list();
+        acabaOperacion();
+        return res;
+    }
+
+    @Override
+    public Trabajador guardarTrabajador(Trabajador trab) {
         iniciaOperacion();
         session.persist(trab);
         acabaOperacion();
@@ -57,12 +88,15 @@ public class DaoTrabajadorImpl implements DaoTrabajador{
     }
 
     @Override
-    public List<Trabajador> obtenListaTrabajador() {
+    public Trabajador actualizarTrabajador(Trabajador trab) {
         iniciaOperacion();
-        Query q = session.createQuery("From Trabajador");
-        List<Trabajador> res = q.list();
+        session.update(trab);
         acabaOperacion();
-        return res;
+        return trab;
     }
-    
+
+    @Override
+    public Trabajador buscarTrabajador(Map<String, Object> whereMap) {
+        return obtenerListaTrabajadores(whereMap).get(0);
+    }
 }

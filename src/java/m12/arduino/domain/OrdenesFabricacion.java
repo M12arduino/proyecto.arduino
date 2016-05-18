@@ -18,4 +18,12 @@ public class OrdenesFabricacion {
     private String descripcion;
     private Prioridad proridad;
     private Calendar fecha;
+    private Proceso proceso;
+    private int cantidad;
+    private Robot robot;
+    private EstadoOrden estado;
+    
+    {
+        
+    }
 }

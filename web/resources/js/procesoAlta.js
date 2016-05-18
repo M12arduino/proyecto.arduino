@@ -26,11 +26,15 @@ function prepare() {
         posY = document.getElementById("posY" + i).value;
         posZ = document.getElementById("posZ" + i).value;
         pinza = document.getElementById("pinza" + i).value;
-        json += "{\"posX\": " + posX + ", \"posY\": " + posY + ", \"posZ\": " + posZ + ", \"pinza\": " + pinza + "},";
+        if (pinza === "0") {
+            pinza = false;
+        } else {
+            pinza = true;
+        }
+        json += "{\"posX\": " + posX + ", \"posY\": " + posY + ", \"posZ\": " + posZ + ", \"abrirPinza\": " + pinza + "},";
     }
     json = json.substring(0,json.length-1);
     json += "]";
-    alert(json);
     document.getElementById("accionesJSON").value = json;
     document.getElementById("myForm").submit();
 }
