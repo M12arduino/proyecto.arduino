@@ -17,7 +17,7 @@
                         <input type="number" value=""/>
                         <input type="number" value=""/>
                         <input type="number" value=""/>
-                        <button type="button" onclick="añadirAccion()">Añadir accion</button>
+                        <!--<button type="button" onclick="añadirAccion()">Añadir accion</button>-->
             </div><br />
             <div class="acciones"></div>
             <input type="submit" value="Send" />
