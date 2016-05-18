@@ -1,5 +1,8 @@
 package m12.arduino.controller;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import m12.arduino.dao.HibernateUtil;
 import m12.arduino.domain.CategoriaTrabajador;
 import m12.arduino.domain.Maketable;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,17 +32,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/trabajador")
 public class ControllerTrabajador {
-    
+
     private ServiceTrabajador sT = new ServiceTrabajador();
 
     @RequestMapping("/alta")
     public ModelAndView formularioInicial() {
-        ModelAndView mV = new ModelAndView("trabajadorAlta","command",new Trabajador());
+        ModelAndView mV = new ModelAndView("trabajadorAlta", "command", new Trabajador());
         mV.addObject("categorias", CategoriaTrabajador.values());
         return mV;
     }
 
-    
     @RequestMapping(value = "/insertar")
     public ModelAndView addTrabajador(Trabajador trabajador) {
 
@@ -48,34 +51,24 @@ public class ControllerTrabajador {
             System.out.println(he.getMessage());
         }
         return new ModelAndView("welcome");
-         
-    }
-    /*@ResponseBody
-    @RequestMapping(value = "/search/api/getSearchResult")
-    public AjaxResponseBody buscaTrabajadorAjax(@RequestBody String nif) {
-	AjaxResponseBody result = new AjaxResponseBody();
-	return result;
 
     }
-
-    @RequestMapping(value = "/tabla")
-    public ModelAndView printTable() {
-        ModelAndView mV = new ModelAndView("welcome");
-        mV.addObject("listado", sT.listaTrabajadores());
+    @RequestMapping(value="/administrar")
+    public ModelAndView administrarTrabajador(){
+        ModelAndView mV = new ModelAndView("trabajadorCrud","command",new Trabajador());
+        mV.addObject("categorias",CategoriaTrabajador.values());
         return mV;
     }
-
-    /* @RequestMapping(value="/create", method=RequestMethod.POST, 
-            produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public Smartphone createSmartphone(@RequestBody Smartphone smartphone) {
-        return smartphoneService.create(smartphone);
+    @RequestMapping(value = "/buscar")
+    public @ResponseBody String buscaTrabajadorAjax(@ModelAttribute("nif") String nif) {
+        String response = "";
+       Trabajador treb = sT.buscaTrabajador(nif);
+        try {
+            response= treb.toJson();
+        } catch (IOException ex) {
+            response = ex.getMessage();
+        }
+        return response;
     }
-
-    @RequestMapping(value = "/editar")
-    public ModelAndView editTrabajador() {
-
-        return new ModelAndView("t")
-    }*/
 
 }

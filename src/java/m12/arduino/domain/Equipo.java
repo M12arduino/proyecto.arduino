@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /*
 Jordi Puig Puig
@@ -27,6 +28,7 @@ public class Equipo {
     private long id_equipo;
     private String nombre;
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="equipo")
+    @JsonIgnore
     private List<Trabajador> trabajadores;
    
     
