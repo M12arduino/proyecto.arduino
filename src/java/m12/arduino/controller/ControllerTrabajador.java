@@ -57,7 +57,9 @@ public class ControllerTrabajador {
     public ModelAndView administrarTrabajador(){
         ModelAndView mV = new ModelAndView("trabajadorCrud","command",new Trabajador());
         mV.addObject("categorias",CategoriaTrabajador.values());
-
+        return mV;
+    }
+    
     @RequestMapping(value = "/tabla")
     public ModelAndView printTable() {
         ModelAndView mV = new ModelAndView("trabajadorTabla");
