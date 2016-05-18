@@ -28,7 +28,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="${base}/trabajador/alta.htm">Añadir trabajador</a></li>
                         <li><a href="${base}/trabajador/tabla.htm">Tabla</a></li>
-                        <li><a href="#">Something else here</a></li>
+                        <li><a href="${base}/trabajador/administrar.htm">Administrar</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Separated link</a></li>
                     </ul>

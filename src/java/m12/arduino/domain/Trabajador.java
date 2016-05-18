@@ -1,5 +1,6 @@
 package m12.arduino.domain;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.ObjectMapper;
 //import javax.validation.constraints.Pattern;
 //import javax.validation.constraints.Size;
 
@@ -103,6 +106,12 @@ public class Trabajador implements Serializable, Maketable {
     @Override
     public String toString() {
         return "Trabajador{" + "id_trab=" + id_trab + ", nif=" + nif + ", nombre=" + nombre + ", movil=" + movil + ", password=" + password + ", categoria=" + categoria + '}';
+    }
+    
+    public String toJson() throws IOException{
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = mapperObj.writeValueAsString(this);
+        return jsonStr;
     }
 
     @Override
