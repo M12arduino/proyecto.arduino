@@ -21,6 +21,9 @@ public class ServiceTrabajador {
 
     private final DaoTrabajadorImpl dT = new DaoTrabajadorImpl();
 
+    public void eliminarTrabajador(Trabajador trabajador){
+        dT.eliminarTrabajador(trabajador);
+    }
     public Trabajador buscarTrabajador(String nombre) {
         return dT.buscarTrabajador(nombre);
     }

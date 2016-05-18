@@ -12,12 +12,20 @@
 <!DOCTYPE html>
 
 <label for="nif">NIF</label>
-<input type="text" placeholder="nif" id="nifSearchVal"/>
-<input type="button" value="buscar" id="nifSearch"/>
-<div id="tableResults">
-    <p> Busca algun resultado </p>
+
+    
     <form:form action="${base}/trabajador" method="POST" id="form">
-        <form:input path="id_trab" type="hidden" id="id_trab"/>
+        <div class="form_search">
+            <input type="text" placeholder="nif" id="nifSearchVal"/>
+            <input type="text" placeholder="nombre" id="nombreSearchVal"/>
+            <form:select path="categoriaSearch" id="categoriaSearch">
+                <form:options items="${categorias}" />
+            </form:select>
+            <input type="button" value="buscar" id="search"/>
+        <p id="results"> Busca algun resultado </p>
+        </div>
+        <div class="form_edit">
+          <form:input path="id_trab" type="hidden" id="id_trab"/>
             NIF: <form:input path="nif" id="nif"/>
             Nombre: <form:input path="nombre" id="nombre"/>
             Movil: <form:input path="movil" id="movil" />
@@ -28,7 +36,12 @@
             </form:select>
             <input type="button" value="Editar" id="editar"/>
             <input type="button" value="Eliminar" id="eliminar"/>
+        </div>
         </form:form>
-
+<div class="col-md-2"></div>
+<div class="col-md-8">
+<table id="datatable">
+    
+</table>
 </div>
 </html>

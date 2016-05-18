@@ -1,6 +1,7 @@
 package m12.arduino.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import m12.arduino.dao.HibernateUtil;
@@ -8,6 +9,7 @@ import m12.arduino.domain.CategoriaTrabajador;
 import m12.arduino.domain.Maketable;
 import m12.arduino.domain.Trabajador;
 import m12.arduino.service.ServiceTrabajador;
+import m12.arduino.service.TrabajadorCrudForm;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -58,7 +60,7 @@ public class ControllerTrabajador {
     public ModelAndView actualizarTrabajador(Trabajador trabajador){
         
         try {
-            sT.actualizaTrabajdor(trabajador);
+            sT.actualizarTrabajador(trabajador);
         } catch (Exception e) {
         }
         return new ModelAndView("welcome");
@@ -74,22 +76,23 @@ public class ControllerTrabajador {
     }
     @RequestMapping(value="/administrar")
     public ModelAndView administrarTrabajador(){
-        ModelAndView mV = new ModelAndView("trabajadorCrud","command",new Trabajador());
+        ModelAndView mV = new ModelAndView("trabajadorCrud","command",new TrabajadorCrudForm());
         mV.addObject("categorias",CategoriaTrabajador.values());
         return mV;
     }
     @RequestMapping(value = "/tabla")
     public ModelAndView printTable() {
         ModelAndView mV = new ModelAndView("trabajadorTabla");
-        mV.addObject("listado", sT.listaTrabajadores());
+        mV.addObject("listado", sT.listarTrabajadores());
         return mV;
     }
     @RequestMapping(value = "/buscar")
-    public @ResponseBody String buscaTrabajadorAjax(@ModelAttribute("nif") String nif) {
+    public @ResponseBody String buscaTrabajadorAjax() {
         String response = "";
-       Trabajador treb = sT.buscaTrabajador(nif);
+        List<Trabajador> trab = sT.listarTrabajadores();
         try {
-            response = treb.toJson();
+             ObjectMapper mapperObj = new ObjectMapper();
+             response = mapperObj.writeValueAsString(trab);
         } catch (IOException ex) {
             response = ex.getMessage();
         }

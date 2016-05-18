@@ -5,42 +5,55 @@
  */
 
 
-$(document).ready(function(){
-    
-   $("#nifSearch").on("click",function () {
+$(document).ready(function () {
+
+    $("#search").on("click", function () {
         $.ajax({
-            url: getBasePath()+"trabajador/buscar.htm",
-            data:"nif="+$("#nifSearchVal").val(),
-            success: function(response) {
-                var obj = JSON.parse(response);
-                $("#nombre").val(obj["nombre"]);
-                $("#movil").val(obj["movil"]);
-                $("#nif").val(obj["nif"]);
-                $("#password").val(obj["password"]);
-                $("#categoria").val(obj["categoria"]);
-                $("#id_trab").val(obj["id_trab"]);
-                $("#form").show();
-                $("#tableResults").find("p").hide();
+            url: getBasePath() + "trabajador/buscar.htm",
+            success: function (response) {
+                var array = JSON.parse(response);
+                var titles = dataTablesDevuelveProps(array);
+                var dataSet = dataTablesDevuelveValues(array);
+                $("#datatable").DataTable({
+                    data: dataSet,
+                    columns: titles
+                });
+                prepareCrudTrabajador();
             },
             error: function (xhr) {
                 var err = eval("(" + xhr.responseText + ")");
                 alert(err.Message);
+
             }
         });
     })
-    
-    $("#editar").on("click",function(){
-        prepareForm("#form","actualizar.htm")
+    $("#editar").on("click", function () {
+        prepareForm("#form", "actualizar.htm")
         $("#form").submit();
     })
-    
-    $("#eliminar").on("click",function(){
-        prepareForm("#form","eliminar.htm");
+
+    $("#eliminar").on("click", function () {
+        prepareForm("#form", "eliminar.htm");
         $("#form").submit();
     })
 })
-    
 
-    
-  
+ function prepareCrudTrabajador() {
+        $("#datatable tr").not(":first").on("click", function () {
+            $(".form_edit").show();
+            $("#id_trab").val($(this).find("td:nth-child(1)").html());
+            $("#nif").val($(this).find("td:nth-child(2)").html());
+            $("#nombre").val($(this).find("td:nth-child(3)").html());
+            $("#movil").val($(this).find("td:nth-child(4)").html());
+            $("#password").val($(this).find("td:nth-child(5)").html());
+            $("#categoria").val($(this).find("td:nth-child(6)").html());
+
+        })
+//          
+
+
+    }
+
+
+
 

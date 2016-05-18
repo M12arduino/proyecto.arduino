@@ -15,7 +15,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Arduino Central Web</title>
         <link rel="stylesheet" href="${base}/resources/libs/bootstrap.min.css"/>
+        <link rel="stylesheet" href="${base}/resources/libs/jquery.dataTables.min.css"/>
         <script type="text/javascript" src="${base}/resources/libs/jquery-2.2.3.js"></script>
+        <script type="text/javascript" src="${base}/resources/libs/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/bootstrap.min.js"/>
 
 

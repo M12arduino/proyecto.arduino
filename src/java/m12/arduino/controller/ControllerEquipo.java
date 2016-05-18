@@ -32,7 +32,7 @@ public class ControllerEquipo {
     @RequestMapping("alta")
     public ModelAndView initFormAlta(){
         ModelAndView mV = new ModelAndView("equipoAlta","command",new EquipoForm());
-        mV.addObject("listaTrabajadores", sT.listaTrabajador());
+        mV.addObject("listaTrabajadores", sT.listarTrabajadores());
         return mV;
     }
     
@@ -48,11 +48,11 @@ public class ControllerEquipo {
         res = sE.buscarEquipo(eq.getNombre());
         for (String str : eq.getNifs()){         
             //Buscar trabajador segun datos del formulario
-            treb = sT.buscaTrabajador(str);
+            treb = sT.buscarTrabajador(str);
             //Programacion defensiva
             res.addTrabajador(treb);
             //Actualizar Trabajador
-            sT.actualizaTrabajdor(treb);
+            sT.actualizarTrabajador(treb);
         }
         
         return new ModelAndView("welcome");

@@ -7,7 +7,14 @@ and open the template in the editor.
     Created on : 18-may-2016, 17:49:03
     Author     : enric
 */
-#form{
+.form_edit{
     display:none;
+}
+#datatable tr.odd, #datatable tr.even{
+    cursor:pointer;
+}
+#datatable tr.odd:hover, #datatable tr.even:hover{
+    color:white;
+    background:black;
 }
 

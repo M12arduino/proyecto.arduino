@@ -24,5 +24,6 @@ public interface DaoTrabajador {
     public Trabajador guardarTrabajador(Trabajador trab);
 
     public Trabajador actualizarTrabajador(Trabajador trab);
-
+    
+    public void eliminarTrabajador(Trabajador trab);
 }
