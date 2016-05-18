@@ -60,7 +60,7 @@ public class ControllerTrabajador {
         return mV;
     }
     
-
+    
     @RequestMapping(value = "/tabla")
     public ModelAndView printTable() {
         ModelAndView mV = new ModelAndView("trabajadorTabla");
