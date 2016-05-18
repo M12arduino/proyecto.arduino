@@ -5,14 +5,12 @@
  */
 package m12.arduino.controller;
 
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import m12.arduino.domain.Accion;
+import m12.arduino.domain.Proceso;
 
 import m12.arduino.service.ProcesoForm;
 import m12.arduino.service.ServiceProceso;
@@ -42,17 +40,15 @@ public class ControllerProceso {
     public String addProceso(ProcesoForm pf) {
         System.out.println(pf.getAccionesJSON());
         ObjectMapper mapper = new ObjectMapper();
-
-        List<Accion> acciones = null;
+        List<Accion> acciones;
         try {
-            acciones = mapper.readValue(pf.getAccionesJSON(), new TypeReference<List<Accion>>(){});
+            acciones = mapper.readValue(pf.getAccionesJSON(), new TypeReference<List<Accion>>() {});
+            Proceso pro = new Proceso();
+            pro.setDescripcion(pf.getDescripcion());
+            pro.setAcciones(acciones);
+            sP.insertarProceso(pro);
         } catch (IOException ex) {
             Logger.getLogger(ControllerProceso.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-       
-        for (Accion accion : acciones) {
-            System.out.println(accion.toString());
         }
         return "welcome";
     }

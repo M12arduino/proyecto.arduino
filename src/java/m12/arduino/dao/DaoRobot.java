@@ -16,8 +16,15 @@ import m12.arduino.domain.Robot;
 public interface DaoRobot {
 
     public Robot buscarRobot(String nombre);
-    public List<Robot> obtenListaRobot();
-    public Robot guardaActualizaRobot(Robot rob);
-    public Robot buscarRobotByX(Map<String,Object> attrs);
+    
+    public Robot buscarRobot(Map<String, Object> whereMap);
+
+    public List<Robot> obtenerListaRobots(Map<String, Object> whereMap);
+
+    public List<Robot> obtenerListaRobots();
+
+    public Robot guardarRobot(Robot rob);
+
+    public Robot actualizarRobot(Robot rob);
 
 }

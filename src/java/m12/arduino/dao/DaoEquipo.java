@@ -5,6 +5,8 @@
  */
 package m12.arduino.dao;
 
+import java.util.List;
+import java.util.Map;
 import m12.arduino.domain.Equipo;
 
 /**
@@ -12,9 +14,17 @@ import m12.arduino.domain.Equipo;
  * @author enric
  */
 public interface DaoEquipo {
-    
-    public Equipo guardaActualizaEquipo(Equipo eq);
-    public Equipo actualizaEquipo(Equipo eq);
+
     public Equipo buscarEquipo(String nombre);
-    public Equipo mergeEquipo(Equipo eq);
+    
+    public Equipo buscarEquipo(Map<String, Object> whereMap);
+
+    public List<Equipo> obtenerListaEquipos(Map<String, Object> whereMap);
+
+    public List<Equipo> obtenerListaEquipos();
+
+    public Equipo guardarEquipo(Equipo equ);
+
+    public Equipo actualizarEquipo(Equipo equ);
+
 }

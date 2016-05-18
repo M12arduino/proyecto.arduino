@@ -16,8 +16,17 @@ import java.util.List;
 public class ProcesoForm {
     
     // ATTR
+    private String titulo;
     private String descripcion;
     private String accionesJSON;
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
     public String getDescripcion() {
         return descripcion;

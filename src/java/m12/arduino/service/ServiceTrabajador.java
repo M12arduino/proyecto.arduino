@@ -1,7 +1,9 @@
 package m12.arduino.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import m12.arduino.dao.DaoTrabajador;
 import m12.arduino.dao.DaoTrabajadorImpl;
 import m12.arduino.domain.CategoriaTrabajador;
@@ -17,39 +19,45 @@ import m12.arduino.domain.Trabajador;
  */
 public class ServiceTrabajador {
 
-    private DaoTrabajadorImpl dT = new DaoTrabajadorImpl();
+    private final DaoTrabajadorImpl dT = new DaoTrabajadorImpl();
+
+    public Trabajador buscarTrabajador(String nombre) {
+        return dT.buscarTrabajador(nombre);
+    }
+
+    public Trabajador buscarTrabajador(Object... vars) {
+        Map<String, Object> condiciones = new HashMap();
+        for (int i = 0; i < vars.length; i++) {
+            condiciones.put((String) vars[i], vars[i + 1]);
+            i++;
+        }
+        return dT.buscarTrabajador(condiciones);
+    }
+
+    public List<Trabajador> listarTrabajadores() {
+        return dT.obtenerListaTrabajadores();
+    }
+
+    public List<Trabajador> listarTrabajadores(Object... vars) {
+        Map<String, Object> condiciones = new HashMap();
+        for (int i = 0; i < vars.length; i++) {
+            condiciones.put((String) vars[i], vars[i + 1]);
+            i++;
+        }
+        return dT.obtenerListaTrabajadores(condiciones);
+    }
 
     public boolean insertarTrabajador(Trabajador trab) {
-        Trabajador auxTrab = this.dT.buscarTrabajador(trab.getNif());
-        if (auxTrab == null) {
-            Trabajador aux = dT.guardaActualizaTrabajador(trab);
-            if (aux == null) {
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return false;
-        }
+        dT.guardarTrabajador(trab);
+        return true;
     }
 
-    public void eliminarTrabajador(Trabajador trab){
-        dT.eliminarTrabajador(trab);
-    }
-    public Trabajador actualizaTrabajdor(Trabajador trab) {
-        return dT.actualizaTrabajador(trab);
-    }
-
-    public Trabajador buscaTrabajador(String nif) {
-        return dT.buscarTrabajador(nif);
-    }
-
-    public List<Trabajador> listaTrabajador() {
-        return dT.obtenListaTrabajador();
+    public Trabajador actualizarTrabajador(Trabajador trab) {
+        return dT.actualizarTrabajador(trab);
     }
 
     /* must be deleted */
-    public List listaTrabajadores() {
+    public List baseTrabajadores() {
         List<Trabajador> trab = new ArrayList();
         Equipo eq = new Equipo();
         eq.setNombre("Equipo1");
