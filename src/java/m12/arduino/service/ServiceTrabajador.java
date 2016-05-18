@@ -52,6 +52,7 @@ public class ServiceTrabajador {
         eq.setNombre("Equipo1");
 
         Trabajador tr1 = new Trabajador();
+        tr1.setId_trab(1);
         tr1.setNombre("Jordi");
         tr1.setNif("12345678A");
         tr1.setMovil("687543210");
@@ -59,6 +60,7 @@ public class ServiceTrabajador {
         tr1.setCategoria(CategoriaTrabajador.LEADER);
         tr1.setEquipo(eq);
         Trabajador tr2 = new Trabajador();
+        tr2.setId_trab(2);
         tr2.setNombre("Pablo");
         tr2.setNif("187654321A");
         tr2.setMovil("987654321");

@@ -14,4 +14,5 @@ import java.util.List;
 public interface Maketable {
     List<String> getFields();
     List<String> getInfo();
+    long getPK();
 }
