@@ -32,9 +32,6 @@ public class Robot implements Serializable {
     {
         ubicacion = new Ubicacion();
     }
-    
-    public Robot() {
-    }
 
     public long getId() {
         return id;
@@ -43,7 +40,6 @@ public class Robot implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
-    
 
     public String getId_robot() {
         return id_robot;
@@ -52,8 +48,6 @@ public class Robot implements Serializable {
     public void setId_robot(String id_robot) {
         this.id_robot = id_robot;
     }
-
-   
 
     public String getNombre() {
         return nombre;
@@ -77,11 +71,5 @@ public class Robot implements Serializable {
 
     public void setEstado(EstadoRobot estado) {
         this.estado = estado;
-    }
-
-    @Override
-    public String toString() {
-        return "Robot{" + "id_robot=" + id_robot + ", nombre=" + nombre + ", ubicacion=" + ubicacion + ", estado=" + estado + '}';
-    }
-    
+    }    
 }

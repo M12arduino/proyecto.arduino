@@ -1,5 +1,6 @@
 package m12.arduino.domain;
 
+import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 /*
@@ -10,7 +11,8 @@ Curs 2015-2016
 @author Jordi
 */
 @Embeddable
-public class Ubicacion {
+public class Ubicacion implements Serializable {
+    private static final long serialVersionUID = 925372681339531834L;
 
     // ATTR
     private String lugar;

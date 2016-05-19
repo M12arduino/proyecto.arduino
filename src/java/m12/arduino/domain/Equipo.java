@@ -1,5 +1,6 @@
 package m12.arduino.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -19,7 +20,8 @@ Curs 2015-2016
 @author Jordi
 */
 @Entity
-public class Equipo {
+public class Equipo implements Serializable {
+    private static final long serialVersionUID = -9193035208662365731L;
 
     // ATTR
     @Id
@@ -30,16 +32,19 @@ public class Equipo {
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="equipo")
     @JsonIgnore
     private List<Trabajador> trabajadores;
-   
     
     {
         trabajadores = new ArrayList<Trabajador>();
     }
-    
-    public Equipo() {
+
+    public long getId() {
+        return id;
     }
 
-    
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public long getId_equipo() {
         return id_equipo;
     }
