@@ -1,7 +1,7 @@
 <%-- 
-    Document   : admin
-    Created on : 16-may-2016, 21:18:29
-    Author     : enric
+    Document   : ordenFabricacionDetalle
+    Created on : 19-may-2016, 14:36:47
+    Author     : Jordi
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <p>${ordenFabricacion.toString()}</p>
     </body>
 </html>
