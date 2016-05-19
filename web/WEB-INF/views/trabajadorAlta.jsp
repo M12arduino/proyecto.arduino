@@ -9,13 +9,13 @@
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
 
-<form:form action="${base}/ordenFabricacion/insertar.htm" method="POST">
+<form:form action="${base}/trabajador/insertar.htm" method="POST">
     NIF: <form:input path="nif" />
     Nombre: <form:input path="nombre" />
     Movil: <form:input path="movil" />
     Password: <form:input path="password" />
     Categoria: 
-    <form:select path="categoria">
+    <form:select path="categoria">      
         <form:options items="${categorias}" />
     </form:select>
     <input type="submit" value="Send"/>

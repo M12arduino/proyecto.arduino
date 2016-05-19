@@ -45,7 +45,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Robots<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="${base}/robot/alta.htm">Añadir Robot</a></li>
-                        <li><a href="#">Another action</a></li>
+                        <li><a href="${base}/robot/administrar.htm">Administrar</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li><a href="#">Separated link</a></li>
                     </ul>

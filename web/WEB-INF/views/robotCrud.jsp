@@ -9,14 +9,23 @@
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
 <link rel="stylesheet" href="${base}/resources/styles/robotCrud.css"/>
- <script type="text/javascript" src="${base}/resources/js/robotTrabajador.js"></script>
- 
- <input type="text" placeholder="id_robot" id="searchIdVal"/>
- <input type="button" id="searchId" value="buscar"/>
- <div class="tableResults">
-     <p> Busca un robot </p>
-       <form:form action="${base}/robot/insertar.htm" method="POST" id="form">
-           ID Robot: <form:input path="id_robot"/>
+<script type="text/javascript" src="${base}/resources/js/crudRobot.js"></script>
+
+
+<div class="tableResults">
+    <form:form action="${base}/robot/" method="POST" id="form">
+        <div class="form_search">
+            <input type="text" placeholder="id_robot" id="id_robotSearchVal"/>
+            <input type="text" placeholder="nombre" id="nombreSearchVal"/>
+            <input type="text" placeholder="lugar" id="lugarSearchVal"/>
+            <form:select path="estadoSearch" id="estadoSearchVal">
+                <form:options items="${estados}" itemLabel="name"/>
+            </form:select>
+            <input type="button" value="buscar" id="search"/>
+            <p id="results"> Busca un Robot </p>
+        </div>
+        <div class="form_edit">
+            ID Robot: <form:input path="id_robot"/>
             Nombre: <form:input path="nombre" />
             Lugar: <form:input path="lugar" />
             Coor X: <form:input path="coorX" />
@@ -27,7 +36,8 @@
             </form:select>
             <input type="button" value="Editar" id="editar"/>
             <input type="button" value="Eliminar" id="eliminar"/>
-        </form:form>
- </div>
-    </body>
+        </div>
+    </form:form>
+</div>
+</body>
 </html>
