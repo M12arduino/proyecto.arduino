@@ -17,7 +17,6 @@
         
         <!-- CSS's -->
         <link rel="stylesheet" href="${base}/resources/libs/bootstrap.min.css"/>
-        <link rel="stylesheet" href="${base}/resources/styles/login.css"/>
         <link rel="stylesheet" href="${base}/resources/styles/adminPanel.css"/>
         <link rel="stylesheet" href="${base}/resources/styles/navBar.css"/>
         <link rel="stylesheet" href="${base}/resources/libs/jquery.dataTables.min.css"/>
@@ -25,14 +24,11 @@
         <!-- JS's  -->
         <script type="text/javascript" src="${base}/resources/libs/jquery-2.2.3.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/bootstrap.min.js"/>
-        <script type="text/javascript" src="${base}/resources/js/login.js"></script>
         <script type="text/javascript" src="${base}/resources/js/procesoAlta.js"></script>
         <script type="text/javascript" src="${base}/resources/js/adminPanel.js"></script>
         <script type="text/javascript" src="${base}/resources/js/functions.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/jquery.dataTables.min.js"></script>
-       
-
-
-        <!-- MOVER!! CSS SIEMPRE ANTES QUE JS-->
         
+        <!-- MOVER!! CSS SIEMPRE ANTES QUE JS-->  
     </head>
+    <body>

@@ -20,6 +20,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <jsp:include page="tableMaker.jsp"></jsp:include>
+        GOOD!
     </body>
 </html>

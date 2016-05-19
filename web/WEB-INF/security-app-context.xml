@@ -1,0 +1,33 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+ xmlns:beans="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/security
+ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+ 
+<http use-expressions="true">
+
+ <access-denied-handler error-page="/accesDenegat" />
+ <intercept-url pattern="/login" access="permitAll" /> 
+ <intercept-url pattern="/usuariRegistrat" access="hasAnyRole('rol_admin','rol_user')"/>
+ <intercept-url pattern="/admin" access="hasRole('rol_admin')"/>
+
+ <form-login
+ login-page="/login" 
+  authentication-failure-url="/login?login_error=1" />
+<!--   username-parameter="username" password-parameter="password" --> 
+<!--  <logout /> -->
+<logout logout-success-url="/" />
+ </http>
+  
+<authentication-manager>
+ <authentication-provider>
+ <user-service>
+  <user name="admin" password="admin1" authorities="rol_admin" />
+  <user name="user" password="user1" authorities="rol_user" /> 
+
+ </user-service>
+ </authentication-provider>
+ </authentication-manager>
+</beans:beans>

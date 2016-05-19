@@ -9,39 +9,40 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.portlet.ModelAndView;
 
 /*
-Jordi Puig Puig
-DAW 2
-Curs 2015-2016
+ Jordi Puig Puig
+ DAW 2
+ Curs 2015-2016
 
-@author Jordi
-*/
-
+ @author Jordi
+ */
 @Controller
 public class ControllerLogin {
-    
-    @RequestMapping("/index")
-    public ModelAndView initForm(){
-        //Trabajador trab = new Trabajador();
-        return new ModelAndView("welcome"); 
-            
-    }
-    
+
     @RequestMapping("/main")
-    public ModelAndView initMenu(){
-        return new ModelAndView("main");
+    public String initMenu() {
+        if (true) {
+            return "login";
+        } else {
+            return "main";
+        }
     }
-    
-    @RequestMapping("/login/auth")
-    public ModelAndView loginAuth(){
-        //Trabajador trab = new Trabajador();
-        return new ModelAndView("welcome"); 
-            
+
+    @RequestMapping(value = "/admin")//, method = RequestMethod.GET)
+    public String adminPage() {
+
+        return "welcome";
     }
-    
-    @RequestMapping(value="trabajadorDetalle",method = RequestMethod.POST)
-    public String addTrabajador(@ModelAttribute("trabajadorForm")Trabajador trabajador,ModelMap model){
-        
-        
-        return "trabajadorDetalle";
+
+    @RequestMapping(value = "/accesDenegat")//, method = RequestMethod.GET)
+    public String novaPage() {
+
+        return "accesDenegat";
     }
+
+    @RequestMapping(value = "/usuariRegistrat")//, method = RequestMethod.GET)
+    public String usuariRegistratPage() {
+
+        return "usuariRegistrat";
+    }
+
 }
