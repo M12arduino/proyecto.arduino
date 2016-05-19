@@ -8,4 +8,4 @@
 <!DOCTYPE html>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
-
+<jsp:include page="adminPanel.jsp"></jsp:include>
