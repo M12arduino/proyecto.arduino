@@ -27,7 +27,8 @@ public class Proceso implements Serializable {
     // ATTR
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long id_proc;
+    private long id;
+    private String codi;
     private String descripcion;
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="proceso")
     private List<Accion> acciones;
@@ -35,12 +36,21 @@ public class Proceso implements Serializable {
     {
         acciones = new ArrayList();
     }
-    public long getId_proc() {
-        return id_proc;
+
+    public long getId() {
+        return id;
     }
 
-    public void setId_proc(long id_proc) {
-        this.id_proc = id_proc;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getCodi() {
+        return codi;
+    }
+
+    public void setCodi(String codi) {
+        this.codi = codi;
     }
 
     public String getDescripcion() {
