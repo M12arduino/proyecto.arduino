@@ -23,7 +23,7 @@ public class Robot implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
-    private long id_robot;
+    private String id_robot;
     private String nombre;
     @Embedded
     private Ubicacion ubicacion;
@@ -36,13 +36,24 @@ public class Robot implements Serializable {
     public Robot() {
     }
 
-    public long getId_robot() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+    
+
+    public String getId_robot() {
         return id_robot;
     }
 
-    public void setId_robot(long id_robot) {
+    public void setId_robot(String id_robot) {
         this.id_robot = id_robot;
     }
+
+   
 
     public String getNombre() {
         return nombre;

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import m12.arduino.domain.Robot;
+import m12.arduino.domain.Trabajador;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -59,16 +60,18 @@ public class DaoRobotImpl implements DaoRobot {
                 str += " and ";
             }
         }
+        if (str!="") str= "WHERE "+str;
         // Complete query-string
-        Query query = session.createQuery("FROM Robot WHERE " + str);
+        Query query = session.createQuery("FROM Robot " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
-            String val = (String) e.getValue();
+            Object val =  e.getValue();
             query.setParameter(attr, val);
         }
+        List<Robot> res = query.list();
         acabaOperacion();
-        return query.list();
+        return res;
     }
 
     @Override

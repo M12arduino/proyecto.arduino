@@ -22,9 +22,10 @@ public class ServiceTrabajador {
 
     private final DaoTrabajadorImpl dT = new DaoTrabajadorImpl();
 
-    public void eliminarTrabajador(Trabajador trabajador){
+    public void eliminarTrabajador(Trabajador trabajador) {
         dT.eliminarTrabajador(trabajador);
     }
+
     public Trabajador buscarTrabajador(String nombre) {
         return dT.buscarTrabajador(nombre);
     }
@@ -83,12 +84,15 @@ public class ServiceTrabajador {
         trab.add(tr2);
         return trab;
     }
-        public Map<String, Object> constructConditions(Object... str) {
+
+    public Map<String, Object> constructConditions(Object... str) {
         Map<String, Object> conditions = new TreeMap<String, Object>();
-        for (int i = 0; i <= str.length-2; i += 2) {
-            System.out.println("i:"+str[i]+"i+1:"+str[i+1]+"length:"+str.length);
-            if (str[i]!=null & !str[i].equals("") & str[i+1]!=null & !str[i+1].equals("") ){
-                conditions.put((String)str[i], str[i + 1]);
+        for (int i = 0; i <= str.length - 2; i += 2) {
+            if (str[i] != null & str[i + 1] != null) {
+                if (!str[i].equals("") & !str[i + 1].equals("")) {
+                    conditions.put((String) str[i], str[i + 1]);
+                    System.out.println("I:" + str[i] + "i+1:" + str[i + 1]);
+                }
             }
         }
         return conditions;

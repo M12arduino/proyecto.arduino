@@ -5,8 +5,9 @@
  */
 
 
-$(document).ready(function () {
 
+$(document).ready(function () {
+    var table;
     $("#search").on("click", function () {
         var data = {};
         data.nif = $("#nifSearchVal").val();
@@ -21,16 +22,7 @@ $(document).ready(function () {
             async: false,
             cache: false,
             processData: false,
-            success: function (response) {
-                var array = JSON.parse(response);
-                var titles = dataTablesDevuelveProps(array);
-                var dataSet = dataTablesDevuelveValues(array);
-                $("#datatable").DataTable({
-                    data: dataSet,
-                    columns: titles
-                });
-                prepareCrudTrabajador();
-            },
+            success: gestionaResultadoAjax,
             error: function (xhr) {
                 var err = eval("(" + xhr.responseText + ")");
                 alert(err.Message + "error");
@@ -38,14 +30,37 @@ $(document).ready(function () {
             }
         });
     })
+
+    function gestionaResultadoAjax(response) {
+        var array = JSON.parse(response);
+        if (array != "") {
+            $("#errorTable").hide();
+            var titles = dataTablesDevuelveProps(array);
+            var dataSet = dataTablesDevuelveValues(array);
+
+            table = $("#datatable").DataTable({
+                data: dataSet,
+                columns: titles,
+                destroy: true,
+            });
+            prepareCrudTrabajador();
+        } else {
+            table.destroy();
+            $("#datatable").html("");
+            $("#errorTable").show();
+        }
+    }
     $("#editar").on("click", function () {
         prepareForm("#form", "actualizar.htm")
         $("#form").submit();
     })
 
     $("#eliminar").on("click", function () {
-        prepareForm("#form", "eliminar.htm");
-        $("#form").submit();
+        if (confirm("¿Estás seguro que deseas eliminar este usuario?")) {
+            prepareForm("#form", "eliminar.htm");
+            $("#form").submit();
+        }
+
     })
 })
 

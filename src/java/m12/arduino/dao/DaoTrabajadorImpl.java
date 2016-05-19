@@ -59,14 +59,14 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
                 str += " and ";
             }
         }
-        System.out.println(str+"WIGLEWIGLEWIGLE");
+        if (str!="") str= "WHERE "+str;
         // Complete query-string
-        Query query = session.createQuery("FROM Trabajador WHERE " + str);
+        Query query = session.createQuery("FROM Trabajador " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
             Object val =  e.getValue();
-            query.setParameter(attr, val);
+            query.setParameter(attr, val);      
         }
         List<Trabajador> res= query.list();
         acabaOperacion();

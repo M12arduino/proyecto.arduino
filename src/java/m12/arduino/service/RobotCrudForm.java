@@ -1,35 +1,36 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package m12.arduino.service;
 
 import m12.arduino.domain.EstadoRobot;
 
-/*
-Jordi Puig Puig
-DAW 2
-Curs 2015-2016
+/**
+ *
+ * @author enric
+ */
+public class RobotCrudForm {
 
-@author Jordi
-*/
-public class RobotForm {
-
-    // ATTR
-    private String id_robot;
+    private long id_robot;
     private String nombre;
     private String lugar;
     private float coorX;
     private float coorY;
     private EstadoRobot estado;
+    private EstadoRobot estadoSearch;
 
-    // GESETS
+    public RobotCrudForm() {
+    }
 
-    public String getId_robot() {
+    public long getId_robot() {
         return id_robot;
     }
 
-    public void setId_robot(String id_robot) {
+    public void setId_robot(long id_robot) {
         this.id_robot = id_robot;
     }
-
-  
 
     public String getNombre() {
         return nombre;
@@ -70,4 +71,13 @@ public class RobotForm {
     public void setEstado(EstadoRobot estado) {
         this.estado = estado;
     }
+
+    public EstadoRobot getEstadoSearch() {
+        return estadoSearch;
+    }
+
+    public void setEstadoSearch(EstadoRobot estadoSearch) {
+        this.estadoSearch = estadoSearch;
+    }
+    
 }

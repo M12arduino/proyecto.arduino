@@ -85,17 +85,22 @@ public class ControllerTrabajador {
     public @ResponseBody String buscaTrabajadorAjax(@RequestBody Trabajador trabajador) {
         String nif = trabajador.getNif();
         String nombre = trabajador.getNombre();
-        int code = trabajador.getCategoria().getCode();
-        System.out.println(trabajador);
+        CategoriaTrabajador categoria = trabajador.getCategoria();
+        if (categoria == CategoriaTrabajador.INDEFINIDO) categoria = null;
         String response = "";
-        List<Trabajador> trab = sT.listarTrabajadores("nif",nif,"nombre",nombre,"categoria",code);
+        List<Trabajador> trab = sT.listarTrabajadores("nif",nif,"nombre",nombre,"categoria",categoria);
         //List<Trabajador> trab = sT.listarTrabajadores();
-        try {
+        if(trab !=null){
+                   try {
              ObjectMapper mapperObj = new ObjectMapper();
              response = mapperObj.writeValueAsString(trab);
         } catch (IOException ex) {
             response = ex.getMessage();
+        } 
+        }else{
+            response = null;
         }
+
         return response;
     }
 

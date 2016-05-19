@@ -43,7 +43,7 @@ public class Trabajador implements Serializable, Maketable {
     private String movil;
     // @Size(min = 4, max = 20, message = "La contrassenya ha de tenir entre 4 i 20 caracters")
     private String password;
-    @Enumerated(EnumType.ORDINAL) 
+    @Enumerated(EnumType.ORDINAL)
     private CategoriaTrabajador categoria;
     @ManyToOne
     private Equipo equipo;
@@ -64,11 +64,10 @@ public class Trabajador implements Serializable, Maketable {
     public void setId_trab(long id_trab) {
         this.id_trab = id_trab;
     }
-
     public CategoriaTrabajador getCategoria() {
         return categoria;
     }
-
+    
     public void setCategoria(CategoriaTrabajador categoria) {
         this.categoria = categoria;
     }
