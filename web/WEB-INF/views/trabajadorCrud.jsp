@@ -18,7 +18,7 @@
         <div class="form_search">
             <input type="text" placeholder="nif" id="nifSearchVal"/>
             <input type="text" placeholder="nombre" id="nombreSearchVal"/>
-            <form:select path="categoriaSearch" id="categoriaSearch">
+            <form:select path="categoriaSearch" id="categoriaSearchVal">
                 <form:options items="${categorias}" />
             </form:select>
             <input type="button" value="buscar" id="search"/>

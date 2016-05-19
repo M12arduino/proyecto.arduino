@@ -12,15 +12,10 @@ import m12.arduino.service.ServiceTrabajador;
 import m12.arduino.service.TrabajadorCrudForm;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -86,10 +81,15 @@ public class ControllerTrabajador {
         mV.addObject("listado", sT.listarTrabajadores());
         return mV;
     }
-    @RequestMapping(value = "/buscar")
-    public @ResponseBody String buscaTrabajadorAjax() {
+    @RequestMapping(value = "/buscar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String buscaTrabajadorAjax(@RequestBody Trabajador trabajador) {
+        String nif = trabajador.getNif();
+        String nombre = trabajador.getNombre();
+        int code = trabajador.getCategoria().getCode();
+        System.out.println(trabajador);
         String response = "";
-        List<Trabajador> trab = sT.listarTrabajadores();
+        List<Trabajador> trab = sT.listarTrabajadores("nif",nif,"nombre",nombre,"categoria",code);
+        //List<Trabajador> trab = sT.listarTrabajadores();
         try {
              ObjectMapper mapperObj = new ObjectMapper();
              response = mapperObj.writeValueAsString(trab);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import m12.arduino.dao.DaoTrabajador;
 import m12.arduino.dao.DaoTrabajadorImpl;
 import m12.arduino.domain.CategoriaTrabajador;
@@ -42,11 +43,8 @@ public class ServiceTrabajador {
     }
 
     public List<Trabajador> listarTrabajadores(Object... vars) {
-        Map<String, Object> condiciones = new HashMap();
-        for (int i = 0; i < vars.length; i++) {
-            condiciones.put((String) vars[i], vars[i + 1]);
-            i++;
-        }
+        //System.out.println(vars+"#######################################################");
+        Map<String, Object> condiciones = constructConditions(vars);
         return dT.obtenerListaTrabajadores(condiciones);
     }
 
@@ -84,6 +82,16 @@ public class ServiceTrabajador {
         trab.add(tr1);
         trab.add(tr2);
         return trab;
+    }
+        public Map<String, Object> constructConditions(Object... str) {
+        Map<String, Object> conditions = new TreeMap<String, Object>();
+        for (int i = 0; i <= str.length-2; i += 2) {
+            System.out.println("i:"+str[i]+"i+1:"+str[i+1]+"length:"+str.length);
+            if (str[i]!=null & !str[i].equals("") & str[i+1]!=null & !str[i+1].equals("") ){
+                conditions.put((String)str[i], str[i + 1]);
+            }
+        }
+        return conditions;
     }
 
 }

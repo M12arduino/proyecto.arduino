@@ -8,8 +8,19 @@
 $(document).ready(function () {
 
     $("#search").on("click", function () {
+        var data = {};
+        data.nif = $("#nifSearchVal").val();
+        data.nombre = $("#nombreSearchVal").val();
+        data.categoria = $("#categoriaSearchVal").val();
+        var jsonStr = JSON.stringify(data);
         $.ajax({
             url: getBasePath() + "trabajador/buscar.htm",
+            type: "POST",
+            data: jsonStr,
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            cache: false,
+            processData: false,
             success: function (response) {
                 var array = JSON.parse(response);
                 var titles = dataTablesDevuelveProps(array);
@@ -22,7 +33,7 @@ $(document).ready(function () {
             },
             error: function (xhr) {
                 var err = eval("(" + xhr.responseText + ")");
-                alert(err.Message);
+                alert(err.Message + "error");
 
             }
         });
@@ -38,21 +49,21 @@ $(document).ready(function () {
     })
 })
 
- function prepareCrudTrabajador() {
-        $("#datatable tr").not(":first").on("click", function () {
-            $(".form_edit").show();
-            $("#id_trab").val($(this).find("td:nth-child(1)").html());
-            $("#nif").val($(this).find("td:nth-child(2)").html());
-            $("#nombre").val($(this).find("td:nth-child(3)").html());
-            $("#movil").val($(this).find("td:nth-child(4)").html());
-            $("#password").val($(this).find("td:nth-child(5)").html());
-            $("#categoria").val($(this).find("td:nth-child(6)").html());
+function prepareCrudTrabajador() {
+    $("#datatable tr").not(":first").on("click", function () {
+        $(".form_edit").show();
+        $("#id_trab").val($(this).find("td:nth-child(1)").html());
+        $("#nif").val($(this).find("td:nth-child(2)").html());
+        $("#nombre").val($(this).find("td:nth-child(3)").html());
+        $("#movil").val($(this).find("td:nth-child(4)").html());
+        $("#password").val($(this).find("td:nth-child(5)").html());
+        $("#categoria").val($(this).find("td:nth-child(6)").html());
 
-        })
+    })
 //          
 
 
-    }
+}
 
 
 

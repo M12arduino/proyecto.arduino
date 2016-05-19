@@ -9,6 +9,7 @@ package m12.arduino.domain;
  *
  * @author Jordi
  */
+
 public enum CategoriaTrabajador { 
     
     // LIST

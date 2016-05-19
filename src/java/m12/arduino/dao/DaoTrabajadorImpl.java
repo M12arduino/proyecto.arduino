@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import m12.arduino.domain.Trabajador;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -58,16 +59,18 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
                 str += " and ";
             }
         }
+        System.out.println(str+"WIGLEWIGLEWIGLE");
         // Complete query-string
         Query query = session.createQuery("FROM Trabajador WHERE " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
-            String val = (String) e.getValue();
+            Object val =  e.getValue();
             query.setParameter(attr, val);
         }
+        List<Trabajador> res= query.list();
         acabaOperacion();
-        return query.list();
+        return res;
     }
 
     
@@ -107,4 +110,5 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
     public Trabajador buscarTrabajador(Map<String, Object> whereMap) {
         return obtenerListaTrabajadores(whereMap).get(0);
     }
+    
 }
