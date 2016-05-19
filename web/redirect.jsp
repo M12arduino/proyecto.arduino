@@ -6,4 +6,4 @@ This JSP is here to provide a redirect to the dispatcher
 servlet but should be the only JSP outside of WEB-INF.
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% response.sendRedirect("http://localhost:8080/A_Spring_Inicial/main.htm"); %>
+<% response.sendRedirect("login.htm"); %>

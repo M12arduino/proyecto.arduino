@@ -7,11 +7,11 @@
  http://www.springframework.org/schema/security/spring-security-3.1.xsd">
  
 <http use-expressions="true">
-
+<!--
  <access-denied-handler error-page="/accesDenegat" />
  <intercept-url pattern="/login" access="permitAll" /> 
  <intercept-url pattern="/usuariRegistrat" access="hasAnyRole('rol_admin','rol_user')"/>
- <intercept-url pattern="/admin" access="hasRole('rol_admin')"/>
+ <intercept-url pattern="/admin" access="hasRole('rol_admin')"/>-->
 
  <form-login
  login-page="/login" 
@@ -26,7 +26,6 @@
  <user-service>
   <user name="admin" password="admin1" authorities="rol_admin" />
   <user name="user" password="user1" authorities="rol_user" /> 
-
  </user-service>
  </authentication-provider>
  </authentication-manager>

@@ -18,7 +18,7 @@ import org.springframework.web.portlet.ModelAndView;
 @Controller
 public class ControllerLogin {
 
-    @RequestMapping("/main")
+    @RequestMapping("/login")
     public String initMenu() {
         if (true) {
             return "login";
