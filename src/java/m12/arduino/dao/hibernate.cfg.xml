@@ -4,9 +4,9 @@
   <session-factory>
     <!-- parametros para la conexion a la base de datos -->
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:5432/proyecto</property>
-        <property name="connection.username">hibernateUser</property>
-        <property name="connection.password">7rnijwxe</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/poryecto</property>
+        <property name="connection.username">hibernate</property>
+        <property name="connection.password">hibernate</property>
         <!-- Configuracion del pool interno -->
         <property name="connection.pool_size">1</property>
         <!-- Dialecto de la base de datos -->
