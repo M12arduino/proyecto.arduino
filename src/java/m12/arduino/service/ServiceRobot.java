@@ -25,11 +25,7 @@ public class ServiceRobot {
     }
 
     public Robot buscarRobot(Object... vars) {
-        Map<String, Object> condiciones = new HashMap();
-        for (int i = 0; i < vars.length; i++) {
-            condiciones.put((String) vars[i], vars[i + 1]);
-            i++;
-        }
+        Map<String, Object> condiciones = constructConditions(vars);
         return dR.buscarRobot(condiciones);
     }
 
@@ -47,11 +43,16 @@ public class ServiceRobot {
         return true;
     }
 
-    public Robot actualizarEquipo(Robot rob) {
+    public Robot actualizarRobot(Robot rob) {
         return dR.actualizarRobot(rob);
     }
-        public Map<String, Object> constructConditions(Object... str) {
-        Map<String, Object> conditions = new TreeMap<String, Object>();
+    
+    public void eliminarRobot(Robot rob) {
+        dR.eliminarRobot(rob);
+    }
+
+    public Map<String, Object> constructConditions(Object... str) {
+        Map<String, Object> conditions = new HashMap<String, Object>();
         for (int i = 0; i <= str.length - 2; i += 2) {
             if (str[i] != null & str[i + 1] != null) {
                 if (!str[i].equals("") & !str[i + 1].equals("")) {

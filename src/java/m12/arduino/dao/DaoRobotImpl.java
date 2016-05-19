@@ -36,10 +36,10 @@ public class DaoRobotImpl implements DaoRobot {
     }
 
     @Override
-    public Robot buscarRobot(String nombre) {
+    public Robot buscarRobot(String id_robot) {
         iniciaOperacion();
-        Query q = session.createQuery("FROM Robot r WHERE r.nombre =:nombre ");
-        q.setParameter("nombre", nombre);
+        Query q = session.createQuery("FROM Robot r WHERE r.id_robot =:id_robot ");
+        q.setParameter("id_robot", id_robot);
         Robot res = (Robot) q.uniqueResult();
         acabaOperacion();
         return res;
@@ -62,14 +62,14 @@ public class DaoRobotImpl implements DaoRobot {
         }
         if (str!="") str= "WHERE "+str;
         // Complete query-string
-        Query query = session.createQuery("FROM Robot " + str);
+        Query query = session.createQuery("FROM Trabajador " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
             Object val =  e.getValue();
-            query.setParameter(attr, val);
+            query.setParameter(attr, val);      
         }
-        List<Robot> res = query.list();
+        List<Robot> res= query.list();
         acabaOperacion();
         return res;
     }
@@ -102,6 +102,13 @@ public class DaoRobotImpl implements DaoRobot {
     @Override
     public Robot buscarRobot(Map<String, Object> whereMap) {
         return obtenerListaRobots(whereMap).get(0);
+    }
+
+    @Override
+    public void eliminarRobot(Robot rob) {
+        iniciaOperacion();
+        session.delete(rob);
+        acabaOperacion();
     }
 
 }

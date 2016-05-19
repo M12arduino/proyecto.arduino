@@ -34,10 +34,10 @@ public class DaoEquipoImpl implements DaoEquipo {
     }
 
     @Override
-    public Equipo buscarEquipo(String nombre) {
+    public Equipo buscarEquipo(String id_equipo) {
         iniciaOperacion();
-        Query q = session.createQuery("FROM Equipo e WHERE e.nombre =:nombre ");
-        q.setParameter("nombre", nombre);
+        Query q = session.createQuery("FROM Equipo e WHERE e.id_equipo =:id_equipo ");
+        q.setParameter("id_equipo", id_equipo);
         Equipo res = (Equipo) q.uniqueResult();
         acabaOperacion();
         return res;
@@ -58,16 +58,18 @@ public class DaoEquipoImpl implements DaoEquipo {
                 str += " and ";
             }
         }
+        if (str!="") str= "WHERE "+str;
         // Complete query-string
-        Query query = session.createQuery("FROM Equipo WHERE " + str);
+        Query query = session.createQuery("FROM Trabajador " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
-            Object val = e.getValue();
-            query.setParameter(attr, val);
+            Object val =  e.getValue();
+            query.setParameter(attr, val);      
         }
+        List<Equipo> res= query.list();
         acabaOperacion();
-        return query.list();
+        return res;
     }
 
     @Override
@@ -98,5 +100,12 @@ public class DaoEquipoImpl implements DaoEquipo {
     @Override
     public Equipo buscarEquipo(Map<String, Object> whereMap) {
         return obtenerListaEquipos(whereMap).get(0);
+    }
+
+    @Override
+    public void eliminarEquipo(Equipo equ) {
+        iniciaOperacion();
+        session.delete(equ);
+        acabaOperacion();
     }
 }

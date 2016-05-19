@@ -15,7 +15,7 @@ import m12.arduino.domain.Equipo;
  */
 public interface DaoEquipo {
 
-    public Equipo buscarEquipo(String nombre);
+    public Equipo buscarEquipo(String id_equipo);
     
     public Equipo buscarEquipo(Map<String, Object> whereMap);
 
@@ -26,5 +26,7 @@ public interface DaoEquipo {
     public Equipo guardarEquipo(Equipo equ);
 
     public Equipo actualizarEquipo(Equipo equ);
+    
+    public void eliminarEquipo(Equipo equ);
 
 }

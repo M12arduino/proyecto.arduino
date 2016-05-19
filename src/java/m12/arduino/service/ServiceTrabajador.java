@@ -31,11 +31,7 @@ public class ServiceTrabajador {
     }
 
     public Trabajador buscarTrabajador(Object... vars) {
-        Map<String, Object> condiciones = new HashMap();
-        for (int i = 0; i < vars.length; i++) {
-            condiciones.put((String) vars[i], vars[i + 1]);
-            i++;
-        }
+        Map<String, Object> condiciones = constructConditions(vars);
         return dT.buscarTrabajador(condiciones);
     }
 
@@ -58,35 +54,8 @@ public class ServiceTrabajador {
         return dT.actualizarTrabajador(trab);
     }
 
-    /* must be deleted */
-    public List baseTrabajadores() {
-        List<Trabajador> trab = new ArrayList();
-        Equipo eq = new Equipo();
-        eq.setNombre("Equipo1");
-
-        Trabajador tr1 = new Trabajador();
-        tr1.setId_trab(1);
-        tr1.setNombre("Jordi");
-        tr1.setNif("12345678A");
-        tr1.setMovil("687543210");
-        tr1.setPassword("myPassword1");
-        tr1.setCategoria(CategoriaTrabajador.LEADER);
-        tr1.setEquipo(eq);
-        Trabajador tr2 = new Trabajador();
-        tr2.setId_trab(2);
-        tr2.setNombre("Pablo");
-        tr2.setNif("187654321A");
-        tr2.setMovil("987654321");
-        tr2.setPassword("myPassword2");
-        tr2.setCategoria(CategoriaTrabajador.MANAGER);
-        tr2.setEquipo(eq);
-        trab.add(tr1);
-        trab.add(tr2);
-        return trab;
-    }
-
     public Map<String, Object> constructConditions(Object... str) {
-        Map<String, Object> conditions = new TreeMap<String, Object>();
+        Map<String, Object> conditions = new HashMap<String, Object>();
         for (int i = 0; i <= str.length - 2; i += 2) {
             if (str[i] != null & str[i + 1] != null) {
                 if (!str[i].equals("") & !str[i + 1].equals("")) {

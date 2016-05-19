@@ -11,6 +11,7 @@ package m12.arduino.domain;
 public enum EstadoOrden {
 
     // LIST
+    INDEFINIDO(0,"Indefinido"),
     PENDIENTE(1, "Pendiente"),
     INICIADA(2, "Iniciada"),
     REALIZADA(3, "Realizada"),

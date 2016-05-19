@@ -24,11 +24,7 @@ public class ServiceEquipo {
     }
 
     public Equipo buscarEquipo(Object... vars) {
-        Map<String, Object> condiciones = new HashMap();
-        for (int i = 0; i < vars.length; i++) {
-            condiciones.put((String) vars[i], vars[i + 1]);
-            i++;
-        }
+        Map<String, Object> condiciones = constructConditions(vars);
         return dE.buscarEquipo(condiciones);
     }
 
@@ -37,11 +33,7 @@ public class ServiceEquipo {
     }
 
     public List<Equipo> listarEquipos(Object... vars) {
-        Map<String, Object> condiciones = new HashMap();
-        for (int i = 0; i < vars.length; i++) {
-            condiciones.put((String) vars[i], vars[i + 1]);
-            i++;
-        }
+        Map<String, Object> condiciones = constructConditions(vars);
         return dE.obtenerListaEquipos(condiciones);
     }
 
@@ -52,5 +44,22 @@ public class ServiceEquipo {
 
     public Equipo actualizarEquipo(Equipo equ) {
         return dE.actualizarEquipo(equ);
+    }
+
+    public void eliminarEquipo(Equipo equ) {
+        dE.eliminarEquipo(equ);
+    }
+
+    public Map<String, Object> constructConditions(Object... str) {
+        Map<String, Object> conditions = new HashMap<String, Object>();
+        for (int i = 0; i <= str.length - 2; i += 2) {
+            if (str[i] != null & str[i + 1] != null) {
+                if (!str[i].equals("") & !str[i + 1].equals("")) {
+                    conditions.put((String) str[i], str[i + 1]);
+                    System.out.println("I:" + str[i] + "i+1:" + str[i + 1]);
+                }
+            }
+        }
+        return conditions;
     }
 }

@@ -15,7 +15,7 @@ import m12.arduino.domain.OrdenFabricacion;
  */
 public interface DaoOrdenFabricacion {
 
-    public OrdenFabricacion buscarOrden(String nombre);
+    public OrdenFabricacion buscarOrden(String codigo);
     
     public OrdenFabricacion buscarOrden(Map<String, Object> whereMap);
 
@@ -26,4 +26,6 @@ public interface DaoOrdenFabricacion {
     public OrdenFabricacion guardarOrden(OrdenFabricacion ord);
 
     public OrdenFabricacion actualizarOrden(OrdenFabricacion ord);
+    
+    public void eliminarOrden(OrdenFabricacion ord);
 }

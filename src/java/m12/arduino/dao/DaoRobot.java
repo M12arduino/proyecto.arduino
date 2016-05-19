@@ -15,7 +15,7 @@ import m12.arduino.domain.Robot;
  */
 public interface DaoRobot {
 
-    public Robot buscarRobot(String nombre);
+    public Robot buscarRobot(String codigo);
     
     public Robot buscarRobot(Map<String, Object> whereMap);
 
@@ -26,5 +26,7 @@ public interface DaoRobot {
     public Robot guardarRobot(Robot rob);
 
     public Robot actualizarRobot(Robot rob);
+    
+    public void eliminarRobot(Robot rob);
 
 }

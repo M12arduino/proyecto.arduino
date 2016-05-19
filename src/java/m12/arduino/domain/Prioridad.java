@@ -10,6 +10,7 @@ package m12.arduino.domain;
 public enum Prioridad {
 
     // LIST
+    INDEFINIDO(0,"Indefinido"),
     BAJA(1, "Baja"),
     MEDIA(2, "Media"),
     ALTA(3, "Alta");

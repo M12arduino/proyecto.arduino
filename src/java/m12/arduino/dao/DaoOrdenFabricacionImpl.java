@@ -1,7 +1,9 @@
 package m12.arduino.dao;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import m12.arduino.domain.OrdenFabricacion;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -41,17 +43,45 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
 
     @Override
     public OrdenFabricacion buscarOrden(Map<String, Object> whereMap) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return obtenerListaOrdenes(whereMap).get(0);
     }
 
     @Override
     public List<OrdenFabricacion> obtenerListaOrdenes(Map<String, Object> whereMap) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        iniciaOperacion();
+        //Create where block
+        String str = "";
+        Set keys = whereMap.keySet();
+        for (Iterator<String> it = keys.iterator(); it.hasNext();) {
+            if (it.hasNext()) {
+                String currentKey = it.next();
+                str += currentKey + "=:" + currentKey + " ";
+            }
+            if (it.hasNext()) {
+                str += " and ";
+            }
+        }
+        if (str!="") str= "WHERE "+str;
+        // Complete query-string
+        Query query = session.createQuery("FROM Trabajador " + str);
+        //set parameters
+        for (Map.Entry e : whereMap.entrySet()) {
+            String attr = (String) e.getKey();
+            Object val =  e.getValue();
+            query.setParameter(attr, val);      
+        }
+        List<OrdenFabricacion> res= query.list();
+        acabaOperacion();
+        return res;
     }
 
     @Override
     public List<OrdenFabricacion> obtenerListaOrdenes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        iniciaOperacion();
+        Query q = session.createQuery("From OrdenFabricacion");
+        List<OrdenFabricacion> res = q.list();
+        acabaOperacion();
+        return res;
     }
 
     @Override
@@ -64,7 +94,17 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
 
     @Override
     public OrdenFabricacion actualizarOrden(OrdenFabricacion ord) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        iniciaOperacion();
+        session.update(ord);
+        acabaOperacion();
+        return ord;
+    }
+
+    @Override
+    public void eliminarOrden(OrdenFabricacion ord) {
+        iniciaOperacion();
+        session.delete(ord);
+        acabaOperacion();
     }
 
 }

@@ -19,20 +19,25 @@ public class ServiceProceso {
 
     private final DaoProcesoImpl dP = new DaoProcesoImpl();
 
-    public Proceso buscarProceso(String nombre) {
-        return dP.buscarProceso(nombre);
+    public void eliminarProceso(Proceso pro){
+        dP.eliminarProceso(pro);
+    }
+    
+    public Proceso buscarProceso(String codigo) {
+        return dP.buscarProceso(codigo);
     }
 
+    public Proceso buscarProceso(Object... vars) {
+        Map<String, Object> condiciones = constructConditions(vars);
+        return dP.buscarProceso(condiciones);
+    }
+    
     public List<Proceso> listarProcesos() {
         return dP.obtenerListaProcesos();
     }
 
-    public List<Proceso> listarProcesos(String... str) {
-        Map condiciones = new HashMap();
-        for (int i = 0; i < str.length; i++) {
-            condiciones.put(str[i], str[i + 1]);
-            i++;
-        }
+    public List<Proceso> listarProcesos(Object... vars) {
+        Map<String, Object> condiciones = constructConditions(vars);
         return dP.obtenerListaProcesos(condiciones);
     }
 
@@ -43,5 +48,18 @@ public class ServiceProceso {
 
     public Proceso actualizarProceso(Proceso pro) {
         return dP.actualizarProceso(pro);
+    }
+    
+    public Map<String, Object> constructConditions(Object... str) {
+        Map<String, Object> conditions = new HashMap<String, Object>();
+        for (int i = 0; i <= str.length - 2; i += 2) {
+            if (str[i] != null & str[i + 1] != null) {
+                if (!str[i].equals("") & !str[i + 1].equals("")) {
+                    conditions.put((String) str[i], str[i + 1]);
+                    System.out.println("I:" + str[i] + "i+1:" + str[i + 1]);
+                }
+            }
+        }
+        return conditions;
     }
 }

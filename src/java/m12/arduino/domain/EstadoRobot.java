@@ -12,6 +12,7 @@ package m12.arduino.domain;
 public enum EstadoRobot {
     
     // LIST
+    INDEFINIDO(0,"Indefinido"),
     LIBRE(1, "Libre"),
     OCUPADO(2, "Ocupado"),
     DESCONECTADO(3, "Desconectado"),

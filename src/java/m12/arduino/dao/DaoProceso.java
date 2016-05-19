@@ -15,7 +15,7 @@ import m12.arduino.domain.Proceso;
  */
 public interface DaoProceso {
 
-    public Proceso buscarProceso(String nombre);
+    public Proceso buscarProceso(String codigo);
     
     public Proceso buscarProceso(Map<String, Object> whereMap);
 
@@ -26,4 +26,6 @@ public interface DaoProceso {
     public Proceso guardarProceso(Proceso pro);
 
     public Proceso actualizarProceso(Proceso pro);
+    
+    public void eliminarProceso(Proceso pro);
 }
