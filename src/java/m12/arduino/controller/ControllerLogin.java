@@ -24,6 +24,12 @@ public class ControllerLogin {
 
     }
     
+    @RequestMapping("/invalidCredentials")
+    public String errorLogin() {
+        return "invalidCredentials";
+
+    }
+    
     @RequestMapping("/main")
     public String initMenu() {
         return "main";
