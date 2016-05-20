@@ -108,7 +108,11 @@ public class Trabajador implements Serializable, Maketable {
 
     @Override
     public String toString() {
-        return "Trabajador{" + "id_trab=" + id_trab + ", nif=" + nif + ", nombre=" + nombre + ", movil=" + movil + ", password=" + password + ", categoria=" + categoria + ", equipo=" + equipo.getNombre() + '}';
+        String eqName = "No definido";
+        if (equipo != null){
+            eqName = equipo.getNombre();
+        }               
+        return "Trabajador{" + "id_trab=" + id_trab + ", nif=" + nif + ", nombre=" + nombre + ", movil=" + movil + ", password=" + password + ", categoria=" + categoria + ", equipo=" + eqName + '}';
     }
     
     
@@ -125,7 +129,11 @@ public class Trabajador implements Serializable, Maketable {
     @JsonIgnore
     @Override
     public List<String> getInfo() {
-        return new ArrayList(Arrays.asList(id_trab, nif, nombre, movil, categoria.toString(), equipo.getNombre()));    
+        String eqName = "No definido";
+        if (equipo != null){
+            eqName = equipo.getNombre();
+        }               
+        return  new ArrayList(Arrays.asList(id_trab, nif, nombre, movil, categoria.toString(),eqName));   
     }
     @JsonIgnore
     @Override

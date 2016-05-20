@@ -50,6 +50,7 @@ $(document).ready(function () {
             $("#errorTable").show();
         }
     }
+    
     $("#editar").on("click", function () {
         prepareForm("#form", "actualizar.htm")
         $("#form").submit();

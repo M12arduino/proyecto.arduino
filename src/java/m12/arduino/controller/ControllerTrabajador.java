@@ -42,14 +42,14 @@ public class ControllerTrabajador {
 
     @RequestMapping(value = "/insertar")
     public ModelAndView addTrabajador(Trabajador trabajador) {
-
+        Trabajador aux = null;
         try {
-            sT.insertarTrabajador(trabajador);
+            aux = sT.insertarTrabajador(trabajador);
         } catch (HibernateException he) {
             System.out.println(he.getMessage());
         }
         ModelAndView mV = new ModelAndView("detalleObjeto");
-        mV.addObject("objeto",trabajador);
+        mV.addObject("objeto",aux);
         return mV;
 
     }
