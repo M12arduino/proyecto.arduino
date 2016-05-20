@@ -23,6 +23,9 @@
         </tr>
     </thead>
     <tbody>
+    <H1>HI</H1>
+        
+        
         <c:forEach var="object" items="${listado}">
             <tr>
               <%--  <c:forEach var="item" items="${object.getInfo()}">
