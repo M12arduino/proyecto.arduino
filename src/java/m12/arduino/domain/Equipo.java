@@ -29,7 +29,7 @@ public class Equipo implements Serializable {
     private long id;
     private String id_equipo;
     private String nombre;
-    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER,mappedBy="equipo")
     @JsonIgnore
     private List<Trabajador> trabajadores;
     
