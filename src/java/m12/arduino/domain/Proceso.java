@@ -70,6 +70,7 @@ public class Proceso implements Serializable {
 
     public void addAccion(Accion ac){
         this.getAcciones().add(ac);
+        ac.setProceso(this);
     }
     
 }

@@ -129,8 +129,8 @@ public class ControllerPopulate {
         ac02.setPosY(202);
         ac02.setPosZ(302);
         ac02.setAbrirPinza(false);
-        pr0.getAcciones().add(ac01);
-        pr0.getAcciones().add(ac02);
+        pr0.addAccion(ac01);
+        pr0.addAccion(ac02);
 
         Proceso pr1 = new Proceso();
         pr1.setCodigo("P002");
@@ -147,8 +147,8 @@ public class ControllerPopulate {
         ac12.setPosY(204);
         ac12.setPosZ(304);
         ac12.setAbrirPinza(false);
-        pr1.getAcciones().add(ac11);
-        pr1.getAcciones().add(ac12);
+        pr1.addAccion(ac11);
+        pr1.addAccion(ac12);
 
         sP.insertarProceso(pr0);
         sP.insertarProceso(pr1);
