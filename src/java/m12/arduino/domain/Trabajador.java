@@ -105,10 +105,12 @@ public class Trabajador implements Serializable, Maketable {
     }
 
     // OTHER METHODS
+
     @Override
     public String toString() {
-        return "Trabajador{" + "id_trab=" + id_trab + ", nif=" + nif + ", nombre=" + nombre + ", movil=" + movil + ", password=" + password + ", categoria=" + categoria + '}';
+        return "Trabajador{" + "id_trab=" + id_trab + ", nif=" + nif + ", nombre=" + nombre + ", movil=" + movil + ", password=" + password + ", categoria=" + categoria + ", equipo=" + equipo.getNombre() + '}';
     }
+    
     
     public String toJson() throws IOException{
         ObjectMapper mapperObj = new ObjectMapper();

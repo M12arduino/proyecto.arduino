@@ -16,7 +16,7 @@ public class OrdenFabricacionForm {
     private Prioridad prioridad;
     private String codigo_proceso;
     private int cantidad;
-    private String nombre_robot;
+    private String id_robot;
     // fecha y estado assignadas por defecto
 
     public String getCodigo() {
@@ -51,12 +51,12 @@ public class OrdenFabricacionForm {
         this.cantidad = cantidad;
     }
 
-    public String getNombre_robot() {
-        return nombre_robot;
+    public String getId_robot() {
+        return id_robot;
     }
 
-    public void setNombre_robot(String nombre_robot) {
-        this.nombre_robot = nombre_robot;
+    public void setId_robot(String id_robot) {
+        this.id_robot = id_robot;
     }
 
     public String getCodigo_proceso() {

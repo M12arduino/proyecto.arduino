@@ -1,6 +1,13 @@
 package m12.arduino.domain;
 
+import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 /*
 Jordi Puig Puig
@@ -11,16 +18,25 @@ robot que la desenvoluparà, estat (pendent, iniciada, realitzada, no realitzada
 cancel·lada)
 @author Grupo 3 Arduino
 */
-public class OrdenFabricacion {
+@Entity
+public class OrdenFabricacion implements Serializable {
+    @ManyToOne
+    private Equipo equipo;
+    private static final long serialVersionUID = 7674836498685381771L;
 
     // ATTR
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     private String codigo;
     private String descripcion;
     private Prioridad proridad;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar fecha;
+    @ManyToOne
     private Proceso proceso;
     private int cantidad;
+    @ManyToOne
     private Robot robot;
     private EstadoOrden estado;
     
