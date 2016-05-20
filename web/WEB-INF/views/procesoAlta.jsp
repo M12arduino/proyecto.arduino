@@ -8,6 +8,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
+<script type="text/javascript" src="${base}/resources/js/procesoAlta.js"></script>
 
 <form:form id="myForm" action="${base}/proceso/insertar.htm" method="POST">
     Descripcion: <form:input path="descripcion" />
