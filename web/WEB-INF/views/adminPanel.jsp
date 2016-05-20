@@ -12,32 +12,39 @@
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse out">
             <li  data-toggle="collapse" data-target="#products" class="collapsed">
-                <a href="#">Chorizos</a>
+                <a href="#">Gestionar trabajadores</a>
             </li>
-            <ul class="sub-menu collapse" id="products">
-                <li><a href="#">Rajoy</a></li>
-                <li><a href="#">Albert</a></li>
-                <li><a href="#">Pablito</a></li>
-                <li><a href="#">Puig</a></li>
-                <li><a href="#">Puig</a></li>
+            <ul class="sub-menu collapse">
+                <li><a href="${base}/trabajador/tabla.htm">Mostrar Trabajadores</a></li>
+                <li><a href="${base}/trabajador/alta.htm">Añadir Trabajador</a></li>
+                <li><a href="${base}/trabajador/administrar.htm">Administrar Trabajadores</a></li>
             </ul>
 
             <li data-toggle="collapse" data-target="#service" class="collapsed">
-                <a href="#">+ chorizos</a>
+                <a href="#">Gestionar robots</a>
             </li>  
-            <ul class="sub-menu collapse" id="service">
-                <li><a href="#">Rajoy</a></li>
-                <li><a href="#">Rajoy</a></li>
-                <li><a href="#">Rajoy</a></li>
+            <ul class="sub-menu collapse">
+                <li><a href="${base}/robot/tabla.htm">Mostrar Robots</a></li>
+                <li><a href="${base}/robot/alta.htm">Añadir Robot</a></li>
+                <li><a href="${base}/robot/administrar.htm">Administrar Robots</a></li>
             </ul>
 
             <li data-toggle="collapse" data-target="#new" class="collapsed">
-                <a href="#">New</a>
+                <a href="#">Gestionar equipos</a>
             </li>
-            <ul class="sub-menu collapse" id="new">
-                <li><a href="#">Rajoy</a></li>
-                <li><a href="#">Rajoy</a></li>
-                <li><a href="#">Rajoy</a></li>
+            <ul class="sub-menu collapse">
+                <li><a href="${base}/equipo/tabla.htm">Mostrar Equipos</a></li>
+                <li><a href="${base}/equipo/alta.htm">Añadir Equipo</a></li>
+                <li><a href="${base}/equipo/administrar.htm">Administrar Equipos</a></li>
+            </ul>
+            
+            <li data-toggle="collapse" data-target="#new" class="collapsed">
+                <a href="#">Gestionar Procesos</a>
+            </li>
+            <ul class="sub-menu collapse">
+                <li><a href="${base}/proceso/tabla.htm">Mostrar Procesos</a></li>
+                <li><a href="${base}/proceso/alta.htm">Añadir Proceso</a></li>
+                <li><a href="${base}/proceso/administrar.htm">Administrar Procesos</a></li>
             </ul>
         </ul>
     </div>
