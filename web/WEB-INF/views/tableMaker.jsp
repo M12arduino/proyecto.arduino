@@ -17,7 +17,7 @@
 <table border="1">
     <thead>
         <tr>
-            -<c:forEach var="field" items="${listado.get(0).getFields()}">
+            <c:forEach var="field" items="${listado.get(0).getFields()}">
                 <td>${field}</td>
             </c:forEach>
         </tr>
@@ -28,9 +28,9 @@
         
         <c:forEach var="object" items="${listado}">
             <tr>
-              <%--  <c:forEach var="item" items="${object.getInfo()}">
+               <c:forEach var="item" items="${object.getInfo()}">
                     <td>${item}</td>
-                </c:forEach>--%>
+                </c:forEach>
             </tr>
         </c:forEach>
     </tbody>

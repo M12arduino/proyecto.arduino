@@ -12,17 +12,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <%-- <table>
+        <table>
             <tr>
             <c:forEach var="field" items="${objeto.getFields()}">
                 <td>${field}</td>
             </c:forEach>
         </tr>
-        <tr>--%>
+        <tr>
         <c:forEach var="field" items="${objeto.getInfo()}">
             <td>${field}</td>
         </c:forEach>
-       ${objeto}
     </tr>
 </table>
 </body>
