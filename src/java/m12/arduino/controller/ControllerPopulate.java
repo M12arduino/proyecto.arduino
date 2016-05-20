@@ -39,9 +39,11 @@ public class ControllerPopulate {
         ////////////////////////////////////////////////////////////////////////
         Equipo equ0 = new Equipo();
         equ0.setNombre("Equipo0");
+        equ0.setId_equipo("CV2015");
 
         Equipo equ1 = new Equipo();
         equ1.setNombre("Equipo1");
+        equ1.setId_equipo("CV2016");
 
         sE.insertarEquipo(equ0);
         sE.insertarEquipo(equ1);
@@ -83,7 +85,8 @@ public class ControllerPopulate {
 
         ////////////////////////////////////////////////////////////////////////
         Robot ro0 = new Robot();
-        ro0.setNombre("Robot0");
+        ro0.setId_robot("Rob00");
+        ro0.setNombre("Terminator");
         ro0.setEstado(EstadoRobot.LIBRE);
         Ubicacion ub0 = new Ubicacion();
         ub0.setCoorX(50);
@@ -92,7 +95,8 @@ public class ControllerPopulate {
         ro0.setUbicacion(ub0);
 
         Robot ro1 = new Robot();
-        ro1.setNombre("Robot1");
+        ro1.setId_robot("Rob01");
+        ro1.setNombre("RoboRabo");
         ro1.setEstado(EstadoRobot.OCUPADO);
         Ubicacion ub1 = new Ubicacion();
         ub1.setCoorX(80);
@@ -101,7 +105,8 @@ public class ControllerPopulate {
         ro1.setUbicacion(ub1);
 
         Robot ro2 = new Robot();
-        ro2.setNombre("Robot2");
+        ro2.setId_robot("Rob02");
+        ro2.setNombre("Pennenator");
         ro2.setEstado(EstadoRobot.DESCONECTADO);
         Ubicacion ub2 = new Ubicacion();
         ub2.setCoorX(10);
@@ -118,13 +123,11 @@ public class ControllerPopulate {
         pr0.setCodigo("P001");
         pr0.setDescripcion("Descripcion proceso 1");
         Accion ac01 = new Accion();
-        ac01.setId_accion(1);
         ac01.setPosX(101);
         ac01.setPosY(201);
         ac01.setPosZ(301);
         ac01.setAbrirPinza(true);
         Accion ac02 = new Accion();
-        ac02.setId_accion(2);
         ac02.setPosX(102);
         ac02.setPosY(202);
         ac02.setPosZ(302);
@@ -136,13 +139,11 @@ public class ControllerPopulate {
         pr1.setCodigo("P002");
         pr1.setDescripcion("Descripcion proceso 2");
         Accion ac11 = new Accion();
-        ac11.setId_accion(1);
         ac11.setPosX(103);
         ac11.setPosY(203);
         ac11.setPosZ(303);
         ac11.setAbrirPinza(true);
         Accion ac12 = new Accion();
-        ac12.setId_accion(2);
         ac12.setPosX(104);
         ac12.setPosY(204);
         ac12.setPosZ(304);
@@ -150,6 +151,13 @@ public class ControllerPopulate {
         pr1.addAccion(ac11);
         pr1.addAccion(ac12);
 
+        System.out.println(pr0.toString());
+        System.out.println(pr1.toString());
+        System.out.println(ac01.toString());
+        System.out.println(ac02.toString());
+        System.out.println(ac11.toString());
+        System.out.println(ac12.toString());
+        
         sP.insertarProceso(pr0);
         sP.insertarProceso(pr1);
 

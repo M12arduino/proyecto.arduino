@@ -13,7 +13,7 @@ import m12.arduino.domain.Trabajador;
  * @author enric
  */
 public class EquipoForm {
-    private long id_equipo;
+    private String id_equipo;
     private String nombre;
     private List<String> nifs;
 
@@ -21,11 +21,11 @@ public class EquipoForm {
     }
 
     
-    public long getId_equipo() {
+    public String getId_equipo() {
         return id_equipo;
     }
 
-    public void setId_equipo(long id_equipo) {
+    public void setId_equipo(String id_equipo) {
         this.id_equipo = id_equipo;
     }
 

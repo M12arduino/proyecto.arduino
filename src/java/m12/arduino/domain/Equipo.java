@@ -27,7 +27,7 @@ public class Equipo implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
-    private long id_equipo;
+    private String id_equipo;
     private String nombre;
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="equipo")
     @JsonIgnore
@@ -45,11 +45,11 @@ public class Equipo implements Serializable {
         this.id = id;
     }
 
-    public long getId_equipo() {
+    public String getId_equipo() {
         return id_equipo;
     }
 
-    public void setId_equipo(long id_equipo) {
+    public void setId_equipo(String id_equipo) {
         this.id_equipo = id_equipo;
     }
 
