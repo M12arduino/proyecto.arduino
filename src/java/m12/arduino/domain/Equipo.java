@@ -32,7 +32,7 @@ public class Equipo implements Serializable {
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER,mappedBy="equipo")
     @JsonIgnore
     private List<Trabajador> trabajadores;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER,mappedBy = "equipo")
     private List<OrdenFabricacion> ordenes;
     
     {
