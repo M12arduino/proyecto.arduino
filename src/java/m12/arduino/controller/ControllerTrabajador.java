@@ -48,7 +48,9 @@ public class ControllerTrabajador {
         } catch (HibernateException he) {
             System.out.println(he.getMessage());
         }
-        return new ModelAndView("welcome");
+        ModelAndView mV = new ModelAndView("detalleObjeto");
+        mV.addObject("objeto",trabajador);
+        return mV;
 
     }
     @RequestMapping(value="/actualizar")

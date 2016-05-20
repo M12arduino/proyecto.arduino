@@ -17,10 +17,10 @@
 <table border="1">
     <thead>
         <tr>
-            <c:forEach var="field" items="${listado.get(0).getFields()}">
+            <%--<c:forEach var="field" items="${listado.get(0).getFields()}">
                 <td>${field}</td>
             </c:forEach>
-            <td>Mapper</td>
+            <td>Mapper</td>--%>
         </tr>
     </thead>
     <tbody>

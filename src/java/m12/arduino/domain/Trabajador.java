@@ -39,7 +39,7 @@ public class Trabajador implements Serializable, Maketable {
     private String nif;
     //  @Pattern(regexp = "(^[\\w\\s]{2,15})", message = "Format del Nom incorrecte")
     private String nombre;
-    // @Pattern(regexp = "(^[6-7])(\\d{8})$", message = "Format del MOBIL incorrecte")
+    //@Pattern(regexp = "(^[6-7])(\\d{8})$", message = "Format del MOBIL incorrecte")
     private String movil;
     // @Size(min = 4, max = 20, message = "La contrassenya ha de tenir entre 4 i 20 caracters")
     private String password;
