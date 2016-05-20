@@ -16,12 +16,13 @@ $(document).ready(function () {
     var table;
     $("#search").on("click", function () {
         var data = {};
-        data.nif = $("#nifSearchVal").val();
+        data.id_robot = $("#id_robotSearchVal").val();
         data.nombre = $("#nombreSearchVal").val();
-        data.categoria = $("#categoriaSearchVal").val();
+        data.lugar = $("#lugarSearchVal").val();
+        data.estado = $("#estadoSearchVal").val();
         var jsonStr = JSON.stringify(data);
         $.ajax({
-            url: getBasePath() + "robot/buscar.htm",
+            url: getBasePath() + "robot/buscarRobot.htm",
             type: "POST",
             data: jsonStr,
             contentType: "application/json; charset=utf-8",
@@ -49,7 +50,7 @@ $(document).ready(function () {
                 columns: titles,
                 destroy: true,
             });
-            prepareCrudTrabajador();
+            prepareCrudRobot();
         } else {
             table.destroy();
             $("#datatable").html("");
@@ -62,7 +63,7 @@ $(document).ready(function () {
     })
 
     $("#eliminar").on("click", function () {
-        if (confirm("¿Estás seguro que deseas eliminar este usuario?")) {
+        if (confirm("¿Estás seguro que deseas eliminar este robot?")) {
             prepareForm("#form", "eliminar.htm");
             $("#form").submit();
         }
@@ -70,20 +71,15 @@ $(document).ready(function () {
     })
 })
 
-function prepareCrudTrabajador() {
+function prepareCrudRobot() {
     $("#datatable tr").not(":first").on("click", function () {
         $(".form_edit").show();
-        $("#id_trab").val($(this).find("td:nth-child(1)").html());
-        $("#nif").val($(this).find("td:nth-child(2)").html());
+        $("#id").val($(this).find("td:nth-child(1)").html());
+        $("#id_robot").val($(this).find("td:nth-child(2)").html());
         $("#nombre").val($(this).find("td:nth-child(3)").html());
-        $("#movil").val($(this).find("td:nth-child(4)").html());
-        $("#password").val($(this).find("td:nth-child(5)").html());
-        $("#categoria").val($(this).find("td:nth-child(6)").html());
-
+        $("#lugar").val($(this).find("td:nth-child(4)").html());
+        $("#estado").val($(this).find("td:nth-child(5)").html());
     })
-//          
-
-
 }
 
 

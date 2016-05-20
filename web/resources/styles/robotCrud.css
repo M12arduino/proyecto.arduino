@@ -11,3 +11,14 @@ and open the template in the editor.
 .form_edit{
     display:none;
 }
+.error{
+    display:none;
+    color:red;
+}
+#datatable tr.odd, #datatable tr.even{
+    cursor:pointer;
+}
+#datatable tr.odd:hover, #datatable tr.even:hover{
+    color:white;
+    background:black;
+}
