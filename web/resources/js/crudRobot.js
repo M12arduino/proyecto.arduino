@@ -14,7 +14,7 @@
 
 $(document).ready(function () {
     var table;
-    $("#search").on("click", function () {
+    /*$("#search").on("click", function () {
         var data = {};
         data.id_robot = $("#id_robotSearchVal").val();
         data.nombre = $("#nombreSearchVal").val();
@@ -36,7 +36,7 @@ $(document).ready(function () {
 
             }
         });
-    })
+    })*/
 
     function gestionaResultadoAjax(response) {
         var array = JSON.parse(response);
@@ -52,20 +52,83 @@ $(document).ready(function () {
             });
             prepareCrudRobot();
         } else {
-            table.destroy();
+            if(table)table.destroy();
             $("#datatable").html("");
             $("#errorTable").show();
         }
     }
-    $("#editar").on("click", function () {
-        prepareForm("#form", "actualizar.htm")
-        $("#form").submit();
-    })
+    function refrescaTabla(){
+        var data = {};
+        data.id_robot = $("#id_robotSearchVal").val();
+        data.nombre = $("#nombreSearchVal").val();
+        data.lugar = $("#lugarSearchVal").val();
+        data.estado = $("#estadoSearchVal").val();
+        var jsonStr = JSON.stringify(data);
+
+        $.ajax({
+            url: getBasePath() + "robot/buscarRobot.htm",
+            type: "POST",
+            data: jsonStr,
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            cache: false,
+            processData: false,
+            success: gestionaResultadoAjax,
+            error: function (xhr) {
+                var err = eval("(" + xhr.responseText + ")");
+                alert(err.Message + "error");
+
+            }
+        });
+    }
+    
+    $("#search").on("click", refrescaTabla);
+    
+    $("#editar").on("click", function() {
+        var data = {};
+        data.id = $("#id").val();
+        data.id_robot = $("#id_robot").val();
+        data.nombre = $("#nombre").val();
+        data.lugar = $("#lugar").val();
+        data.estado = $("#estado").val();
+        var jsonStr = JSON.stringify(data);
+                $.ajax({
+                url: getBasePath() + "robot/actualizar.htm",
+                type: "POST",
+                data: jsonStr,
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                cache: false,
+                processData: false,
+                success: function(response){
+                    alert(response);
+                    refrescaTabla();
+                }
+            });
+    });
 
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar este robot?")) {
-            prepareForm("#form", "eliminar.htm");
-            $("#form").submit();
+        var data = {};
+        data.id = $("#id").val();
+        data.id_robot = $("#id_robot").val();
+        data.nombre = $("#nombre").val();
+        data.lugar = $("#lugar").val();
+        data.estado = $("#estado").val();
+        var jsonStr = JSON.stringify(data);
+                $.ajax({
+                url: getBasePath() + "robot/eliminar.htm",
+                type: "POST",
+                data: jsonStr,
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                cache: false,
+                processData: false,
+                success: function(response){
+                    alert(response);
+                    refrescaTabla();
+                }
+            });
         }
 
     })

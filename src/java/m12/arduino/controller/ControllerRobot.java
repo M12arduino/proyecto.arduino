@@ -59,9 +59,9 @@ public class ControllerRobot {
 
     }
     
-    @RequestMapping(value="/actualizar")
-    public ModelAndView actualizarRobot(RobotForm rf){
-        
+    @RequestMapping(value="/actualizar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String actualizarRobot(@RequestBody RobotForm rf){
+        String msg = "";
         try {
             Robot r = new Robot();
             r.setId(rf.getId());
@@ -72,13 +72,16 @@ public class ControllerRobot {
             r.getUbicacion().setCoorY(rf.getCoorY());
             r.setEstado(rf.getEstado());
             sR.actualizarRobot(r);
+            msg = "robot updated";
         } catch (Exception e) {
+            msg = "update fail "+e.getMessage();
         }
-        return new ModelAndView("welcome");
+        return msg;
     }
     
-    @RequestMapping(value="/eliminar")
-    public ModelAndView eliminarRobot(RobotForm rf){
+    @RequestMapping(value="/eliminar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String eliminarRobot(@RequestBody RobotForm rf){
+        String msg = "";
         try {
             Robot r = new Robot();
             r.setId(rf.getId());
@@ -89,9 +92,11 @@ public class ControllerRobot {
 //            r.getUbicacion().setCoorY(rf.getCoorY());
 //            r.setEstado(rf.getEstado());
             sR.eliminarRobot(r);
+            msg = "robot deleted";
         } catch (Exception e) {
+            msg = "delete fail "+e.getMessage();
         }
-        return new ModelAndView("welcome");
+        return msg;
     }
 
     @RequestMapping(value = "/buscarRobot",headers = {"Content-type=application/json"}, method = RequestMethod.POST)

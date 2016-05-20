@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /*
 Jordi Puig Puig
@@ -34,6 +35,7 @@ public class Robot implements Serializable {
     @Embedded
     private Ubicacion ubicacion;
     private EstadoRobot estado;
+    @JsonIgnore
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy = "robot")
     private List<OrdenFabricacion> ordenes;
 
