@@ -91,7 +91,7 @@ public class ControllerTrabajador {
         List<Trabajador> trab = sT.listarTrabajadores("nif",nif,"nombre",nombre,"categoria",categoria);
         //List<Trabajador> trab = sT.listarTrabajadores();
         if(trab !=null){
-                   try {
+        try {
              ObjectMapper mapperObj = new ObjectMapper();
              response = mapperObj.writeValueAsString(trab);
         } catch (IOException ex) {

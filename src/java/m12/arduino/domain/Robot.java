@@ -72,4 +72,8 @@ public class Robot implements Serializable {
     public void setEstado(EstadoRobot estado) {
         this.estado = estado;
     }    
+    
+    public String getFullName(){
+        return this.getId_robot()+" - "+this.getNombre();
+    }
 }
