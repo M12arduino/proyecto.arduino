@@ -36,9 +36,8 @@ public class ServiceOrdenFabricacion {
         return dO.obtenerListaOrdenes(condiciones);
     }
 
-    public boolean insertarOrden(OrdenFabricacion ord) {
-        dO.guardarOrden(ord);
-        return true;
+    public OrdenFabricacion insertarOrden(OrdenFabricacion ord) {
+        return dO.guardarOrden(ord);
     }
 
     public OrdenFabricacion actualizarOrden(OrdenFabricacion ord) {

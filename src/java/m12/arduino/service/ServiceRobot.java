@@ -38,9 +38,8 @@ public class ServiceRobot {
         return dR.obtenerListaRobots(condiciones);
     }
 
-    public boolean insertarRobot(Robot rob) {
-        dR.guardarRobot(rob);
-        return true;
+    public Robot insertarRobot(Robot rob) {
+        return dR.guardarRobot(rob);
     }
 
     public Robot actualizarRobot(Robot rob) {

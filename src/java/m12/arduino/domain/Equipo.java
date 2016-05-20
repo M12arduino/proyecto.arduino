@@ -29,7 +29,7 @@ public class Equipo implements Serializable {
     private long id;
     private String id_equipo;
     private String nombre;
-    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy = "equipo")
     @JsonIgnore
     private List<Trabajador> trabajadores;
     
@@ -74,10 +74,13 @@ public class Equipo implements Serializable {
         treb.setEquipo(this);
         return treb;
     }
+
     @Override
     public String toString() {
-        return "Equipo{" + "id_equipo=" + id_equipo + ", nombre=" + nombre + ", trabajadores=" + trabajadores + '}';
+        return "Equipo{" + "id=" + id + ", id_equipo=" + id_equipo + ", nombre=" + nombre + ", trabajadores=" + trabajadores + '}';
     }
+    
+    
     
     
 }
