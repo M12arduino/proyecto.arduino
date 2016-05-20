@@ -95,7 +95,7 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
         iniciaOperacion();
         session.persist(trab);
         acabaOperacion();
-        return trab;
+        return this.buscarTrabajador(trab.getNif());
     }
 
     @Override

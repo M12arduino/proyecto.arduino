@@ -89,7 +89,7 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
         iniciaOperacion();
         session.persist(ord);
         acabaOperacion();
-        return ord;
+        return this.buscarOrden(ord.getCodigo());
     }
 
     @Override
