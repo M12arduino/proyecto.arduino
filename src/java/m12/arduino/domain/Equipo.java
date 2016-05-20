@@ -32,11 +32,22 @@ public class Equipo implements Serializable {
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy = "equipo")
     @JsonIgnore
     private List<Trabajador> trabajadores;
+    @OneToMany
+    private List<OrdenFabricacion> ordenes;
     
     {
+        ordenes = new ArrayList<OrdenFabricacion>();
         trabajadores = new ArrayList<Trabajador>();
     }
 
+    public List<OrdenFabricacion> getOrdenes() {
+        return ordenes;
+    }
+
+    public void setOrdenes(List<OrdenFabricacion> ordenes) {
+        this.ordenes = ordenes;
+    }
+    
     public long getId() {
         return id;
     }
@@ -77,10 +88,7 @@ public class Equipo implements Serializable {
 
     @Override
     public String toString() {
-        return "Equipo{" + "id=" + id + ", id_equipo=" + id_equipo + ", nombre=" + nombre + ", trabajadores=" + trabajadores + '}';
+        return "Equipo{" + "id=" + id + ", id_equipo=" + id_equipo + ", nombre=" + nombre + ", trabajadores=" + trabajadores + ", ordenes=" + ordenes + '}';
     }
-    
-    
-    
     
 }

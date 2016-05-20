@@ -16,10 +16,18 @@ public class EquipoForm {
     private String id_equipo;
     private String nombre;
     private List<String> nifs;
+    private String codigo_orden;
 
     public EquipoForm() {
     }
 
+    public String getCodigo_orden() {
+        return codigo_orden;
+    }
+
+    public void setCodigo_orden(String codigo_orden) {
+        this.codigo_orden = codigo_orden;
+    }
     
     public String getId_equipo() {
         return id_equipo;
