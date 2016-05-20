@@ -41,9 +41,8 @@ public class ServiceProceso {
         return dP.obtenerListaProcesos(condiciones);
     }
 
-    public boolean insertarProceso(Proceso pro) {
-        dP.guardarProceso(pro);
-        return true;
+    public Proceso insertarProceso(Proceso pro) {
+        return dP.guardarProceso(pro);
     }
 
     public Proceso actualizarProceso(Proceso pro) {

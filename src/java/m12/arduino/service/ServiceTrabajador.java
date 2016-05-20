@@ -45,9 +45,8 @@ public class ServiceTrabajador {
         return dT.obtenerListaTrabajadores(condiciones);
     }
 
-    public boolean insertarTrabajador(Trabajador trab) {
-        dT.guardarTrabajador(trab);
-        return true;
+    public Trabajador insertarTrabajador(Trabajador trab) {
+        return dT.guardarTrabajador(trab);
     }
 
     public Trabajador actualizarTrabajador(Trabajador trab) {

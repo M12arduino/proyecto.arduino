@@ -1,11 +1,17 @@
 $(document).ready(function () {
     var control = 0;
-    $(".brand").click(function () {
+    $(".panel-title").click(function () {
         if (control === 0){
-            $(".nav-side-menu").addClass("toggle-bar");
+            $( ".menu-content" ).hide();
+            $("#panel-title").html("<img src='/A_Spring_Inicial/resources/img/control_panel.png'>");
+            $("#panel-title").removeClass("panel-title");
+            $("#panel-title").addClass("nav-bar-colapsed");
             control++;
         }else{
-            $(".nav-side-menu").removeClass("toggle-bar");
+            $( ".menu-content" ).show();
+            $("#panel-title").removeClass("nav-bar-colapsed");
+            $("#panel-title").addClass("panel-title");
+            $("#panel-title").html("Panel de administrador");
             control--;
         }
     });

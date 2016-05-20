@@ -45,9 +45,11 @@ public class ControllerPopulate {
         equ1.setNombre("Equipo1");
         equ1.setId_equipo("CV2016");
 
-        sE.insertarEquipo(equ0);
-        sE.insertarEquipo(equ1);
+        Equipo e0 = sE.insertarEquipo(equ0);
+        Equipo e1 = sE.insertarEquipo(equ1);
 
+        System.out.println(e0);
+        System.out.println(e1);
         ////////////////////////////////////////////////////////////////////////
         Trabajador tr0 = new Trabajador();
         tr0.setNif("00000000A");
@@ -75,13 +77,16 @@ public class ControllerPopulate {
         sT.insertarTrabajador(tr2);
 
         ////////////////////////////////////////////////////////////////////////
-        equ0.addTrabajador(sT.buscarTrabajador("00000000A"));
-        equ0.addTrabajador(sT.buscarTrabajador("11111111A"));
-        equ1.addTrabajador(sT.buscarTrabajador("22222222A"));
+        Trabajador t0 = sT.buscarTrabajador("00000000A");
+        Trabajador t1 = sT.buscarTrabajador("11111111A");
+        Trabajador t2 = sT.buscarTrabajador("22222222A");
+        e0.addTrabajador(t0);
+        e0.addTrabajador(t1);
+        e1.addTrabajador(t2);
 
-        sT.actualizarTrabajador(tr0);
-        sT.actualizarTrabajador(tr1);
-        sT.actualizarTrabajador(tr2);
+        sT.actualizarTrabajador(t0);
+        sT.actualizarTrabajador(t1);
+        sT.actualizarTrabajador(t2);
 
         ////////////////////////////////////////////////////////////////////////
         Robot ro0 = new Robot();
@@ -157,7 +162,7 @@ public class ControllerPopulate {
         System.out.println(ac02.toString());
         System.out.println(ac11.toString());
         System.out.println(ac12.toString());
-        
+
         sP.insertarProceso(pr0);
         sP.insertarProceso(pr1);
 

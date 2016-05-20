@@ -12,14 +12,31 @@ Curs 2015-2016
 public class RobotForm {
 
     // ATTR
+    private Long id;
     private String id_robot;
     private String nombre;
     private String lugar;
     private float coorX;
     private float coorY;
     private EstadoRobot estado;
-
+    private EstadoRobot estadoSearch;
+    
     // GESETS
+    public Long getId() {    
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public EstadoRobot getEstadoSearch() {
+        return estadoSearch;
+    }
+
+    public void setEstadoSearch(EstadoRobot estadoSearch) {
+        this.estadoSearch = estadoSearch;
+    }
 
     public String getId_robot() {
         return id_robot;

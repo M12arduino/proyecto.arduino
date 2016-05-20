@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import m12.arduino.dao.DaoTrabajadorImpl;
 import m12.arduino.domain.Equipo;
+import m12.arduino.domain.OrdenFabricacion;
 import m12.arduino.domain.Trabajador;
 import m12.arduino.service.EquipoForm;
 import m12.arduino.service.ServiceEquipo;
+import m12.arduino.service.ServiceOrdenFabricacion;
 import m12.arduino.service.ServiceTrabajador;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,7 @@ public class ControllerEquipo {
     
     private ServiceTrabajador sT = new ServiceTrabajador();
     private ServiceEquipo sE = new ServiceEquipo();
+    private ServiceOrdenFabricacion sO = new ServiceOrdenFabricacion();
     
     @RequestMapping("alta")
     public ModelAndView initFormAlta(){
@@ -56,6 +59,24 @@ public class ControllerEquipo {
         }
         
         return new ModelAndView("welcome");
+    }
+    
+    @RequestMapping("/equipoFormOrden")
+    public ModelAndView asignarOrden() {
+        EquipoForm eF = new EquipoForm();
+        ModelAndView mV = new ModelAndView("equipoAsignarOrden", "command", eF);
+        return mV;
+    }
+    
+    @RequestMapping("/equipoAltaOrden")
+    public ModelAndView altaOrden(EquipoForm eF) {
+        ModelAndView mV = new ModelAndView("equipoDetalle");
+        Equipo e = sE.buscarEquipo(eF.getNombre());
+        OrdenFabricacion orden = sO.buscarOrden(eF.getCodigo_orden());
+        e.getOrdenes().add(orden);
+        sE.actualizarEquipo(e);
+        mV.addObject("equipo", e);
+        return mV;
     }
     
 }
