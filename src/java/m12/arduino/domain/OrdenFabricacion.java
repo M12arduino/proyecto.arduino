@@ -20,8 +20,7 @@ cancel·lada)
 */
 @Entity
 public class OrdenFabricacion implements Serializable {
-    @ManyToOne
-    private Equipo equipo;
+
     private static final long serialVersionUID = 7674836498685381771L;
 
     // ATTR
@@ -39,6 +38,8 @@ public class OrdenFabricacion implements Serializable {
     @ManyToOne
     private Robot robot;
     private EstadoOrden estado;
+    @ManyToOne
+    private Equipo equipo;
     
     {
         estado = EstadoOrden.PENDIENTE;
@@ -46,6 +47,15 @@ public class OrdenFabricacion implements Serializable {
         System.out.println(fecha.toString());
     }
 
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
+    
     public long getId() {
         return id;
     }

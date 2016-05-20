@@ -3,8 +3,10 @@ package m12.arduino.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +34,7 @@ public class Robot implements Serializable {
     @Embedded
     private Ubicacion ubicacion;
     private EstadoRobot estado;
-    @OneToMany(mappedBy = "robot")
+    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy = "robot")
     private List<OrdenFabricacion> ordenes;
 
     {
