@@ -20,16 +20,17 @@
             <c:forEach var="field" items="${listado.get(0).getFields()}">
                 <td>${field}</td>
             </c:forEach>
-            <td>Mapper</td>
         </tr>
     </thead>
     <tbody>
+    <H1>HI</H1>
+        
+        
         <c:forEach var="object" items="${listado}">
             <tr>
-                <c:forEach var="item" items="${object.getInfo()}">
+               <c:forEach var="item" items="${object.getInfo()}">
                     <td>${item}</td>
                 </c:forEach>
-                <td>To map object: ${object.getPK()}</td>
             </tr>
         </c:forEach>
     </tbody>

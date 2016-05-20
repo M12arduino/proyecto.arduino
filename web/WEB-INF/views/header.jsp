@@ -24,7 +24,6 @@
         <!-- JS's  -->
         <script type="text/javascript" src="${base}/resources/libs/jquery-2.2.3.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/bootstrap.min.js"/>
-        <script type="text/javascript" src="${base}/resources/js/procesoAlta.js"></script>
         <script type="text/javascript" src="${base}/resources/js/adminPanel.js"></script>
         <script type="text/javascript" src="${base}/resources/js/functions.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/jquery.dataTables.min.js"></script>

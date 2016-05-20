@@ -11,7 +11,7 @@ import m12.arduino.domain.CategoriaTrabajador;
 import m12.arduino.domain.EstadoRobot;
 import m12.arduino.domain.Robot;
 import m12.arduino.domain.Trabajador;
-import m12.arduino.service.RobotCrudForm;
+import m12.arduino.domain.Ubicacion;
 import m12.arduino.service.RobotForm;
 import m12.arduino.service.ServiceRobot;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -58,17 +58,76 @@ public class ControllerRobot {
         return new ModelAndView("welcome");
 
     }
+    
+    @RequestMapping(value="/actualizar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String actualizarRobot(@RequestBody RobotForm rf){
+        String msg = "";
+        try {
+            Robot r = new Robot();
+            r.setId(rf.getId());
+            r.setId_robot(rf.getId_robot());
+            r.setNombre(rf.getNombre());
+            r.getUbicacion().setLugar(rf.getLugar());
+            r.getUbicacion().setCoorX(rf.getCoorX());
+            r.getUbicacion().setCoorY(rf.getCoorY());
+            r.setEstado(rf.getEstado());
+            sR.actualizarRobot(r);
+            msg = "robot updated";
+        } catch (Exception e) {
+            msg = "update fail "+e.getMessage();
+        }
+        return msg;
+    }
+    
+    @RequestMapping(value="/eliminar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String eliminarRobot(@RequestBody RobotForm rf){
+        String msg = "";
+        try {
+            Robot r = new Robot();
+            r.setId(rf.getId());
+//            r.setId_robot(rf.getId_robot());
+//            r.setNombre(rf.getNombre());
+//            r.getUbicacion().setLugar(rf.getLugar());
+//            r.getUbicacion().setCoorX(rf.getCoorX());
+//            r.getUbicacion().setCoorY(rf.getCoorY());
+//            r.setEstado(rf.getEstado());
+            sR.eliminarRobot(r);
+            msg = "robot deleted";
+        } catch (Exception e) {
+            msg = "delete fail "+e.getMessage();
+        }
+        return msg;
+    }
 
-    @RequestMapping(value = "/buscar")
-    public @ResponseBody
-    String buscaRobotAjax(@ModelAttribute("id_robot") String id_robot) {
+    @RequestMapping(value = "/buscarRobot",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String buscaRobotAjax(@RequestBody RobotForm robot) {
+        String id_robot = robot.getId_robot();
+        String nombre = robot.getNombre();
+        String lugar = robot.getLugar();
+        EstadoRobot estado = robot.getEstado();
+        if (estado == EstadoRobot.INDEFINIDO) estado = null;
         String response = "";
+        List<Robot> rob = sR.listarRobots("id_robot",id_robot,"nombre",nombre,"lugar",lugar,"estado",estado);
+        
+//        List<Trabajador> trab = sT.listarTrabajadores();
+          //List<Robot> rob = sR.listarRobots();
+        if(rob !=null){
+                   try {
+             ObjectMapper mapperObj = new ObjectMapper();
+             response = mapperObj.writeValueAsString(rob);
+        } catch (IOException ex) {
+            response = ex.getMessage();
+        } 
+        }else{
+            response = null;
+        }
+
         return response;
     }
 
     @RequestMapping(value = "administrar")
     public ModelAndView administraCrudRobot() {
-        ModelAndView mV = new ModelAndView("robotCrud", "command", new RobotCrudForm());
+        ModelAndView mV = new ModelAndView("robotCrud", "command", new RobotForm());
         mV.addObject("estados", EstadoRobot.values());
         return mV;
     }

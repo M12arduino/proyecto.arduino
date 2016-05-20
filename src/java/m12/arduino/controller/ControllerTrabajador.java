@@ -42,13 +42,15 @@ public class ControllerTrabajador {
 
     @RequestMapping(value = "/insertar")
     public ModelAndView addTrabajador(Trabajador trabajador) {
-
+        Trabajador aux = null;
         try {
-            sT.insertarTrabajador(trabajador);
+            aux = sT.insertarTrabajador(trabajador);
         } catch (HibernateException he) {
             System.out.println(he.getMessage());
         }
-        return new ModelAndView("welcome");
+        ModelAndView mV = new ModelAndView("detalleObjeto");
+        mV.addObject("objeto",aux);
+        return mV;
 
     }
     @RequestMapping(value="/actualizar")
@@ -91,7 +93,7 @@ public class ControllerTrabajador {
         List<Trabajador> trab = sT.listarTrabajadores("nif",nif,"nombre",nombre,"categoria",categoria);
         //List<Trabajador> trab = sT.listarTrabajadores();
         if(trab !=null){
-                   try {
+        try {
              ObjectMapper mapperObj = new ObjectMapper();
              response = mapperObj.writeValueAsString(trab);
         } catch (IOException ex) {

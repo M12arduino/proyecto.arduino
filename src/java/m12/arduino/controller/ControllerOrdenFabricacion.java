@@ -35,16 +35,20 @@ public class ControllerOrdenFabricacion {
     }
     
     @RequestMapping(value = "/insertar")
-    public ModelAndView addProceso(OrdenFabricacionForm ofF) {
-        
+    public ModelAndView addOrden(OrdenFabricacionForm ofF) {
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
         OrdenFabricacion oF = new OrdenFabricacion();
         oF.setCodigo(ofF.getCodigo());
         oF.setDescripcion(ofF.getDescripcion());
         oF.setProridad(ofF.getPrioridad());
+        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         oF.setProceso(sP.buscarProceso(ofF.getCodigo_proceso()));
         oF.setCantidad(ofF.getCantidad());
+        System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
         oF.setRobot(sR.buscarRobot(ofF.getId_robot()));
+        System.out.println("0000000000000000000000000000000000000000");
         OrdenFabricacion orden = sO.insertarOrden(oF);
+        System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
         ModelAndView mV = new ModelAndView("ordenFabricacionDetalle");        
         mV.addObject("ordenFabricacion", orden);
         return mV;

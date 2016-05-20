@@ -58,6 +58,14 @@
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
+                                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="${base}/ordenFabricacion/alta.htm">Añadir Orden de fabricación</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
                 <li>
                 <a href="j_spring_security_logout" class="btn" role="button">Logout</a>
                 </li>

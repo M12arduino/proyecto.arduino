@@ -13,7 +13,7 @@
     Descripcion: <form:input path="descripcion" />
     Prioridad: 
     <form:select path="prioridad">
-        <form:options items="${prioridades}" />
+        <form:options  items="${prioridades}" />
     </form:select>
     Proceso: 
     <form:select path="codigo_proceso">

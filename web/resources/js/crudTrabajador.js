@@ -7,7 +7,7 @@
 
 
 $(document).ready(function () {
-    var table;
+    var table = null;
     $("#search").on("click", function () {
         var data = {};
         data.nif = $("#nifSearchVal").val();
@@ -45,11 +45,12 @@ $(document).ready(function () {
             });
             prepareCrudTrabajador();
         } else {
-            table.destroy();
+            if(table)table.destroy();
             $("#datatable").html("");
             $("#errorTable").show();
         }
     }
+    
     $("#editar").on("click", function () {
         prepareForm("#form", "actualizar.htm")
         $("#form").submit();

@@ -3,12 +3,15 @@ package m12.arduino.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /*
 Jordi Puig Puig
@@ -32,7 +35,8 @@ public class Robot implements Serializable {
     @Embedded
     private Ubicacion ubicacion;
     private EstadoRobot estado;
-    @OneToMany(mappedBy = "robot")
+    @JsonIgnore
+    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy = "robot")
     private List<OrdenFabricacion> ordenes;
 
     {
@@ -87,4 +91,8 @@ public class Robot implements Serializable {
     public void setEstado(EstadoRobot estado) {
         this.estado = estado;
     }    
+    
+    public String getFullName(){
+        return this.getId_robot()+" - "+this.getNombre();
+    }
 }

@@ -29,10 +29,10 @@ public class Equipo implements Serializable {
     private long id;
     private String id_equipo;
     private String nombre;
-    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy = "equipo")
+    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER,mappedBy="equipo")
     @JsonIgnore
     private List<Trabajador> trabajadores;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER,mappedBy = "equipo")
     private List<OrdenFabricacion> ordenes;
     
     {
@@ -89,6 +89,11 @@ public class Equipo implements Serializable {
     @Override
     public String toString() {
         return "Equipo{" + "id=" + id + ", id_equipo=" + id_equipo + ", nombre=" + nombre + ", trabajadores=" + trabajadores + ", ordenes=" + ordenes + '}';
+    }
+
+    public void addOrden(OrdenFabricacion orden) {
+        this.getOrdenes().add(orden);
+        orden.setEquipo(this);
     }
     
 }

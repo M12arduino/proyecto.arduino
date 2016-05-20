@@ -13,7 +13,7 @@
 
 
 <div class="tableResults">
-    <form:form action="${base}/robot/" method="POST" id="form">
+    <form:form action="${base}/robot" method="POST" id="form">
         <div class="form_search">
             <input type="text" placeholder="id_robot" id="id_robotSearchVal"/>
             <input type="text" placeholder="nombre" id="nombreSearchVal"/>
@@ -25,6 +25,7 @@
             <p id="results"> Busca un Robot </p>
         </div>
         <div class="form_edit">
+            <form:input path="id" type="hidden" id="id"/>
             ID Robot: <form:input path="id_robot"/>
             Nombre: <form:input path="nombre" />
             Lugar: <form:input path="lugar" />
@@ -38,6 +39,13 @@
             <input type="button" value="Eliminar" id="eliminar"/>
         </div>
     </form:form>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <p id="errorTable" class="error"> No hay registros para los criterios seleccionados </p>
+        <table id="datatable">
+
+        </table>
+    </div>
 </div>
 </body>
 </html>

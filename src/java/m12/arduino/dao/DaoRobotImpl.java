@@ -54,7 +54,7 @@ public class DaoRobotImpl implements DaoRobot {
         for (Iterator<String> it = keys.iterator(); it.hasNext();) {
             if (it.hasNext()) {
                 String currentKey = it.next();
-                str += currentKey + "=:" + currentKey + " ";
+                str += currentKey +" LIKE :" + currentKey + " ";
             }
             if (it.hasNext()) {
                 str += " and ";
@@ -62,12 +62,12 @@ public class DaoRobotImpl implements DaoRobot {
         }
         if (str!="") str= "WHERE "+str;
         // Complete query-string
-        Query query = session.createQuery("FROM Trabajador " + str);
+        Query query = session.createQuery("FROM Robot " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
             Object val =  e.getValue();
-            query.setParameter(attr, val);      
+            query.setParameter(attr,"%"+ val+"%");      
         }
         List<Robot> res= query.list();
         acabaOperacion();
