@@ -7,18 +7,21 @@
  http://www.springframework.org/schema/security/spring-security-3.1.xsd">
  
 <http use-expressions="true">
-<!--
- <access-denied-handler error-page="/accesDenegat" />
- <intercept-url pattern="/login" access="permitAll" /> 
- <intercept-url pattern="/usuariRegistrat" access="hasAnyRole('rol_admin','rol_user')"/>
- <intercept-url pattern="/admin" access="hasRole('rol_admin')"/>-->
+
+ <access-denied-handler error-page="/accesoDenegado" />
+ <intercept-url pattern="/login*" access="permitAll" /> 
+ <intercept-url pattern="/login*" access="isAnonymous()" />
+ <intercept-url pattern="/**" access="isAuthenticated()" />
+ 
+ <!--  <intercept-url pattern="/admin" access="hasRole('rol_admin')"/> -->
 
  <form-login
- login-page="/login" 
+ login-page="/login.htm" 
+ default-target-url="/main.htm"
   authentication-failure-url="/login?login_error=1" />
 <!--   username-parameter="username" password-parameter="password" --> 
 <!--  <logout /> -->
-<logout logout-success-url="/" />
+<logout logout-success-url="/login.htm" />
  </http>
   
 <authentication-manager>
