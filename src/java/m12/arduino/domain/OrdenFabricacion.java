@@ -130,6 +130,8 @@ public class OrdenFabricacion implements Serializable {
 
     @Override
     public String toString() {
-        return "OrdenFabricacion{" + "id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", proridad=" + proridad + ", fecha=" + fecha + ", proceso=" + proceso + ", cantidad=" + cantidad + ", robot=" + robot + ", estado=" + estado + '}';
+        return "OrdenFabricacion{" + "id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", proridad=" + proridad + ", fecha=" + fecha.toString() + ", proceso=" + proceso.getCodigo() + ", cantidad=" + cantidad + ", robot=" + robot.getFullName() + ", estado=" + estado + ", equipo=" + equipo.getNombre() + '}';
     }
+
+
 }

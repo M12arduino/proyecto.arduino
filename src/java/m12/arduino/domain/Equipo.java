@@ -90,5 +90,10 @@ public class Equipo implements Serializable {
     public String toString() {
         return "Equipo{" + "id=" + id + ", id_equipo=" + id_equipo + ", nombre=" + nombre + ", trabajadores=" + trabajadores + ", ordenes=" + ordenes + '}';
     }
+
+    public void addOrden(OrdenFabricacion orden) {
+        this.getOrdenes().add(orden);
+        orden.setEquipo(this);
+    }
     
 }

@@ -61,21 +61,30 @@ public class ControllerEquipo {
         return new ModelAndView("welcome");
     }
     
-    @RequestMapping("/equipoFormOrden")
+    @RequestMapping("/asignarOrden")
     public ModelAndView asignarOrden() {
         EquipoForm eF = new EquipoForm();
         ModelAndView mV = new ModelAndView("equipoAsignarOrden", "command", eF);
+        mV.addObject("equipos", sE.listarEquipos());
+        mV.addObject("ordenes", sO.listarOrdenes());
         return mV;
     }
     
-    @RequestMapping("/equipoAltaOrden")
+    @RequestMapping("/altaOrden")
     public ModelAndView altaOrden(EquipoForm eF) {
         ModelAndView mV = new ModelAndView("equipoDetalle");
         Equipo e = sE.buscarEquipo(eF.getNombre());
+        System.out.println(e);
         OrdenFabricacion orden = sO.buscarOrden(eF.getCodigo_orden());
-        e.getOrdenes().add(orden);
+        System.out.println(orden);
+        e.addOrden(orden);
+        System.out.println(orden);
         sE.actualizarEquipo(e);
+        System.out.println("Aktualiziert");
+        sO.actualizarOrden(orden);
+        System.out.println("Aktualiziert");
         mV.addObject("equipo", e);
+        System.out.println("Equipo added");
         return mV;
     }
     
