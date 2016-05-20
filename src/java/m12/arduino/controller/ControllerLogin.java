@@ -18,28 +18,22 @@ import org.springframework.web.portlet.ModelAndView;
 @Controller
 public class ControllerLogin {
 
+    @RequestMapping("/login")
+    public String initSesion() {
+        return "login";
+
+    }
+    
     @RequestMapping("/main")
     public String initMenu() {
         return "main";
 
     }
 
-    @RequestMapping(value = "/admin")//, method = RequestMethod.GET)
+    @RequestMapping(value = "/admin")
     public String adminPage() {
 
         return "welcome";
-    }
-
-    @RequestMapping(value = "/accesDenegat")//, method = RequestMethod.GET)
-    public String novaPage() {
-
-        return "accesDenegat";
-    }
-
-    @RequestMapping(value = "/usuariRegistrat")//, method = RequestMethod.GET)
-    public String usuariRegistratPage() {
-
-        return "usuariRegistrat";
     }
 
 }

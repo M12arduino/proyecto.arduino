@@ -7,13 +7,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-<div class="nav-side-menu">
-    <div class="brand">Panel de administrador</div>
+<div class="nav-side-menu col-xs-2">
+    <div id="panel-title" class="panel-title">Panel de administrador</div>
     <div class="menu-list">
-        <ul id="menu-content" class="menu-content collapse out">
+        <ul id="menu-content" class="menu-content collapse">
             <li  data-toggle="collapse" data-target="#trabajadores" class="collapsed">
+                <div>
                 <a href="#">Gestionar trabajadores</a>
-                <span>pepe</span>
+                <span><img src="${base}/resources/img/worker.ico"></span>
             </li>
             <ul class="sub-menu collapse" id="trabajadores">
                 <li><a href="${base}/trabajador/tabla.htm">Mostrar Trabajadores</a></li>
@@ -23,6 +24,7 @@
 
             <li data-toggle="collapse" data-target="#robots" class="collapsed">
                 <a href="#">Gestionar robots</a>
+                <span><img src="${base}/resources/img/robot.png"></span>
             </li>  
             <ul class="sub-menu collapse" id="robots">
                 <li><a href="${base}/robot/tabla.htm">Mostrar Robots</a></li>
@@ -32,6 +34,7 @@
 
             <li data-toggle="collapse" data-target="#equipos" class="collapsed">
                 <a href="#">Gestionar equipos</a>
+                <span><img src="${base}/resources/img/team.png"></span>
             </li>
             <ul class="sub-menu collapse" id="equipos">
                 <li><a href="${base}/equipo/tabla.htm">Mostrar Equipos</a></li>
@@ -41,6 +44,7 @@
             
             <li data-toggle="collapse" data-target="#procesos" class="collapsed">
                 <a href="#">Gestionar Procesos</a>
+                <span><img src="${base}/resources/img/process.png"></span>
             </li>
             <ul class="sub-menu collapse" id="procesos">
                 <li><a href="${base}/proceso/tabla.htm">Mostrar Procesos</a></li>

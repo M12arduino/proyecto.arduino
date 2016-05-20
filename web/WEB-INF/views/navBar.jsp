@@ -58,6 +58,9 @@
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
+                <li>
+                <a href="j_spring_security_logout" class="btn" role="button">Logout</a>
+                </li>
             </ul>
         </div>
     </div>
