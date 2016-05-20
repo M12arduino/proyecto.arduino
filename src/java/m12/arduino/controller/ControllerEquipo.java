@@ -45,7 +45,7 @@ public class ControllerEquipo {
         //Insertar equipo para generar un ID
         sE.insertarEquipo(res);
         //Recuperar objeto Equipo con ID generado
-        res = sE.buscarEquipo(eq.getNombre());
+        res = sE.buscarEquipo(eq.getId_equipo());
         for (String str : eq.getNifs()){         
             //Buscar trabajador segun datos del formulario
             treb = sT.buscarTrabajador(str);
