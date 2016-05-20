@@ -43,10 +43,10 @@ public class ControllerOrdenFabricacion {
         oF.setProridad(ofF.getPrioridad());
         oF.setProceso(sP.buscarProceso(ofF.getCodigo_proceso()));
         oF.setCantidad(ofF.getCantidad());
-        oF.setRobot(sR.buscarRobot(ofF.getNombre_robot()));
-        sO.insertarOrden(oF);
+        oF.setRobot(sR.buscarRobot(ofF.getId_robot()));
+        OrdenFabricacion orden = sO.insertarOrden(oF);
         ModelAndView mV = new ModelAndView("ordenFabricacionDetalle");        
-        mV.addObject("ordenFabricacion", oF);
+        mV.addObject("ordenFabricacion", orden);
         return mV;
     }
 }

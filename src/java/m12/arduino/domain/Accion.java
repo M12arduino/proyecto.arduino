@@ -79,6 +79,6 @@ public class Accion implements Serializable {
 
     @Override
     public String toString() {
-        return "Accion{" + "id_accion=" + id_accion + ", posX=" + posX + ", posY=" + posY + ", posZ=" + posZ + ", abrirPinza=" + abrirPinza + ", proceso=" + proceso + '}';
+        return "Accion{" + "id_accion=" + id_accion + ", posX=" + posX + ", posY=" + posY + ", posZ=" + posZ + ", abrirPinza=" + abrirPinza + ", proceso=" + proceso.getCodigo() + '}';
     }   
 }

@@ -39,13 +39,17 @@ public class ControllerPopulate {
         ////////////////////////////////////////////////////////////////////////
         Equipo equ0 = new Equipo();
         equ0.setNombre("Equipo0");
+        equ0.setId_equipo("CV2015");
 
         Equipo equ1 = new Equipo();
         equ1.setNombre("Equipo1");
+        equ1.setId_equipo("CV2016");
 
-        sE.insertarEquipo(equ0);
-        sE.insertarEquipo(equ1);
+        Equipo e0 = sE.insertarEquipo(equ0);
+        Equipo e1 = sE.insertarEquipo(equ1);
 
+        System.out.println(e0);
+        System.out.println(e1);
         ////////////////////////////////////////////////////////////////////////
         Trabajador tr0 = new Trabajador();
         tr0.setNif("00000000A");
@@ -73,17 +77,21 @@ public class ControllerPopulate {
         sT.insertarTrabajador(tr2);
 
         ////////////////////////////////////////////////////////////////////////
-        equ0.addTrabajador(sT.buscarTrabajador("00000000A"));
-        equ0.addTrabajador(sT.buscarTrabajador("11111111A"));
-        equ1.addTrabajador(sT.buscarTrabajador("22222222A"));
+        Trabajador t0 = sT.buscarTrabajador("00000000A");
+        Trabajador t1 = sT.buscarTrabajador("11111111A");
+        Trabajador t2 = sT.buscarTrabajador("22222222A");
+        e0.addTrabajador(t0);
+        e0.addTrabajador(t1);
+        e1.addTrabajador(t2);
 
-        sT.actualizarTrabajador(tr0);
-        sT.actualizarTrabajador(tr1);
-        sT.actualizarTrabajador(tr2);
+        sT.actualizarTrabajador(t0);
+        sT.actualizarTrabajador(t1);
+        sT.actualizarTrabajador(t2);
 
         ////////////////////////////////////////////////////////////////////////
         Robot ro0 = new Robot();
-        ro0.setNombre("Robot0");
+        ro0.setId_robot("Rob00");
+        ro0.setNombre("Terminator");
         ro0.setEstado(EstadoRobot.LIBRE);
         Ubicacion ub0 = new Ubicacion();
         ub0.setCoorX(50);
@@ -92,7 +100,8 @@ public class ControllerPopulate {
         ro0.setUbicacion(ub0);
 
         Robot ro1 = new Robot();
-        ro1.setNombre("Robot1");
+        ro1.setId_robot("Rob01");
+        ro1.setNombre("RoboRabo");
         ro1.setEstado(EstadoRobot.OCUPADO);
         Ubicacion ub1 = new Ubicacion();
         ub1.setCoorX(80);
@@ -101,7 +110,8 @@ public class ControllerPopulate {
         ro1.setUbicacion(ub1);
 
         Robot ro2 = new Robot();
-        ro2.setNombre("Robot2");
+        ro2.setId_robot("Rob02");
+        ro2.setNombre("Pennenator");
         ro2.setEstado(EstadoRobot.DESCONECTADO);
         Ubicacion ub2 = new Ubicacion();
         ub2.setCoorX(10);
@@ -118,37 +128,40 @@ public class ControllerPopulate {
         pr0.setCodigo("P001");
         pr0.setDescripcion("Descripcion proceso 1");
         Accion ac01 = new Accion();
-        ac01.setId_accion(1);
         ac01.setPosX(101);
         ac01.setPosY(201);
         ac01.setPosZ(301);
         ac01.setAbrirPinza(true);
         Accion ac02 = new Accion();
-        ac02.setId_accion(2);
         ac02.setPosX(102);
         ac02.setPosY(202);
         ac02.setPosZ(302);
         ac02.setAbrirPinza(false);
-        pr0.getAcciones().add(ac01);
-        pr0.getAcciones().add(ac02);
+        pr0.addAccion(ac01);
+        pr0.addAccion(ac02);
 
         Proceso pr1 = new Proceso();
         pr1.setCodigo("P002");
         pr1.setDescripcion("Descripcion proceso 2");
         Accion ac11 = new Accion();
-        ac11.setId_accion(1);
         ac11.setPosX(103);
         ac11.setPosY(203);
         ac11.setPosZ(303);
         ac11.setAbrirPinza(true);
         Accion ac12 = new Accion();
-        ac12.setId_accion(2);
         ac12.setPosX(104);
         ac12.setPosY(204);
         ac12.setPosZ(304);
         ac12.setAbrirPinza(false);
-        pr1.getAcciones().add(ac11);
-        pr1.getAcciones().add(ac12);
+        pr1.addAccion(ac11);
+        pr1.addAccion(ac12);
+
+        System.out.println(pr0.toString());
+        System.out.println(pr1.toString());
+        System.out.println(ac01.toString());
+        System.out.println(ac02.toString());
+        System.out.println(ac11.toString());
+        System.out.println(ac12.toString());
 
         sP.insertarProceso(pr0);
         sP.insertarProceso(pr1);

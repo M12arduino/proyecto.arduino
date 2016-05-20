@@ -27,16 +27,27 @@ public class Equipo implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
-    private long id_equipo;
+    private String id_equipo;
     private String nombre;
-    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="equipo")
+    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy = "equipo")
     @JsonIgnore
     private List<Trabajador> trabajadores;
+    @OneToMany
+    private List<OrdenFabricacion> ordenes;
     
     {
+        ordenes = new ArrayList<OrdenFabricacion>();
         trabajadores = new ArrayList<Trabajador>();
     }
 
+    public List<OrdenFabricacion> getOrdenes() {
+        return ordenes;
+    }
+
+    public void setOrdenes(List<OrdenFabricacion> ordenes) {
+        this.ordenes = ordenes;
+    }
+    
     public long getId() {
         return id;
     }
@@ -45,11 +56,11 @@ public class Equipo implements Serializable {
         this.id = id;
     }
 
-    public long getId_equipo() {
+    public String getId_equipo() {
         return id_equipo;
     }
 
-    public void setId_equipo(long id_equipo) {
+    public void setId_equipo(String id_equipo) {
         this.id_equipo = id_equipo;
     }
 
@@ -70,14 +81,14 @@ public class Equipo implements Serializable {
     }
     
     public Trabajador addTrabajador(Trabajador treb){
-        treb.setEquipo(this);
         this.getTrabajadores().add(treb);
+        treb.setEquipo(this);
         return treb;
     }
+
     @Override
     public String toString() {
-        return "Equipo{" + "id_equipo=" + id_equipo + ", nombre=" + nombre + ", trabajadores=" + trabajadores + '}';
+        return "Equipo{" + "id=" + id + ", id_equipo=" + id_equipo + ", nombre=" + nombre + ", trabajadores=" + trabajadores + ", ordenes=" + ordenes + '}';
     }
-    
     
 }

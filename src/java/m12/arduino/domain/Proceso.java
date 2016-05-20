@@ -70,6 +70,14 @@ public class Proceso implements Serializable {
 
     public void addAccion(Accion ac){
         this.getAcciones().add(ac);
+        ac.setProceso(this);
     }
+
+    @Override
+    public String toString() {
+        return "Proceso{" + "id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", acciones=" + acciones + '}';
+    }
+    
+    
     
 }
