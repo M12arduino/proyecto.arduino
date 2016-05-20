@@ -27,7 +27,7 @@ public class Proceso implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
-    private String codi;
+    private String codigo;
     private String descripcion;
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="proceso")
     private List<Accion> acciones;
@@ -44,12 +44,12 @@ public class Proceso implements Serializable {
         this.id = id;
     }
 
-    public String getCodi() {
-        return codi;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setCodi(String codi) {
-        this.codi = codi;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getDescripcion() {

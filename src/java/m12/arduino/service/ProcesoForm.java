@@ -16,16 +16,16 @@ import java.util.List;
 public class ProcesoForm {
     
     // ATTR
-    private String codi;
+    private String codigo;
     private String descripcion;
     private String accionesJSON;
 
-    public String getCodi() {
-        return codi;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setCodi(String codi) {
-        this.codi = codi;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getDescripcion() {
