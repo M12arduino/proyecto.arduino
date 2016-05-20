@@ -84,7 +84,7 @@ public class DaoProcesoImpl implements DaoProceso {
         iniciaOperacion();
         session.persist(pro);
         acabaOperacion();
-        return pro;
+        return this.buscarProceso(pro.getCodigo());
     }
 
     @Override

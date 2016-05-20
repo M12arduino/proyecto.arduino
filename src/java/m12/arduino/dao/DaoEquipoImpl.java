@@ -84,9 +84,9 @@ public class DaoEquipoImpl implements DaoEquipo {
     @Override
     public Equipo guardarEquipo(Equipo eq) {
         iniciaOperacion();
-        session.persist(eq);
+        session.save(eq);
         acabaOperacion();
-        return eq;
+        return this.buscarEquipo(eq.getId_equipo());
     }
 
     @Override

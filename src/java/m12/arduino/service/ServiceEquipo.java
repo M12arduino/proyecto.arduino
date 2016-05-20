@@ -37,9 +37,8 @@ public class ServiceEquipo {
         return dE.obtenerListaEquipos(condiciones);
     }
 
-    public boolean insertarEquipo(Equipo equ) {
-        dE.guardarEquipo(equ);
-        return true;
+    public Equipo insertarEquipo(Equipo equ) {
+        return dE.guardarEquipo(equ);
     }
 
     public Equipo actualizarEquipo(Equipo equ) {

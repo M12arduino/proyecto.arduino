@@ -88,7 +88,7 @@ public class DaoRobotImpl implements DaoRobot {
         iniciaOperacion();
         session.persist(rob);
         acabaOperacion();
-        return rob;
+        return this.buscarRobot(rob.getId_robot());
     }
 
     @Override
