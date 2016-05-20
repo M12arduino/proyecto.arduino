@@ -20,11 +20,8 @@ public class ControllerLogin {
 
     @RequestMapping("/main")
     public String initMenu() {
-        if (true) {
-            return "login";
-        } else {
-            return "main";
-        }
+        return "main";
+
     }
 
     @RequestMapping(value = "/admin")//, method = RequestMethod.GET)

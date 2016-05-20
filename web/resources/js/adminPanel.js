@@ -9,4 +9,8 @@ $(document).ready(function () {
             control--;
         }
     });
+    
+    $(".menu-content").click(function () {
+        $(".sub-menu").addClass("collapse");
+    });
 });
