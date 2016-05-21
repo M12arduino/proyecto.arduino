@@ -53,23 +53,38 @@ public class ControllerTrabajador {
         return mV;
 
     }
-    @RequestMapping(value="/actualizar")
-    public ModelAndView actualizarTrabajador(Trabajador trabajador){
-        
+    @RequestMapping(value="/actualizar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String actualizarTrabajador(@RequestBody TrabajadorCrudForm tcf){
+        String msg = "";
         try {
-            sT.actualizarTrabajador(trabajador);
+            Trabajador t = new Trabajador();
+            t.setId_trab(tcf.getId_trab());
+            t.setNif(tcf.getNif());
+            t.setNombre(tcf.getNombre());
+            t.setPassword(tcf.getPassword());
+            t.setMovil(tcf.getMovil());
+            t.setEquipo(tcf.getEquipo());
+            t.setCategoria(tcf.getCategoria());
+            sT.actualizarTrabajador(t);
+            msg = "Employee updated";
         } catch (Exception e) {
+            msg = "updated fail "+e.getMessage();
         }
-        return new ModelAndView("welcome");
+        return msg;
     }
     
-    @RequestMapping(value="/eliminar")
-    public ModelAndView eliminarTrabajador(Trabajador trabajador){
+    @RequestMapping(value="/eliminar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String eliminarTrabajador(@RequestBody TrabajadorCrudForm tcf){
+        String msg = "";
         try {
-            sT.eliminarTrabajador(trabajador);
+            Trabajador t = new Trabajador();
+            t.setId_trab(tcf.getId_trab());
+            sT.eliminarTrabajador(t);
+            msg = "Employee deleted";
         } catch (Exception e) {
+            msg = "delete fail "+e.getMessage();
         }
-        return new ModelAndView("welcome");
+        return msg;
     }
     @RequestMapping(value="/administrar")
     public ModelAndView administrarTrabajador(){

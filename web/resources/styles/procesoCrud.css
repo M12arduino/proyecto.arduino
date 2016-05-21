@@ -1,0 +1,24 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 21-may-2016, 19:35:08
+    Author     : OscarMorenoGonzalez
+*/
+
+.form_edit{
+    display:none;
+}
+.error{
+    display:none;
+    color:red;
+}
+#datatable tr.odd, #datatable tr.even{
+    cursor:pointer;
+}
+#datatable tr.odd:hover, #datatable tr.even:hover{
+    color:white;
+    background:black;
+}
