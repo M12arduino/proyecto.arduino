@@ -25,6 +25,7 @@
             <div class="checkbox">
                 <form:checkboxes items="${listaTrabajadores}"  itemValue="nif" path="nifs" itemLabel="nombre"/>
             </div>
+            <br /><br />
             <input type="submit" class="btn btn-default btn-block" value="Send"/>
         </form:form>
     </div>
