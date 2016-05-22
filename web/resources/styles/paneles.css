@@ -9,23 +9,24 @@ and open the template in the editor.
 */
 
 .panel-default {
-    border-color: #00979C;
+    border-color: #da6f03;
 }
 
 .panel-default>.panel-heading {
     color: #333;
-    background-color: #00979C;
+    background-color: #da6f03;
     border-color: #ddd;
 }
 
-.btn-default {
-    color: #333;
-    background-color: #00979C;
-    border-color: #ccc;
+.btn.btn-arduino{
+    background:#00979C;
+    color:white;
+    font-weight:bolder;
+    transition: background 0.5s, color 0.5s;
 }
 
-.btn-default:hover {
-    color: #333;
-    background-color: #F39C12;
-    border-color: #ccc;
+.btn.btn-arduino:hover{
+    background:#F47A20;
+    color:black;
+    font-weight:bolder;
 }
