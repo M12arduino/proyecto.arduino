@@ -63,7 +63,7 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
         }
         if (str!="") str= "WHERE "+str;
         // Complete query-string
-        Query query = session.createQuery("FROM Trabajador " + str);
+        Query query = session.createQuery("FROM OrdenFabricacion " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
@@ -79,6 +79,7 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
     public List<OrdenFabricacion> obtenerListaOrdenes() {
         iniciaOperacion();
         Query q = session.createQuery("From OrdenFabricacion");
+        System.out.println("Query: "+q);
         List<OrdenFabricacion> res = q.list();
         acabaOperacion();
         return res;

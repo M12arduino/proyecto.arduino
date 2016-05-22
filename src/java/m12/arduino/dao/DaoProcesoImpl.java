@@ -50,7 +50,7 @@ public class DaoProcesoImpl implements DaoProceso {
         for (Iterator<String> it = keys.iterator(); it.hasNext();) {
             if (it.hasNext()) {
                 String currentKey = it.next();
-                str += currentKey + "=:" + currentKey + " ";
+                str += currentKey + " LIKE :" + currentKey + " ";
             }
             if (it.hasNext()) {
                 str += " and ";
@@ -58,12 +58,12 @@ public class DaoProcesoImpl implements DaoProceso {
         }
         if (str!="") str= "WHERE "+str;
         // Complete query-string
-        Query query = session.createQuery("FROM Trabajador " + str);
+        Query query = session.createQuery("FROM Proceso " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
             Object val =  e.getValue();
-            query.setParameter(attr, val);      
+            query.setParameter(attr,"%"+ val+"%");      
         }
         List<Proceso> res= query.list();
         acabaOperacion();
@@ -73,7 +73,7 @@ public class DaoProcesoImpl implements DaoProceso {
     @Override
     public List<Proceso> obtenerListaProcesos() {
         iniciaOperacion();
-        Query q = session.createQuery("From Proceso");
+        Query q = session.createQuery("SELECT * FROM Proceso");
         List<Proceso> res = q.list();
         acabaOperacion();
         return res;

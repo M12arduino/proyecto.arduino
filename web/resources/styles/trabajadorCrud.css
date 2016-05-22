@@ -22,3 +22,94 @@ and open the template in the editor.
     background:black;
 }
 
+.iconoBoton{
+    cursor:pointer;
+    font-size:2em;
+    border: 1px solid grey;
+}
+.hiddendata{
+    display:none;
+}
+.deletebutton{
+    cursor:pointer;
+    display:block;
+    float:left;
+    color:#F47A20;
+    height:100%;
+    font-size:1.125em;
+}
+#addTrabajador{
+    cursor:pointer;
+    overflow:hidden;
+}
+
+#trabajadores{
+    margin:0;
+    padding:0;
+    list-style-type: none;
+    width:100%;
+    overflow:hidden;
+}
+#trabajadores li{
+    display:block;
+    padding:0.5em;
+    float:left;
+    margin: 1em 1em 1em 0;
+    border-radius:1em;
+    border: 0.125em solid #00979C;
+}
+.addText{
+    display:block;
+    float:left;
+    width:90%;
+}
+#addTrabajador .fa{
+    display:block;
+    float:left;
+    font-size:1.25em;
+}
+.form-group{
+    overflow:hidden;
+}
+#addTrabajador{
+    color:black;
+    font-weight:bold;
+    font-size:0.8em;
+    border: 0.25em solid #00979C;
+    color:#00979C;
+    padding: 0.625em;
+    border-radius: 0.5em;
+}
+.control-label{
+    color:#da6f03;
+}
+#addTrabajador:hover{
+    background:#00979C;
+    color:white;
+    transition: color 1s, background 1s;
+}
+
+#trabajadores p{
+    font-size:1em;
+    height:100%;
+    width:90%;
+    margin:0;
+    display:block;
+    float:left;
+}
+
+.btn.btn-arduino{
+    background:#00979C;
+    color:white;
+    font-weight:bolder;
+    transition: background 0.5s, color 0.5s;
+}
+
+.btn.btn-arduino:hover{
+    background:#F47A20;
+    color:black;
+    font-weight:bolder;
+}
+.colorLabel{
+    color:#da6f03;
+}

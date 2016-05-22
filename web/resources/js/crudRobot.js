@@ -39,9 +39,8 @@ $(document).ready(function () {
     })*/
 
     function gestionaResultadoAjax(response) {
-        alert(response);
         var array = JSON.parse(response);
-        if (array != "") {
+        if (array.length > 0) {
             $("#errorTable").hide();
             var titles = dataTablesDevuelveProps(array);
             var dataSet = dataTablesDevuelveValues(array);
@@ -49,7 +48,7 @@ $(document).ready(function () {
             table = $("#datatable").DataTable({
                 data: dataSet,
                 columns: titles,
-                destroy: true,
+                destroy: true
             });
             prepareCrudRobot();
         } else {
@@ -65,7 +64,6 @@ $(document).ready(function () {
         data.lugar = $("#lugarSearchVal").val();
         data.estado = $("#estadoSearchVal").val();
         var jsonStr = JSON.stringify(data);
-
         $.ajax({
             url: getBasePath() + "robot/buscarRobot.htm",
             type: "POST",
@@ -93,19 +91,19 @@ $(document).ready(function () {
         data.lugar = $("#lugar").val();
         data.estado = $("#estado").val();
         var jsonStr = JSON.stringify(data);
-                $.ajax({
-                url: getBasePath() + "robot/actualizar.htm",
-                type: "POST",
-                data: jsonStr,
-                contentType: "application/json; charset=utf-8",
-                async: false,
-                cache: false,
-                processData: false,
-                success: function(response){
-                    alert(response);
-                    refrescaTabla();
-                }
-            });
+            $.ajax({
+            url: getBasePath() + "robot/actualizar.htm",
+            type: "POST",
+            data: jsonStr,
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            cache: false,
+            processData: false,
+            success: function(response){
+                alert(response);
+                refrescaTabla();
+            }
+        });
     });
 
     $("#eliminar").on("click", function () {
@@ -128,12 +126,12 @@ $(document).ready(function () {
                 success: function(response){
                     alert(response);
                     refrescaTabla();
+                    cleanCrudRobot();
                 }
             });
         }
-
-    })
-})
+    });
+});
 
 function prepareCrudRobot() {
     $("#datatable tr").not(":first").on("click", function () {
@@ -143,11 +141,13 @@ function prepareCrudRobot() {
         $("#nombre").val($(this).find("td:nth-child(3)").html());
         $("#lugar").val($(this).find("td:nth-child(4)").html());
         $("#estado").val($(this).find("td:nth-child(5)").html());
-    })
+    });
 }
 
-
-
-
-
-
+function cleanCrudRobot() {
+    $("#id").val(null);
+    $("#id_robot").val(null);
+    $("#nombre").val(null);
+    $("#lugar").val(null);
+    $("#estado").val(null);
+}

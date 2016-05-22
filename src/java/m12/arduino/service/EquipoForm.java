@@ -13,12 +13,30 @@ import m12.arduino.domain.Trabajador;
  * @author enric
  */
 public class EquipoForm {
+    private long id;
     private String id_equipo;
     private String nombre;
+    private List<Trabajador> trabajadores;
     private List<String> nifs;
     private String codigo_orden;
 
     public EquipoForm() {
+    }
+
+    public List<Trabajador> getTrabajadores() {
+        return trabajadores;
+    }
+
+    public void setTrabajadores(List<Trabajador> trabajadores) {
+        this.trabajadores = trabajadores;
+    }
+    
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getCodigo_orden() {

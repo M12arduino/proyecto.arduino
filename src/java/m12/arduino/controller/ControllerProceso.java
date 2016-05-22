@@ -17,7 +17,10 @@ import m12.arduino.service.ServiceProceso;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -52,5 +55,64 @@ public class ControllerProceso {
         }
         return "welcome";
     }
+    
+    @RequestMapping(value="/actualizar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String actualizarProceso(@RequestBody ProcesoForm pf){
+        String msg = "";
+        try {
+            Proceso p = new Proceso();
+            p.setId(pf.getId());
+            p.setCodigo(pf.getCodigo());
+            p.setDescripcion(pf.getDescripcion());
+            sP.actualizarProceso(p);
+            msg = "Proces updated";
+        } catch (Exception e) {
+            msg = "updated fail "+e.getMessage();
+        }
+        return msg;
+    }
+    
+    @RequestMapping(value="/eliminar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String eliminarProceso(@RequestBody ProcesoForm pf){
+        String msg = "";
+        try {
+            Proceso p = new Proceso();
+            p.setId(pf.getId());
+            sP.eliminarProceso(p);
+            msg = "Proces deleted";
+        } catch (Exception e) {
+            msg = "delete fail "+e.getMessage();
+        }
+        return msg;
+    }
+    
+    @RequestMapping(value = "/buscarProceso", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String buscaProcesoAjax(@RequestBody ProcesoForm pf) {
+        String codigo = pf.getCodigo();
+        System.out.println("codigo");
+        String descripcion = pf.getDescripcion();
+        String response = null;
+        //List<Proceso> proc = sP.listarProcesos("codigo",codigo,"descripcion",descripcion);
+        List<Proceso> proc = sP.listarProcesos();
+        if(proc != null){
+            System.out.println("not null");
+        try {
+             ObjectMapper mapperObj = new ObjectMapper();
+             response = mapperObj.writeValueAsString(proc);
+        } catch (IOException ex) {
+            response = ex.getMessage();
+        } 
+        }else{
+            System.out.println("null");
+            response = null;
+        }
 
+        return response;
+    }
+    
+    @RequestMapping(value = "administrar")
+    public ModelAndView administraCrudRobot() {
+        ModelAndView mV = new ModelAndView("procesoCrud", "command", new ProcesoForm());
+        return mV;
+    }
 }

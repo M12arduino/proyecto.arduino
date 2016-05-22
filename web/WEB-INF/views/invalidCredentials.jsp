@@ -20,6 +20,8 @@
         <title>YOU ARE A ANAL</title>
     </head>
     <body>
-        NO TIENES ACCESO PARA ACCEDER A ESTA PAGINA
+        ADMIN - ADMIN1
+        <br />
+        USER - USER1
     </body>
 </html>

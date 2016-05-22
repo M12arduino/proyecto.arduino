@@ -5,7 +5,6 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!-- GENERALES -->
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -15,15 +14,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Arduino Central Web</title>
         
-        <!-- CSS's -->
-        <link rel="stylesheet" href="${base}/resources/libs/bootstrap.min.css"/>
+        <!-- CSS -->
+        <link rel="stylesheet" href="${base}/resources/libs/bootstrap/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="${base}/resources/styles/adminPanel.css"/>
         <link rel="stylesheet" href="${base}/resources/styles/navBar.css"/>
+        <link rel="stylesheet" href="${base}/resources/styles/paneles.css"/>
         <link rel="stylesheet" href="${base}/resources/libs/jquery.dataTables.min.css"/>
-        
-        <!-- JS's  -->
+        <link rel="stylesheet" href="${base}/resources/libs/font-awesome/css/font-awesome.min.css"/>        
+        <!-- JS -->
         <script type="text/javascript" src="${base}/resources/libs/jquery-2.2.3.js"></script>
-        <script type="text/javascript" src="${base}/resources/libs/bootstrap.min.js"/>
+        <script type="text/javascript" src="${base}/resources/libs/bootstrap/js/bootstrap.min.js"/></script>
         <script type="text/javascript" src="${base}/resources/js/adminPanel.js"></script>
         <script type="text/javascript" src="${base}/resources/js/functions.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/jquery.dataTables.min.js"></script>

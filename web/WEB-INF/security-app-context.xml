@@ -1,35 +1,50 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
- xmlns:beans="http://www.springframework.org/schema/beans"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://www.springframework.org/schema/beans
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
  http://www.springframework.org/schema/security
  http://www.springframework.org/schema/security/spring-security-3.1.xsd">
  
-<http use-expressions="true">
-
- <access-denied-handler error-page="/accesoDenegado" />
- <intercept-url pattern="/login*" access="permitAll" /> 
- <intercept-url pattern="/login*" access="isAnonymous()" />
- <intercept-url pattern="/**" access="isAuthenticated()" />
+    <http use-expressions="true">
  
- <!--  <intercept-url pattern="/admin" access="hasRole('rol_admin')"/> -->
+        <access-denied-handler error-page="/accesoDenegado" />
+        <intercept-url pattern="/login*" access="isAnonymous()" />
+        <intercept-url pattern="/invalidCredentials*" access="isAnonymous()" />
+        <intercept-url pattern="/**" access="isAuthenticated()" />
+ 
+        <!-- <intercept-url pattern="/admin" access="hasRole('rol_admin')"/> -->
 
- <form-login
- login-page="/login.htm" 
- default-target-url="/main.htm"
-  authentication-failure-url="/login?login_error=1" />
-<!--   username-parameter="username" password-parameter="password" --> 
-<!--  <logout /> -->
-<logout logout-success-url="/login.htm" />
- </http>
-  
-<authentication-manager>
- <authentication-provider>
- <user-service>
-  <user name="admin" password="admin1" authorities="rol_admin" />
-  <user name="user" password="user1" authorities="rol_user" /> 
- </user-service>
- </authentication-provider>
- </authentication-manager>
+        <form-login
+            login-page="/login.htm" 
+            default-target-url="/main.htm"
+            authentication-failure-url="/invalidCredentials.htm" />
+        <!--   username-parameter="username" password-parameter="password" --> 
+        <!--  <logout /> -->
+        <logout logout-success-url="/login.htm" />
+    </http>
+ 
+    <!-- 
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/proyecto"/>
+        <property name="username" value="hibernate"/>
+        <property name="password" value="hibernate"/>
+    </bean>
+    
+    //a PlatformTransactionManager is still required 
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+         //(this dependency is defined somewhere else)
+        <property name="dataSource" ref="dataSource"/> 
+    </bean>
+    -->
+
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="admin" password="admin1" authorities="rol_admin" />
+                <user name="user" password="user1" authorities="rol_user" /> 
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
 </beans:beans>

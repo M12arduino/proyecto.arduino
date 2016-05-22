@@ -7,10 +7,8 @@ package m12.arduino.controller;
 
 import java.io.IOException;
 import java.util.List;
-import m12.arduino.domain.CategoriaTrabajador;
 import m12.arduino.domain.EstadoRobot;
 import m12.arduino.domain.Robot;
-import m12.arduino.domain.Trabajador;
 import m12.arduino.domain.Ubicacion;
 import m12.arduino.service.RobotForm;
 import m12.arduino.service.ServiceRobot;
@@ -85,12 +83,6 @@ public class ControllerRobot {
         try {
             Robot r = new Robot();
             r.setId(rf.getId());
-//            r.setId_robot(rf.getId_robot());
-//            r.setNombre(rf.getNombre());
-//            r.getUbicacion().setLugar(rf.getLugar());
-//            r.getUbicacion().setCoorX(rf.getCoorX());
-//            r.getUbicacion().setCoorY(rf.getCoorY());
-//            r.setEstado(rf.getEstado());
             sR.eliminarRobot(r);
             msg = "robot deleted";
         } catch (Exception e) {
@@ -100,13 +92,13 @@ public class ControllerRobot {
     }
 
     @RequestMapping(value = "/buscarRobot",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
-    public @ResponseBody String buscaRobotAjax(@RequestBody RobotForm robot) {
-        String id_robot = robot.getId_robot();
-        String nombre = robot.getNombre();
-        String lugar = robot.getLugar();
-        EstadoRobot estado = robot.getEstado();
+    public @ResponseBody String buscaRobotAjax(@RequestBody RobotForm rf) {
+        String id_robot = rf.getId_robot();
+        String nombre = rf.getNombre();
+        String lugar = rf.getLugar();
+        EstadoRobot estado = rf.getEstado();
         if (estado == EstadoRobot.INDEFINIDO) estado = null;
-        String response = "";
+        String response = null;
         List<Robot> rob = sR.listarRobots("id_robot",id_robot,"nombre",nombre,"lugar",lugar,"estado",estado);
         
 //        List<Trabajador> trab = sT.listarTrabajadores();

@@ -1,0 +1,32 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-may-2016, 21:39:15
+    Author     : couto
+*/
+
+.panel-default {
+    border-color: #da6f03;
+}
+
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: #da6f03;
+    border-color: #ddd;
+}
+
+.btn.btn-arduino{
+    background:#00979C;
+    color:white;
+    font-weight:bolder;
+    transition: background 0.5s, color 0.5s;
+}
+
+.btn.btn-arduino:hover{
+    background:#F47A20;
+    color:black;
+    font-weight:bolder;
+}

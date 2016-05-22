@@ -16,9 +16,18 @@ import java.util.List;
 public class ProcesoForm {
     
     // ATTR
+    private Long id;
     private String codigo;
     private String descripcion;
     private String accionesJSON;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getCodigo() {
         return codigo;

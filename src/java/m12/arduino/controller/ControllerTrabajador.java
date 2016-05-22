@@ -51,47 +51,83 @@ public class ControllerTrabajador {
         ModelAndView mV = new ModelAndView("detalleObjeto");
         mV.addObject("objeto",aux);
         return mV;
-
-    }
-    @RequestMapping(value="/actualizar")
-    public ModelAndView actualizarTrabajador(Trabajador trabajador){
-        
-        try {
-            sT.actualizarTrabajador(trabajador);
-        } catch (Exception e) {
-        }
-        return new ModelAndView("welcome");
     }
     
-    @RequestMapping(value="/eliminar")
-    public ModelAndView eliminarTrabajador(Trabajador trabajador){
+    @RequestMapping(value="/actualizar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String actualizarTrabajador(@RequestBody TrabajadorCrudForm tcf){
+        String msg = "";
         try {
-            sT.eliminarTrabajador(trabajador);
+            Trabajador t = new Trabajador();
+            t.setId_trab(tcf.getId_trab());
+            t.setNif(tcf.getNif());
+            t.setNombre(tcf.getNombre());
+            t.setPassword(tcf.getPassword());
+            t.setMovil(tcf.getMovil());
+            t.setEquipo(tcf.getEquipo());
+            t.setCategoria(tcf.getCategoria());
+            sT.actualizarTrabajador(t);
+            msg = "Employee updated";
         } catch (Exception e) {
+            msg = "updated fail "+e.getMessage();
         }
-        return new ModelAndView("welcome");
+        return msg;
     }
+    
+    @RequestMapping(value="/eliminar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String eliminarTrabajador(@RequestBody TrabajadorCrudForm tcf){
+        String msg = "";
+        try {
+            Trabajador t = new Trabajador();
+            t.setId_trab(tcf.getId_trab());
+            sT.eliminarTrabajador(t);
+            msg = "Employee deleted";
+        } catch (Exception e) {
+            msg = "delete fail "+e.getMessage();
+        }
+        return msg;
+    }
+    
     @RequestMapping(value="/administrar")
     public ModelAndView administrarTrabajador(){
         ModelAndView mV = new ModelAndView("trabajadorCrud","command",new TrabajadorCrudForm());
         mV.addObject("categorias",CategoriaTrabajador.values());
         return mV;
     }
+    
     @RequestMapping(value = "/tabla")
     public ModelAndView printTable() {
         ModelAndView mV = new ModelAndView("trabajadorTabla");
         mV.addObject("listado", sT.listarTrabajadores());
         return mV;
     }
+    
     @RequestMapping(value = "/buscar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
     public @ResponseBody String buscaTrabajadorAjax(@RequestBody Trabajador trabajador) {
         String nif = trabajador.getNif();
         String nombre = trabajador.getNombre();
         CategoriaTrabajador categoria = trabajador.getCategoria();
         if (categoria == CategoriaTrabajador.INDEFINIDO) categoria = null;
-        String response = "";
+        String response = null;
         List<Trabajador> trab = sT.listarTrabajadores("nif",nif,"nombre",nombre,"categoria",categoria);
         //List<Trabajador> trab = sT.listarTrabajadores();
+        if(trab !=null){
+        try {
+             ObjectMapper mapperObj = new ObjectMapper();
+             response = mapperObj.writeValueAsString(trab);
+        } catch (IOException ex) {
+            response = ex.getMessage();
+        } 
+        }else{
+            response = null;
+        }
+
+        return response;
+    }
+    
+        @RequestMapping(value = "/trabajadores",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody String listaTrabajadorAjax() {
+        String response = "";
+        List<Trabajador> trab = sT.listarTrabajadores();
         if(trab !=null){
         try {
              ObjectMapper mapperObj = new ObjectMapper();
