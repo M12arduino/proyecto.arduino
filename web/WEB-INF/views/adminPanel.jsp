@@ -52,6 +52,16 @@
                 <li><a href="${base}/proceso/administrar.htm">Administrar Procesos</a></li>
             </ul>
             
+            <li data-toggle="collapse" data-target="#ordenes" class="collapsed">
+                <a href="#">Gestionar Ordenes</a>
+                <span><img src="${base}/resources/img/ordenFabri.png"></span>
+            </li>
+            <ul class="sub-menu collapse" id="ordenes">
+                <li><a href="${base}/ordenFabricacion/tabla.htm">Mostrar Ordenes</a></li>
+                <li><a href="${base}/ordenFabricacion/alta.htm">Añadir Ordenes</a></li>
+                <li><a href="${base}/ordenFabricacion/administrar.htm">Administrar Ordenes</a></li>
+            </ul>
+            
             <a href="${base}/populate/populate.htm">Populate</a>
         </ul>
     </div>

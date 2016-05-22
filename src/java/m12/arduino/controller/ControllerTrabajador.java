@@ -51,8 +51,8 @@ public class ControllerTrabajador {
         ModelAndView mV = new ModelAndView("detalleObjeto");
         mV.addObject("objeto",aux);
         return mV;
-
     }
+    
     @RequestMapping(value="/actualizar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
     public @ResponseBody String actualizarTrabajador(@RequestBody TrabajadorCrudForm tcf){
         String msg = "";
@@ -86,18 +86,21 @@ public class ControllerTrabajador {
         }
         return msg;
     }
+    
     @RequestMapping(value="/administrar")
     public ModelAndView administrarTrabajador(){
         ModelAndView mV = new ModelAndView("trabajadorCrud","command",new TrabajadorCrudForm());
         mV.addObject("categorias",CategoriaTrabajador.values());
         return mV;
     }
+    
     @RequestMapping(value = "/tabla")
     public ModelAndView printTable() {
         ModelAndView mV = new ModelAndView("trabajadorTabla");
         mV.addObject("listado", sT.listarTrabajadores());
         return mV;
     }
+    
     @RequestMapping(value = "/buscar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
     public @ResponseBody String buscaTrabajadorAjax(@RequestBody Trabajador trabajador) {
         String nif = trabajador.getNif();

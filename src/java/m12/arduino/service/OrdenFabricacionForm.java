@@ -11,6 +11,7 @@ Curs 2015-2016
 */
 public class OrdenFabricacionForm {
 
+    private Long id;
     private String codigo;
     private String descripcion;
     private Prioridad prioridad;
@@ -18,6 +19,14 @@ public class OrdenFabricacionForm {
     private int cantidad;
     private String id_robot;
     // fecha y estado assignadas por defecto
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getCodigo() {
         return codigo;
