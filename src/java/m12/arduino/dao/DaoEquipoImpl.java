@@ -52,7 +52,7 @@ public class DaoEquipoImpl implements DaoEquipo {
         for (Iterator<String> it = keys.iterator(); it.hasNext();) {
             if (it.hasNext()) {
                 String currentKey = it.next();
-                str += currentKey + "=:" + currentKey + " ";
+                str += currentKey + " LIKE :" + currentKey + " ";
             }
             if (it.hasNext()) {
                 str += " and ";
@@ -60,12 +60,12 @@ public class DaoEquipoImpl implements DaoEquipo {
         }
         if (str!="") str= "WHERE "+str;
         // Complete query-string
-        Query query = session.createQuery("FROM Trabajador " + str);
+        Query query = session.createQuery("FROM Equipo " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
             Object val =  e.getValue();
-            query.setParameter(attr, val);      
+            query.setParameter(attr, "%"+val+"%");      
         }
         List<Equipo> res= query.list();
         acabaOperacion();

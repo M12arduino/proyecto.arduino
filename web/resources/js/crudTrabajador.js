@@ -33,7 +33,7 @@ $(document).ready(function () {
 
     function gestionaResultadoAjax(response) {
         var array = JSON.parse(response);
-        if (array !== "") {
+        if (array.length > 0) {
             $("#errorTable").hide();
             var titles = dataTablesDevuelveProps(array);
             var dataSet = dataTablesDevuelveValues(array);

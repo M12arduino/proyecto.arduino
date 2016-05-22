@@ -98,7 +98,7 @@ public class ControllerRobot {
         String lugar = rf.getLugar();
         EstadoRobot estado = rf.getEstado();
         if (estado == EstadoRobot.INDEFINIDO) estado = null;
-        String response = "";
+        String response = null;
         List<Robot> rob = sR.listarRobots("id_robot",id_robot,"nombre",nombre,"lugar",lugar,"estado",estado);
         
 //        List<Trabajador> trab = sT.listarTrabajadores();

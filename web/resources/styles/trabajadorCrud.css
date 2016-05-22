@@ -22,3 +22,17 @@ and open the template in the editor.
     background:black;
 }
 
+.iconoBoton{
+    cursor:pointer;
+    font-size:2em;
+    border: 1px solid grey;
+}
+.hiddendata{
+    display:none;
+}
+.deletebutton{
+    cursor:pointer;
+}
+#addTrabajador{
+    cursor:pointer;
+}
