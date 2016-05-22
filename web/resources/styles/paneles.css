@@ -1,0 +1,31 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-may-2016, 21:39:15
+    Author     : couto
+*/
+
+.panel-default {
+    border-color: #00979C;
+}
+
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: #00979C;
+    border-color: #ddd;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #00979C;
+    border-color: #ccc;
+}
+
+.btn-default:hover {
+    color: #333;
+    background-color: #F39C12;
+    border-color: #ccc;
+}
