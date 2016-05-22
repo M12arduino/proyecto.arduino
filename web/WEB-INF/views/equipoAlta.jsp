@@ -13,21 +13,28 @@
         <br /><br />
         <div class="col-md-3"></div>
         <div class="col-md-6">
-        <form:form action="${base}/equipo/insertar.htm" method="GET" role="form" >
-            <div class="form-group">
-                <label for="idEquipo">ID_EQUIPO: </label>
-                <form:input path="id_equipo" class="form-control" id="idEquipo" />
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Añadir equipo</h3>
+                </div>
+                <div class="panel-body">
+                <form:form action="${base}/equipo/insertar.htm" method="GET" role="form" >
+                    <div class="form-group">
+                        <label for="idEquipo">ID_EQUIPO: </label>
+                        <form:input path="id_equipo" class="form-control" id="idEquipo" />
+                    </div>
+                    <div class="form-group">
+                        <label for="nombreEquipo">Nombre: </label>
+                        <form:input path="nombre" class="form-control" id="nombreEquipo" />
+                    </div>
+                    <div class="checkbox">
+                        <form:checkboxes items="${listaTrabajadores}"  itemValue="nif" path="nifs" itemLabel="nombre"/>
+                    </div>
+                    <br /><br />
+                    <input type="submit" class="btn btn-default btn-block" value="Send"/>
+                </form:form>
             </div>
-            <div class="form-group">
-                <label for="nombreEquipo">Nombre: </label>
-                <form:input path="nombre" class="form-control" id="nombreEquipo" />
-            </div>
-            <div class="checkbox">
-                <form:checkboxes items="${listaTrabajadores}"  itemValue="nif" path="nifs" itemLabel="nombre"/>
-            </div>
-            <br /><br />
-            <input type="submit" class="btn btn-default btn-block" value="Send"/>
-        </form:form>
+        </div>
     </div>
     <div class="col-md-3"></div>
 </div>
