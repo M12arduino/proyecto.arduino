@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label for="movilTrabajador">Movil: </label>
-                <form:input path="movil"class="form-control" id="movilTrabajador" />
+                <form:input path="movil" class="form-control" id="movilTrabajador" />
             </div>
             <div class="form-group">
                 <label for="passTrabajador">Password: </label>

@@ -23,16 +23,16 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <h4>Criterios de búsqueda:</h4>
+                    <h4 class="colorLabel">Criterios de búsqueda:</h4>
                 </div>
                 <div class="col-md-8">
                     <div class="form_search form-inline" role"form">
                          <div class="form-group">
-                            <label for="nif_equipoSearchVal">Id Equipo:</label>
+                            <label for="nif_equipoSearchVal" class="colorLabel">Id Equipo:</label>
                             <input type="text" class="form-control" placeholder="id_equipo" id="nif_equipoSearchVal"/>
                         </div>
                         <div class="form-group">
-                            <label for="nombreSearchVal">Nombre:</label>
+                            <label for="nombreSearchVal" class="colorLabel">Nombre:</label>
                             <input type="text" class="form-control" placeholder="nombre" id="nombreSearchVal"/>
                         </div>
                         <div class="form-group">
@@ -72,6 +72,13 @@
                 <div class="form_edit_box">
                     <p id="results"> Busca algun resultado </p>
                     <div class="form_edit">
+                        <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="colorLabel">
+                                Formulario de Administración:
+                            </h4>
+                        </div>
+                        </div>
                         <form:input path="id" type="hidden" id="id" class="form-horizontal" role="form"/>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="id_equipo">Id Equipo:</label>
@@ -89,8 +96,8 @@
                             <div class="col-sm-2">
                                 <label class="control-label " for="nombre">Trabajadores:</label>
                                 <div id="addTrabajador" data-toggle="modal" data-target="#modal">
-                                    <span>
-                                        Añadir Trabajador
+                                    <span class="addText">
+                                        Añadir Trabajadores
                                     </span>
                                     <span class="fa fa-plus-circle" >
                                     </span>
@@ -104,8 +111,8 @@
 
 
                         <div class="col-sm-offset-2 col-sm-10">
-                            <input type="button" class="btn btn-default" value="Editar" id="editar"/>
-                            <input type="button" class="btn btn-default" value="Eliminar" id="eliminar"/>
+                            <input type="button" class="btn btn-arduino" value="Editar" id="editar"/>
+                            <input type="button" class="btn btn-arduino" value="Eliminar" id="eliminar"/>
                         </div>
                     </div>
 

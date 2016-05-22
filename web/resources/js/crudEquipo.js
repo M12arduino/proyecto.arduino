@@ -213,7 +213,7 @@ function populateTrabajadores(array) {
             var str =$(this).find("p").html();
             if (str == fullName) check = false;
         });
-        if (check)$("#trabajadores").append('<li><span class="hiddendata" >' + JSON.stringify(array[i]) + '</span><p>'+fullName  + '</p><span class="glyphicon glyphicon-remove-sign deletebutton"></span></li>');
+        if (check)$("#trabajadores").append('<li class="col-md-3 col-xs-12 col-sm-6"><span class="hiddendata" >' + JSON.stringify(array[i]) + '</span><p>'+fullName  + '</p><span class="glyphicon glyphicon-remove-sign deletebutton"></span></li>');
         $(".deletebutton").on("click",function(){
         if (confirm("¿Eliminar este usuario del equipo?"))$(this).parent().remove();
     })
