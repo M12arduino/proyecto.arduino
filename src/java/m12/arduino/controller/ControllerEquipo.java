@@ -53,16 +53,20 @@ public class ControllerEquipo {
         sE.insertarEquipo(res);
         //Recuperar objeto Equipo con ID generado
         res = sE.buscarEquipo(eq.getId_equipo());
-        for (String str : eq.getNifs()) {
-            //Buscar trabajador segun datos del formulario
-            treb = sT.buscarTrabajador(str);
-            //Programacion defensiva
-            res.addTrabajador(treb);
-            //Actualizar Trabajador
-            sT.actualizarTrabajador(treb);
+        if (eq.getNifs() != null) {
+            for (String str : eq.getNifs()) {
+                //Buscar trabajador segun datos del formulario
+                treb = sT.buscarTrabajador(str);
+                //Programacion defensiva
+                res.addTrabajador(treb);
+                //Actualizar Trabajador
+                sT.actualizarTrabajador(treb);
+            }
         }
 
-        return new ModelAndView("welcome");
+        ModelAndView mV = new ModelAndView("objetoDetalle");
+        mV.addObject("objeto", res);
+        return mV;
     }
 
     @RequestMapping(value = "/actualizar", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
@@ -86,6 +90,25 @@ public class ControllerEquipo {
         }
         sE.actualizarEquipo(eq);
         return "todo bien";
+    }
+
+    @RequestMapping(value = "/eliminar", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody
+    String eliminarEquipo(@RequestBody EquipoForm eqForm) {
+        String msg = "";
+        try {
+            Equipo eq = new Equipo();
+            eq = sE.buscarEquipo(eqForm.getId_equipo());
+            for (Trabajador trab : eq.getTrabajadores()) {
+                trab.setEquipo(null);
+                sT.actualizarTrabajador(trab);
+            }
+            sE.eliminarEquipo(eq);
+            msg = "equipo eliminado";
+        } catch (Exception e) {
+            msg = "fallo al eliminar equipo " + e.getMessage();
+        }
+        return msg;
     }
 
     @RequestMapping("/asignarOrden")
@@ -126,7 +149,7 @@ public class ControllerEquipo {
         String id_equipo = eqForm.getId_equipo();
         String nombre = eqForm.getNombre();
         String response = null;
-        List<Equipo> eq = sE.listarEquipos("id_equipo",id_equipo,"nombre",nombre);
+        List<Equipo> eq = sE.listarEquipos("id_equipo", id_equipo, "nombre", nombre);
         if (eq != null) {
             try {
                 ObjectMapper mapperObj = new ObjectMapper();

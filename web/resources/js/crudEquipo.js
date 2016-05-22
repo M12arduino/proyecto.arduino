@@ -123,9 +123,17 @@ $(document).ready(function () {
             processData: false,
             success: function (response) {
                 var array = JSON.parse(response);
+                var actual = [];
+                $("#trabajadores li").each(function(){
+                    actual.push($(this).find("p").html());
+                })
+                $("#trabajadoresModal").children().remove();
                 for (var i = 0; i < array.length; i++) {
                     var json = JSON.stringify(array[i]);
-                    $("#trabajadoresModal").append('<li class="itemModal"><input type="checkbox" class="modalcheck">' + array[i]['id_trab'] + ' - ' + array[i]['nombre'] + '<span class="hiddendata">' + json + '</span></li>');
+                    var fullName = array[i]['id_trab'] + ' - ' + array[i]['nombre'];
+                    if (actual.indexOf(fullName)== -1){
+                        $("#trabajadoresModal").append('<li class="itemModal"><input type="checkbox" class="modalcheck">' + fullName + '<span class="hiddendata">' + json + '</span></li>');
+                    }
                 }
             },
             error: function (xhr) {
@@ -135,11 +143,11 @@ $(document).ready(function () {
         });
     })
     $("#eliminar").on("click", function () {
-        if (confirm("¿Estás seguro que deseas eliminar este equipo?")) {
+        if (confirm("¿Estás seguro que deseas eliminar este equipo?, los trabajadores que contenga quedaràn sin equipo")) {
             var data = {};
             data.id = $("#id").val();
-            data.id_equipo = $("#id_equipoSearchVal").val();
-            data.nombre = $("#nombreSearchVal").val();
+            data.id_equipo = $("#id_equipo").val();
+            data.nombre = $("#nombre").val();
             var jsonStr = JSON.stringify(data);
             $.ajax({
                 url: getBasePath() + "equipo/eliminar.htm",

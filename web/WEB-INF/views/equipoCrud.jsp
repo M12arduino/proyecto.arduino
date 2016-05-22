@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="navBar.jsp"></jsp:include>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="${base}/resources/styles/trabajadorCrud.css"/>
 <script type="text/javascript" src="${base}/resources/js/crudEquipo.js"></script>
@@ -15,10 +16,19 @@
 
 
 <form:form action="${base}/equipo" method="POST" id="form">
-    <div class="form_search">
-        <input type="text" placeholder="id_equipo" id="nif_equipoSearchVal"/>
-        <input type="text" placeholder="nombre" id="nombreSearchVal"/>
-        <input type="button" value="buscar" id="search"/>
+    <div class="form_search form-inline" role"form">
+         <div class="form-group">
+            <label for="nif_equipoSearchVal">Id Equipo:</label>
+            <input type="text" class="form-control" placeholder="id_equipo" id="nif_equipoSearchVal"/>
+        </div>
+        <div class="form-group">
+            <label for="nombreSearchVal">Nombre:</label>
+            <input type="text" class="form-control" placeholder="nombre" id="nombreSearchVal"/>
+        </div>
+        <div class="form-group">
+            <input type="button" class="form-control btn btn-default" value="buscar" id="search"/>
+        </div>
+
 
         <div id="modal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -47,21 +57,38 @@
 
     <p id="results"> Busca algun resultado </p>
 </div>
+
+
 <div class="form_edit">
-    <form:input path="id" type="hidden" id="id"/>
-    ID EQUIPO: <form:input path="id_equipo" id="id_equipo"/>
-    Nombre: <form:input path="nombre" id="nombre"/>
+    <form:input path="id" type="hidden" id="id" class="form-horizontal" role="form"/>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="id_equipo">Id Equipo:</label>
+        <div class="col-sm-10">
+            <form:input path="id_equipo" id="id_equipo" placeholder="id_equipo" class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="nombre">Nombre:</label>
+        <div class="col-sm-10">
+            <form:input path="nombre" id="nombre" placeholder="nombre" class="form-control"/>
+        </div>
+    </div>
     <ul id="trabajadores">
     </ul>
     <div id="addTrabajador" data-toggle="modal" data-target="#modal">
         <span>
             Añadir Trabajador
         </span>
-    <span class="fa fa-plus-circle" >
-    </span>
+        <span class="fa fa-plus-circle" >
+        </span>
     </div>
-    <input type="button" value="Editar" id="editar"/>
-    <input type="button" value="Eliminar" id="eliminar"/>
+    <div class="col-sm-offset-2 col-sm-10">
+        <input type="button" class="btn btn-default" value="Editar" id="editar"/>
+    </div>
+    <div class="col-sm-offset-2 col-sm-10">
+       <input type="button" class="btn btn-default" value="Eliminar" id="eliminar"/>
+    </div>
+    
 </div>
 </form:form>
 <div class="col-md-2"></div>
