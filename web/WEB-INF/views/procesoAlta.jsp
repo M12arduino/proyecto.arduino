@@ -32,7 +32,7 @@
                             <div class="col-md-3">Pinza: <input type="number" class="form-control" id="pinza1" /></div>
                         </div>
                         <br /><br /><br /><br />
-                        <button id="buto"  type="button" class="btn btn-default" onclick="añadirAccion()">Añadir accion</button><br />
+                        <button id="buto"  type="button" class="btn btn-arduino" onclick="añadirAccion()">Añadir accion</button><br />
                     </div>
                     <form:input type="hidden" id="accionesJSON" path="accionesJSON" value="" />
                     <input type="hidden" id="numAcciones" value="1" />

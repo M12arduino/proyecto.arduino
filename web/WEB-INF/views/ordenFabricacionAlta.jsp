@@ -49,7 +49,7 @@
                         </form:select>
                     </div>
                     <br /><br />
-                    <input type="submit" class="btn btn-default btn-block" value="Send"/>
+                    <input type="submit" class="btn btn-arduino btn-block" value="Send"/>
                 </form:form>
             </div>
         </div>
