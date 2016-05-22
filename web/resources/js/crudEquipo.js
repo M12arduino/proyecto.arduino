@@ -31,6 +31,7 @@ $(document).ready(function () {
 //    });
 
     function gestionaResultadoAjax(response) {
+        $("#results").hide();
         var array = JSON.parse(response);
         if (array.length > 0) {
             $("#errorTable").hide();
@@ -46,6 +47,7 @@ $(document).ready(function () {
         } else {
             if (table)
                 table.destroy();
+            
             $("#datatable").html("");
             $("#errorTable").show();
         }

@@ -36,3 +36,13 @@ and open the template in the editor.
 #addTrabajador{
     cursor:pointer;
 }
+
+#trabajadores ul{
+    list-style-type: none;
+    
+}
+#trabajadores li{
+    display:block;
+    float:left;
+    with:20%;
+}
