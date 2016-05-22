@@ -63,7 +63,7 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
         }
         if (str!="") str= "WHERE "+str;
         // Complete query-string
-        Query query = session.createQuery("FROM Trabajador " + str);
+        Query query = session.createQuery("FROM OrdenFabricacion " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();

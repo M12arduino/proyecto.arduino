@@ -8,6 +8,7 @@ $(document).ready(function () {
     var table = null;
 
     function gestionaResultadoAjax(response) {
+        alert(response);
         var array = JSON.parse(response);
         if (array !== "") {
             $("#errorTable").hide();
@@ -29,9 +30,12 @@ $(document).ready(function () {
     
     function refrescaTabla(){
         var data = {};
-        data.codigo = $("#nifSearchVal").val();
-        data.descripcion = $("#nombreSearchVal").val();
-        data.prioridad = $("#categoriaSearchVal").val();
+        data.codigo = $("#codigoSearchVal").val();
+        data.descripcion = $("#descripcionSearchVal").val();
+        data.prioridad = $("#prioridadSearchVal").val();
+        data.codigo_proceso = $("#codigo_procesoSearchVal").val();
+        data.cantidad = $("#cantidadSearchVal").val();
+        data.id_robot = $("#id_robotSearchVal").val();
         var jsonStr = JSON.stringify(data);
         $.ajax({
             url: getBasePath() + "ordenFabricacion/buscar.htm",
@@ -53,15 +57,16 @@ $(document).ready(function () {
     
     $("#editar").on("click", function () {
         var data = {};
-        data.id_trab = $("#id_trab").val();
-        data.nif = $("#nif").val();
-        data.nombre = $("#nombre").val();
-        data.movil = $("#movil").val();
-        data.password = $("#password").val();
-        data.categoria = $("#categoria").val();
+        data.id = $("#id").val();
+        data.codigo = $("#codigo").val();
+        data.descripcion = $("#descripcion").val();
+        data.prioridad = $("#prioridad").val();
+        data.codigo_proceso = $("#codigo_proceso").val();
+        data.cantidad = $("#cantidad").val();
+        data.id_robot = $("#id_robot").val();
         var jsonStr = JSON.stringify(data);
         $.ajax({
-            url: getBasePath() + "trabajador/actualizar.htm",
+            url: getBasePath() + "ordenFabricacion/actualizar.htm",
             type: "POST",
             data: jsonStr,
             contentType: "application/json; charset=utf-8",
@@ -78,15 +83,10 @@ $(document).ready(function () {
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar esta orden de fabricación?")) {
             var data = {};
-            data.id_trab = $("#id_trab").val();
-            data.nif = $("#nif").val();
-            data.nombre = $("#nombre").val();
-            data.movil = $("#movil").val();
-            data.password = $("#password").val();
-            data.categoria = $("#categoria").val();
+            data.id = $("#id").val();
             var jsonStr = JSON.stringify(data);
             $.ajax({
-                url: getBasePath() + "trabajador/eliminar.htm",
+                url: getBasePath() + "ordenFabricacion/eliminar.htm",
                 type: "POST",
                 data: jsonStr,
                 contentType: "application/json; charset=utf-8",
@@ -96,7 +96,7 @@ $(document).ready(function () {
                 success: function(response){
                     alert(response);
                     refrescaTabla();
-                    cleanCrudTrabajador();
+                    cleanCrudOrdenFabricacion();
                 }
             }); 
         }
@@ -106,21 +106,23 @@ $(document).ready(function () {
 function prepareCrudOrdenFabricacion() {
     $("#datatable tr").not(":first").on("click", function () {
         $(".form_edit").show();
-        $("#id_trab").val($(this).find("td:nth-child(1)").html());
-        $("#nif").val($(this).find("td:nth-child(2)").html());
-        $("#nombre").val($(this).find("td:nth-child(3)").html());
-        $("#movil").val($(this).find("td:nth-child(4)").html());
-        $("#password").val($(this).find("td:nth-child(5)").html());
-        $("#categoria").val($(this).find("td:nth-child(6)").html());
+        $("#id").val($(this).find("td:nth-child(1)").html());
+        $("#codigo").val($(this).find("td:nth-child(2)").html());
+        $("#descripcion").val($(this).find("td:nth-child(3)").html());
+        $("#prioridad").val($(this).find("td:nth-child(4)").html());
+        $("#codigo_proceso").val($(this).find("td:nth-child(5)").html());
+        $("#cantidad").val($(this).find("td:nth-child(6)").html());
+        $("#id_robot").val($(this).find("td:nth-child(7)").html());
 
     });
 }
 
 function cleanCrudOrdenFabricacion() {
-    $("#id_trab").val(null);
-    $("#nif").val(null);
-    $("#nombre").val(null);
-    $("#movil").val(null);
-    $("#password").val(null);
-    $("#categoria").val(null);
+    $("#id").val(null);
+    $("#codigo").val(null);
+    $("#descripcion").val(null);
+    $("#prioridad").val(null);
+    $("#codigo_proceso").val(null);
+    $("#cantidad").val(null);
+    $("#id_robot").val(null);
 }
