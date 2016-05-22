@@ -36,7 +36,7 @@
                             <input type="text" class="form-control" placeholder="nombre" id="nombreSearchVal"/>
                         </div>
                         <div class="form-group">
-                            <input type="button" class="form-control btn btn-default" value="buscar" id="search"/>
+                            <input type="button" class="form-control btn btn-arduino" value="buscar" id="search"/>
                         </div>
                     </div>
                 </div>
