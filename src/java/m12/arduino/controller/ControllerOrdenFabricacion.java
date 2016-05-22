@@ -107,19 +107,18 @@ public class ControllerOrdenFabricacion {
     
     @RequestMapping(value = "/buscar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
     public @ResponseBody String buscaOrdenFabricacionAjax(@RequestBody OrdenFabricacionForm ofF) {
-        System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
         String codigo = ofF.getCodigo();
         String descripcion = ofF.getDescripcion();
         Prioridad prioridad = ofF.getPrioridad();
         if (prioridad == Prioridad.INDEFINIDO) prioridad = null;
-        String response = "";
+        String response = null;
         //List<OrdenFabricacion> OF = sO.listarOrdenes("codigo",codigo,"descripcion",descripcion);
         List<OrdenFabricacion> OF = sO.listarOrdenes();
         if(OF !=null){
-            System.out.println("NNNNNNNNUUUUUUUUULLLLLLLLLLLLLLLLL");
         try {
             ObjectMapper mapperObj = new ObjectMapper();
             response = mapperObj.writeValueAsString(OF);
+            System.out.println("Response: "+response);
         } catch (IOException ex) {
             response = ex.getMessage();
         } 

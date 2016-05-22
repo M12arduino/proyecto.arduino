@@ -32,6 +32,7 @@ $(document).ready(function () {
         data.codigo = $("#codigoSearchVal").val();
         data.descripcion = $("#descripcionSearchVal").val();
         var jsonStr = JSON.stringify(data);
+        alert(jsonStr);
         $.ajax({
             url: getBasePath() + "proceso/buscarProceso.htm",
             type: "POST",

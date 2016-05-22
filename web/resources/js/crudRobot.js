@@ -64,7 +64,6 @@ $(document).ready(function () {
         data.lugar = $("#lugarSearchVal").val();
         data.estado = $("#estadoSearchVal").val();
         var jsonStr = JSON.stringify(data);
-
         $.ajax({
             url: getBasePath() + "robot/buscarRobot.htm",
             type: "POST",

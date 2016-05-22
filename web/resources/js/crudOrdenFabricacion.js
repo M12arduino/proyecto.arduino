@@ -8,7 +8,6 @@ $(document).ready(function () {
     var table = null;
 
     function gestionaResultadoAjax(response) {
-        alert(response);
         var array = JSON.parse(response);
         if (array !== "") {
             $("#errorTable").hide();

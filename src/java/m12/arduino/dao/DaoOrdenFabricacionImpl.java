@@ -79,6 +79,7 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
     public List<OrdenFabricacion> obtenerListaOrdenes() {
         iniciaOperacion();
         Query q = session.createQuery("From OrdenFabricacion");
+        System.out.println("Query: "+q);
         List<OrdenFabricacion> res = q.list();
         acabaOperacion();
         return res;
