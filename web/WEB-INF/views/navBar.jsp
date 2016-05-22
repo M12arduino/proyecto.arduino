@@ -22,52 +22,11 @@
 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trabajadores<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="${base}/trabajador/alta.htm">Añadir trabajador</a></li>
-                        <li><a href="${base}/trabajador/tabla.htm">Tabla</a></li>
-                        <li><a href="${base}/trabajador/administrar.htm">Administrar</a></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Equipos<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="${base}/equipo/alta.htm">Añadir Equipo</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Robots<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="${base}/robot/alta.htm">Añadir Robot</a></li>
-                        <li><a href="${base}/robot/administrar.htm">Administrar</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Procesos<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="${base}/proceso/alta.htm">Añadir Proceso</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
-                                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ordenes<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="${base}/ordenFabricacion/alta.htm">Añadir Orden de fabricación</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
                 <li>
-                <a href="j_spring_security_logout" class="btn" role="button">Logout</a>
+                    <a href="${base}/main.htm" class="btn" role="button">Home</a>
+                </li>
+                <li>
+                    <a href="j_spring_security_logout" class="btn" role="button">Logout</a>
                 </li>
             </ul>
         </div>
