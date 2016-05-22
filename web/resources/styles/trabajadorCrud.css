@@ -14,12 +14,17 @@ and open the template in the editor.
     display:none;
     color:red;
 }
-#datatable tr.odd, #datatable tr.even{
+.datatable-form{
+    padding:0em;
+    border: 1px inset #84D5D8;
+    border-radius:0.5em;
+}
+le tr.odd, #datatable tr.even{
     cursor:pointer;
 }
 #datatable tr.odd:hover, #datatable tr.even:hover{
     color:white;
-    background:black;
+    background:#00979C!important;
 }
 
 .iconoBoton{
@@ -80,9 +85,7 @@ and open the template in the editor.
     padding: 0.625em;
     border-radius: 0.5em;
 }
-.control-label{
-    color:#da6f03;
-}
+
 #addTrabajador:hover{
     background:#00979C;
     color:white;
@@ -112,4 +115,43 @@ and open the template in the editor.
 }
 .colorLabel{
     color:#da6f03;
+}
+.form_edit_box{
+    margin:2.5em;
+}
+#datatable_wrapper{
+    padding:1em;
+}
+#datatable th{
+    background:#84D5D8;
+}
+.search-form{
+    padding:2em;
+    border: 1px inset #da6f03;
+    border-radius:0.5em;
+}
+.pagination>.active>a{
+    background:#da6f03;
+    border-color:#da6f03;
+    transition: background 0.5s, border-color 0.5s;
+}
+.pagination>.active>a:hover{
+    background:#84D5D8;
+    border-color:#84D5D8;
+}
+#trabajadoresModal{
+    list-style-type:none;
+    padding:2.5em;
+    
+}
+#trabajadoresModal input{
+    cursor:pointer;
+}
+#trabajadoresModal .itemModal{
+    display:block;
+    float:left;
+    width:25%;
+    padding:0.25em;
+    color:#da6f03;;
+    font-weight:bold;
 }

@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="${base}/resources/styles/adminPanel.css"/>
         <link rel="stylesheet" href="${base}/resources/styles/navBar.css"/>
         <link rel="stylesheet" href="${base}/resources/styles/paneles.css"/>
-        <link rel="stylesheet" href="${base}/resources/libs/jquery.dataTables.min.css"/>
+        <link rel="stylesheet" href="${base}/resources/libs/dataTables.bootstrap.min.css"/>
         <link rel="stylesheet" href="${base}/resources/libs/font-awesome/css/font-awesome.min.css"/>        
         <!-- JS -->
         <script type="text/javascript" src="${base}/resources/libs/jquery-2.2.3.js"></script>
@@ -27,6 +27,7 @@
         <script type="text/javascript" src="${base}/resources/js/adminPanel.js"></script>
         <script type="text/javascript" src="${base}/resources/js/functions.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="${base}/resources/libs/dataTables.bootstrap.min.js"></script>
         
         <!-- MOVER!! CSS SIEMPRE ANTES QUE JS-->  
     </head>

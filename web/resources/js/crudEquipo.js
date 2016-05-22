@@ -31,7 +31,7 @@ $(document).ready(function () {
 //    });
 
     function gestionaResultadoAjax(response) {
-        $("#results").hide();
+        $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
         var array = JSON.parse(response);
         if (array.length > 0) {
             $("#errorTable").hide();
@@ -41,8 +41,20 @@ $(document).ready(function () {
             table = $("#datatable").DataTable({
                 data: dataSet,
                 columns: titles,
-                destroy: true
+                destroy: true,
+                language:{
+                    lengthMenu:"Muestra _MENU_ registros por página",
+                    info:"Mostrando _START_ hasta _END_ de un total de _TOTAL_ entradas",
+                    search: "Búsqueda",
+                    paginate:{
+                        first: "Primero",
+                        last: "Último",
+                        next: "Siguiente",
+                        previous: "Previo"
+                    }
+                }
             });
+            $("#datatable_wrapper").first(".row").find(".col-sm-6").addClass("col-md-6");
             prepareCrud();
         } else {
             if (table)
@@ -176,6 +188,7 @@ function prepareCrud() {
         $("#id_equipo").val($(this).find("td:nth-child(2)").html());
         $("#nombre").val($(this).find("td:nth-child(3)").html());
         buscaTrabajadores($(this).find("td:nth-child(2)").html());
+        $("#results").hide();
 
 
     });

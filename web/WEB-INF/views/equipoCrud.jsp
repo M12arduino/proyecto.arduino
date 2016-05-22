@@ -21,7 +21,7 @@
             <div class="page-header">
                 <h1>Administración de Equipos</h1>
             </div>
-            <div class="row">
+            <div class="row search-form">
                 <div class="col-md-4">
                     <h4 class="colorLabel">Criterios de búsqueda:</h4>
                 </div>
@@ -56,8 +56,8 @@
                                 </ul>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="guardaModal">Save changes</button>
+                                <button type="button" class="btn btn-arduino" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-arduino" id="guardaModal">Guardar cambios</button>
                             </div>
                         </div>
                     </div>
@@ -70,14 +70,14 @@
 
             <div class="row">
                 <div class="form_edit_box">
-                    <p id="results"> Busca algun resultado </p>
+                    <p id="results" class="alert alert-info"> Busca equipos que administrar con el formulario superior para empezar </p>
                     <div class="form_edit">
                         <div class="row">
-                        <div class="col-md-12">
-                            <h4 class="colorLabel">
-                                Formulario de Administración:
-                            </h4>
-                        </div>
+                            <div class="col-md-12">
+                                <h4>
+                                    Formulario de Administración:
+                                </h4>
+                            </div>
                         </div>
                         <form:input path="id" type="hidden" id="id" class="form-horizontal" role="form"/>
                         <div class="form-group">
@@ -109,24 +109,25 @@
                             </div>
                         </div>
 
-
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <input type="button" class="btn btn-arduino" value="Editar" id="editar"/>
-                            <input type="button" class="btn btn-arduino" value="Eliminar" id="eliminar"/>
+                        <div class="row">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input type="button" class="btn btn-arduino" value="Editar" id="editar"/>
+                                <input type="button" class="btn btn-arduino" value="Eliminar" id="eliminar"/>
+                            </div>
                         </div>
                     </div>
 
                 </div>
             </div>
         </form:form>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <p id="errorTable" class="error"> No hay registros para los criterios seleccionados </p>
-            <table id="datatable">
+        <div class="row datatable-form">
+            <div class="col-md-12">
+                <p id="errorTable" class="error"> No hay registros para los criterios seleccionados </p>
+                <table id="datatable" class="table table-bordered table-striped">
 
-            </table>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>
