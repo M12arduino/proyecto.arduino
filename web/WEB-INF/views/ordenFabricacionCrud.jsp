@@ -8,10 +8,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
-<link rel="stylesheet" href="${base}/resources/styles/ordenFabricacionCrud.css"/>
-<script type="text/javascript" src="${base}/resources/js/crudOrdenFabricacion.js"></script>
-
-
 <div class="tableResults">
     <form:form action="${base}/robot" method="POST" id="form">
         <div class="form_search">
@@ -27,7 +23,7 @@
             <form:select path="id_robot" id="id_robotSearchVal">
                 <form:options itemLabel="nombre" itemValue="id_robot" items="${robots}" />
             </form:select>
-            
+
             <input type="button" value="buscar" id="search"/>
             <p id="results"> Busca una Orden de Fabricación </p>
         </div>
@@ -48,7 +44,7 @@
             <form:select path="id_robot">
                 <form:options itemLabel="nombre" itemValue="id_robot" items="${robots}" />
             </form:select>
-            
+
             <input type="button" value="Editar" id="editar"/>
             <input type="button" value="Eliminar" id="eliminar"/>
         </div>

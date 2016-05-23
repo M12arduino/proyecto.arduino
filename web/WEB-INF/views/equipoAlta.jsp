@@ -3,8 +3,6 @@
     Created on : 13-may-2016, 20:28:41
     Author     : enric
 --%>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="header.jsp"></jsp:include>
@@ -29,7 +27,7 @@
                     </div>
                     <div class="checkbox">
                         <label>
-                        <form:checkboxes items="${listaTrabajadores}"  itemValue="nif" path="nifs" itemLabel="nombre"/>
+                            <form:checkboxes items="${listaTrabajadores}"  itemValue="nif" path="nifs" itemLabel="nombre"/>
                         </label>
                     </div>
                     <br /><br />

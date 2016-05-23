@@ -8,10 +8,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
-<link rel="stylesheet" href="${base}/resources/styles/procesoCrud.css"/>
-<script type="text/javascript" src="${base}/resources/js/crudProceso.js"></script>
-<!DOCTYPE html>
-
 <div class="tableResults">
     <form:form action="${base}/proceso" method="POST" id="form">
         <div class="form_search">

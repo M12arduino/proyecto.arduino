@@ -8,11 +8,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
-<link rel="stylesheet" href="${base}/resources/styles/robotCrud.css"/>
-<script type="text/javascript" src="${base}/resources/js/crudRobot.js"></script>
-
-
-<div class="tableResults">
+    <div class="tableResults">
     <form:form action="${base}/robot" method="POST" id="form">
         <div class="form_search">
             <input type="text" placeholder="id_robot" id="id_robotSearchVal"/>

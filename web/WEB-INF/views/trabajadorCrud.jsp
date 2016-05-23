@@ -5,14 +5,11 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="header.jsp"></jsp:include>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<link rel="stylesheet" href="${base}/resources/styles/trabajadorCrud.css"/>
-<script type="text/javascript" src="${base}/resources/js/crudTrabajador.js"></script>
-<!DOCTYPE html>
+<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="navBar.jsp"></jsp:include>
 
-<label for="nif">NIF</label>
-
+    <label for="nif">NIF</label>
 
 <form:form action="${base}/trabajador" method="POST" id="form">
     <div class="form_search">
