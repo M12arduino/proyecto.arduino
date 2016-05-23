@@ -3,6 +3,7 @@
     Created on : 20-may-2016, 17:41:42
     Author     : enric
 --%>
+<%@page import="m12.arduino.service.ServiceTrabajador"%>
 <%@page import="m12.arduino.domain.Equipo"%>
 <%@page import="m12.arduino.domain.CategoriaTrabajador"%>
 <%@page import="m12.arduino.domain.Trabajador"%>
@@ -15,17 +16,33 @@
            prefix="fn" %> 
 <!DOCTYPE html>
 <jsp:include page="header.jsp"></jsp:include>
-<link rel="stylesheet" href="${base}/resources/styles/detalle.css"/>
-<body>
-    <div class="alert alert-success"> Su Petición se ha realizado con éxito
+<jsp:include page="navBar.jsp"></jsp:include>
+    <body>
+        <div class="alert alert-success"> Su Petición se ha realizado con éxito</div>
+        <div class="container">
+            <br /><br />
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Datos de ${objeto.getNombre()}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="lead">${objeto.getClass().getSimpleName()}</div>
+                    <c:forEach var="i" items="${objeto.getFields()}" varStatus="status">
+
+                        <div class="text-left col-md-6">${i}</div>
+                        <div class="text-right col-md-6">${objeto.getInfo()[status.index]}</div>
+                        <br />
+                    </c:forEach>
+                    <br /><br />
+                </div>
+                <a class="btn btn-arduino btn-block" href="" >Generar PDF</a>
+                <a class="btn btn-arduino btn-block" href="${base}/${fn:toLowerCase(objeto['class'].simpleName)}/alta.htm" >Siguiente alta</a>
+
+            </div>
+            <div class="col-md-3"></div>
+        </div>
     </div>
-    <c:forEach var="i" items="${objeto.getFields()}" varStatus="status">
-        <p>
-            <span class="field">${i}</span>
-            <span class="value">${objeto.getInfo()[status.index]}</span>
-        </p>
-    </c:forEach>
-    <a href="${base}/${fn:toLowerCase(objeto['class'].simpleName)}/alta.htm" >Siguiente alta</a>
-    <a href="${base}"> Menú principal </a>
 </body>
 </html>
