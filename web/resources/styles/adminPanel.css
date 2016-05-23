@@ -1,3 +1,12 @@
+.admin-panel-colapsed {
+    overflow: auto;
+    background-color: #00979C;
+    position: relative !important;
+    width: 4em !important;
+    height: 100%;
+    color: #e1ffff;
+}
+
 .nav-bar-colapsed {
     background-color: #F47A20;
     font-size: 22px;
