@@ -51,6 +51,9 @@ public class ControllerProceso {
             pro.setCodigo(pf.getCodigo());
             pro.setDescripcion(pf.getDescripcion());
             pro.setAcciones(acciones);
+            for (Accion accion : acciones) {
+                accion.setProceso(pro);
+            }
             aux = sP.insertarProceso(pro);
         } catch (IOException ex) {
             Logger.getLogger(ControllerProceso.class.getName()).log(Level.SEVERE, null, ex);
