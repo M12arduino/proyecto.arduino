@@ -53,8 +53,8 @@ public class ControllerOrdenFabricacion {
         oF.setCantidad(ofF.getCantidad());
         oF.setRobot(sR.buscarRobot(ofF.getId_robot()));
         OrdenFabricacion orden = sO.insertarOrden(oF);
-        ModelAndView mV = new ModelAndView("ordenFabricacionDetalle");        
-        mV.addObject("ordenFabricacion", orden);
+        ModelAndView mV = new ModelAndView("objetoDetalle");        
+        mV.addObject("objeto", orden);
         return mV;
     }
     
@@ -155,5 +155,12 @@ public class ControllerOrdenFabricacion {
         }
         
         return new ModelAndView("main");
+    }
+    
+    @RequestMapping("/tabla")
+    public ModelAndView makeTable() {
+        ModelAndView mV = new ModelAndView("tableMaker");
+        mV.addObject("listado", sO.listarOrdenes());
+        return mV;
     }
 }

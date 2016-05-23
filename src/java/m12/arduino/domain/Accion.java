@@ -79,6 +79,7 @@ public class Accion implements Serializable {
 
     @Override
     public String toString() {
-        return "Accion: {posX=" + posX + ", posY=" + posY + ", posZ=" + posZ + ", abrirPinza=" + abrirPinza + '}';
+        String state = (abrirPinza)? "abierta" : "cerrada";
+        return "Accion: {X = " + posX + ", Y = " + posY + ", Z = " + posZ + ", Pinza = " + state + '}';
     }   
 }

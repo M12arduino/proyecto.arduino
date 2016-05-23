@@ -187,4 +187,11 @@ public class ControllerEquipo {
 
         return response;
     }
+    
+    @RequestMapping("/tabla")
+    public ModelAndView makeTable() {
+        ModelAndView mV = new ModelAndView("tableMaker");
+        mV.addObject("listado", sE.listarEquipos());
+        return mV;
+    }
 }
