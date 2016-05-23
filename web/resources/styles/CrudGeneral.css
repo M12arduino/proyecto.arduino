@@ -7,6 +7,11 @@ and open the template in the editor.
     Created on : 18-may-2016, 17:49:03
     Author     : enric
 */
+.waiting_wrapper{
+    width:100%;
+    text-align:center;
+    display:none;
+}
 .form_edit{
     display:none;
 }
@@ -150,8 +155,19 @@ le tr.odd, #datatable tr.even{
 #trabajadoresModal .itemModal{
     display:block;
     float:left;
-    width:25%;
+    width:33%;
     padding:0.25em;
     color:#da6f03;;
     font-weight:bold;
+}
+.modal-body{
+    padding:0.5em;
+}
+.itemModal{
+    box-sizing:border-box;
+    border: 2px solid #00979C;
+    border-radius: 1em;
+}
+.modal-title{
+    color:#da6f03;
 }

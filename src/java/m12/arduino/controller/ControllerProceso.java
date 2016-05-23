@@ -16,6 +16,7 @@ import m12.arduino.service.ProcesoForm;
 import m12.arduino.service.ServiceProceso;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
+import org.hibernate.HibernateException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,35 +85,31 @@ public class ControllerProceso {
         String msg = "";
         try {
             Proceso p = new Proceso();
-            p.setId(pf.getId());
+            p = sP.buscarProceso(pf.getCodigo());
+            for (Accion acc : p.getAcciones()){
+                acc.setProceso(null);
+            }
             sP.eliminarProceso(p);
             msg = "Proces deleted";
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             msg = "delete fail "+e.getMessage();
         }
         return msg;
     }
     
-    @RequestMapping(value = "/buscarProceso", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/buscarProceso", method = RequestMethod.POST)
     public @ResponseBody String buscaProcesoAjax(@RequestBody ProcesoForm pf) {
         String codigo = pf.getCodigo();
-        System.out.println("codigo");
         String descripcion = pf.getDescripcion();
-        String response = null;
-        //List<Proceso> proc = sP.listarProcesos("codigo",codigo,"descripcion",descripcion);
-        List<Proceso> proc = sP.listarProcesos();
-        if(proc != null){
-            System.out.println("not null");
+        String response = "";
+        List<Proceso> proc = sP.listarProcesos("codigo",codigo,"descripcion",descripcion);
+        //List<Proceso> proc = sP.listarProcesos();
         try {
              ObjectMapper mapperObj = new ObjectMapper();
              response = mapperObj.writeValueAsString(proc);
         } catch (IOException ex) {
             response = ex.getMessage();
         } 
-        }else{
-            System.out.println("null");
-            response = null;
-        }
 
         return response;
     }

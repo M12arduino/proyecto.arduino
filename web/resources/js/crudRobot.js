@@ -15,30 +15,32 @@
 $(document).ready(function () {
     var table;
     /*$("#search").on("click", function () {
-        var data = {};
-        data.id_robot = $("#id_robotSearchVal").val();
-        data.nombre = $("#nombreSearchVal").val();
-        data.lugar = $("#lugarSearchVal").val();
-        data.estado = $("#estadoSearchVal").val();
-        var jsonStr = JSON.stringify(data);
-        $.ajax({
-            url: getBasePath() + "robot/buscarRobot.htm",
-            type: "POST",
-            data: jsonStr,
-            contentType: "application/json; charset=utf-8",
-            async: false,
-            cache: false,
-            processData: false,
-            success: gestionaResultadoAjax,
-            error: function (xhr) {
-                var err = eval("(" + xhr.responseText + ")");
-                alert(err.Message + "error");
-
-            }
-        });
-    })*/
+     var data = {};
+     data.id_robot = $("#id_robotSearchVal").val();
+     data.nombre = $("#nombreSearchVal").val();
+     data.lugar = $("#lugarSearchVal").val();
+     data.estado = $("#estadoSearchVal").val();
+     var jsonStr = JSON.stringify(data);
+     $.ajax({
+     url: getBasePath() + "robot/buscarRobot.htm",
+     type: "POST",
+     data: jsonStr,
+     contentType: "application/json; charset=utf-8",
+     async: false,
+     cache: false,
+     processData: false,
+     success: gestionaResultadoAjax,
+     error: function (xhr) {
+     var err = eval("(" + xhr.responseText + ")");
+     alert(err.Message + "error");
+     
+     }
+     });
+     })*/
 
     function gestionaResultadoAjax(response) {
+        $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
+        $(".datatable-form .waiting_wrapper").hide();
         var array = JSON.parse(response);
         if (array.length > 0) {
             $("#errorTable").hide();
@@ -52,12 +54,13 @@ $(document).ready(function () {
             });
             prepareCrudRobot();
         } else {
-            if(table)table.destroy();
+            if (table)
+                table.destroy();
             $("#datatable").html("");
             $("#errorTable").show();
         }
     }
-    function refrescaTabla(){
+    function refrescaTabla() {
         var data = {};
         data.id_robot = $("#id_robotSearchVal").val();
         data.nombre = $("#nombreSearchVal").val();
@@ -69,7 +72,6 @@ $(document).ready(function () {
             type: "POST",
             data: jsonStr,
             contentType: "application/json; charset=utf-8",
-            async: false,
             cache: false,
             processData: false,
             success: gestionaResultadoAjax,
@@ -77,57 +79,70 @@ $(document).ready(function () {
                 var err = eval("(" + xhr.responseText + ")");
                 alert(err.Message + "error");
 
-            }
+            },
+            beforeSend: function () {
+                $(".datatable-form .waiting_wrapper").show();
+            },
         });
     }
-    
+
     $("#search").on("click", refrescaTabla);
-    
-    $("#editar").on("click", function() {
+
+    $("#editar").on("click", function () {
         var data = {};
         data.id = $("#id").val();
         data.id_robot = $("#id_robot").val();
         data.nombre = $("#nombre").val();
         data.lugar = $("#lugar").val();
         data.estado = $("#estado").val();
+        data.coorX = $("#coorX").val();
+        data.coorY = $("#coorY").val();
         var jsonStr = JSON.stringify(data);
-            $.ajax({
+        $.ajax({
             url: getBasePath() + "robot/actualizar.htm",
             type: "POST",
             data: jsonStr,
             contentType: "application/json; charset=utf-8",
-            async: false,
             cache: false,
             processData: false,
-            success: function(response){
-                alert(response);
+            success: function (response) {
                 refrescaTabla();
-            }
+                $("#results").html(response);
+                $(".edit_box .waiting_wrapper").hide();
+            },
+            beforeSend: function () {
+                $(".edit_box .waiting_wrapper").show();
+            },
         });
     });
 
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar este robot?")) {
-        var data = {};
-        data.id = $("#id").val();
-        data.id_robot = $("#id_robot").val();
-        data.nombre = $("#nombre").val();
-        data.lugar = $("#lugar").val();
-        data.estado = $("#estado").val();
-        var jsonStr = JSON.stringify(data);
-                $.ajax({
+            var data = {};
+            data.id = $("#id").val();
+            data.id_robot = $("#id_robot").val();
+            data.nombre = $("#nombre").val();
+            data.lugar = $("#lugar").val();
+            data.estado = $("#estado").val();
+            data.coorX = $("#coorX").val();
+            data.coorY = $("#coorY").val();
+            var jsonStr = JSON.stringify(data);
+            $.ajax({
                 url: getBasePath() + "robot/eliminar.htm",
                 type: "POST",
                 data: jsonStr,
                 contentType: "application/json; charset=utf-8",
-                async: false,
                 cache: false,
                 processData: false,
-                success: function(response){
-                    alert(response);
+                success: function (response) {
                     refrescaTabla();
                     cleanCrudRobot();
-                }
+                    $("#results").html(response);
+                    $(".edit_box .waiting_wrapper").hide();
+                },
+                beforeSend: function () {
+                    $(".edit_box .waiting_wrapper").show();
+                },
             });
         }
     });
@@ -141,6 +156,9 @@ function prepareCrudRobot() {
         $("#nombre").val($(this).find("td:nth-child(3)").html());
         $("#lugar").val($(this).find("td:nth-child(4)").html());
         $("#estado").val($(this).find("td:nth-child(5)").html());
+        $("#coorX").val($(this).find("td:nth-child(6)").html());
+        $("#coorY").val($(this).find("td:nth-child(7)").html());
+        $("#results").hide();
     });
 }
 

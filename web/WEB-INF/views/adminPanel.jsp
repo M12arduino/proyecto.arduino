@@ -4,7 +4,7 @@
     Author     : Couto
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div class="nav-side-menu col-xs-2">
+<div id="admin-panel" class="nav-side-menu col-xs-2">
     <div id="panel-title" class="panel-title">Panel de administrador</div>
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse">

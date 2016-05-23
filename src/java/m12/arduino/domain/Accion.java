@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /*
 Jordi Puig Puig
@@ -27,6 +28,7 @@ public class Accion implements Serializable {
     private int posZ;
     private boolean abrirPinza;
     @ManyToOne
+    @JsonIgnore
     private Proceso proceso;
 
     public long getId_accion() {

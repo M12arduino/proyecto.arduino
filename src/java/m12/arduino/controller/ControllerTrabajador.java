@@ -66,9 +66,9 @@ public class ControllerTrabajador {
             t.setEquipo(tcf.getEquipo());
             t.setCategoria(tcf.getCategoria());
             sT.actualizarTrabajador(t);
-            msg = "Employee updated";
+            msg = "<div class=\"alert alert-success\">El empleado se ha actualizado correctamente</div>";
         } catch (Exception e) {
-            msg = "updated fail "+e.getMessage();
+            msg = "<div class=\"alert alert-error\">Fallo al actualizar empleado</div>";
         }
         return msg;
     }
@@ -80,9 +80,9 @@ public class ControllerTrabajador {
             Trabajador t = new Trabajador();
             t.setId_trab(tcf.getId_trab());
             sT.eliminarTrabajador(t);
-            msg = "Employee deleted";
+            msg = "<div class=\"alert alert-success\">El empleado se ha eliminado correctamente</div>";
         } catch (Exception e) {
-            msg = "delete fail "+e.getMessage();
+            msg = "<div class=\"alert alert-error\">Fallo al eliminar empleado</div>";
         }
         return msg;
     }
