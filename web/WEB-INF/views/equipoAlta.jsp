@@ -28,7 +28,9 @@
                         <form:input path="nombre" class="form-control" id="nombreEquipo" />
                     </div>
                     <div class="checkbox">
+                        <label>
                         <form:checkboxes items="${listaTrabajadores}"  itemValue="nif" path="nifs" itemLabel="nombre"/>
+                        </label>
                     </div>
                     <br /><br />
                     <input type="submit" class="btn btn-arduino btn-block" value="Send"/>

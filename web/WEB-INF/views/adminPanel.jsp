@@ -39,6 +39,7 @@
             <ul class="sub-menu collapse" id="equipos">
                 <li><a href="${base}/equipo/tabla.htm">Mostrar Equipos</a></li>
                 <li><a href="${base}/equipo/alta.htm">Añadir Equipo</a></li>
+                <li><a href="${base}/equipo/asignarOrden.htm">Asignar orden de fabricación</a></li>
                 <li><a href="${base}/equipo/administrar.htm">Administrar Equipos</a></li>
             </ul>
             
