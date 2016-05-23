@@ -18,6 +18,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
     <body>
+        <script>alert(${objeto.getInfo()[3]});</script>
         <div class="alert alert-success"> Su Petición se ha realizado con éxito</div>
         <div class="container">
             <br /><br />
@@ -25,7 +26,7 @@
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Datos de ${objeto.getNombre()}</h3>
+                        <h3 class="panel-title">Datos de ${objeto.getFullName()}</h3>
                 </div>
                 <div class="panel-body">
                     <div class="lead">${objeto.getClass().getSimpleName()}</div>

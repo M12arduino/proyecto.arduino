@@ -40,20 +40,24 @@ public class ControllerProceso {
     }
 
     @RequestMapping(value = "/insertar")
-    public String addProceso(ProcesoForm pf) {
+    public ModelAndView addProceso(ProcesoForm pf) {
         System.out.println(pf.getAccionesJSON());
         ObjectMapper mapper = new ObjectMapper();
         List<Accion> acciones;
+        Proceso aux = null;
         try {
             acciones = mapper.readValue(pf.getAccionesJSON(), new TypeReference<List<Accion>>() {});
             Proceso pro = new Proceso();
+            pro.setCodigo(pf.getCodigo());
             pro.setDescripcion(pf.getDescripcion());
             pro.setAcciones(acciones);
-            sP.insertarProceso(pro);
+            aux = sP.insertarProceso(pro);
         } catch (IOException ex) {
             Logger.getLogger(ControllerProceso.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "welcome";
+        ModelAndView mV = new ModelAndView("detalleObjeto");
+        mV.addObject("objeto",aux);
+        return mV;
     }
     
     @RequestMapping(value="/actualizar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)

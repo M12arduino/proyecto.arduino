@@ -96,7 +96,7 @@ public class ControllerTrabajador {
     
     @RequestMapping(value = "/tabla")
     public ModelAndView printTable() {
-        ModelAndView mV = new ModelAndView("trabajadorTabla");
+        ModelAndView mV = new ModelAndView("tableMaker");
         mV.addObject("listado", sT.listarTrabajadores());
         return mV;
     }

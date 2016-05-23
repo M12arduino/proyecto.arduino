@@ -20,6 +20,10 @@
             <div class="panel-body">
                 <form:form id="myForm" action="${base}/proceso/insertar.htm" method="POST" role="form" >
                     <div class="form-group">
+                        <label for="procesoCodigo">Codigo proceso: </label>
+                        <form:input path="codigo" class="form-control" id="procesoCodigo" />
+                    </div>
+                    <div class="form-group">
                         <label for="procesoDesc">Descripcion: </label>
                         <form:input path="descripcion" class="form-control" id="procesoDesc" />
                     </div>
