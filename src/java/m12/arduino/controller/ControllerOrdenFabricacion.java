@@ -1,6 +1,7 @@
 package m12.arduino.controller;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import m12.arduino.domain.CategoriaTrabajador;
 import m12.arduino.domain.EstadoOrden;
@@ -12,6 +13,8 @@ import m12.arduino.service.ServiceOrdenFabricacion;
 import m12.arduino.service.ServiceProceso;
 import m12.arduino.service.ServiceRobot;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
