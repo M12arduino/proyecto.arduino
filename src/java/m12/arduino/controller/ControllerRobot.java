@@ -100,10 +100,10 @@ public class ControllerRobot {
         EstadoRobot estado = rf.getEstado();
         if (estado == EstadoRobot.INDEFINIDO) estado = null;
         String response = null;
-        List<Robot> rob = sR.listarRobots("id_robot",id_robot,"nombre",nombre,"lugar",lugar,"estado",estado);
+        //List<Robot> rob = sR.listarRobots("id_robot",id_robot,"nombre",nombre,"lugar",lugar,"estado",estado);
         
 //        List<Trabajador> trab = sT.listarTrabajadores();
-          //List<Robot> rob = sR.listarRobots();
+          List<Robot> rob = sR.listarRobots();
         if(rob !=null){
                    try {
              ObjectMapper mapperObj = new ObjectMapper();

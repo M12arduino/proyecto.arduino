@@ -32,6 +32,7 @@ public class Proceso implements Serializable, Maketable {
     private String codigo;
     private String descripcion;
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy="proceso")
+    @JsonIgnore
     private List<Accion> acciones;
 
     {

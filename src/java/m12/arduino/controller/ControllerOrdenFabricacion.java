@@ -101,7 +101,7 @@ public class ControllerOrdenFabricacion {
         return mV;
     }
     
-    @RequestMapping(value = "/buscar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/buscar", method = RequestMethod.POST)
     public @ResponseBody String buscaOrdenFabricacionAjax(@RequestBody OrdenFabricacionForm ofF) {
         String codigo = ofF.getCodigo();
         String descripcion = ofF.getDescripcion();

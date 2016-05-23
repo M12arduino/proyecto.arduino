@@ -28,7 +28,7 @@ $(document).ready(function () {
     }
     function refrescaTabla(){
         var data = {};
-        data.id_proceso = $("#id_procesoSearchVal").val();
+        data.id = $("#id_procesoSearchVal").val();
         data.codigo = $("#codigoSearchVal").val();
         data.descripcion = $("#descripcionSearchVal").val();
         var jsonStr = JSON.stringify(data);
@@ -38,10 +38,12 @@ $(document).ready(function () {
             type: "POST",
             data: jsonStr,
             contentType: "application/json; charset=utf-8",
-            async: false,
             cache: false,
             processData: false,
-            success: gestionaResultadoAjax,
+            success: function(response){
+                alert("hola"+response);
+            },
+           // success: gestionaResultadoAjax,
             error: function (xhr) {
                 var err = eval("(" + xhr.responseText + ")");
                 alert(err.Message + "error");
@@ -54,7 +56,7 @@ $(document).ready(function () {
     
     $("#editar").on("click", function() {
         var data = {};
-        data.id_proceso = $("#id").val();
+        data.id = $("#id").val();
         data.codigo = $("#codigo").val();
         data.descripcion = $("#descripcion").val();
         var jsonStr = JSON.stringify(data);
@@ -76,7 +78,7 @@ $(document).ready(function () {
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar este proceso?")) {
         var data = {};
-        data.id_proceso = $("#id").val();
+        data.id = $("#id").val();
         data.codigo = $("#codigo").val();
         data.descripcion = $("#descripcion").val();
         var jsonStr = JSON.stringify(data);

@@ -90,14 +90,14 @@ public class ControllerProceso {
         return msg;
     }
     
-    @RequestMapping(value = "/buscarProceso", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/buscarProceso",  method = RequestMethod.POST)
     public @ResponseBody String buscaProcesoAjax(@RequestBody ProcesoForm pf) {
-        String codigo = pf.getCodigo();
-        System.out.println("codigo");
-        String descripcion = pf.getDescripcion();
-        String response = null;
+        //String codigo = pf.getCodigo();
+        //System.out.println("codigo");
+       // String descripcion = pf.getDescripcion();
+        String response = "hola";
         //List<Proceso> proc = sP.listarProcesos("codigo",codigo,"descripcion",descripcion);
-        List<Proceso> proc = sP.listarProcesos();
+        /*List<Proceso> proc = sP.listarProcesos();
         if(proc != null){
             System.out.println("not null");
         try {
@@ -109,7 +109,7 @@ public class ControllerProceso {
         }else{
             System.out.println("null");
             response = null;
-        }
+        }*/
 
         return response;
     }

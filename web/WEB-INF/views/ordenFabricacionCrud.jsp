@@ -10,10 +10,11 @@
 <jsp:include page="navBar.jsp"></jsp:include>
 <link rel="stylesheet" href="${base}/resources/styles/ordenFabricacionCrud.css"/>
 <script type="text/javascript" src="${base}/resources/js/crudOrdenFabricacion.js"></script>
-
+<script type="text/javascript" src="${base}/resources/js/validaCrudOrdenFabricacion.js"></script>
+<link href="/A_Spring_Inicial/resources/styles/altaGeneral.css" rel="stylesheet">
 
 <div class="tableResults">
-    <form:form action="${base}/robot" method="POST" id="form">
+    <form:form name="MyForm" action="${base}/ordenFabricacion" method="POST" id="form">
         <div class="form_search">
             <input type="text" placeholder="codigo" id="codigoSearchVal"/>
             <input type="text" placeholder="descripcion" id="descripcionSearchVal"/>
@@ -33,8 +34,10 @@
         </div>
         <div class="form_edit">
             <form:input path="id" type="hidden" id="id"/>
-            Codigo: <form:input path="codigo" />
-            Descripcion: <form:input path="descripcion" />
+            Codigo: <form:input name="codigo" path="codigo" />
+            <span class="alert-danger" id="codigo_error">Código erroneo. ejemplo: OF001</span>
+            Descripcion: <form:input name="descripcion" path="descripcion" />
+            <span class="alert-danger" id="descripcion_error">La descripción debe contener solo letras.</span>
             Prioridad: 
             <form:select path="prioridad">
                 <form:options  items="${prioridades}" />
@@ -43,13 +46,14 @@
             <form:select path="codigo_proceso">
                 <form:options itemLabel="codigo" itemValue="codigo" items="${procesos}" />
             </form:select>
-            Cantidad: <form:input path="cantidad" />
+            Cantidad: <form:input name="cantidadOrden" path="cantidad" />
+            <span class="alert-danger" id="cantidadOrden_error">La cantidad debe contener solo números.</span>
             Id_Robot:
             <form:select path="id_robot">
                 <form:options itemLabel="nombre" itemValue="id_robot" items="${robots}" />
             </form:select>
             
-            <input type="button" value="Editar" id="editar"/>
+            <input name="editar" type="button" value="Editar" id="editar"/>
             <input type="button" value="Eliminar" id="eliminar"/>
         </div>
     </form:form>
