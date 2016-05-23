@@ -7,7 +7,8 @@ $(document).ready(function () {
     var table;
 
     function gestionaResultadoAjax(response) {
-        alert(response);
+        $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
+        $(".datatable-form .waiting_wrapper").hide();
         var array = JSON.parse(response);
         if (array.length > 0) {
             $("#errorTable").hide();
@@ -21,18 +22,18 @@ $(document).ready(function () {
             });
             prepareCrudProceso();
         } else {
-            if(table)table.destroy();
+            if (table)
+                table.destroy();
             $("#datatable").html("");
             $("#errorTable").show();
         }
     }
-    function refrescaTabla(){
+    function refrescaTabla() {
         var data = {};
         data.id = $("#id_procesoSearchVal").val();
         data.codigo = $("#codigoSearchVal").val();
         data.descripcion = $("#descripcionSearchVal").val();
         var jsonStr = JSON.stringify(data);
-        alert(jsonStr);
         $.ajax({
             url: getBasePath() + "proceso/buscarProceso.htm",
             type: "POST",
@@ -48,53 +49,61 @@ $(document).ready(function () {
                 var err = eval("(" + xhr.responseText + ")");
                 alert(err.Message + "error");
 
+            },
+            beforeSend: function(){
+                $(".datatable-form .waiting_wrapper").hide();
             }
         });
     }
-    
+
     $("#search").on("click", refrescaTabla);
-    
-    $("#editar").on("click", function() {
+
+    $("#editar").on("click", function () {
         var data = {};
         data.id = $("#id").val();
         data.codigo = $("#codigo").val();
         data.descripcion = $("#descripcion").val();
         var jsonStr = JSON.stringify(data);
-            $.ajax({
+        $.ajax({
             url: getBasePath() + "proceso/actualizar.htm",
             type: "POST",
             data: jsonStr,
             contentType: "application/json; charset=utf-8",
-            async: false,
             cache: false,
             processData: false,
-            success: function(response){
-                alert(response);
+            success: function (response) {
                 refrescaTabla();
-            }
+                $(".edit_box .waiting_wrapper").hide();
+            },
+            beforeSend: function () {
+                $(".edit_box .waiting_wrapper").show();
+            },
         });
     });
 
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar este proceso?")) {
-        var data = {};
-        data.id = $("#id").val();
-        data.codigo = $("#codigo").val();
-        data.descripcion = $("#descripcion").val();
-        var jsonStr = JSON.stringify(data);
-                $.ajax({
+            var data = {};
+            data.id = $("#id").val();
+            data.codigo = $("#codigo").val();
+            data.descripcion = $("#descripcion").val();
+            var jsonStr = JSON.stringify(data);
+            $.ajax({
                 url: getBasePath() + "proceso/eliminar.htm",
                 type: "POST",
                 data: jsonStr,
                 contentType: "application/json; charset=utf-8",
-                async: false,
                 cache: false,
                 processData: false,
-                success: function(response){
+                success: function (response) {
                     alert(response);
                     refrescaTabla();
                     cleanCrudProceso();
-                }
+                    $(".edit_box .waiting_wrapper").hide();
+                },
+                beforeSend: function () {
+                    $(".edit_box .waiting_wrapper").show();
+                },
             });
         }
     });
@@ -106,6 +115,7 @@ function prepareCrudProceso() {
         $("#id").val($(this).find("td:nth-child(1)").html());
         $("#codigo").val($(this).find("td:nth-child(2)").html());
         $("#descripcion").val($(this).find("td:nth-child(3)").html());
+        $("#results").hide();
     });
 }
 

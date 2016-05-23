@@ -142,6 +142,7 @@ public class Trabajador implements Serializable, Maketable {
     }
 
     @Override
+    @JsonIgnore
     public String getFullName() {
         return this.getNombre();
     }

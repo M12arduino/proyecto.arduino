@@ -28,7 +28,7 @@
             <form:select path="id_robot" id="id_robotSearchVal">
                 <form:options itemLabel="nombre" itemValue="id_robot" items="${robots}" />
             </form:select>
-            
+
             <input type="button" value="buscar" id="search"/>
             <p id="results"> Busca una Orden de Fabricación </p>
         </div>

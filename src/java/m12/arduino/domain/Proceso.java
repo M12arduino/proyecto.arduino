@@ -104,6 +104,7 @@ public class Proceso implements Serializable, Maketable {
     }
 
     @Override
+    @JsonIgnore
     public String getFullName() {
         return "Proceso - " + this.getCodigo();
     }

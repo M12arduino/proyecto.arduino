@@ -17,21 +17,21 @@ import javax.persistence.OneToMany;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /*
-Jordi Puig Puig
-DAW 2
-Curs 2015-2016
-codi, nom, ubicació (lloc i/o coordenades), estat (lliure, ocupat,
-desconnectat, local)
-@author Jordi
-*/
+ Jordi Puig Puig
+ DAW 2
+ Curs 2015-2016
+ codi, nom, ubicació (lloc i/o coordenades), estat (lliure, ocupat,
+ desconnectat, local)
+ @author Jordi
+ */
 @Entity
 public class Robot implements Serializable, Maketable {
-    
+
     private static final long serialVersionUID = 3679568141321204536L;
 
     // ATTR
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String id_robot;
     private String nombre;
@@ -39,12 +39,20 @@ public class Robot implements Serializable, Maketable {
     private Ubicacion ubicacion;
     private EstadoRobot estado;
     @JsonIgnore
-    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy = "robot")
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "robot")
     private Set<OrdenFabricacion> ordenes;
 
     {
         ordenes = new TreeSet();
         ubicacion = new Ubicacion();
+    }
+
+    public float getCoorX() {
+        return this.getUbicacion().getCoorX();
+    }
+
+    public float getCoorY() {
+        return this.getUbicacion().getCoorY();
     }
 
     public Set<OrdenFabricacion> getOrdenes() {
@@ -93,13 +101,13 @@ public class Robot implements Serializable, Maketable {
 
     public void setEstado(EstadoRobot estado) {
         this.estado = estado;
-    }    
-    
-    @Override
-    public String getFullName(){
-        return this.getId_robot()+" - "+this.getNombre();
     }
-    
+
+    @Override
+    public String getFullName() {
+        return this.getId_robot() + " - " + this.getNombre();
+    }
+
     public void addOrden(OrdenFabricacion oF) {
         this.getOrdenes().add(oF);
     }

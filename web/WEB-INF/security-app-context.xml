@@ -24,21 +24,16 @@
         <logout logout-success-url="/login.htm" />
     </http>
  
-    <!-- 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url" value="jdbc:postgresql://localhost:5432/proyecto"/>
-        <property name="username" value="hibernate"/>
-        <property name="password" value="hibernate"/>
+ <!--
+    <bean id="myDataSource"
+      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+ 
+      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+      <property name="url" value="jdbc:postgresql://localhost:5432/proyecto" />
+      <property name="username" value="hibernate" />
+      <property name="password" value="hibernate" />
     </bean>
-    
-    //a PlatformTransactionManager is still required 
-    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-         //(this dependency is defined somewhere else)
-        <property name="dataSource" ref="dataSource"/> 
-    </bean>
-    -->
-
+-->
     <authentication-manager>
         <authentication-provider>
             <user-service>
@@ -46,5 +41,14 @@
                 <user name="user" password="user1" authorities="rol_user" /> 
             </user-service>
         </authentication-provider>
+ 
+        <!-- authentication from database 
+        <authentication-provider>
+            <jdbc-user-service data-source-ref="myDataSource"
+                users-by-username-query="select username,password, enabled from users where username=?"
+                authorities-by-username-query="Select username, concat('ROLE_',user_role) user_role from user_roles where username=?" />
+        </authentication-provider>
+        -->
+        
     </authentication-manager>
 </beans:beans>

@@ -21,12 +21,29 @@
         <!--Cos de la barra de navegació-->
 
         <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-left h1">Hope Tech Industries</ul>
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <img class="logos img-responsive" src="${base}/resources/img/spring.png">
+                    
+                </li>
+                <li>
+                    <img class="logos img-responsive" src="${base}/resources/img/java.png">
+                    
+                </li>
+                <li>
+                    <img class="logos img-responsive" src="${base}/resources/img/hibernate.png">
+                </li>
+                <li>
+                    <img class="logos img-responsive" src="${base}/resources/img/arduino.png">
+                </li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="${base}/main.htm" class="btn" role="button">Home</a>
                 </li>
                 <li>
-                    <a href="j_spring_security_logout" class="btn" role="button">Logout</a>
+                    <a href="${base}/j_spring_security_logout" class="btn" role="button">Logout</a>
                 </li>
             </ul>
         </div>

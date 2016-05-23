@@ -70,7 +70,7 @@ public class ControllerEquipo {
         return mV;
     }
 
-    @RequestMapping(value = "/actualizar", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/actualizar", method = RequestMethod.POST)
     public @ResponseBody
     String actualizarEquipo(@RequestBody EquipoForm eqForm) {
         Equipo eq = new Equipo();
@@ -78,19 +78,25 @@ public class ControllerEquipo {
         eq.setId_equipo(eqForm.getId_equipo());
         eq.setNombre(eqForm.getNombre());
         eq.setTrabajadores(eqForm.getTrabajadores());
-        List<Trabajador> actual = sE.buscarEquipo(eqForm.getId_equipo()).getTrabajadores();
-        for (Trabajador trab : actual) {
-            if (!eq.getTrabajadores().contains(trab)) {
-                trab.setEquipo(null);
+        String response = "";
+        try {
+            List<Trabajador> actual = sE.buscarEquipo(eqForm.getId_equipo()).getTrabajadores();
+            for (Trabajador trab : actual) {
+                if (!eq.getTrabajadores().contains(trab)) {
+                    trab.setEquipo(null);
+                    sT.actualizarTrabajador(trab);
+                }
+            }
+            for (Trabajador trab : eq.getTrabajadores()) {
+                trab.setEquipo(eq);
                 sT.actualizarTrabajador(trab);
             }
+            sE.actualizarEquipo(eq);
+            response = "<div class=\"alert alert-success\">El equipo se ha actualizado correctamente</div>";
+        } catch (Exception e) {
+            response = "<div class=\"alert alert-error\">Ha habido un problema al actualizar el equipo</div>";
         }
-        for (Trabajador trab : eq.getTrabajadores()) {
-            trab.setEquipo(eq);
-            sT.actualizarTrabajador(trab);
-        }
-        sE.actualizarEquipo(eq);
-        return "todo bien";
+        return response;
     }
 
     @RequestMapping(value = "/eliminar", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
@@ -140,12 +146,13 @@ public class ControllerEquipo {
     }
 //, headers = {"Content-type=application/json"}
  /*     @RequestMapping(value = "/buscar", method = RequestMethod.POST)
-    public @ResponseBody
-    String buscaEquipo() {
-        String str = "hola";
+     public @ResponseBody
+     String buscaEquipo() {
+     String str = "hola";
 
-        return str;
-    }*/
+     return str;
+     }*/
+
     @RequestMapping(value = "/buscar", method = RequestMethod.POST)
     public @ResponseBody
     String buscaEquipo(@RequestBody EquipoForm eqForm) {
@@ -186,5 +193,12 @@ public class ControllerEquipo {
         }
 
         return response;
+    }
+    
+    @RequestMapping("/tabla")
+    public ModelAndView makeTable() {
+        ModelAndView mV = new ModelAndView("tableMaker");
+        mV.addObject("listado", sE.listarEquipos());
+        return mV;
     }
 }

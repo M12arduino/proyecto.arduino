@@ -42,6 +42,11 @@ public class Ubicacion implements Serializable {
     public void setCoorY(float coorY) {
         this.coorY = coorY;
     }
+
+    @Override
+    public String toString() {
+        return lugar + " (" + coorX + ", " + coorY + ')';
+    }
     
     
 }
