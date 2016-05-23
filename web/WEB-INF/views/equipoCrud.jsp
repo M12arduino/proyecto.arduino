@@ -26,8 +26,8 @@
                     <h4 class="colorLabel">Criterios de búsqueda:</h4>
                 </div>
                 <div class="col-md-8">
-                    <div class="form_search form-inline" role"form">
-                         <div class="form-group">
+                    <div class="form_search form-inline" role="form">
+                        <div class="form-group">
                             <label for="nif_equipoSearchVal" class="colorLabel">Id Equipo:</label>
                             <input type="text" class="form-control" placeholder="id_equipo" id="nif_equipoSearchVal"/>
                         </div>
@@ -68,7 +68,11 @@
 
 
 
-            <div class="row">
+            <div class="row edit_box">
+                <div class="waiting_wrapper">
+
+                    <img src="${base}/resources/img/wait.gif" class="waiting"/>
+                </div>
                 <div class="form_edit_box">
                     <p id="results" class="alert alert-info"> Busca equipos que administrar con el formulario superior para empezar </p>
                     <div class="form_edit">
@@ -119,8 +123,21 @@
 
                 </div>
             </div>
+            <div class="row">
+                <div class="waiting_wrapper">
+
+                    <img src="${base}/resources/img/wait.gif" class="waiting"/>
+                </div>
+                <div id="results_info">
+
+                </div>
+            </div>
         </form:form>
         <div class="row datatable-form">
+            <div class="waiting_wrapper">
+
+                <img src="${base}/resources/img/wait.gif" class="waiting"/>
+            </div>
             <div class="col-md-12">
                 <p id="errorTable" class="error"> No hay registros para los criterios seleccionados </p>
                 <table id="datatable" class="table table-bordered table-striped">

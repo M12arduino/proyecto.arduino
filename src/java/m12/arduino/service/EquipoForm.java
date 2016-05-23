@@ -19,10 +19,12 @@ public class EquipoForm {
     private List<Trabajador> trabajadores;
     private List<String> nifs;
     private String codigo_orden;
+    private String fullName;
 
     public EquipoForm() {
     }
-
+    
+    
     public List<Trabajador> getTrabajadores() {
         return trabajadores;
     }

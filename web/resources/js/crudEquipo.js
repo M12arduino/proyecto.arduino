@@ -37,16 +37,15 @@ $(document).ready(function () {
             $("#errorTable").hide();
             var titles = dataTablesDevuelveProps(array);
             var dataSet = dataTablesDevuelveValues(array);
-
             table = $("#datatable").DataTable({
                 data: dataSet,
                 columns: titles,
                 destroy: true,
-                language:{
-                    lengthMenu:"Muestra _MENU_ registros por página",
-                    info:"Mostrando _START_ hasta _END_ de un total de _TOTAL_ entradas",
+                language: {
+                    lengthMenu: "Muestra _MENU_ registros por página",
+                    info: "Mostrando _START_ hasta _END_ de un total de _TOTAL_ entradas",
                     search: "Búsqueda",
-                    paginate:{
+                    paginate: {
                         first: "Primero",
                         last: "Último",
                         next: "Siguiente",
@@ -59,21 +58,20 @@ $(document).ready(function () {
         } else {
             if (table)
                 table.destroy();
-            
             $("#datatable").html("");
             $("#errorTable").show();
         }
     }
     $("#guardaModal").on("click", function () {
         var str = "[";
-        $("#trabajadoresModal li").each(function(){
-            if($(this).find(".modalcheck").is(":checked")){
-               var json = $(this).find(".hiddendata").html();
-               str = str+ ","+json;
+        $("#trabajadoresModal li").each(function () {
+            if ($(this).find(".modalcheck").is(":checked")) {
+                var json = $(this).find(".hiddendata").html();
+                str = str + "," + json;
             }
         })
-        str = str+"]";
-        str = str.replace(",","");
+        str = str + "]";
+        str = str.replace(",", "");
         var array = JSON.parse(str);
         populateTrabajadores(array);
         $("#modal").modal("toggle");
@@ -83,7 +81,6 @@ $(document).ready(function () {
         data.id_equipo = $("#id_equipoSearchVal").val();
         data.nombre = $("#nombreSearchVal").val();
         var jsonStr = JSON.stringify(data);
-        alert(jsonStr);
         $.ajax({
             url: getBasePath() + "equipo/buscar.htm",
             type: "POST",
@@ -99,10 +96,9 @@ $(document).ready(function () {
     }
 
     $("#search").on("click", refrescaTabla);
-
     $("#editar").on("click", function () {
         var trabajadores = [];
-        $("#trabajadores li").each(function(){
+        $("#trabajadores li").each(function () {
             var json = $(this).find(".hiddendata").html();
             var obj = JSON.parse(json);
             trabajadores.push(obj);
@@ -118,11 +114,10 @@ $(document).ready(function () {
             type: "POST",
             data: jsonStr,
             contentType: "application/json; charset=utf-8",
-            async: false,
             cache: false,
             processData: false,
             success: function (response) {
-                alert(response);
+                $("#results_info").html(response);
                 refrescaTabla();
             }
         });
@@ -132,20 +127,19 @@ $(document).ready(function () {
             url: getBasePath() + "trabajador/trabajadores.htm",
             type: "POST",
             contentType: "application/json; charset=utf-8",
-            async: false,
             cache: false,
             processData: false,
             success: function (response) {
                 var array = JSON.parse(response);
                 var actual = [];
-                $("#trabajadores li").each(function(){
+                $("#trabajadores li").each(function () {
                     actual.push($(this).find("p").html());
                 })
                 $("#trabajadoresModal").children().remove();
                 for (var i = 0; i < array.length; i++) {
                     var json = JSON.stringify(array[i]);
                     var fullName = array[i]['id_trab'] + ' - ' + array[i]['nombre'];
-                    if (actual.indexOf(fullName)== -1){
+                    if (actual.indexOf(fullName) == -1) {
                         $("#trabajadoresModal").append('<li class="itemModal"><input type="checkbox" class="modalcheck">' + fullName + '<span class="hiddendata">' + json + '</span></li>');
                     }
                 }
@@ -168,19 +162,21 @@ $(document).ready(function () {
                 type: "POST",
                 data: jsonStr,
                 contentType: "application/json; charset=utf-8",
-                async: false,
                 cache: false,
                 processData: false,
                 success: function (response) {
-                    alert(response);
                     refrescaTabla();
+                    $("#results_info").html(response);
+                    $(".edit_box .waiting_wrapper").hide();
                     cleanCrud();
-                }
+                },
+                beforeSend: function () {
+                    $(".edit_box .waiting_wrapper").show();
+                },
             });
         }
     });
 });
-
 function prepareCrud() {
     $("#datatable tr").not(":first").on("click", function () {
         $(".form_edit").show();
@@ -189,8 +185,6 @@ function prepareCrud() {
         $("#nombre").val($(this).find("td:nth-child(3)").html());
         buscaTrabajadores($(this).find("td:nth-child(2)").html());
         $("#results").hide();
-
-
     });
 }
 
@@ -203,13 +197,16 @@ function buscaTrabajadores(idequipo) {
         type: "POST",
         data: jsonStr,
         contentType: "application/json; charset=utf-8",
-        async: false,
         cache: false,
         processData: false,
         success: function (response) {
             var array = JSON.parse(response);
             $("#trabajadores").html(" ");
             populateTrabajadores(array);
+            $(".datatable-form .waiting_wrapper").hide();
+        },
+        beforeSend: function () {
+            $(".datatable-form .waiting_wrapper").show();
         },
         error: function (xhr) {
             var err = eval("(" + xhr.responseText + ")");
@@ -222,15 +219,18 @@ function populateTrabajadores(array) {
     for (var i = 0; i < array.length; i++) {
         var fullName = array[i]['id_trab'] + ' - ' + array[i]['nombre'];
         var check = true;
-        $("#trabajadores li").each(function(){
-            var str =$(this).find("p").html();
-            if (str == fullName) check = false;
+        $("#trabajadores li").each(function () {
+            var str = $(this).find("p").html();
+            if (str == fullName)
+                check = false;
         });
-        if (check)$("#trabajadores").append('<li class="col-md-3 col-xs-12 col-sm-6"><span class="hiddendata" >' + JSON.stringify(array[i]) + '</span><p>'+fullName  + '</p><span class="glyphicon glyphicon-remove-sign deletebutton"></span></li>');
-        $(".deletebutton").on("click",function(){
-        if (confirm("¿Eliminar este usuario del equipo?"))$(this).parent().remove();
-    })
+        if (check)
+            $("#trabajadores").append('<li class="col-md-3 col-xs-12 col-sm-6"><span class="hiddendata" >' + JSON.stringify(array[i]) + '</span><p>' + fullName + '</p><span class="glyphicon glyphicon-remove-sign deletebutton"></span></li>');
     }
+    $(".deletebutton").on("click", function () {
+        if (confirm("¿Eliminar este usuario del equipo?"))
+            $(this).parent().remove();
+    })
 }
 function cleanCrudT() {
     $("#id_equipo").val(null);

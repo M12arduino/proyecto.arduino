@@ -32,12 +32,13 @@ $(document).ready(function () {
 //    });
 
     function gestionaResultadoAjax(response) {
+        $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
+        $(".datatable-form .waiting_wrapper").hide();
         var array = JSON.parse(response);
         if (array.length > 0) {
             $("#errorTable").hide();
             var titles = dataTablesDevuelveProps(array);
             var dataSet = dataTablesDevuelveValues(array);
-
             table = $("#datatable").DataTable({
                 data: dataSet,
                 columns: titles,
@@ -45,13 +46,14 @@ $(document).ready(function () {
             });
             prepareCrudTrabajador();
         } else {
-            if(table)table.destroy();
+            if (table)
+                table.destroy();
             $("#datatable").html("");
             $("#errorTable").show();
         }
     }
-    
-    function refrescaTabla(){
+
+    function refrescaTabla() {
         var data = {};
         data.nif = $("#nifSearchVal").val();
         data.nombre = $("#nombreSearchVal").val();
@@ -62,19 +64,20 @@ $(document).ready(function () {
             type: "POST",
             data: jsonStr,
             contentType: "application/json; charset=utf-8",
-            async: false,
             cache: false,
             processData: false,
             success: gestionaResultadoAjax,
             error: function (xhr) {
                 var err = eval("(" + xhr.responseText + ")");
                 alert(err.Message + "error");
-            }
+            }, 
+            beforeSend: function () {
+                $(".datatable-form .waiting_wrapper").show();
+            },
         });
     }
-    
+
     $("#search").on("click", refrescaTabla);
-    
     $("#editar").on("click", function () {
         var data = {};
         data.id_trab = $("#id_trab").val();
@@ -89,16 +92,18 @@ $(document).ready(function () {
             type: "POST",
             data: jsonStr,
             contentType: "application/json; charset=utf-8",
-            async: false,
             cache: false,
             processData: false,
-            success: function(response){
-                alert(response);
+            success: function (response) {
                 refrescaTabla();
-            }
+                $("#results_info").html(response);
+                $(".edit_box .waiting_wrapper").hide();
+            },
+            beforeSend: function () {
+                $(".edit_box .waiting_wrapper").show();
+            },
         });
     });
-
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar este usuario?")) {
             var data = {};
@@ -114,19 +119,21 @@ $(document).ready(function () {
                 type: "POST",
                 data: jsonStr,
                 contentType: "application/json; charset=utf-8",
-                async: false,
                 cache: false,
                 processData: false,
-                success: function(response){
-                    alert(response);
+                success: function (response) {
                     refrescaTabla();
                     cleanCrudTrabajador();
-                }
-            }); 
+                    $("#results_info").html(response);
+                    $(".edit_box .waiting_wrapper").hide()
+                },
+                beforeSend: function () {
+                    $(".edit_box .waiting_wrapper").show();
+                },
+            });
         }
     });
 });
-
 function prepareCrudTrabajador() {
     $("#datatable tr").not(":first").on("click", function () {
         $(".form_edit").show();
@@ -136,7 +143,7 @@ function prepareCrudTrabajador() {
         $("#movil").val($(this).find("td:nth-child(4)").html());
         $("#password").val($(this).find("td:nth-child(5)").html());
         $("#categoria").val($(this).find("td:nth-child(6)").html());
-
+        $("#results").hide();
     });
 }
 

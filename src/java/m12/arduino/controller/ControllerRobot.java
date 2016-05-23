@@ -71,9 +71,9 @@ public class ControllerRobot {
             r.getUbicacion().setCoorY(rf.getCoorY());
             r.setEstado(rf.getEstado());
             sR.actualizarRobot(r);
-            msg = "robot updated";
+            msg = "<div class=\"alert alert-success\">El Robot se ha actualizado correctamente</div>";
         } catch (Exception e) {
-            msg = "update fail "+e.getMessage();
+            msg = "<div class=\"alert alert-error\">Error al actualizar Robot</div>";
         }
         return msg;
     }
@@ -85,9 +85,9 @@ public class ControllerRobot {
             Robot r = new Robot();
             r.setId(rf.getId());
             sR.eliminarRobot(r);
-            msg = "robot deleted";
+            msg = "<div class=\"alert alert-success\">El Robot se ha eliminado correctamente</div>";;
         } catch (Exception e) {
-            msg = "delete fail "+e.getMessage();
+            msg = "<div class=\"alert alert-error\">Error al eliminar Robot</div>";
         }
         return msg;
     }
