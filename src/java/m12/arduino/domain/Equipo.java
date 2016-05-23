@@ -99,21 +99,25 @@ public class Equipo implements Serializable, Maketable {
     }
 
     @Override
+    @JsonIgnore
     public List<String> getFields() {
         return new ArrayList(Arrays.asList("ID", "Codigo", "Nombre"));
     }
 
     @Override
+    @JsonIgnore
     public List<String> getInfo() {
         return new ArrayList(Arrays.asList(this.getId(), this.getId_equipo(), this.getNombre()));
     }
 
     @Override
+    @JsonIgnore
     public long getPK() {
         return this.getId();
     }
 
     @Override
+    @JsonIgnore
     public String getFullName() {
         return this.getId_equipo() + " - " + this.getNombre();
     }

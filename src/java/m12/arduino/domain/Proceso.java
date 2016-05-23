@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /*
 Jordi Puig Puig
@@ -80,11 +81,13 @@ public class Proceso implements Serializable, Maketable {
     }
 
     @Override
+    @JsonIgnore
     public List<String> getFields() {
         return new ArrayList(Arrays.asList("ID", "Codigo", "Descripcion", "Acciones"));
     }
 
     @Override
+    @JsonIgnore
     public List<String> getInfo() {
         String strAcciones = "";
         for (Accion accion : acciones) {
@@ -94,6 +97,7 @@ public class Proceso implements Serializable, Maketable {
     }
 
     @Override
+    @JsonIgnore
     public long getPK() {
         return this.getId();
     }

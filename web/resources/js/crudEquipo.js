@@ -83,12 +83,12 @@ $(document).ready(function () {
         data.id_equipo = $("#id_equipoSearchVal").val();
         data.nombre = $("#nombreSearchVal").val();
         var jsonStr = JSON.stringify(data);
+        alert(jsonStr);
         $.ajax({
             url: getBasePath() + "equipo/buscar.htm",
             type: "POST",
             data: jsonStr,
             contentType: "application/json; charset=utf-8",
-            async: false,
             cache: false,
             processData: false,
             success: gestionaResultadoAjax,

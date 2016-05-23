@@ -138,8 +138,15 @@ public class ControllerEquipo {
     public ModelAndView administrarEquipo() {
         return new ModelAndView("equipoCrud", "command", new EquipoForm());
     }
+//, headers = {"Content-type=application/json"}
+ /*     @RequestMapping(value = "/buscar", method = RequestMethod.POST)
+    public @ResponseBody
+    String buscaEquipo() {
+        String str = "hola";
 
-    @RequestMapping(value = "/buscar", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+        return str;
+    }*/
+    @RequestMapping(value = "/buscar", method = RequestMethod.POST)
     public @ResponseBody
     String buscaEquipo(@RequestBody EquipoForm eqForm) {
         String id_equipo = eqForm.getId_equipo();

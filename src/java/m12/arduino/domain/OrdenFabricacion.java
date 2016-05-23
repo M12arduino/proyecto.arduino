@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /*
  Jordi Puig Puig
@@ -219,16 +220,19 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
     }
 
     @Override
+    @JsonIgnore
     public List<String> getFields() {
         return new ArrayList(Arrays.asList("ID", "Codigo", "Descripcion", "Prioridad", "Fecha", "Proceso", "Cantidad", "Robot", "Estado", "Equipo"));
     }
   
     @Override
+    @JsonIgnore
     public List<String> getInfo() {
         return new ArrayList(Arrays.asList(this.getId(), this.getCodigo(), this.getDescripcion(), this.getProridad(), this.getFecha(), this.getProceso(), this.getCantidad(), this.getRobot().getFullName(), this.getEstado(), this.getEquipo().getFullName()));
     }
 
     @Override
+    @JsonIgnore
     public long getPK() {
         return this.getId();
     }

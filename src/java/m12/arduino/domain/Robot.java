@@ -105,16 +105,19 @@ public class Robot implements Serializable, Maketable {
     }
 
     @Override
+    @JsonIgnore
     public List<String> getFields() {
         return new ArrayList(Arrays.asList("ID", "Codigo", "Nombre", "Ubicacion", "Estado"));
     }
 
     @Override
+    @JsonIgnore
     public List<String> getInfo() {
         return new ArrayList(Arrays.asList(this.getId(), this.getId_robot(), this.getNombre(), this.getUbicacion().toString(), this.getEstado()));
     }
 
     @Override
+    @JsonIgnore
     public long getPK() {
         return this.getId();
     }
