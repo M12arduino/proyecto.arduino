@@ -3,6 +3,7 @@ package m12.arduino.controller;
 import m12.arduino.domain.Accion;
 import m12.arduino.domain.CategoriaTrabajador;
 import m12.arduino.domain.Equipo;
+import m12.arduino.domain.EstadoOrden;
 import m12.arduino.domain.EstadoRobot;
 import m12.arduino.domain.OrdenFabricacion;
 import m12.arduino.domain.Prioridad;
@@ -197,6 +198,27 @@ public class ControllerPopulate {
         sO.insertarOrden(of2);
         sO.insertarOrden(of3);
         sO.insertarOrden(of4);
+        
+        ////////////////////////////////////////////////////////////////////////
+        Equipo e = sE.buscarEquipo("CV2015");
+        OrdenFabricacion orden1 = sO.buscarOrden("OF001");
+        OrdenFabricacion orden2 = sO.buscarOrden("OF002");
+        e.addOrden(orden1);
+        e.addOrden(orden2);
+        orden1.setEstado(EstadoOrden.PENDIENTE);
+        orden2.setEstado(EstadoOrden.REALIZADA);
+        sO.actualizarOrden(orden1);
+        sO.actualizarOrden(orden2);
+        
+        e = sE.buscarEquipo("CV2016");
+        orden1 = sO.buscarOrden("OF003");
+        orden2 = sO.buscarOrden("OF004");
+        e.addOrden(orden1);
+        e.addOrden(orden2);
+        orden1.setEstado(EstadoOrden.PENDIENTE);
+        orden2.setEstado(EstadoOrden.REALIZADA);
+        sO.actualizarOrden(orden1);
+        sO.actualizarOrden(orden2);
         
         return mV;
     }

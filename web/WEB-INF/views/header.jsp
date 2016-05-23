@@ -42,27 +42,7 @@
     <script type="text/javascript" src="${base}/resources/libs/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="${base}/resources/libs/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" src="${base}/resources/libs/canvasJS/canvasjs.min.js"></script>
-    <script type="text/javascript">
-        window.onload = function () {
 
-            var chart1 = new CanvasJS.Chart("chartContainer1", {
-                theme: "theme1", //theme1
-                title: {
-                    text: "Robot Status"
-                },
-                animationEnabled: true, // change to true
-                data: [
-                    {
-                        type: "column",
-                        //dataPoints: [<?php echo $myComp->getStatistics("frame"); ?>]
-                        dataPoints: [<%= ControllerStatistics.getStatusRobots()%>]
-                    }
-                ]
-            });
-
-            chart1.render();
-        };
-    </script>
 
     <!-- MOVER!! CSS SIEMPRE ANTES QUE JS-->  
 </head>

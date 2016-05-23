@@ -140,7 +140,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
         }
         return "OrdenFabricacion{" + "id=" + id + ", codigo=" + codigo + ", "
                 + "descripcion=" + descripcion + ", proridad=" + proridad + ", "
-                + "fecha=" + fecha.toString() + ", proceso=" + proceso.getCodigo() + ", "
+                + "fecha=" + fecha.getTime() + ", proceso=" + proceso.getCodigo() + ", "
                 + "cantidad=" + cantidad + ", robot=" + robot.getFullName() + ", "
                 + "estado=" + estado + ", equipo=" + strEq + '}';
     }

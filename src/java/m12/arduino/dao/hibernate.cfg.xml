@@ -13,7 +13,7 @@
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <!-- Otras propiedades importantes -->
         <property name="show_sql">true</property>
-       <property name="hbm2ddl.auto">create-drop</property>
+        <property name="hbm2ddl.auto">create-drop</property>
         <!-- Archivos de mapeo -->
         <mapping class="m12.arduino.domain.Trabajador"/>
         <mapping class="m12.arduino.domain.Robot"/>
