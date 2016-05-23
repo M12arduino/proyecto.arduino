@@ -52,6 +52,9 @@ public class ControllerProceso {
             pro.setCodigo(pf.getCodigo());
             pro.setDescripcion(pf.getDescripcion());
             pro.setAcciones(acciones);
+            for (Accion accion : acciones) {
+                accion.setProceso(pro);
+            }
             aux = sP.insertarProceso(pro);
         } catch (IOException ex) {
             Logger.getLogger(ControllerProceso.class.getName()).log(Level.SEVERE, null, ex);
@@ -114,6 +117,13 @@ public class ControllerProceso {
     @RequestMapping(value = "administrar")
     public ModelAndView administraCrudRobot() {
         ModelAndView mV = new ModelAndView("procesoCrud", "command", new ProcesoForm());
+        return mV;
+    }
+    
+    @RequestMapping("/tabla")
+    public ModelAndView makeTable() {
+        ModelAndView mV = new ModelAndView("tableMaker");
+        mV.addObject("listado", sP.listarProcesos());
         return mV;
     }
 }

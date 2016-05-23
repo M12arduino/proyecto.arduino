@@ -13,7 +13,6 @@
 <!DOCTYPE html>
 
 
-
 <form:form action="${base}/trabajador" method="POST" id="form" >
     <body>
         <div class="container">
@@ -120,3 +119,4 @@
     </div>
 </body>
 </html>
+

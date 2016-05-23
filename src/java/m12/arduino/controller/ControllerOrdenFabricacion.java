@@ -1,6 +1,7 @@
 package m12.arduino.controller;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import m12.arduino.domain.CategoriaTrabajador;
 import m12.arduino.domain.EstadoOrden;
@@ -12,6 +13,8 @@ import m12.arduino.service.ServiceOrdenFabricacion;
 import m12.arduino.service.ServiceProceso;
 import m12.arduino.service.ServiceRobot;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,8 +56,8 @@ public class ControllerOrdenFabricacion {
         oF.setCantidad(ofF.getCantidad());
         oF.setRobot(sR.buscarRobot(ofF.getId_robot()));
         OrdenFabricacion orden = sO.insertarOrden(oF);
-        ModelAndView mV = new ModelAndView("ordenFabricacionDetalle");        
-        mV.addObject("ordenFabricacion", orden);
+        ModelAndView mV = new ModelAndView("objetoDetalle");        
+        mV.addObject("objeto", orden);
         return mV;
     }
     
@@ -155,5 +158,12 @@ public class ControllerOrdenFabricacion {
         }
         
         return new ModelAndView("main");
+    }
+    
+    @RequestMapping("/tabla")
+    public ModelAndView makeTable() {
+        ModelAndView mV = new ModelAndView("tableMaker");
+        mV.addObject("listado", sO.listarOrdenes());
+        return mV;
     }
 }

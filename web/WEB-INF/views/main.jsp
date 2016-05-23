@@ -11,5 +11,5 @@
     <jsp:include page="adminPanel.jsp"></jsp:include>
 </sec:authorize>
 
-<body>
+</body>
 <html>

@@ -50,12 +50,14 @@ public class ControllerRobot {
             r.getUbicacion().setCoorX(rf.getCoorX());
             r.getUbicacion().setCoorY(rf.getCoorY());
             r.setEstado(rf.getEstado());
-            sR.insertarRobot(r);
+            Robot rob = sR.insertarRobot(r);
+            ModelAndView mV = new ModelAndView("detalleObjeto");
+            mV.addObject("objeto", rob);
+            return mV;
         } catch (HibernateException he) {
             System.out.println(he.getMessage());
+            return new ModelAndView("error");
         }
-        return new ModelAndView("welcome");
-
     }
     
     @RequestMapping(value="/actualizar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
@@ -151,6 +153,7 @@ public class ControllerRobot {
         return response;
     }*/
     
+    // TO DELETE IN THE FUTURE
     @RequestMapping("/detalleList")
     public ModelAndView detalleList() {
         Robot r = sR.buscarRobot("Rob00");
@@ -160,6 +163,13 @@ public class ControllerRobot {
         }
         ModelAndView mV = new ModelAndView("robotDetalle");
         mV.addObject("string", str);
+        return mV;
+    }
+    
+    @RequestMapping("/tabla")
+    public ModelAndView makeTable() {
+        ModelAndView mV = new ModelAndView("tableMaker");
+        mV.addObject("listado", sR.listarRobots());
         return mV;
     }
 }

@@ -5,13 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>WRONG!</h1>
-    </body>
+<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="navBar.jsp"></jsp:include>
+
+<h1>WRONG!</h1>
+</body>
 </html>
