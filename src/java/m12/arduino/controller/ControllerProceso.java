@@ -122,4 +122,11 @@ public class ControllerProceso {
         ModelAndView mV = new ModelAndView("procesoCrud", "command", new ProcesoForm());
         return mV;
     }
+    
+    @RequestMapping("/tabla")
+    public ModelAndView makeTable() {
+        ModelAndView mV = new ModelAndView("tableMaker");
+        mV.addObject("listado", sP.listarProcesos());
+        return mV;
+    }
 }
