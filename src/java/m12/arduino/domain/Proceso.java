@@ -2,6 +2,7 @@ package m12.arduino.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ realitzar (obrir-tancar pinça)
 @author Jordi
 */
 @Entity
-public class Proceso implements Serializable {
+public class Proceso implements Serializable, Maketable {
     private static final long serialVersionUID = -370493739408314348L;
 
     // ATTR
@@ -76,6 +77,30 @@ public class Proceso implements Serializable {
     @Override
     public String toString() {
         return "Proceso{" + "id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", acciones=" + acciones + '}';
+    }
+
+    @Override
+    public List<String> getFields() {
+        return new ArrayList(Arrays.asList("ID", "Codigo", "Descripcion", "Acciones"));
+    }
+
+    @Override
+    public List<String> getInfo() {
+        String strAcciones = "";
+        for (Accion accion : acciones) {
+            strAcciones += accion.toString() + "<br />";
+        }
+        return new ArrayList(Arrays.asList(this.getId(), this.getCodigo(), this.getDescripcion(), strAcciones));
+    }
+
+    @Override
+    public long getPK() {
+        return this.getId();
+    }
+
+    @Override
+    public String getFullName() {
+        return "Proceso - " + this.getCodigo();
     }
     
     

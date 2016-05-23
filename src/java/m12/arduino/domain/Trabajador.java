@@ -133,11 +133,16 @@ public class Trabajador implements Serializable, Maketable {
         if (equipo != null){
             eqName = equipo.getNombre();
         }               
-        return  new ArrayList(Arrays.asList(id_trab, nif, nombre, movil, categoria.toString(),eqName));   
+        return new ArrayList(Arrays.asList(id_trab, nif, nombre, movil, categoria.toString(),eqName));   
     }
     @JsonIgnore
     @Override
     public long getPK() {
         return id_trab;
+    }
+
+    @Override
+    public String getFullName() {
+        return this.getNombre();
     }
 }

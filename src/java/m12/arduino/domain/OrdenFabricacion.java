@@ -1,7 +1,10 @@
 package m12.arduino.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +22,7 @@ import javax.persistence.Temporal;
  @author Grupo 3 Arduino
  */
 @Entity
-public class OrdenFabricacion implements Serializable, Comparable {
+public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     private static final long serialVersionUID = 7674836498685381771L;
 
@@ -213,6 +216,26 @@ public class OrdenFabricacion implements Serializable, Comparable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public List<String> getFields() {
+        return new ArrayList(Arrays.asList("ID", "Codigo", "Descripcion", "Prioridad", "Fecha", "Proceso", "Cantidad", "Robot", "Estado", "Equipo"));
+    }
+  
+    @Override
+    public List<String> getInfo() {
+        return new ArrayList(Arrays.asList(this.getId(), this.getCodigo(), this.getDescripcion(), this.getProridad(), this.getFecha(), this.getProceso(), this.getCantidad(), this.getRobot().getFullName(), this.getEstado(), this.getEquipo().getFullName()));
+    }
+
+    @Override
+    public long getPK() {
+        return this.getId();
+    }
+
+    @Override
+    public String getFullName() {
+        return "Orden - " + this.getCodigo();
     }
 
     

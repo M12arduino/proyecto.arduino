@@ -2,6 +2,7 @@ package m12.arduino.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -24,7 +25,7 @@ desconnectat, local)
 @author Jordi
 */
 @Entity
-public class Robot implements Serializable {
+public class Robot implements Serializable, Maketable {
     
     private static final long serialVersionUID = 3679568141321204536L;
 
@@ -94,11 +95,27 @@ public class Robot implements Serializable {
         this.estado = estado;
     }    
     
+    @Override
     public String getFullName(){
         return this.getId_robot()+" - "+this.getNombre();
     }
     
     public void addOrden(OrdenFabricacion oF) {
         this.getOrdenes().add(oF);
+    }
+
+    @Override
+    public List<String> getFields() {
+        return new ArrayList(Arrays.asList("ID", "Codigo", "Nombre", "Ubicacion", "Estado"));
+    }
+
+    @Override
+    public List<String> getInfo() {
+        return new ArrayList(Arrays.asList(this.getId(), this.getId_robot(), this.getNombre(), this.getUbicacion().toString(), this.getEstado()));
+    }
+
+    @Override
+    public long getPK() {
+        return this.getId();
     }
 }

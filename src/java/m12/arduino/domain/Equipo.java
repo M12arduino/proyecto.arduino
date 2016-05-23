@@ -2,6 +2,7 @@ package m12.arduino.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ Curs 2015-2016
 @author Jordi
 */
 @Entity
-public class Equipo implements Serializable {
+public class Equipo implements Serializable, Maketable {
     private static final long serialVersionUID = -9193035208662365731L;
 
     // ATTR
@@ -95,6 +96,26 @@ public class Equipo implements Serializable {
     public void addOrden(OrdenFabricacion orden) {
         this.getOrdenes().add(orden);
         orden.setEquipo(this);
+    }
+
+    @Override
+    public List<String> getFields() {
+        return new ArrayList(Arrays.asList("ID", "Codigo", "Nombre"));
+    }
+
+    @Override
+    public List<String> getInfo() {
+        return new ArrayList(Arrays.asList(this.getId(), this.getId_equipo(), this.getNombre()));
+    }
+
+    @Override
+    public long getPK() {
+        return this.getId();
+    }
+
+    @Override
+    public String getFullName() {
+        return this.getId_equipo() + " - " + this.getNombre();
     }
     
 }
