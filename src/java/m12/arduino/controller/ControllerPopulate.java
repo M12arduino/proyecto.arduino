@@ -4,11 +4,14 @@ import m12.arduino.domain.Accion;
 import m12.arduino.domain.CategoriaTrabajador;
 import m12.arduino.domain.Equipo;
 import m12.arduino.domain.EstadoRobot;
+import m12.arduino.domain.OrdenFabricacion;
+import m12.arduino.domain.Prioridad;
 import m12.arduino.domain.Proceso;
 import m12.arduino.domain.Robot;
 import m12.arduino.domain.Trabajador;
 import m12.arduino.domain.Ubicacion;
 import m12.arduino.service.ServiceEquipo;
+import m12.arduino.service.ServiceOrdenFabricacion;
 import m12.arduino.service.ServiceProceso;
 import m12.arduino.service.ServiceRobot;
 import m12.arduino.service.ServiceTrabajador;
@@ -35,6 +38,7 @@ public class ControllerPopulate {
         ServiceTrabajador sT = new ServiceTrabajador();
         ServiceEquipo sE = new ServiceEquipo();
         ServiceProceso sP = new ServiceProceso();
+        ServiceOrdenFabricacion sO = new ServiceOrdenFabricacion();
 
         ////////////////////////////////////////////////////////////////////////
         Equipo equ0 = new Equipo();
@@ -156,16 +160,44 @@ public class ControllerPopulate {
         pr1.addAccion(ac11);
         pr1.addAccion(ac12);
 
-        System.out.println(pr0.toString());
-        System.out.println(pr1.toString());
-        System.out.println(ac01.toString());
-        System.out.println(ac02.toString());
-        System.out.println(ac11.toString());
-        System.out.println(ac12.toString());
-
         sP.insertarProceso(pr0);
         sP.insertarProceso(pr1);
-
+        
+        ////////////////////////////////////////////////////////////////////////
+        OrdenFabricacion of1 = new OrdenFabricacion();
+        of1.setCodigo("OF001");
+        of1.setDescripcion("codigo 1, prioridad baja, proceso 1, cantidad 10");
+        of1.setProridad(Prioridad.BAJA);
+        of1.setProceso(sP.buscarProceso("P001"));
+        of1.setCantidad(10);
+        of1.setRobot(sR.buscarRobot("Rob00"));
+        OrdenFabricacion of2 = new OrdenFabricacion();
+        of2.setCodigo("OF002");
+        of2.setDescripcion("codigo 2, prioridad media, proceso 2, cantidad 20");
+        of2.setProridad(Prioridad.MEDIA);
+        of2.setProceso(sP.buscarProceso("P002"));
+        of2.setCantidad(20);
+        of2.setRobot(sR.buscarRobot("Rob00"));
+        OrdenFabricacion of3 = new OrdenFabricacion();
+        of3.setCodigo("OF003");
+        of3.setDescripcion("codigo 3, prioridad alta, proceso 1, cantidad 30");
+        of3.setProridad(Prioridad.ALTA);
+        of3.setProceso(sP.buscarProceso("P001"));
+        of3.setCantidad(30);
+        of3.setRobot(sR.buscarRobot("Rob00"));
+        OrdenFabricacion of4 = new OrdenFabricacion();
+        of4.setCodigo("OF004");
+        of4.setDescripcion("codigo 4, prioridad baja, proceso 2, cantidad 40");
+        of4.setProridad(Prioridad.BAJA);
+        of4.setProceso(sP.buscarProceso("P002"));
+        of4.setCantidad(40);
+        of4.setRobot(sR.buscarRobot("Rob00"));
+        
+        sO.insertarOrden(of1);
+        sO.insertarOrden(of2);
+        sO.insertarOrden(of3);
+        sO.insertarOrden(of4);
+        
         return mV;
     }
 }

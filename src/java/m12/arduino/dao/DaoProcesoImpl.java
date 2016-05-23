@@ -73,7 +73,7 @@ public class DaoProcesoImpl implements DaoProceso {
     @Override
     public List<Proceso> obtenerListaProcesos() {
         iniciaOperacion();
-        Query q = session.createQuery("SELECT * FROM Proceso");
+        Query q = session.createQuery("FROM Proceso");
         List<Proceso> res = q.list();
         acabaOperacion();
         return res;

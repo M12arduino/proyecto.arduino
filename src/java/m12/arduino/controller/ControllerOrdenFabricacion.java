@@ -3,6 +3,7 @@ package m12.arduino.controller;
 import java.io.IOException;
 import java.util.List;
 import m12.arduino.domain.CategoriaTrabajador;
+import m12.arduino.domain.EstadoOrden;
 import m12.arduino.domain.OrdenFabricacion;
 import m12.arduino.domain.Prioridad;
 import m12.arduino.domain.Trabajador;
@@ -44,19 +45,14 @@ public class ControllerOrdenFabricacion {
     
     @RequestMapping(value = "/insertar")
     public ModelAndView addOrden(OrdenFabricacionForm ofF) {
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
         OrdenFabricacion oF = new OrdenFabricacion();
         oF.setCodigo(ofF.getCodigo());
         oF.setDescripcion(ofF.getDescripcion());
         oF.setProridad(ofF.getPrioridad());
-        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         oF.setProceso(sP.buscarProceso(ofF.getCodigo_proceso()));
         oF.setCantidad(ofF.getCantidad());
-        System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
         oF.setRobot(sR.buscarRobot(ofF.getId_robot()));
-        System.out.println("0000000000000000000000000000000000000000");
         OrdenFabricacion orden = sO.insertarOrden(oF);
-        System.out.println("uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
         ModelAndView mV = new ModelAndView("ordenFabricacionDetalle");        
         mV.addObject("ordenFabricacion", orden);
         return mV;
@@ -127,5 +123,37 @@ public class ControllerOrdenFabricacion {
         }
 
         return response;
+    }
+    
+    @RequestMapping("/ejecutarOrden")
+    public ModelAndView ejecutarOrden(String codigo_orden) {
+        ModelAndView mV = new ModelAndView("main");
+        OrdenFabricacion oF = sO.buscarOrden(codigo_orden);
+        if (oF.getEstado() == EstadoOrden.PENDIENTE) {
+            // CRIDA AL ARDUINO PER INICIAR LA ORDRE
+            oF.setEstado(EstadoOrden.INICIADA);
+            sO.actualizarOrden(oF);
+            
+        } else {
+            String message = "Para iniciar una orden ésta debe encontrarse en estado 'Pendiente'";
+        }
+        
+        return new ModelAndView("main");
+    }
+    
+    @RequestMapping("/cancelarOrden")
+    public ModelAndView cancelarOrden(String codigo_orden) {
+        ModelAndView mV = new ModelAndView("main");
+        OrdenFabricacion oF = sO.buscarOrden(codigo_orden);
+        if (oF.getEstado() != EstadoOrden.CANCELADA) {
+            // CRIDA AL ARDUINO PER Cancelar LA ORDRE?????
+            oF.setEstado(EstadoOrden.CANCELADA);
+            sO.actualizarOrden(oF);
+            
+        } else {
+            String message = "Ésta orden ya se encuentra en estado 'Cancelada'";
+        }
+        
+        return new ModelAndView("main");
     }
 }

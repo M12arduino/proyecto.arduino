@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import m12.arduino.dao.DaoTrabajadorImpl;
 import m12.arduino.domain.Equipo;
+import m12.arduino.domain.EstadoOrden;
 import m12.arduino.domain.OrdenFabricacion;
 import m12.arduino.domain.Trabajador;
 import m12.arduino.service.EquipoForm;
@@ -116,25 +117,20 @@ public class ControllerEquipo {
         EquipoForm eF = new EquipoForm();
         ModelAndView mV = new ModelAndView("equipoAsignarOrden", "command", eF);
         mV.addObject("equipos", sE.listarEquipos());
-        mV.addObject("ordenes", sO.listarOrdenes());
+        mV.addObject("ordenes", sO.listarOrdenes("estado", EstadoOrden.INDEFINIDO)); // Nomes es poden assignar ordres no assignades anteriorment (Indefinido)
         return mV;
     }
 
     @RequestMapping("/altaOrden")
     public ModelAndView altaOrden(EquipoForm eF) {
-        ModelAndView mV = new ModelAndView("equipoDetalle");
-        Equipo e = sE.buscarEquipo(eF.getNombre());
-        System.out.println(e);
+        ModelAndView mV = new ModelAndView("main");
+        Equipo e = sE.buscarEquipo(eF.getId_equipo());
         OrdenFabricacion orden = sO.buscarOrden(eF.getCodigo_orden());
-        System.out.println(orden);
         e.addOrden(orden);
-        System.out.println(orden);
-        sE.actualizarEquipo(e);
-        System.out.println("Aktualiziert");
+        //sE.actualizarEquipo(e);
+        orden.setEstado(EstadoOrden.PENDIENTE);
         sO.actualizarOrden(orden);
-        System.out.println("Aktualiziert");
         mV.addObject("equipo", e);
-        System.out.println("Equipo added");
         return mV;
     }
 

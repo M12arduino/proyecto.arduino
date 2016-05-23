@@ -8,6 +8,7 @@ package m12.arduino.controller;
 import java.io.IOException;
 import java.util.List;
 import m12.arduino.domain.EstadoRobot;
+import m12.arduino.domain.OrdenFabricacion;
 import m12.arduino.domain.Robot;
 import m12.arduino.domain.Ubicacion;
 import m12.arduino.service.RobotForm;
@@ -149,4 +150,16 @@ public class ControllerRobot {
 
         return response;
     }*/
+    
+    @RequestMapping("/detalleList")
+    public ModelAndView detalleList() {
+        Robot r = sR.buscarRobot("Rob00");
+        String str = "";
+        for (OrdenFabricacion orden : r.getOrdenes()) {
+            str += orden.toString() + "<br />";
+        }
+        ModelAndView mV = new ModelAndView("robotDetalle");
+        mV.addObject("string", str);
+        return mV;
+    }
 }

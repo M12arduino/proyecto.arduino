@@ -10,22 +10,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 /*
-Jordi Puig Puig
-DAW 2
-Curs 2015-2016
+ Jordi Puig Puig
+ DAW 2
+ Curs 2015-2016
  codi, descripció, prioritat, data, procés, quantitat,
-robot que la desenvoluparà, estat (pendent, iniciada, realitzada, no realitzada,
-cancel·lada)
-@author Grupo 3 Arduino
-*/
+ robot que la desenvoluparà, estat (pendent, iniciada, realitzada, no realitzada,
+ cancel·lada)
+ @author Grupo 3 Arduino
+ */
 @Entity
-public class OrdenFabricacion implements Serializable {
+public class OrdenFabricacion implements Serializable, Comparable {
 
     private static final long serialVersionUID = 7674836498685381771L;
 
     // ATTR
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String codigo;
     private String descripcion;
@@ -40,9 +40,9 @@ public class OrdenFabricacion implements Serializable {
     private EstadoOrden estado;
     @ManyToOne
     private Equipo equipo;
-    
+
     {
-        estado = EstadoOrden.PENDIENTE;
+        estado = EstadoOrden.INDEFINIDO;
         fecha = Calendar.getInstance();
         System.out.println(fecha.toString());
     }
@@ -55,7 +55,6 @@ public class OrdenFabricacion implements Serializable {
         this.equipo = equipo;
     }
 
-    
     public long getId() {
         return id;
     }
@@ -118,6 +117,7 @@ public class OrdenFabricacion implements Serializable {
 
     public void setRobot(Robot robot) {
         this.robot = robot;
+        robot.addOrden(this);
     }
 
     public EstadoOrden getEstado() {
@@ -130,8 +130,90 @@ public class OrdenFabricacion implements Serializable {
 
     @Override
     public String toString() {
-        return "OrdenFabricacion{" + "id=" + id + ", codigo=" + codigo + ", descripcion=" + descripcion + ", proridad=" + proridad + ", fecha=" + fecha.toString() + ", proceso=" + proceso.getCodigo() + ", cantidad=" + cantidad + ", robot=" + robot.getFullName() + ", estado=" + estado + ", equipo=" + equipo.getNombre() + '}';
+        String strEq = "No associado";
+        if (equipo != null) {
+            strEq = equipo.getNombre();
+        }
+        return "OrdenFabricacion{" + "id=" + id + ", codigo=" + codigo + ", "
+                + "descripcion=" + descripcion + ", proridad=" + proridad + ", "
+                + "fecha=" + fecha.toString() + ", proceso=" + proceso.getCodigo() + ", "
+                + "cantidad=" + cantidad + ", robot=" + robot.getFullName() + ", "
+                + "estado=" + estado + ", equipo=" + strEq + '}';
     }
 
+    @Override
+    public int compareTo(Object o) {
+        OrdenFabricacion oF = (OrdenFabricacion) o;
+        if (this.getProridad() != oF.getProridad()) {                           // Si no coinciden ordenarà por prioridad
+            return this.getProridad().getCode() - oF.getProridad().getCode();   
+        } else {
+            if (this.getFecha().equals(oF.getFecha())) {                        // Si coinciden las fechas, ordenará por id
+                return (int) (this.getId() - oF.getId());
+            } else {                                                            // Sinó, ordenará por fecha
+                return this.getFecha().compareTo(oF.getFecha());
+            }
+        }
+        // Ordenacion: En primer lugar por prioridad, si éstas coinciden, por fecha y 
+        // si éstas TAMBIÉN coinciden, ordenará por ID que es imposible que coincida.
+    }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 43 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 43 * hash + (this.codigo != null ? this.codigo.hashCode() : 0);
+        hash = 43 * hash + (this.descripcion != null ? this.descripcion.hashCode() : 0);
+        hash = 43 * hash + (this.proridad != null ? this.proridad.hashCode() : 0);
+        hash = 43 * hash + (this.fecha != null ? this.fecha.hashCode() : 0);
+        hash = 43 * hash + (this.proceso != null ? this.proceso.hashCode() : 0);
+        hash = 43 * hash + this.cantidad;
+        hash = 43 * hash + (this.robot != null ? this.robot.hashCode() : 0);
+        hash = 43 * hash + (this.estado != null ? this.estado.hashCode() : 0);
+        hash = 43 * hash + (this.equipo != null ? this.equipo.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final OrdenFabricacion other = (OrdenFabricacion) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if ((this.codigo == null) ? (other.codigo != null) : !this.codigo.equals(other.codigo)) {
+            return false;
+        }
+        if ((this.descripcion == null) ? (other.descripcion != null) : !this.descripcion.equals(other.descripcion)) {
+            return false;
+        }
+        if (this.proridad != other.proridad) {
+            return false;
+        }
+        if (this.fecha != other.fecha && (this.fecha == null || !this.fecha.equals(other.fecha))) {
+            return false;
+        }
+        if (this.proceso != other.proceso && (this.proceso == null || !this.proceso.equals(other.proceso))) {
+            return false;
+        }
+        if (this.cantidad != other.cantidad) {
+            return false;
+        }
+        if (this.robot != other.robot && (this.robot == null || !this.robot.equals(other.robot))) {
+            return false;
+        }
+        if (this.estado != other.estado) {
+            return false;
+        }
+        if (this.equipo != other.equipo && (this.equipo == null || !this.equipo.equals(other.equipo))) {
+            return false;
+        }
+        return true;
+    }
+
+    
 }

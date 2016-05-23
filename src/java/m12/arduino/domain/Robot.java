@@ -3,6 +3,8 @@ package m12.arduino.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -37,18 +39,18 @@ public class Robot implements Serializable {
     private EstadoRobot estado;
     @JsonIgnore
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER, mappedBy = "robot")
-    private List<OrdenFabricacion> ordenes;
+    private Set<OrdenFabricacion> ordenes;
 
     {
-        ordenes = new ArrayList();
+        ordenes = new TreeSet();
         ubicacion = new Ubicacion();
     }
 
-    public List<OrdenFabricacion> getOrdenes() {
+    public Set<OrdenFabricacion> getOrdenes() {
         return ordenes;
     }
 
-    public void setOrdenes(List<OrdenFabricacion> ordenes) {
+    public void setOrdenes(Set<OrdenFabricacion> ordenes) {
         this.ordenes = ordenes;
     }
 
@@ -94,5 +96,9 @@ public class Robot implements Serializable {
     
     public String getFullName(){
         return this.getId_robot()+" - "+this.getNombre();
+    }
+    
+    public void addOrden(OrdenFabricacion oF) {
+        this.getOrdenes().add(oF);
     }
 }
