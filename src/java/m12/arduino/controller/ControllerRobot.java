@@ -106,7 +106,7 @@ public class ControllerRobot {
         List<Robot> rob = sR.listarRobots("id_robot",id_robot,"nombre",nombre,"lugar",lugar,"estado");
         System.out.println(rob+"wiglewiglewWERWER");
 //        List<Trabajador> trab = sT.listarTrabajadores();
-          //List<Robot> rob = sR.listarRobots();
+          List<Robot> rob = sR.listarRobots();
         if(rob !=null){
                    try {
              ObjectMapper mapperObj = new ObjectMapper();
