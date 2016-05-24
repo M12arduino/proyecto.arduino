@@ -11,8 +11,9 @@
 <jsp:include page="navBar.jsp"></jsp:include>
 <link rel="stylesheet" href="${base}/resources/styles/CrudGeneral.css"/>
 <script type="text/javascript" src="${base}/resources/js/crudRobot.js"></script>
+<script type="text/javascript" src="${base}/resources/js/validaCrudRobot.js"></script>
     <div class="container">
-        <form:form action="${base}/robot" method="POST" id="form">
+        <form:form name="MyForm" action="${base}/robot" method="POST" id="form">
             <div class="row search-form">
                 <div class="col-md-4">
                     <h4 class="colorLabel">Criterios de búsqueda:</h4>
@@ -62,31 +63,36 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="id_robot">Id Equipo:</label>
                             <div class="col-sm-10">
-                                <form:input path="id_robot" id="id_robot" class="form-control"/>
+                                <form:input name="id_robot" path="id_robot" id="id_robot" class="form-control"/>
+                                <span class="alert-danger" id="id_robot_error">ID erroneo.</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="nombre">Nombre:</label>
                             <div class="col-sm-10">
-                                <form:input path="nombre" id="nombre" class="form-control" />
+                                <form:input name="nombre" path="nombre" id="nombre" class="form-control" />
+                                <span class="alert-danger" id="nombre_error">Nombre erroneo.</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="lugar">Lugar:</label>
                             <div class="col-sm-10">
-                                <form:input path="lugar" class="form-control" id="lugar"/>
+                                <form:input name="lugar" path="lugar" class="form-control" id="lugar"/>
+                                <span class="alert-danger" id="lugar_error">Lugar erroneo.</span>
                             </div>
                         </div> 
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="coorX">CoorX:</label>
                             <div class="col-sm-10">
-                                <form:input path="coorX" class="form-control" id="coorX"/>
+                                <form:input name="coorX" path="coorX" class="form-control" id="coorX"/>
+                                <span class="alert-danger" id="coorX_error">Coor X erronea.</span>
                             </div>
                         </div> 
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="coorY">CoorY:</label>
                             <div class="col-sm-10">
-                                <form:input path="coorY" class="form-control" id="coorY"/>
+                                <form:input name="coorY" path="coorY" class="form-control" id="coorY"/>
+                                <span class="alert-danger" id="coorY_error">Coor Y erronea.</span>
                             </div>
                         </div> 
                         <div class="form-group">

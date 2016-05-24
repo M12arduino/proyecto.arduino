@@ -57,7 +57,7 @@ $(document).ready(function () {
 
     $("#search").on("click", refrescaTabla);
 
-    $("#editar").on("click", editarProceso);
+    //$("#editar").on("click", editarProceso);
 
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar este proceso?")) {
@@ -82,7 +82,7 @@ $(document).ready(function () {
                 },
                 beforeSend: function () {
                     $(".edit_box .waiting_wrapper").show();
-                },
+                }
             });
         }
     });
@@ -97,7 +97,7 @@ function prepareCrudProceso() {
         $("#results").hide();
         var id = $(this).find("td:nth-child(1)").html();
         for (var i = 0; i < actions.length; i++) {
-            if (actions[i].id == id) {
+            if (actions[i].id === id) {
                 var auxactions = actions[i].acciones;
             }
         }
@@ -105,35 +105,39 @@ function prepareCrudProceso() {
         añadirAccionesPre(auxactions);
     });
 }
+
 function añadirAccionesPre(arrayAcciones) {
     for (var i = 0; i < arrayAcciones.length; i++) {
         var ab = "";
         var ce = "";
-        if (arrayAcciones[i].abrirPinza == true)
+        if (arrayAcciones[i].abrirPinza === true)
             ab = "selected";
         else
             ce = "selected";
-        str = "<div class='accion'><div class='col-md-3'>Pos X: <input type='number' class='form-control posX' value='" + arrayAcciones[i].posX + "'/></div>";
-        str += "<div class='col-md-3'>Pos Y: <input type='number' class='form-control posY' value='" + arrayAcciones[i].posY + "'/></div>";
-        str += "<div class='col-md-3'>Pos Z: <input type='number' class='form-control posZ' value='" + arrayAcciones[i].posZ + "'/></div>";
+        str = "<div class='accion'><div class='col-md-3'>Pos X: <input name='pos' type='number' class='form-control posX' value='" + arrayAcciones[i].posX + "'/></div>";
+        str += "<div class='col-md-3'>Pos Y: <input name='pos' type='number' class='form-control posY' value='" + arrayAcciones[i].posY + "'/></div>";
+        str += "<div class='col-md-3'>Pos Z: <input name='pos' type='number' class='form-control posZ' value='" + arrayAcciones[i].posZ + "'/></div>";
         str += "<div class='col-md-3'>Pinza: <select class='form-control abP'>\n\
         <option value='1' " + ab + ">Abierta</option><option value='0' " + ce + ">Cerrada</option></select></div>";
         str += "</div>";
-        $("#accionesButton").before(str);
+        $("#pos_error").before(str);
+        asignaManejadores();
     }
 }
 
 function añadirAccion() {
     var newInput = "<div class='accion'>";
-    newInput += "<div class='col-md-3'>Pos X: <input type='number' class='form-control posX' /></div>";
-    newInput += "<div class='col-md-3'>Pos Y: <input type='number' class='form-control posY' /></div>";
-    newInput += "<div class='col-md-3'>Pos Z: <input type='number' class='form-control posZ' /></div>";
+    newInput += "<div class='col-md-3'>Pos X: <input name='pos' type='number' class='form-control posX' /></div>";
+    newInput += "<div class='col-md-3'>Pos Y: <input name='pos' type='number' class='form-control posY' /></div>";
+    newInput += "<div class='col-md-3'>Pos Z: <input name='pos' type='number' class='form-control posZ' /></div>";
     newInput += "<div class='col-md-3'>Pinza:<select class='form-control abP'>\n\
         <option value='1' >Abierta</option><option value='0' selected>Cerrada</option></select></div>";
 
-    $("#accionesButton").before(newInput);
-
+    $("#pos_error").before(newInput);
+    
+    asignaManejadores();
 }
+
 function recuperaAcciones() {
     var arrayObj = [];
     var obj;
@@ -148,9 +152,10 @@ function recuperaAcciones() {
         obj.posZ = z;
         obj.abrirPinza = ab;
         arrayObj.push(obj);
-    })
+    });
     return arrayObj;
 }
+
 function cleanCrudProceso() {
     $("#id").val(null);
     $("#codigo").val(null);
@@ -178,6 +183,6 @@ function editarProceso() {
         },
         beforeSend: function () {
             $(".edit_box .waiting_wrapper").show();
-        },
+        }
     });
 }

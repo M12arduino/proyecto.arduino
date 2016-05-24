@@ -7,13 +7,13 @@
 var codigo;
 var descripcion;
 var acciones;
-var pinzas;
+//var pinzas;
 var mandar;
 var myform;
 
-window.onload = function () {
-    asignaManejadores();
-};
+//window.onload = function () {
+//    asignaManejadores();
+//};
 
 function asignaManejadores(){
     myform = document.forms['MyForm'];
@@ -21,8 +21,8 @@ function asignaManejadores(){
     codigo = myform['codigo'];
     descripcion = myform['descripcion'];
     acciones = myform['pos'];
-    pinzas = myform['pin'];
-    mandar = myform['mandar'];
+    //pinzas = myform['pin'];
+    mandar = myform['editar'];
 
     mandar.onclick = ProcesoValidator;
     
@@ -37,15 +37,15 @@ function asignaManejadores(){
         acciones[i].onkeyup = validaElem;
     }
     
-    if (pinzas.length > 1) {
-        for (var i = 0; i < pinzas.length; i++) {
-            pinzas[i].onchange = validaElem;
-            pinzas[i].onkeyup = validaElem;
-        }
-    }else{
-        pinzas.onchange = validaElem;
-        pinzas.onkeyup = validaElem;
-    }
+//    if (pinzas.length > 1) {
+//        for (var i = 0; i < pinzas.length; i++) {
+//            pinzas[i].onchange = validaElem;
+//            pinzas[i].onkeyup = validaElem;
+//        }
+//    }else{
+//        pinzas.onchange = validaElem;
+//        pinzas.onkeyup = validaElem;
+//    }
 }
 
 function validaElem (){	
@@ -74,18 +74,18 @@ function valida (elem){
         case "pos":
             return esPos(elem,getIdMsg(elem));
             break;
-        case "pin":
-            return esPinza(elem,getIdMsg(elem));
-            break;
+//        case "pin":
+//            return esPinza(elem,getIdMsg(elem));
+//            break;
     }	
 }
 
 function ProcesoValidator(){
     var error = null;
 	
-        if (!valida(pinzas)){
-		error = pinzas;
-	};
+//        if (!valida(pinzas)){
+//		error = pinzas;
+//	};
         if (!valida(acciones)){
 		error = acciones;
 	};
@@ -101,7 +101,7 @@ function ProcesoValidator(){
             return false;
 	}
         
-        prepare();
+        editarProceso();
 	return true;
 }
 
@@ -117,9 +117,9 @@ function esPos(elem, idError){
     return tractarError(validaPos(elem.value),elem,idError);
 }
 
-function esPinza(elem, idError){
-    return tractarError(validaPinza(elem.value),elem,idError);
-}
+//function esPinza(elem, idError){
+//    return tractarError(validaPinza(elem.value),elem,idError);
+//}
 /////////////////////////////////
 function validaCodigo(cod){
     var codRegexp = /^[A-Z]{1}[0-9]{3}$/;
@@ -136,10 +136,10 @@ function validaPos(pos){
     return pos.match(posRegexp);
 }
 
-function validaPinza(pinza){
-    var pinzaRegexp = /^[0-1]{1}$/;
-    return pinza.match(pinzaRegexp);
-}
+//function validaPinza(pinza){
+//    var pinzaRegexp = /^[0-1]{1}$/;
+//    return pinza.match(pinzaRegexp);
+//}
 /////////////////////////////////////
 function getIdMsg(elem){
     var ele = "";
