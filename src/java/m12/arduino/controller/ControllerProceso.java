@@ -17,6 +17,7 @@ import m12.arduino.service.ServiceProceso;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 import org.hibernate.HibernateException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,10 +69,13 @@ public class ControllerProceso {
     public @ResponseBody String actualizarProceso(@RequestBody ProcesoForm pf){
         String msg = "";
         try {
-            Proceso p = new Proceso();
-            p.setId(pf.getId());
+            Proceso p = sP.buscarProceso("id",pf.getId());
             p.setCodigo(pf.getCodigo());
             p.setDescripcion(pf.getDescripcion());
+            List<Accion> acciones = pf.getAcciones();
+            for (Accion acc : acciones){
+                p.addAccion(acc);
+            }
             sP.actualizarProceso(p);
             msg = "Proces updated";
         } catch (Exception e) {
@@ -86,13 +90,10 @@ public class ControllerProceso {
         try {
             Proceso p = new Proceso();
             p = sP.buscarProceso(pf.getCodigo());
-            for (Accion acc : p.getAcciones()){
-                acc.setProceso(null);
-            }
             sP.eliminarProceso(p);
-            msg = "Proces deleted";
-        } catch (HibernateException e) {
-            msg = "delete fail "+e.getMessage();
+            msg = "<div class=\"alert alert-succes\">El Proceso se ha eliminado correctamente</div>";
+        } catch (ConstraintViolationException e) {
+            msg = "<div class=\"alert alert-danger\">El Proceso no se puedo eliminar pues hay ordenes de fabricación utilizándolo</div>";
         }
         return msg;
     }

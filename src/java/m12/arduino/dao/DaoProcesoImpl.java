@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import m12.arduino.domain.Accion;
 import m12.arduino.domain.Proceso;
 import org.hibernate.Query;
 import org.hibernate.Session;
