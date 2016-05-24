@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <label for="nombreEquipo">Nombre: </label>
                         <form:input name="nombre" path="nombre" class="form-control" id="nombreEquipo" />
-                        <span class="alert-danger" id="nombre_error">Nombre erroneo (solo letras).</span>
+                        <span class="alert-danger" id="nombre_error">Nombre erroneo.</span>
                     </div>
                     <div class="checkbox">
                         <label class="checkbox-inline">
