@@ -11,9 +11,6 @@
 <jsp:include page="navBar.jsp"></jsp:include>
 <link rel="stylesheet" href="${base}/resources/styles/CrudGeneral.css"/>
 <script type="text/javascript" src="${base}/resources/js/crudRobot.js"></script>
-<sec:authorize access="hasRole('LEADER')">
-    <jsp:include page="adminPanel.jsp"></jsp:include>
-</sec:authorize>
     <div class="container">
         <form:form action="${base}/robot" method="POST" id="form">
             <div class="row search-form">

@@ -11,7 +11,7 @@
 <jsp:include page="navBar.jsp"></jsp:include>
 <script src="${base}/resources/js/validaTrabajador.js" type="text/javascript"></script>
 <link href="${base}/resources/styles/altaGeneral.css" rel="stylesheet">
-<sec:authorize access="hasRole('LEADER')">
+<sec:authorize access="hasRole('rol_admin')">
     <jsp:include page="adminPanel.jsp"></jsp:include>
 </sec:authorize>
     <div class="container">

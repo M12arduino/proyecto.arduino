@@ -15,9 +15,6 @@
 <link rel="stylesheet" href="${base}/resources/styles/CrudGeneral.css"/>
 <script type="text/javascript" src="${base}/resources/js/crudTrabajador.js"></script>
 <script type="text/javascript" src="${base}/resources/js/validaCrudTrabajador.js"></script>
-<sec:authorize access="hasRole('LEADER')">
-    <jsp:include page="adminPanel.jsp"></jsp:include>
-</sec:authorize>
 <form:form name="MyForm" action="${base}/trabajador" method="POST" id="form" >
         <div class="container">
             <div class="row search-form">

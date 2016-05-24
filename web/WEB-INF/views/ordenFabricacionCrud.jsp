@@ -12,9 +12,6 @@
 <script type="text/javascript" src="${base}/resources/js/crudOrdenFabricacion.js"></script>
 <script type="text/javascript" src="${base}/resources/js/validaCrudOrdenFabricacion.js"></script>
 <link href="/A_Spring_Inicial/resources/styles/altaGeneral.css" rel="stylesheet">
-<sec:authorize access="hasRole('LEADER')">
-    <jsp:include page="adminPanel.jsp"></jsp:include>
-</sec:authorize>
 
 <div class="tableResults">
     <form:form name="MyForm" action="${base}/ordenFabricacion" method="POST" id="form">

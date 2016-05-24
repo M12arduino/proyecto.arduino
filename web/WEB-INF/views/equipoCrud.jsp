@@ -11,9 +11,6 @@
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
 <script type="text/javascript" src="${base}/resources/js/crudEquipo.js"></script>
-<sec:authorize access="hasRole('LEADER')">
-    <jsp:include page="adminPanel.jsp"></jsp:include>
-</sec:authorize>
     <div class="container">
     <form:form action="${base}/equipo" method="POST" id="form">
         <div class="page-header">
