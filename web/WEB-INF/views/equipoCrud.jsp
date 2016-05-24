@@ -13,10 +13,6 @@
 <link rel="stylesheet" href="${base}/resources/styles/CrudGeneral.css"/>
 <script type="text/javascript" src="${base}/resources/js/crudEquipo.js"></script>
 <script type="text/javascript" src="${base}/resources/js/validaCrudEquipo.js"></script>
-
-<sec:authorize access="hasRole('LEADER')">
-    <jsp:include page="adminPanel.jsp"></jsp:include>
-</sec:authorize>
     <div class="container">
     <form:form name="MyForm" action="${base}/equipo" method="POST" id="form">
         <div class="page-header">
