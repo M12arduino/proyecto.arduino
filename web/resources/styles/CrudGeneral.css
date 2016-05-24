@@ -24,14 +24,18 @@ and open the template in the editor.
     border: 1px inset #84D5D8;
     border-radius:0.5em;
 }
-le tr.odd, #datatable tr.even{
+le tr.odd, #datatable tr.even,#datatable_block{
     cursor:pointer;
 }
+
 #datatable tr.odd:hover, #datatable tr.even:hover{
     color:white;
     background:#00979C!important;
 }
-
+#datatable_block tr.odd:hover, #datatable_block tr.even:hover{
+    color:white;
+    background:#00979C!important;
+}
 .iconoBoton{
     cursor:pointer;
     font-size:2em;
@@ -127,7 +131,7 @@ le tr.odd, #datatable tr.even{
 #datatable_wrapper{
     padding:1em;
 }
-#datatable th{
+#datatable th,#datatable_block th{
     background:#84D5D8;
 }
 .search-form{

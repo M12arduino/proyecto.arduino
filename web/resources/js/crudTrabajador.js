@@ -35,11 +35,12 @@ $(document).ready(function () {
         $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
         $(".datatable-form .waiting_wrapper").hide();
         var array = JSON.parse(response);
+        alert(array);
         if (array.length > 0) {
             $("#errorTable").hide();
             var titles = dataTablesDevuelveProps(array);
             var dataSet = dataTablesDevuelveValues(array);
-            table = $("#datatable").DataTable({
+            table = $("#datatable_block").DataTable({
                 data: dataSet,
                 columns: titles,
                 destroy: true
@@ -48,7 +49,7 @@ $(document).ready(function () {
         } else {
             if (table)
                 table.destroy();
-            $("#datatable").html("");
+            $("datatable_block").html("");
             $("#errorTable").show();
         }
     }
@@ -87,6 +88,7 @@ $(document).ready(function () {
         data.password = $("#password").val();
         data.categoria = $("#categoria").val();
         var jsonStr = JSON.stringify(data);
+        alert(jsonStr);
         $.ajax({
             url: getBasePath() + "trabajador/actualizar.htm",
             type: "POST",
@@ -135,7 +137,7 @@ $(document).ready(function () {
     });
 });
 function prepareCrudTrabajador() {
-    $("#datatable tr").not(":first").on("click", function () {
+    $("#datatable_block tr").not(":first").on("click", function () {
         $(".form_edit").show();
         $("#id_trab").val($(this).find("td:nth-child(1)").html());
         $("#nif").val($(this).find("td:nth-child(2)").html());

@@ -34,10 +34,6 @@
         <script type="text/javascript" src="${base}/resources/js/adminPanel.js"></script>
         <script type="text/javascript" src="${base}/resources/js/functions.js"></script>
         <script type="text/javascript" src="${base}/resources/js/procesoAlta.js"></script>
-        <script type="text/javascript" src="${base}/resources/js/crudTrabajador.js"></script>
-        <script type="text/javascript" src="${base}/resources/js/crudOrdenFabricacion.js"></script>
-        <script type="text/javascript" src="${base}/resources/js/crudProceso.js"></script>
-        <script type="text/javascript" src="${base}/resources/js/crudRobot.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/dataTables.bootstrap.min.js"></script>
         
