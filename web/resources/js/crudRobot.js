@@ -168,4 +168,6 @@ function cleanCrudRobot() {
     $("#nombre").val(null);
     $("#lugar").val(null);
     $("#estado").val(null);
+    $("#coorX").val(null);
+    $("#coorY").val(null);
 }

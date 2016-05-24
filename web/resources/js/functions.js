@@ -42,7 +42,11 @@ function dataTablesDevuelveValues(array) {
 }
 
 function returnFirstProperty(obj) {
-    return  obj[Object.keys(obj)[0]]
+    if (typeof obj[Object.keys(obj)[0]] == "object"){
+        return obj.length;
+    }else{
+        return obj[Object.keys(obj)[0]];
+    }
 }
 function dataTablesDevuelveProps(array) {
     var res = [];
