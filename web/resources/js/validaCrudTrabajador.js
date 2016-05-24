@@ -16,8 +16,9 @@ window.onload = function () {
     nombre = myform['nombre'];
     movil = myform['movil'];
     password = myform['password'];
+    editar = myform['editar'];
 
-    myform.onsubmit = OFValidator;
+    editar.onclick = OFValidator;
     nif.onchange = validaElem;
     nombre.onchange = validaElem;
     movil.onchange = validaElem;
@@ -76,6 +77,7 @@ function OFValidator(){
             return false;
 	}
         
+        editaTrabajador();
 	return true;
 }
 

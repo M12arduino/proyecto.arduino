@@ -78,32 +78,8 @@ $(document).ready(function () {
     }
 
     $("#search").on("click", refrescaTabla);
-    $("#editar").on("click", function () {
-        var data = {};
-        data.id_trab = $("#id_trab").val();
-        data.nif = $("#nif").val();
-        data.nombre = $("#nombre").val();
-        data.movil = $("#movil").val();
-        data.password = $("#password").val();
-        data.categoria = $("#categoria").val();
-        var jsonStr = JSON.stringify(data);
-        $.ajax({
-            url: getBasePath() + "trabajador/actualizar.htm",
-            type: "POST",
-            data: jsonStr,
-            contentType: "application/json; charset=utf-8",
-            cache: false,
-            processData: false,
-            success: function (response) {
-                refrescaTabla();
-                $("#results_info").html(response);
-                $(".edit_box .waiting_wrapper").hide();
-            },
-            beforeSend: function () {
-                $(".edit_box .waiting_wrapper").show();
-            },
-        });
-    });
+    //$("#editar").on("click", function () {
+    
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar este usuario?")) {
             var data = {};
@@ -134,6 +110,7 @@ $(document).ready(function () {
         }
     });
 });
+
 function prepareCrudTrabajador() {
     $("#datatable tr").not(":first").on("click", function () {
         $(".form_edit").show();
@@ -156,6 +133,31 @@ function cleanCrudTrabajador() {
     $("#categoria").val(null);
 }
 
-
+function editaTrabajador(){
+        var data = {};
+        data.id_trab = $("#id_trab").val();
+        data.nif = $("#nif").val();
+        data.nombre = $("#nombre").val();
+        data.movil = $("#movil").val();
+        data.password = $("#password").val();
+        data.categoria = $("#categoria").val();
+        var jsonStr = JSON.stringify(data);
+        $.ajax({
+            url: getBasePath() + "trabajador/actualizar.htm",
+            type: "POST",
+            data: jsonStr,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            processData: false,
+            success: function (response) {
+                refrescaTabla();
+                $("#results_info").html(response);
+                $(".edit_box .waiting_wrapper").hide();
+            },
+            beforeSend: function () {
+                $(".edit_box .waiting_wrapper").show();
+            },
+        });
+    }
 
 
