@@ -106,7 +106,6 @@ public class ControllerTrabajador {
         String nif = trabajador.getNif();
         String nombre = trabajador.getNombre();
         CategoriaTrabajador categoria = trabajador.getCategoria();
-        System.out.println(categoria+"WEREWREWREWREW");
         if (categoria == CategoriaTrabajador.INDEFINIDO) categoria = null;
         String response = null;
         List<Trabajador> trab = sT.listarTrabajadores("nif",nif,"nombre",nombre,"categoria",categoria);

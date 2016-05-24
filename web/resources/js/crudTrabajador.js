@@ -35,7 +35,6 @@ $(document).ready(function () {
         $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
         $(".datatable-form .waiting_wrapper").hide();
         var array = JSON.parse(response);
-        alert(array);
         if (array.length > 0) {
             $("#errorTable").hide();
             var titles = dataTablesDevuelveProps(array);
@@ -49,7 +48,7 @@ $(document).ready(function () {
         } else {
             if (table)
                 table.destroy();
-            $("datatable_block").html("");
+            $("#datatable_block").html("");
             $("#errorTable").show();
         }
     }
@@ -88,7 +87,6 @@ $(document).ready(function () {
         data.password = $("#password").val();
         data.categoria = $("#categoria").val();
         var jsonStr = JSON.stringify(data);
-        alert(jsonStr);
         $.ajax({
             url: getBasePath() + "trabajador/actualizar.htm",
             type: "POST",

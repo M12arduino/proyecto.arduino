@@ -66,7 +66,11 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
             Object val =  e.getValue();
-            query.setParameter(attr,"%"+ val+"%");      
+            if (val instanceof String){
+                query.setParameter(attr,"%"+ val+"%");
+            }else{
+                query.setParameter(attr, val);
+            }      
         }
         List<Trabajador> res= query.list();
         acabaOperacion();

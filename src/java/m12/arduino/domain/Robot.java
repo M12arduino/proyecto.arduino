@@ -39,7 +39,7 @@ public class Robot implements Serializable, Maketable {
     private String nombre;
     @Embedded
     private Ubicacion ubicacion;
-    @Enumerated(EnumType.STRING)
+    @Enumerated (value = EnumType.STRING)
     private EstadoRobot estado;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "robot")
