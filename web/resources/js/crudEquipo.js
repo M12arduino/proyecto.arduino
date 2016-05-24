@@ -7,61 +7,7 @@
 
 $(document).ready(function () {
     var table = null;
-//    $("#search").on("click", function () {
-//        var data = {};
-//        data.nif = $("#nifSearchVal").val();
-//        data.nombre = $("#nombreSearchVal").val();
-//        data.categoria = $("#categoriaSearchVal").val();
-//        var jsonStr = JSON.stringify(data);
-//        $.ajax({
-//            url: getBasePath() + "trabajador/buscar.htm",
-//            type: "POST",
-//            data: jsonStr,
-//            contentType: "application/json; charset=utf-8",
-//            async: false,
-//            cache: false,
-//            processData: false,
-//            success: gestionaResultadoAjax,
-//            error: function (xhr) {
-//                var err = eval("(" + xhr.responseText + ")");
-//                alert(err.Message + "error");
-//
-//            }
-//        });
-//    });
 
-    function gestionaResultadoAjax(response) {
-        $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
-        var array = JSON.parse(response);
-        if (array.length > 0) {
-            $("#errorTable").hide();
-            var titles = dataTablesDevuelveProps(array);
-            var dataSet = dataTablesDevuelveValues(array);
-            table = $("#datatable").DataTable({
-                data: dataSet,
-                columns: titles,
-                destroy: true,
-                language: {
-                    lengthMenu: "Muestra _MENU_ registros por página",
-                    info: "Mostrando _START_ hasta _END_ de un total de _TOTAL_ entradas",
-                    search: "Búsqueda",
-                    paginate: {
-                        first: "Primero",
-                        last: "Último",
-                        next: "Siguiente",
-                        previous: "Previo"
-                    }
-                }
-            });
-            $("#datatable_wrapper").first(".row").find(".col-sm-6").addClass("col-md-6");
-            prepareCrud();
-        } else {
-            if (table)
-                table.destroy();
-            $("#datatable").html("");
-            $("#errorTable").show();
-        }
-    }
     $("#guardaModal").on("click", function () {
         var str = "[";
         $("#trabajadoresModal li").each(function () {
@@ -76,24 +22,6 @@ $(document).ready(function () {
         populateTrabajadores(array);
         $("#modal").modal("toggle");
     });
-    function refrescaTabla() {
-        var data = {};
-        data.id_equipo = $("#id_equipoSearchVal").val();
-        data.nombre = $("#nombreSearchVal").val();
-        var jsonStr = JSON.stringify(data);
-        $.ajax({
-            url: getBasePath() + "equipo/buscar.htm",
-            type: "POST",
-            data: jsonStr,
-            contentType: "application/json; charset=utf-8",
-            cache: false,
-            processData: false,
-            success: gestionaResultadoAjax,
-            error: function (xhr) {
-                var err = eval("(" + xhr.responseText + ")");
-            }
-        });
-    }
 
     $("#search").on("click", refrescaTabla);
     //$("#editar").on("click", function () {
@@ -153,6 +81,59 @@ $(document).ready(function () {
         }
     });
 });
+
+function gestionaResultadoAjax(response) {
+        $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
+        var array = JSON.parse(response);
+        if (array.length > 0) {
+            $("#errorTable").hide();
+            var titles = dataTablesDevuelveProps(array);
+            var dataSet = dataTablesDevuelveValues(array);
+            table = $("#datatable").DataTable({
+                data: dataSet,
+                columns: titles,
+                destroy: true,
+                language: {
+                    lengthMenu: "Muestra _MENU_ registros por página",
+                    info: "Mostrando _START_ hasta _END_ de un total de _TOTAL_ entradas",
+                    search: "Búsqueda",
+                    paginate: {
+                        first: "Primero",
+                        last: "Último",
+                        next: "Siguiente",
+                        previous: "Previo"
+                    }
+                }
+            });
+            $("#datatable_wrapper").first(".row").find(".col-sm-6").addClass("col-md-6");
+            prepareCrud();
+        } else {
+            if (table)
+                table.destroy();
+            $("#datatable").html("");
+            $("#errorTable").show();
+        }
+    }
+
+function refrescaTabla() {
+    var data = {};
+    data.id_equipo = $("#id_equipoSearchVal").val();
+    data.nombre = $("#nombreSearchVal").val();
+    var jsonStr = JSON.stringify(data);
+    $.ajax({
+        url: getBasePath() + "equipo/buscar.htm",
+        type: "POST",
+        data: jsonStr,
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        processData: false,
+        success: gestionaResultadoAjax,
+        error: function (xhr) {
+            var err = eval("(" + xhr.responseText + ")");
+        }
+    });
+}
+
 function prepareCrud() {
     $("#datatable tr").not(":first").on("click", function () {
         $(".form_edit").show();

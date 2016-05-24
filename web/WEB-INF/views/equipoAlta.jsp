@@ -5,6 +5,7 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
 <script src="${base}/resources/js/validaEquipo.js" type="text/javascript"></script>
@@ -27,10 +28,10 @@
                     <div class="form-group">
                         <label for="nombreEquipo">Nombre: </label>
                         <form:input name="nombre" path="nombre" class="form-control" id="nombreEquipo" />
-                        <span class="alert-danger" id="nombre_error">Nombre erroneo (solo letras).</span>
+                        <span class="alert-danger" id="nombre_error">Nombre erroneo.</span>
                     </div>
                     <div class="checkbox">
-                        <label>
+                        <label class="checkbox-inline">
                             <form:checkboxes items="${listaTrabajadores}"  itemValue="nif" path="nifs" itemLabel="nombre"/>
                         </label>
                     </div>

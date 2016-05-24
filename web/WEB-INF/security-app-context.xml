@@ -23,32 +23,20 @@
         <!--  <logout /> -->
         <logout logout-success-url="/login.htm" />
     </http>
- 
- <!--
-    <bean id="myDataSource"
-      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
- 
-      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-      <property name="url" value="jdbc:postgresql://localhost:5432/proyecto" />
-      <property name="username" value="hibernate" />
-      <property name="password" value="hibernate" />
-    </bean>
--->
+
     <authentication-manager>
         <authentication-provider>
             <user-service>
-                <user name="admin" password="admin1" authorities="rol_admin" />
-                <user name="user" password="user1" authorities="rol_user" /> 
+                <user name="admin" password="admin1" authorities="LEADER" />
             </user-service>
-        </authentication-provider>
+        </authentication-provider> 
  
-        <!-- authentication from database 
+        <!-- authentication from database -->
         <authentication-provider>
-            <jdbc-user-service data-source-ref="myDataSource"
-                users-by-username-query="select username,password, enabled from users where username=?"
-                authorities-by-username-query="Select username, concat('ROLE_',user_role) user_role from user_roles where username=?" />
+            <jdbc-user-service data-source-ref="dataSource"
+                users-by-username-query="select nombre,password, COUNT(id_trab) from trabajador where nombre=? GROUP BY id_trab"
+                authorities-by-username-query="Select nombre, categoria from trabajador where nombre=?" />
         </authentication-provider>
-        -->
-        
     </authentication-manager>
+    
 </beans:beans>

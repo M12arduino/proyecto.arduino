@@ -4,29 +4,22 @@
  * and open the template in the editor.
  */
 
-var nif;
+var id_equipo;
 var nombre;
-var movil;
-var password;
 var myform;
+var edita;
 
 window.onload = function () {
     myform = document.forms['MyForm'];
-    nif = myform['nif'];
+    id_equipo = myform['id_equipo'];
     nombre = myform['nombre'];
-    movil = myform['movil'];
-    password = myform['password'];
-    editar = myform['editar'];
+    edita = myform['editar']
 
-    editar.onclick = TrabajadorValidator;
-    nif.onchange = validaElem;
+    edita.onclick = EquipoValidator;
+    id_equipo.onchange = validaElem;
     nombre.onchange = validaElem;
-    movil.onchange = validaElem;
-    password.onchange = validaElem;
-    nif.onkeyup = validaElem;
+    id_equipo.onkeyup = validaElem;
     nombre.onkeyup = validaElem;
-    movil.onkeyup = validaElem;
-    password.onkeyup = validaElem;
 };
 
 function validaElem (){	
@@ -41,35 +34,23 @@ function valida (elem){
     }
     
     switch (camp){
-        case "nif":
-            return esNif(elem,getIdMsg(elem));
+        case "id_equipo":
+            return esId(elem,getIdMsg(elem));
             break;
         case "nombre":
             return esNombre(elem,getIdMsg(elem));
             break;
-        case "movil":
-            return esMovil(elem,getIdMsg(elem));
-            break;
-        case "password":
-            return esPassword(elem,getIdMsg(elem));
-            break;
     }	
 }
 
-function TrabajadorValidator(){
+function EquipoValidator(){
     var error = null;
 	
-        if (!valida(password)){
-		error = password;
-	};
-        if (!valida(movil)){
-		error = movil;
-	};
         if (!valida(nombre)){
 		error = nombre;
 	};
-        if (!valida(nif)){
-		error = nif;
+        if (!valida(id_equipo)){
+		error = id_equipo;
 	};
 	
 	if (error !== null){
@@ -77,44 +58,26 @@ function TrabajadorValidator(){
             return false;
 	}
         
-        editaTrabajador();
+        editaEquipo();
 	return true;
 }
 
-function esNif(elem, idError){
-    return tractarError(validaNif(elem.value),elem,idError);	
+function esId(elem, idError){
+    return tractarError(validaId(elem.value),elem,idError);	
 }
 
 function esNombre(elem, idError){
     return tractarError(validaNombre(elem.value),elem,idError);
 }
-
-function esMovil(elem, idError){
-    return tractarError(validaMovil(elem.value),elem,idError);
-}
-
-function esPassword(elem, idError){
-    return tractarError(validaPassword(elem.value),elem,idError);
-}
 /////////////////////////////////
-function validaNif(nif){
-    var nifRegexp = /^[0-9]{8}[A-Z]{1}$/;
-    return nif.match(nifRegexp);
+function validaId(id){
+    var idRegexp = /^[A-Z]{2}[0-9]{4}$/;
+    return id.match(idRegexp);
 }
 
 function validaNombre(nombre){
-    var nombreRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]{1,50}$/;
+    var nombreRegexp = /^[A-Za-z0-9]{1}\s?[A-Za-z0-9\s]{0,19}$/;
     return nombre.match(nombreRegexp);
-}
-
-function validaMovil(movil){
-    var movilRegexp = /^6[0-9]{8}$/;
-    return movil.match(movilRegexp);
-}
-
-function validaPassword(pass){
-    var passRegexp = /^[A-Za-z0-9]{1,25}$/;
-    return pass.match(passRegexp);
 }
 
 function getIdMsg(elem){
