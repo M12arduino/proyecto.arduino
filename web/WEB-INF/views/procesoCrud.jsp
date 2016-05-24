@@ -9,13 +9,11 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
-<sec:authorize access="hasRole('rol_admin')">
-    <jsp:include page="adminPanel.jsp"></jsp:include>
-</sec:authorize>
 <link rel="stylesheet" href="${base}/resources/styles/CrudGeneral.css"/>
 <script type="text/javascript" src="${base}/resources/js/crudProceso.js"></script>
-<!DOCTYPE html>
-<body>
+<sec:authorize access="hasRole('LEADER')">
+    <jsp:include page="adminPanel.jsp"></jsp:include>
+</sec:authorize>
     <div class="container">
         <form:form action="${base}/proceso" method="POST" id="form">
             <div class="page-header">

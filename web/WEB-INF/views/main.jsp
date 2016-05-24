@@ -8,10 +8,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
-<sec:authorize access="hasRole('3')">
+<sec:authorize access="hasRole('LEADER')">
     <jsp:include page="adminPanel.jsp"></jsp:include>
 </sec:authorize>
-<sec:authorize access="hasRole('2')">
+<sec:authorize access="hasRole('SENIOR')">
     <jsp:include page="workerPanel.jsp"></jsp:include>
 </sec:authorize>
 <div class="col-md-4 col-md-push-2">
