@@ -5,14 +5,15 @@ function añadirAccion() {
     document.getElementById("numAcciones").value = num;
 
     var newInput = "<div class='accion'>";
-    newInput += "<div class='col-md-3'>Pos X: <input type='number' class='form-control' id='posX" + num + "' /></div>";
-    newInput += "<div class='col-md-3'>Pos Y: <input type='number' class='form-control' id='posY" + num + "' /></div>";
-    newInput += "<div class='col-md-3'>Pos Z: <input type='number' class='form-control' id='posZ" + num + "' /></div>";
-    newInput += "<div class='col-md-3'>Pinza: <input type='number' class='form-control' id='pinza" + num + "' /></div>";
+    newInput += "<div class='col-md-3'>Pos X: <input name='pos' type='number' class='form-control' id='posX" + num + "' /></div>";
+    newInput += "<div class='col-md-3'>Pos Y: <input name='pos' type='number' class='form-control' id='posY" + num + "' /></div>";
+    newInput += "<div class='col-md-3'>Pos Z: <input name='pos' type='number' class='form-control' id='posZ" + num + "' /></div>";
+    newInput += "<div class='col-md-3'>Pinza: <input name='pin' type='number' class='form-control' id='pinza" + num + "' /></div>";
     newInput += "</div><br /><br /><br /><br />";
 
-    $("#buto").before(newInput);
-
+    $("#pos_error").before(newInput);
+    
+    asignaManejadores();
 }
 
 function prepare() {
