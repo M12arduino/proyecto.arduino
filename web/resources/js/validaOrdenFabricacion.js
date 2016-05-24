@@ -86,12 +86,12 @@ function validaCodigo(codigo){
 }
 
 function validaDescripcion(descripcion){
-    var descRegexp = /^[\w\,ñÑáÁéÉíÍóÓúÚ\s]{1,100}$/;
+    var descRegexp = /^[\w\,ñÑáÁéÉíÍóÓúÚ]{1,100}\s?$/;
     return descripcion.match(descRegexp);
 }
 
 function validaCantidad(cantidad){
-    var cantRegexp = /^[0-9]{1,4}$/;
+    var cantRegexp = /^[1-9]+[0-9]{0,3}$/;
     return cantidad.match(cantRegexp);
 }
 
