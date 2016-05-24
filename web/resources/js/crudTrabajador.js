@@ -35,7 +35,6 @@ $(document).ready(function () {
         $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
         $(".datatable-form .waiting_wrapper").hide();
         var array = JSON.parse(response);
-        alert(array);
         if (array.length > 0) {
             $("#errorTable").hide();
             var titles = dataTablesDevuelveProps(array);
@@ -49,7 +48,7 @@ $(document).ready(function () {
         } else {
             if (table)
                 table.destroy();
-            $("datatable_block").html("");
+            $("#datatable_block").html("");
             $("#errorTable").show();
         }
     }
@@ -79,8 +78,36 @@ $(document).ready(function () {
     }
 
     $("#search").on("click", refrescaTabla);
+    $("#editar").on("click", function () {
+        var data = {};
+        data.id_trab = $("#id_trab").val();
+        data.nif = $("#nif").val();
+        data.nombre = $("#nombre").val();
+        data.movil = $("#movil").val();
+        data.password = $("#password").val();
+        data.categoria = $("#categoria").val();
+        var jsonStr = JSON.stringify(data);
+        $.ajax({
+            url: getBasePath() + "trabajador/actualizar.htm",
+            type: "POST",
+            data: jsonStr,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            processData: false,
+            success: function (response) {
+                refrescaTabla();
+                $("#results_info").html(response);
+                $(".edit_box .waiting_wrapper").hide();
+            },
+            beforeSend: function () {
+                $(".edit_box .waiting_wrapper").show();
+            },
+        });
+    });
+
     //$("#editar").on("click", function () {
     
+
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar este usuario?")) {
             var data = {};
