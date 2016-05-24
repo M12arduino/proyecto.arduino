@@ -101,11 +101,12 @@ public class ControllerTrabajador {
         return mV;
     }
     
-    @RequestMapping(value = "/buscar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/buscar",method = RequestMethod.POST)
     public @ResponseBody String buscaTrabajadorAjax(@RequestBody Trabajador trabajador) {
         String nif = trabajador.getNif();
         String nombre = trabajador.getNombre();
         CategoriaTrabajador categoria = trabajador.getCategoria();
+        System.out.println(categoria+"WEREWREWREWREW");
         if (categoria == CategoriaTrabajador.INDEFINIDO) categoria = null;
         String response = null;
         List<Trabajador> trab = sT.listarTrabajadores("nif",nif,"nombre",nombre,"categoria",categoria);

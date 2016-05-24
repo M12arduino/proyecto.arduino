@@ -115,7 +115,7 @@
             </div>
             <div class="col-md-12">
                 <p id="errorTable" class="error"> No hay registros para los criterios seleccionados </p>
-                <table id="datatable" class="table table-bordered table-striped">
+                <table id="datatable_block" class="table table-bordered table-striped">
 
                 </table>
             </div>
