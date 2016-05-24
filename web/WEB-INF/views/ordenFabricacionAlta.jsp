@@ -11,6 +11,9 @@
 <jsp:include page="navBar.jsp"></jsp:include>
 <script src="${base}/resources/js/validaOrdenFabricacion.js" type="text/javascript"></script>
 <link href="/A_Spring_Inicial/resources/styles/altaGeneral.css" rel="stylesheet">
+<sec:authorize access="hasRole('LEADER')">
+    <jsp:include page="adminPanel.jsp"></jsp:include>
+</sec:authorize>
     <div class="container">
         <br /><br />
         <div class="col-md-3"></div>

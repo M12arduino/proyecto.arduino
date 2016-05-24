@@ -9,7 +9,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
-<sec:authorize access="hasRole('rol_admin')">
+<sec:authorize access="hasRole('LEADER')">
     <jsp:include page="adminPanel.jsp"></jsp:include>
 </sec:authorize>
 <form:form action="${base}/equipo/altaOrden.htm" method="POST">
