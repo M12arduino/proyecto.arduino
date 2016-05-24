@@ -10,13 +10,13 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link rel="stylesheet" href="${base}/resources/styles/CrudGeneral.css"/>
 <script type="text/javascript" src="${base}/resources/js/crudTrabajador.js"></script>
+<script type="text/javascript" src="${base}/resources/js/validaCrudTrabajador.js"></script>
 <!DOCTYPE html>
 
 
-<form:form action="${base}/trabajador" method="POST" id="form" >
+<form:form name="MyForm" action="${base}/trabajador" method="POST" id="form" >
     <body>
         <div class="container">
-
             <div class="row search-form">
                 <div class="col-md-4">
                     <h4 class="colorLabel">Criterios de búsqueda:</h4>
@@ -56,25 +56,29 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="nif">Nif:</label>
                             <div class="col-sm-10">
-                                <form:input path="nif" id="nif" placeholder="nif" class="form-control"/>
+                                <form:input name="nif" path="nif" id="nif" placeholder="nif" class="form-control"/>
+                                <span class="alert-danger" id="nif_error">Nif erroneo.</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="nif">Nombre:</label>
                             <div class="col-sm-10">
-                                <form:input path="nombre" id="nombre" placeholder="nombre" class="form-control"/>
+                                <form:input name="nombre" path="nombre" id="nombre" placeholder="nombre" class="form-control"/>
+                                <span class="alert-danger" id="nombre_error">Nombre erroneo (solo letras).</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="movil">Movil:</label>
                             <div class="col-sm-10">
-                                <form:input path="movil" id="movil" placeholder="movil" class="form-control"/>
+                                <form:input name="movil" path="movil" id="movil" placeholder="movil" class="form-control"/>
+                                <span class="alert-danger" id="movil_error">Movil erroneo.</span>
                             </div>
                         </div>  
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="password">Password:</label>
                             <div class="col-sm-10">
-                                <form:input path="password" id="password" placeholder="password" class="form-control"/>
+                                <form:input name="password" path="password" id="password" placeholder="password" class="form-control"/>
+                                <span class="alert-danger" id="password_error">Password erroneo.</span>
                             </div>
                         </div>   
                         <div class="form-group">

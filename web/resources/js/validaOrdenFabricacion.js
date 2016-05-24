@@ -49,21 +49,22 @@ function valida (elem){
 
 function OFValidator(){
     var error = null;
-	if (!valida(codigo)){
-		error = codigo;
-	};
-
-	if (!valida(descripcion)){
-		error = descripcion;
-	};
+	
 	if (!valida(cantidad)){
 		error = cantidad;
+	};
+        if (!valida(descripcion)){
+		error = descripcion;
+	};
+        if (!valida(codigo)){
+		error = codigo;
 	};
 	
 	if (error !== null){
             error.focus();	
             return false;
 	}
+        
 	return true;
 }
 

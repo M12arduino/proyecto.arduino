@@ -8,6 +8,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
+<script src="${base}/resources/js/validaTrabajador.js" type="text/javascript"></script>
+<link href="${base}/resources/styles/altaGeneral.css" rel="stylesheet">
     <div class="container">
         <br /><br />
         <div class="col-md-3"></div>
@@ -17,22 +19,26 @@
                     <h3 class="panel-title">Añadir trabajador</h3>
                 </div>
                 <div class="panel-body">
-                <form:form action="${base}/trabajador/insertar.htm" method="POST" role="form" >
+                <form:form name="MyForm" action="${base}/trabajador/insertar.htm" method="POST" role="form" >
                     <div class="form-group">
                         <label for="nifTrabajador">NIF: </label>
-                        <form:input path="nif" class="form-control" id="nifTrabajador"/>
+                        <form:input name="nif" path="nif" class="form-control" id="nifTrabajador"/>
+                        <span class="alert-danger" id="nif_error">Nif erroneo.</span>
                     </div>
                     <div class="form-group">
                         <label for="nombreTrabajador">Nombre: </label>
-                        <form:input path="nombre" class="form-control" id="nombreTrabajador" />
+                        <form:input name="nombre" path="nombre" class="form-control" id="nombreTrabajador" />
+                        <span class="alert-danger" id="nombre_error">Nombre erroneo (solo letras).</span>
                     </div>
                     <div class="form-group">
                         <label for="movilTrabajador">Movil: </label>
-                        <form:input path="movil"class="form-control" id="movilTrabajador" />
+                        <form:input name="movil" path="movil"class="form-control" id="movilTrabajador" />
+                        <span class="alert-danger" id="movil_error">Movil erroneo.</span>
                     </div>
                     <div class="form-group">
                         <label for="passTrabajador">Password: </label>
-                        <form:input path="password" class="form-control" id="passTrabajador" />
+                        <form:input name="password" path="password" class="form-control" id="passTrabajador" />
+                        <span class="alert-danger" id="password_error">Password erroneo.</span>
                     </div>
                     <div class="dropdown">
                         <label for="categoriaTrabajador">Categoria: </label>
