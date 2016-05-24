@@ -9,9 +9,8 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
-<sec:authorize access="hasRole('rol_admin')">
-    <jsp:include page="adminPanel.jsp"></jsp:include>
-</sec:authorize>
+<script src="${base}/resources/js/validaOrdenFabricacion.js" type="text/javascript"></script>
+<link href="/A_Spring_Inicial/resources/styles/altaGeneral.css" rel="stylesheet">
     <div class="container">
         <br /><br />
         <div class="col-md-3"></div>
@@ -21,14 +20,16 @@
                     <h3 class="panel-title">Añadir orden de fabricación</h3>
                 </div>
                 <div class="panel-body">
-                <form:form action="${base}/ordenFabricacion/insertar.htm" method="POST" role="form" >
+                <form:form name="MyForm" action="${base}/ordenFabricacion/insertar.htm" method="POST" role="form" >
                     <div class="form-group">
                         <label for="codigoOrden">Codigo: </label>
-                        <form:input path="codigo" class="form-control" id="codigoOrden" />
+                        <form:input name="codigo" path="codigo" class="form-control" id="codigoOrden" />
+                        <span class="alert-danger" id="codigo_error">Código erroneo. ejemplo: OF001</span>
                     </div>
                     <div class="form-group">
                         <label for="descripcionOrden">Descripción: </label>
-                        <form:input path="descripcion" class="form-control" id="descripcionOrden" />
+                        <form:input name="descripcion" path="descripcion" class="form-control" id="descripcionOrden" />
+                        <span class="alert-danger" id="descripcion_error">La descripción debe contener solo letras.</span>
                     </div>
                     <div class="dropdown">
                         <label for="prioridadOrden">Prioridad: </label>
@@ -44,7 +45,8 @@
                     </div>
                     <div class="form-group">
                         <label for="cantidadOrden">Cantidad: </label>
-                        <form:input path="cantidad" class="form-control" id="cantidadOrden" />
+                        <form:input name="cantidad" path="cantidad" class="form-control" id="cantidadOrden" />
+                        <span class="alert-danger" id="cantidad_error">La cantidad debe contener solo números.</span>
                     </div>
                     <div class="dropdown">
                         <label for="robotOrden">Robot: </label>

@@ -27,7 +27,7 @@ $(document).ready(function () {
         }
     }
     
-    function refrescaTabla(){
+    function refrescaTabla(){ 
         var data = {};
         data.codigo = $("#codigoSearchVal").val();
         data.descripcion = $("#descripcionSearchVal").val();
@@ -53,31 +53,7 @@ $(document).ready(function () {
     }
     
     $("#search").on("click", refrescaTabla);
-    
-    $("#editar").on("click", function () {
-        var data = {};
-        data.id = $("#id").val();
-        data.codigo = $("#codigo").val();
-        data.descripcion = $("#descripcion").val();
-        data.prioridad = $("#prioridad").val();
-        data.codigo_proceso = $("#codigo_proceso").val();
-        data.cantidad = $("#cantidad").val();
-        data.id_robot = $("#id_robot").val();
-        var jsonStr = JSON.stringify(data);
-        $.ajax({
-            url: getBasePath() + "ordenFabricacion/actualizar.htm",
-            type: "POST",
-            data: jsonStr,
-            contentType: "application/json; charset=utf-8",
-            async: false,
-            cache: false,
-            processData: false,
-            success: function(response){
-                alert(response);
-                refrescaTabla();
-            }
-        });
-    });
+    //$("#editar").on("click", function 
 
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar esta orden de fabricación?")) {
@@ -125,3 +101,28 @@ function cleanCrudOrdenFabricacion() {
     $("#cantidad").val(null);
     $("#id_robot").val(null);
 }
+
+function editarOrdenFabricacion() {
+        var data = {};
+        data.id = $("#id").val();
+        data.codigo = $("#codigo").val();
+        data.descripcion = $("#descripcion").val();
+        data.prioridad = $("#prioridad").val();
+        data.codigo_proceso = $("#codigo_proceso").val();
+        data.cantidad = $("#cantidad").val();
+        data.id_robot = $("#id_robot").val();
+        var jsonStr = JSON.stringify(data);
+        $.ajax({
+            url: getBasePath() + "ordenFabricacion/actualizar.htm",
+            type: "POST",
+            data: jsonStr,
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            cache: false,
+            processData: false,
+            success: function(response){
+                alert(response);
+                refrescaTabla();
+            }
+        });
+    }

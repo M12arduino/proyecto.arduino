@@ -9,9 +9,8 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
-<sec:authorize access="hasRole('rol_admin')">
-    <jsp:include page="adminPanel.jsp"></jsp:include>
-</sec:authorize>
+<script src="${base}/resources/js/validaRobot.js" type="text/javascript"></script>
+<link href="${base}/resources/styles/altaGeneral.css" rel="stylesheet">
     <div class="container">
         <br /><br />
         <div class="col-md-3"></div>
@@ -21,26 +20,31 @@
                     <h3 class="panel-title">Añadir robot</h3>
                 </div>
                 <div class="panel-body">
-                <form:form action="${base}/robot/insertar.htm" method="POST" role="form" >
+                <form:form name="MyForm" action="${base}/robot/insertar.htm" method="POST" role="form" >
                     <div class="form-group">
                         <label for="idRobot">ID Robot: </label>
-                        <form:input path="id_robot" class="form-control" id="idRobot" />
+                        <form:input name="id_robot" path="id_robot" class="form-control" id="idRobot" />
+                        <span class="alert-danger" id="id_robot_error">ID erroneo.</span>
                     </div>
                     <div class="form-group">
                         <label for="nombreRobot">Nombre: </label>
-                        <form:input path="nombre" class="form-control" id="nombreRobot" />
+                        <form:input name="nombre" path="nombre" class="form-control" id="nombreRobot" />
+                        <span class="alert-danger" id="nombre_error">Nombre erroneo.</span>
                     </div>
                     <div class="form-group">
                         <label for="nombreRobot">Lugar: </label>
-                        <form:input path="lugar" class="form-control" id="nombreRobot" />
+                        <form:input name="lugar" path="lugar" class="form-control" id="nombreRobot" />
+                        <span class="alert-danger" id="lugar_error">Lugar erroneo.</span>
                     </div>
                     <div class="form-group">
                         <label for="coorxRobot">Coor X: </label>
-                        <form:input path="coorX" class="form-control" id="coorxRobot" />
+                        <form:input name="coorX" path="coorX" class="form-control" id="coorxRobot" />
+                        <span class="alert-danger" id="coorX_error">Coor X erronea.</span>
                     </div>
                     <div class="form-group">
                         <label for="cooryRobot">Coor Y: </label>
-                        <form:input path="coorY" class="form-control" id="cooryRobot" />
+                        <form:input name="coorY" path="coorY" class="form-control" id="cooryRobot" />
+                        <span class="alert-danger" id="coorY_error">Coor Y erronea.</span>
                     </div>
                     <div class="dropdown">
                         <label for="estadoRobot">Estado: </label>

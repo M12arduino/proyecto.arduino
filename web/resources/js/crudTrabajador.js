@@ -39,7 +39,7 @@ $(document).ready(function () {
             $("#errorTable").hide();
             var titles = dataTablesDevuelveProps(array);
             var dataSet = dataTablesDevuelveValues(array);
-            table = $("#datatable").DataTable({
+            table = $("#datatable_block").DataTable({
                 data: dataSet,
                 columns: titles,
                 destroy: true
@@ -48,7 +48,7 @@ $(document).ready(function () {
         } else {
             if (table)
                 table.destroy();
-            $("#datatable").html("");
+            $("#datatable_block").html("");
             $("#errorTable").show();
         }
     }
@@ -104,6 +104,10 @@ $(document).ready(function () {
             },
         });
     });
+
+    //$("#editar").on("click", function () {
+    
+
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar este usuario?")) {
             var data = {};
@@ -134,8 +138,9 @@ $(document).ready(function () {
         }
     });
 });
+
 function prepareCrudTrabajador() {
-    $("#datatable tr").not(":first").on("click", function () {
+    $("#datatable_block tr").not(":first").on("click", function () {
         $(".form_edit").show();
         $("#id_trab").val($(this).find("td:nth-child(1)").html());
         $("#nif").val($(this).find("td:nth-child(2)").html());
@@ -156,6 +161,30 @@ function cleanCrudTrabajador() {
     $("#categoria").val(null);
 }
 
-
-
-
+function editaTrabajador(){
+        var data = {};
+        data.id_trab = $("#id_trab").val();
+        data.nif = $("#nif").val();
+        data.nombre = $("#nombre").val();
+        data.movil = $("#movil").val();
+        data.password = $("#password").val();
+        data.categoria = $("#categoria").val();
+        var jsonStr = JSON.stringify(data);
+        alert(jsonStr);
+        $.ajax({
+            url: getBasePath() + "trabajador/actualizar.htm",
+            type: "POST",
+            data: jsonStr,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            processData: false,
+            success: function (response) {
+                refrescaTabla();
+                $("#results_info").html(response);
+                $(".edit_box .waiting_wrapper").hide();
+            },
+            beforeSend: function () {
+                $(".edit_box .waiting_wrapper").show();
+            },
+        });
+    }

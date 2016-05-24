@@ -68,6 +68,12 @@
                                 <form:input path="descripcion" id="descripcion" placeholder="descripcion" class="form-control"/>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Acciones: </label>
+                            <div class="col-sm-10 " id="acciones_wrapper">
+                            <button id="accionesButton"  type="button" class="btn btn-arduino" >Añadir accion</button><br />
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <input type="button" class="btn btn-arduino" value="Editar" id="editar"/>

@@ -9,6 +9,8 @@ import java.util.TreeSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,6 +39,7 @@ public class Robot implements Serializable, Maketable {
     private String nombre;
     @Embedded
     private Ubicacion ubicacion;
+    @Enumerated (value = EnumType.STRING)
     private EstadoRobot estado;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "robot")
