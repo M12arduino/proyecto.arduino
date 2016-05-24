@@ -10,10 +10,12 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
+<link rel="stylesheet" href="${base}/resources/styles/CrudGeneral.css"/>
 <script type="text/javascript" src="${base}/resources/js/crudEquipo.js"></script>
+<script type="text/javascript" src="${base}/resources/js/validaCrudEquipo.js"></script>
 
     <div class="container">
-    <form:form action="${base}/equipo" method="POST" id="form">
+    <form:form name="MyForm" action="${base}/equipo" method="POST" id="form">
         <div class="page-header">
             <h1>Administración de Equipos</h1>
         </div>
@@ -83,13 +85,15 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="id_equipo">Id Equipo:</label>
                         <div class="col-sm-10">
-                            <form:input path="id_equipo" id="id_equipo" placeholder="id_equipo" class="form-control"/>
+                            <form:input name="id_equipo" path="id_equipo" id="id_equipo" placeholder="id_equipo" class="form-control"/>
+                            <span class="alert-danger" id="id_equipo_error">ID erroneo.</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="nombre">Nombre:</label>
                         <div class="col-sm-10">
-                            <form:input path="nombre" id="nombre" placeholder="nombre" class="form-control"/>
+                            <form:input name="nombre" path="nombre" id="nombre" placeholder="nombre" class="form-control"/>
+                            <span class="alert-danger" id="nombre_error">Nombre erroneo.</span>
                         </div>
                     </div>
                     <div class="form-group">
