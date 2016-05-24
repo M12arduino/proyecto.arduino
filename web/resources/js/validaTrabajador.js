@@ -17,7 +17,7 @@ window.onload = function () {
     movil = myform['movil'];
     password = myform['password'];
 
-    myform.onsubmit = OFValidator;
+    myform.onsubmit = TraabjadorValidator;
     nif.onchange = validaElem;
     nombre.onchange = validaElem;
     movil.onchange = validaElem;
@@ -55,7 +55,7 @@ function valida (elem){
     }	
 }
 
-function OFValidator(){
+function TraabjadorValidator(){
     var error = null;
 	
         if (!valida(password)){

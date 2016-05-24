@@ -69,13 +69,13 @@ $(document).ready(function () {
                 var json = $(this).find(".hiddendata").html();
                 str = str + "," + json;
             }
-        })
+        });
         str = str + "]";
         str = str.replace(",", "");
         var array = JSON.parse(str);
         populateTrabajadores(array);
         $("#modal").modal("toggle");
-    })
+    });
     function refrescaTabla() {
         var data = {};
         data.id_equipo = $("#id_equipoSearchVal").val();
@@ -96,32 +96,8 @@ $(document).ready(function () {
     }
 
     $("#search").on("click", refrescaTabla);
-    $("#editar").on("click", function () {
-        var trabajadores = [];
-        $("#trabajadores li").each(function () {
-            var json = $(this).find(".hiddendata").html();
-            var obj = JSON.parse(json);
-            trabajadores.push(obj);
-        })
-        var data = {};
-        data.id = $("#id").val();
-        data.id_equipo = $("#id_equipo").val();
-        data.nombre = $("#nombre").val();
-        data.trabajadores = trabajadores;
-        var jsonStr = JSON.stringify(data);
-        $.ajax({
-            url: getBasePath() + "equipo/actualizar.htm",
-            type: "POST",
-            data: jsonStr,
-            contentType: "application/json; charset=utf-8",
-            cache: false,
-            processData: false,
-            success: function (response) {
-                $("#results_info").html(response);
-                refrescaTabla();
-            }
-        });
-    });
+    //$("#editar").on("click", function () {
+    
     $("#addTrabajador").on("click", function () {
         $.ajax({
             url: getBasePath() + "trabajador/trabajadores.htm",
@@ -134,12 +110,12 @@ $(document).ready(function () {
                 var actual = [];
                 $("#trabajadores li").each(function () {
                     actual.push($(this).find("p").html());
-                })
+                });
                 $("#trabajadoresModal").children().remove();
                 for (var i = 0; i < array.length; i++) {
                     var json = JSON.stringify(array[i]);
                     var fullName = array[i]['id_trab'] + ' - ' + array[i]['nombre'];
-                    if (actual.indexOf(fullName) == -1) {
+                    if (actual.indexOf(fullName) === -1) {
                         $("#trabajadoresModal").append('<li class="itemModal"><input type="checkbox" class="modalcheck">' + fullName + '<span class="hiddendata">' + json + '</span></li>');
                     }
                 }
@@ -149,7 +125,7 @@ $(document).ready(function () {
                 console.log(err.Message + "error");
             }
         });
-    })
+    });
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar este equipo?, los trabajadores que contenga quedaràn sin equipo")) {
             var data = {};
@@ -172,7 +148,7 @@ $(document).ready(function () {
                 },
                 beforeSend: function () {
                     $(".edit_box .waiting_wrapper").show();
-                },
+                }
             });
         }
     });
@@ -221,16 +197,18 @@ function populateTrabajadores(array) {
         var check = true;
         $("#trabajadores li").each(function () {
             var str = $(this).find("p").html();
-            if (str == fullName)
+            if (str === fullName){
                 check = false;
+            }
         });
         if (check)
             $("#trabajadores").append('<li class="col-md-3 col-xs-12 col-sm-6"><span class="hiddendata" >' + JSON.stringify(array[i]) + '</span><p>' + fullName + '</p><span class="glyphicon glyphicon-remove-sign deletebutton"></span></li>');
     }
+    
     $(".deletebutton").on("click", function () {
         if (confirm("¿Eliminar este usuario del equipo?"))
             $(this).parent().remove();
-    })
+    });
 }
 function cleanCrudT() {
     $("#id_equipo").val(null);
@@ -240,3 +218,30 @@ function cleanCrudT() {
     $("#password").val(null);
     $("#categoria").val(null);
 }
+
+function editaEquipo(){
+        var trabajadores = [];
+        $("#trabajadores li").each(function () {
+            var json = $(this).find(".hiddendata").html();
+            var obj = JSON.parse(json);
+            trabajadores.push(obj);
+        });
+        var data = {};
+        data.id = $("#id").val();
+        data.id_equipo = $("#id_equipo").val();
+        data.nombre = $("#nombre").val();
+        data.trabajadores = trabajadores;
+        var jsonStr = JSON.stringify(data);
+        $.ajax({
+            url: getBasePath() + "equipo/actualizar.htm",
+            type: "POST",
+            data: jsonStr,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            processData: false,
+            success: function (response) {
+                $("#results_info").html(response);
+                refrescaTabla();
+            }
+        });
+    }
