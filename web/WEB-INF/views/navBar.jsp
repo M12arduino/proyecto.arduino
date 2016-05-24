@@ -21,7 +21,7 @@
         <!--Cos de la barra de navegació-->
 
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-left h1">Hope Tech Industries</ul>
+            <ul class="nav navbar-nav navbar-left h1">HopeTech Industries</ul>
             <ul class="nav navbar-nav navbar-left">
                 <li>
                     <img class="logos img-responsive" src="${base}/resources/img/spring.png">

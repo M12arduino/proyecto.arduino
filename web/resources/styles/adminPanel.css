@@ -1,27 +1,3 @@
-.admin-panel-colapsed {
-    overflow: auto;
-    background-color: #00979C;
-    position: relative !important;
-    width: 4em !important;
-    height: 100%;
-    color: #e1ffff;
-}
-
-.nav-bar-colapsed {
-    background-color: #F47A20;
-    font-size: 22px;
-    cursor: pointer;
-    border-right: 3px solid #23282e;
-    border-top: 3px solid #23282e;
-    border-bottom: 3px solid #23282e;   
-    transition: all 1s ease;
-}
-
-#panel-title img{
-    width: 50px;
-    height: 50px;
-}
-
 .nav-side-menu {
     overflow: auto;
     font-family: sans-serif;
@@ -36,7 +12,6 @@
     display: block;
     text-align: center;
     font-size: 22px;
-    cursor: pointer;
     border-right: 3px solid #23282e;
     border-top: 3px solid #23282e;
     border-bottom: 3px solid #23282e;
@@ -48,7 +23,6 @@
     display: block;
     text-align: center;
     font-size: 22px;
-    cursor: pointer;
 }
 
 .nav-side-menu li:hover {
