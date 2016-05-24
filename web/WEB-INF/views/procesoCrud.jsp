@@ -40,6 +40,9 @@
                 <div class="waiting_wrapper">
                     <img src="${base}/resources/img/wait.gif" class="waiting"/>
                 </div>
+                <div id="results_info">
+
+                </div>
                 <div class="form_edit_box">
                     <p id="results" class="alert alert-info"> Busca equipos que administrar con el formulario superior para empezar </p>
                     <div class="form_edit">

@@ -74,8 +74,10 @@ $(document).ready(function () {
                 cache: false,
                 processData: false,
                 success: function (response) {
+                    alert(response);
                     refrescaTabla();
                     cleanCrudProceso();
+                    $("#results_info").html("madrileña de las tetas"+response);
                     $(".edit_box .waiting_wrapper").hide();
                 },
                 beforeSend: function () {
@@ -155,27 +157,27 @@ function cleanCrudProceso() {
     $("#descripcion").val(null);
 }
 
-function editarProceso(){
-        var data = {};
-        data.codigo = $("#codigo").val();
-        data.descripcion = $("#descripcion").val();
-        data.acciones = recuperaAcciones();
-        var jsonStr = JSON.stringify(data);
-        alert(jsonStr);
-        $.ajax({
-            url: getBasePath() + "trabajador/actualizar.htm",
-            type: "POST",
-            data: jsonStr,
-            contentType: "application/json; charset=utf-8",
-            cache: false,
-            processData: false,
-            success: function (response) {
-                refrescaTabla();
-                $("#results_info").html(response);
-                $(".edit_box .waiting_wrapper").hide();
-            },
-            beforeSend: function () {
-                $(".edit_box .waiting_wrapper").show();
-            },
-        });
+function editarProceso() {
+    var data = {};
+    data.codigo = $("#codigo").val();
+    data.descripcion = $("#descripcion").val();
+    data.acciones = recuperaAcciones();
+    var jsonStr = JSON.stringify(data);
+    alert(jsonStr);
+    $.ajax({
+        url: getBasePath() + "trabajador/actualizar.htm",
+        type: "POST",
+        data: jsonStr,
+        contentType: "application/json; charset=utf-8",
+        cache: false,
+        processData: false,
+        success: function (response) {
+            refrescaTabla();
+            $("#results_info").html(response);
+            $(".edit_box .waiting_wrapper").hide();
+        },
+        beforeSend: function () {
+            $(".edit_box .waiting_wrapper").show();
+        },
+    });
 }

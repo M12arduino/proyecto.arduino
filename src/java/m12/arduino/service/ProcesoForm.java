@@ -7,6 +7,7 @@ package m12.arduino.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import m12.arduino.domain.Accion;
 
 
 /**
@@ -19,7 +20,16 @@ public class ProcesoForm {
     private Long id;
     private String codigo;
     private String descripcion;
+    private List<Accion> acciones;
     private String accionesJSON;
+
+    public List<Accion> getAcciones() {
+        return acciones;
+    }
+
+    public void setAcciones(List<Accion> acciones) {
+        this.acciones = acciones;
+    }
 
     public Long getId() {
         return id;
