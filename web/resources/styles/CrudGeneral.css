@@ -175,3 +175,6 @@ le tr.odd, #datatable tr.even,#datatable_block{
 .modal-title{
     color:#da6f03;
 }
+.alert-danger{
+    display: none;
+}
