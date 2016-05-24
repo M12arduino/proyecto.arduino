@@ -30,7 +30,6 @@ $(document).ready(function () {
     }
     function refrescaTabla() {
         var data = {};
-        data.id = $("#id_procesoSearchVal").val();
         data.codigo = $("#codigoSearchVal").val();
         data.descripcion = $("#descripcionSearchVal").val();
         var jsonStr = JSON.stringify(data);
@@ -41,10 +40,7 @@ $(document).ready(function () {
             contentType: "application/json; charset=utf-8",
             cache: false,
             processData: false,
-            success: function(response){
-                alert("hola"+response);
-            },
-           // success: gestionaResultadoAjax,
+            success: gestionaResultadoAjax,
             error: function (xhr) {
                 var err = eval("(" + xhr.responseText + ")");
                 alert(err.Message + "error");
