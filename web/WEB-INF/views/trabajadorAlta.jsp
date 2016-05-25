@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="movilTrabajador">Movil: </label>
-                        <form:input name="movil" path="movil"class="form-control" id="movilTrabajador" />
+                        <form:input name="movil" path="movil" class="form-control" id="movilTrabajador" />
                         <span class="alert-danger" id="movil_error">Movil erroneo.</span>
                     </div>
                     <div class="form-group">

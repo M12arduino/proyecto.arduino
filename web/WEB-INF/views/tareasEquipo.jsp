@@ -6,13 +6,19 @@
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<script type="text/javascript">
+    var ordenes = JSON.parse('${ordenes}');
+</script>
+<script type="text/javascript" src="${base}/resources/js/tareasEquipo.js"></script>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+
+<body>
+    <div class="row datatable-form">
+        <div class="col-md-12">
+            <p id="errorTable" class="error"> El equipo no tiene ordenes assignadas, ¡día festivo!</p>
+            <table id="datatable_tareas" class="table table-bordered table-striped">
+            </table>
+        </div>
+    </div>
+</body>
 </html>
