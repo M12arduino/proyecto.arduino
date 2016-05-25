@@ -13,10 +13,10 @@
 <script type="text/javascript" src="${base}/resources/js/crudProceso.js"></script>
 <script type="text/javascript" src="${base}/resources/js/validaCrudProceso.js"></script>
     <div class="container">
-        <form:form name="MyForm" action="${base}/proceso" method="POST" id="form">
-            <div class="page-header">
-                <h1>Administración de Equipos</h1>
+                    <div class="page-header">
+                <h1>Administración de Procesos</h1>
             </div>
+        <form:form name="MyForm" action="${base}/proceso" method="POST" id="form">
             <div class="row search-form">
                 <div class="col-md-4">
                     <h4 class="colorLabel">Criterios de búsqueda:</h4>

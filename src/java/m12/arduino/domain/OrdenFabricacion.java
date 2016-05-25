@@ -37,15 +37,12 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar fecha;
     @ManyToOne
-    @JsonIgnore
     private Proceso proceso;
     private int cantidad;
     @ManyToOne
-    @JsonIgnore
     private Robot robot;
     private EstadoOrden estado;
     @ManyToOne
-    @JsonIgnore
     private Equipo equipo;
 
     {
@@ -241,6 +238,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
     }
 
     @Override
+    @JsonIgnore
     public String getFullName() {
         return "Orden - " + this.getCodigo();
     }

@@ -17,6 +17,9 @@
 <script type="text/javascript" src="${base}/resources/js/validaCrudTrabajador.js"></script>
 <form:form name="MyForm" action="${base}/trabajador" method="POST" id="form" >
         <div class="container">
+                        <div class="page-header">
+                <h1>Administración de Trabajadores</h1>
+            </div>
             <div class="row search-form">
                 <div class="col-md-4">
                     <h4 class="colorLabel">Criterios de búsqueda:</h4>

@@ -10,12 +10,12 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /*
-Jordi Puig Puig
-DAW 2
-Curs 2015-2016
+ Jordi Puig Puig
+ DAW 2
+ Curs 2015-2016
 
-@author Jordi
-*/
+ @author Jordi
+ */
 public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
 
     private Session session;
@@ -30,7 +30,7 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
         tx.commit();
         session.close();
     }
-    
+
     @Override
     public OrdenFabricacion buscarOrden(String codigo) {
         iniciaOperacion();
@@ -55,22 +55,32 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
         for (Iterator<String> it = keys.iterator(); it.hasNext();) {
             if (it.hasNext()) {
                 String currentKey = it.next();
-                str += currentKey + "=:" + currentKey + " ";
+                String operator = "=";
+                if (whereMap.get(currentKey) instanceof String) {
+                    operator = " LIKE ";
+                }
+                str += currentKey + operator + ":" + currentKey + " ";
             }
             if (it.hasNext()) {
                 str += " and ";
             }
         }
-        if (str!="") str= "WHERE "+str;
+        if (str != "") {
+            str = "WHERE " + str;
+        }
         // Complete query-string
         Query query = session.createQuery("FROM OrdenFabricacion " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
-            Object val =  e.getValue();
-            query.setParameter(attr, val);      
+            Object val = e.getValue();
+            if (val instanceof String) {
+                query.setParameter(attr, "%" + val + "%");
+            } else {
+                query.setParameter(attr, val);
+            };
         }
-        List<OrdenFabricacion> res= query.list();
+        List<OrdenFabricacion> res = query.list();
         acabaOperacion();
         return res;
     }
@@ -79,7 +89,7 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
     public List<OrdenFabricacion> obtenerListaOrdenes() {
         iniciaOperacion();
         Query q = session.createQuery("From OrdenFabricacion");
-        System.out.println("Query: "+q);
+        System.out.println("Query: " + q);
         List<OrdenFabricacion> res = q.list();
         acabaOperacion();
         return res;

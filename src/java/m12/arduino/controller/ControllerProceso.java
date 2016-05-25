@@ -93,7 +93,7 @@ public class ControllerProceso {
             sP.eliminarProceso(p);
             msg = "<div class=\"alert alert-succes\">El Proceso se ha eliminado correctamente</div>";
         } catch (ConstraintViolationException e) {
-            msg = "<div class=\"alert alert-danger\">El Proceso no se puedo eliminar pues hay ordenes de fabricación utilizándolo</div>";
+            msg = "<div class=\"alert alert-danger\">El Proceso no se pudo eliminar porque hay ordenes de fabricacion utilizandolo</div>";
         }
         return msg;
     }

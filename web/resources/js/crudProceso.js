@@ -74,10 +74,10 @@ $(document).ready(function () {
                 cache: false,
                 processData: false,
                 success: function (response) {
-                    alert(response);
+                    var str = response;
                     refrescaTabla();
                     cleanCrudProceso();
-                    $("#results_info").html("madrileña de las tetas"+response);
+                    $("#results_info").html(str);
                     $(".edit_box .waiting_wrapper").hide();
                 },
                 beforeSend: function () {
@@ -90,6 +90,7 @@ $(document).ready(function () {
 
 function prepareCrudProceso() {
     $("#datatable tr").not(":first").on("click", function () {
+        var auxactions;
         $(".form_edit").show();
         $("#id").val($(this).find("td:nth-child(1)").html());
         $("#codigo").val($(this).find("td:nth-child(2)").html());
@@ -97,8 +98,8 @@ function prepareCrudProceso() {
         $("#results").hide();
         var id = $(this).find("td:nth-child(1)").html();
         for (var i = 0; i < actions.length; i++) {
-            if (actions[i].id === id) {
-                var auxactions = actions[i].acciones;
+            if (actions[i].id == id) {
+                auxactions = actions[i].acciones;
             }
         }
         $("#acciones_wrapper").children(".accion").remove();
@@ -168,7 +169,6 @@ function editarProceso() {
     data.descripcion = $("#descripcion").val();
     data.acciones = recuperaAcciones();
     var jsonStr = JSON.stringify(data);
-    alert(jsonStr);
     $.ajax({
         url: getBasePath() + "trabajador/actualizar.htm",
         type: "POST",

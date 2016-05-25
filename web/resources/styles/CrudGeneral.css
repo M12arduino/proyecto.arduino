@@ -7,6 +7,12 @@ and open the template in the editor.
     Created on : 18-may-2016, 17:49:03
     Author     : enric
 */
+#results_info .alert-danger{
+    display:block!important;
+}
+.page-header > h1{
+    color:#da6f03!important;
+}
 .waiting_wrapper{
     width:100%;
     text-align:center;
@@ -20,8 +26,8 @@ and open the template in the editor.
     color:red;
 }
 .datatable-form{
-    padding:0em;
-    border: 1px inset #84D5D8;
+    padding:2em;
+    border: 0.25em solid #84D5D8;
     border-radius:0.5em;
 }
 le tr.odd, #datatable tr.even,#datatable_block{
@@ -136,7 +142,7 @@ le tr.odd, #datatable tr.even,#datatable_block{
 }
 .search-form{
     padding:2em;
-    border: 1px inset #da6f03;
+    border: 0.25em solid #da6f03;
     border-radius:0.5em;
 }
 .pagination>.active>a{
@@ -161,7 +167,7 @@ le tr.odd, #datatable tr.even,#datatable_block{
     float:left;
     width:33%;
     padding:0.25em;
-    color:#da6f03;;
+    color:#da6f03;
     font-weight:bold;
 }
 .modal-body{

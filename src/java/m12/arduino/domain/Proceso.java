@@ -14,28 +14,40 @@ import javax.persistence.OneToMany;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /*
-Jordi Puig Puig
-DAW 2
-Curs 2015-2016
+ Jordi Puig Puig
+ DAW 2
+ Curs 2015-2016
  codi, descripció, relació de moviments del robot i accions a
-realitzar (obrir-tancar pinça)
-@author Jordi
-*/
+ realitzar (obrir-tancar pinça)
+ @author Jordi
+ */
 @Entity
 public class Proceso implements Serializable, Maketable {
+
     private static final long serialVersionUID = -370493739408314348L;
 
     // ATTR
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String codigo;
     private String descripcion;
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="proceso",orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "proceso", orphanRemoval = true)
     private List<Accion> acciones;
+    @OneToMany( fetch = FetchType.EAGER, mappedBy = "proceso", orphanRemoval = true)
+    @JsonIgnore
+    private List<OrdenFabricacion> ordenes;
 
     {
         acciones = new ArrayList();
+    }
+
+    public List<OrdenFabricacion> getOrdenes() {
+        return ordenes;
+    }
+
+    public void setOrdenes(List<OrdenFabricacion> ordenes) {
+        this.ordenes = ordenes;
     }
 
     public long getId() {
@@ -70,7 +82,7 @@ public class Proceso implements Serializable, Maketable {
         this.acciones = acciones;
     }
 
-    public void addAccion(Accion ac){
+    public void addAccion(Accion ac) {
         this.getAcciones().add(ac);
         ac.setProceso(this);
     }
@@ -107,7 +119,5 @@ public class Proceso implements Serializable, Maketable {
     public String getFullName() {
         return "Proceso - " + this.getCodigo();
     }
-    
-    
-    
+
 }
