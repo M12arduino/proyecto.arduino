@@ -10,7 +10,7 @@
 <jsp:include page="navBar.jsp"></jsp:include>
 <link rel="stylesheet" href="${base}/resources/styles/CrudGeneral.css"/>
 <script type="text/javascript" src="${base}/resources/js/crudOrdenFabricacion.js"></script>
-<%--<script type="text/javascript" src="${base}/resources/js/validaCrudOrdenFabricacion.js"></script>--%>
+<script type="text/javascript" src="${base}/resources/js/validaCrudOrdenFabricacion.js"></script>
 <link href="/A_Spring_Inicial/resources/styles/altaGeneral.css" rel="stylesheet">
 
 <body>
@@ -82,12 +82,14 @@
                         <label class="control-label col-sm-2" for="codigo">Codigo:</label>
                         <div class="col-sm-10">
                             <form:input name="codigo" path="codigo" class="form-control" id="codigo"/>
+                            <span class="alert-danger" id="codigo_error">Código erroneo. ejemplo: OF001</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="descripcion">Descripcion:</label>
                         <div class="col-sm-10">
                             <form:input name="descripcion" path="descripcion" id="descripcion" class="form-control" />
+                            <span class="alert-danger" id="descripcion_error">La descripción debe contener solo letras.</span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -109,7 +111,8 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="cantidad">Cantidad:</label>
                         <div class="col-sm-10">
-                            <form:input name="descripcion" path="cantidad" id="cantidad" class="form-control" />
+                            <form:input name="cantidad" path="cantidad" id="cantidad" class="form-control" />
+                            <span class="alert-danger" id="cantidad_error">La cantidad debe contener solo números.</span>
                         </div>
                     </div>
                     <div class="form-group">

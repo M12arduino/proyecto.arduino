@@ -6,12 +6,9 @@
 var table;
 $(document).ready(function () {
    
-
-
-
-
     $("#search").on("click", refrescaTabla);
-    $("#editar").on("click", editarOrdenFabricacion);
+    
+    //$("#editar").on("click", editarOrdenFabricacion);
 
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar esta orden de fabricación?")) {

@@ -28,6 +28,7 @@
         <link rel="stylesheet" href="${base}/resources/libs/dataTables.bootstrap.min.css"/>
         <link rel="stylesheet" href="${base}/resources/libs/font-awesome/css/font-awesome.min.css"/>        
         <link rel="stylesheet" href="${base}/resources/styles/general.css"/>
+        <link rel="stylesheet" href="${base}/resources/styles/CrudGeneral.css"/>
         <!-- JS -->
         <script type="text/javascript" src="${base}/resources/libs/jquery-2.2.3.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/bootstrap/js/bootstrap.min.js"/></script>
@@ -35,7 +36,6 @@
         <script type="text/javascript" src="${base}/resources/js/procesoAlta.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/dataTables.bootstrap.min.js"></script>
-        
         <!-- MOVER!! CSS SIEMPRE ANTES QUE JS-->  
      </head>
      <body>

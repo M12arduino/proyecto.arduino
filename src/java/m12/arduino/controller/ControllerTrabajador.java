@@ -1,7 +1,6 @@
 package m12.arduino.controller;
 
 import java.io.IOException;
-import java.time.Clock;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
