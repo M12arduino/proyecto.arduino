@@ -46,7 +46,7 @@
                     </div>
                     <form:input type="hidden" id="accionesJSON" path="accionesJSON" value="" />
                     <input type="hidden" id="numAcciones" value="1" />
-                    <input name="mandar" type="button" value="Send" class="btn btn-default btn-block" />
+                    <input name="mandar" type="button" value="Enviar" class="btn btn-default btn-block" />
                 </form:form>
             </div>
         </div>

@@ -53,7 +53,18 @@ function gestionaResultadoAjax(response) {
         table = $("#datatable_block").DataTable({
             data: dataSet,
             columns: titles,
-            destroy: true
+            destroy: true,
+            language: {
+                lengthMenu: "Muestra _MENU_ registros por página",
+                info: "Mostrando _START_ hasta _END_ de un total de _TOTAL_ entradas",
+                search: "Búsqueda",
+                paginate: {
+                    first: "Primero",
+                    last: "Último",
+                    next: "Siguiente",
+                    previous: "Previo"
+                }
+            }
         });
         prepareCrudTrabajador();
     } else {
@@ -85,8 +96,8 @@ function cleanCrudTrabajador() {
     $("#password").val(null);
     $("#categoria").val(null);
 }
-    
-function editaTrabajador(){
+
+function editaTrabajador() {
     var data = {};
     data.id_trab = $("#id_trab").val();
     data.nif = $("#nif").val();
@@ -130,7 +141,7 @@ function refrescaTabla() {
         error: function (xhr) {
             var err = eval("(" + xhr.responseText + ")");
             alert(err.Message + "error");
-        }, 
+        },
         beforeSend: function () {
             $(".datatable-form .waiting_wrapper").show();
         }

@@ -21,7 +21,18 @@ $(document).ready(function () {
             table = $("#datatable").DataTable({
                 data: dataSet,
                 columns: titles,
-                destroy: true
+                destroy: true,
+                language: {
+                    lengthMenu: "Muestra _MENU_ registros por página",
+                    info: "Mostrando _START_ hasta _END_ de un total de _TOTAL_ entradas",
+                    search: "Búsqueda",
+                    paginate: {
+                        first: "Primero",
+                        last: "Último",
+                        next: "Siguiente",
+                        previous: "Previo"
+                }
+            }
             });
             prepareCrudProceso();
         } else {
