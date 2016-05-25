@@ -38,6 +38,9 @@ and open the template in the editor.
     src: url(fonts/roboto/Roboto-Bold.ttf);
     font-weight: bolder;
 }
+.stats_ajax{
+    min-height:400px;
+}
 body{
     font-family:Roboto!important;
 }

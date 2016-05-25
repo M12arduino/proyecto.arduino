@@ -13,6 +13,15 @@ and open the template in the editor.
    height: 50px;
 }
 
+a span img {
+   width: 30px;
+   height: 30px;
+   margin-right: 10px;
+}
+
+li img:hover {
+   cursor: pointer;
+}
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     font-family: inherit;

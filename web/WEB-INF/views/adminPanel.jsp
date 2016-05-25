@@ -4,7 +4,8 @@
     Author     : Couto
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div id="admin-panel" class="nav-side-menu col-xs-2">
+<div class="panel_wrapper">
+<div id="admin-panel" class="nav-side-menu">
     <div id="panel-title" class="panel-title">Panel de administrador</div>
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse">
@@ -59,8 +60,10 @@
                 <li><a href="${base}/ordenFabricacion/alta.htm">Añadir Ordenes</a></li>
                 <li><a href="${base}/ordenFabricacion/administrar.htm">Administrar Ordenes</a></li>
             </ul>
-            
+            <div class="populate">
             <a href="${base}/populate/populate.htm">Populate</a>
+            </div>
         </ul>
     </div>
+</div>
 </div>
