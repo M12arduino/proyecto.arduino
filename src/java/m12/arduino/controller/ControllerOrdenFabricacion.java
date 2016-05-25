@@ -9,6 +9,7 @@ import m12.arduino.domain.Equipo;
 import m12.arduino.domain.EstadoOrden;
 import m12.arduino.domain.OrdenFabricacion;
 import m12.arduino.domain.Prioridad;
+import m12.arduino.domain.Proceso;
 import m12.arduino.domain.Trabajador;
 import m12.arduino.service.OrdenFabricacionForm;
 import m12.arduino.service.ServiceEquipo;
@@ -122,10 +123,10 @@ public class ControllerOrdenFabricacion {
     String buscaOrdenFabricacionAjax(@RequestBody OrdenFabricacionForm ofF) {
         String codigo = ofF.getCodigo();
         String descripcion = ofF.getDescripcion();
-        Long proceso_id = sP.buscarProceso(ofF.getCodigo_proceso()).getId();
+        Long proceso_id = ofF.getCodigo_proceso_id();
         Long equipo_id = ofF.getEquipo_id();
         Prioridad prioridad = ofF.getPrioridad();
-        Long robot_id = sR.buscarRobot(ofF.getId_robot()).getId();
+        Long robot_id = ofF.getId_robot_id();
         if (equipo_id == 0) {
             equipo_id = null;
         }
@@ -139,8 +140,8 @@ public class ControllerOrdenFabricacion {
             prioridad = null;
         }
         String response = null;
-        List<OrdenFabricacion> OF = sO.listarOrdenes("codigo", codigo, "descripcion", descripcion, "equipo_id", equipo_id, "proceso_id", proceso_id, "robot_id", robot_id, "prioridad", prioridad);
-        // List<OrdenFabricacion> OF = sO.listarOrdenes();
+        List<OrdenFabricacion> OF = sO.listarOrdenes("codigo", codigo, "descripcion",descripcion,"proceso_id",proceso_id,"robot_id",robot_id,"equipo_id", equipo_id, "prioridad", prioridad);
+         //List<OrdenFabricacion> OF = sO.listarOrdenes();
         if (OF != null) {
             try {
                 ObjectMapper mapperObj = new ObjectMapper();
