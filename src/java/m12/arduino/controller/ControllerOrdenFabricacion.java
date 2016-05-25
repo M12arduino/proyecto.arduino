@@ -193,7 +193,7 @@ public class ControllerOrdenFabricacion {
             }
         }
         String ordenesJson;
-        ModelAndView mV = new ModelAndView("tareasEquipo");
+        ModelAndView mV = new ModelAndView("tareasEquipo", "command", new OrdenFabricacionForm());
         try {
             ObjectMapper mapperObj = new ObjectMapper();
             ordenesJson = mapperObj.writeValueAsString(tareas);
@@ -203,6 +203,18 @@ public class ControllerOrdenFabricacion {
         mV.addObject("objeto", eq);
         mV.addObject("ordenes", ordenesJson);
         return mV;
+    }
+    
+    @RequestMapping("/asignarTrabajador")
+    public ModelAndView asignarOrden(OrdenFabricacionForm ofF) {
+        OrdenFabricacion orden = sO.buscarOrden(ofF.getCodigo());
+        String nif = SecurityContextHolder.getContext().getAuthentication().getName();
+        Trabajador trab = sT.buscarTrabajador(nif);
+        trab.setMiOrden(orden);
+        sT.actualizarTrabajador(trab);
+        sO.actualizarOrden(orden);
+        
+        return new ModelAndView("main");
     }
 
     @RequestMapping("/cancelarOrden")

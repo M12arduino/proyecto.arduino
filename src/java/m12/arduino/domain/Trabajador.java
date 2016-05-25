@@ -120,9 +120,13 @@ public class Trabajador implements Serializable, Maketable {
     public String toString() {
         String eqName = "No definido";
         if (equipo != null){
-            eqName = equipo.getNombre();
-        }               
-        return "Trabajador{" + "id_trab=" + id_trab + ", nif=" + nif + ", nombre=" + nombre + ", movil=" + movil + ", password=" + password + ", categoria=" + categoria + ", equipo=" + eqName + '}';
+            eqName = equipo.getFullName();
+        }
+        String orName = "No definido";
+        if (orden != null){
+            orName = orden.getFullName();
+        }   
+        return "Trabajador{" + "id_trab=" + id_trab + ", nif=" + nif + ", nombre=" + nombre + ", movil=" + movil + ", password=" + password + ", categoria=" + categoria + ", equipo=" + eqName + ", orden=" + orName + '}';
     }
     
     
@@ -155,5 +159,10 @@ public class Trabajador implements Serializable, Maketable {
     @JsonIgnore
     public String getFullName() {
         return this.getNombre();
+    }
+
+    public void setMiOrden(OrdenFabricacion orden) {
+        this.setOrden(orden);
+        orden.setTrabajador(this);
     }
 }

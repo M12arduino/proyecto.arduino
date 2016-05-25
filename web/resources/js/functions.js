@@ -78,7 +78,8 @@ function dataTablesDevuelveValuesBoton(array) {
             }
             arrayaux.push(result);
         }
-        arrayaux.push('<input type="button" class="assignar btn btn-arduino" value="Escoger orden"/>');
+        
+        arrayaux.push('<input name="bEscoger" type="button" class="assignar btn btn-arduino" value="Escoger orden" onclick="setHiddenValue(this);"/>');
         res.push(arrayaux);
     }
     return res;

@@ -7,6 +7,7 @@ var table;
 
 $(document).ready(function () {
     rellenaDataTable(ordenes);
+
 });
 
 function rellenaDataTable(array) {
@@ -19,9 +20,12 @@ function rellenaDataTable(array) {
             columns: titles,
             destroy: true
         });
-    }
-    
-    
+    }    
 }
 
+function setHiddenValue(elem) {
+    var codigo = elem.parentNode.parentNode.firstChild.innerHTML;
+    document.getElementById("codigo").value = codigo;
+    document.getElementById("form").submit();
+}
 
