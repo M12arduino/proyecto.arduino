@@ -57,12 +57,12 @@ function valida (elem){
     
     if (elem instanceof NodeList){
         camp = elem[0].name;
+        alert(elem+":"+camp);
     }else{
         if (elem.name) {
             camp = elem.name;
          }
     }
-    
     
     switch (camp){
         case "codigo":
@@ -114,7 +114,7 @@ function esDescripcion(elem, idError){
 }
 
 function esPos(elem, idError){
-    return tractarError(validaPos(elem.value),elem,idError);
+    return tractarError(validaPos(elem[0].value),elem,idError);
 }
 
 //function esPinza(elem, idError){
@@ -127,11 +127,12 @@ function validaCodigo(cod){
 }
 
 function validaDescripcion(desc){
-    var descRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]{1,100}\s?$/;
+    var descRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]+\s?[A-Za-zñÑáÁéÉíÍóÓúÚ0-9\s]{0,99}$/;
     return desc.match(descRegexp);
 }
 
 function validaPos(pos){
+    alert(pos);
     var posRegexp = /^[1-9]{1}[0-9]{0,3}$/;
     return pos.match(posRegexp);
 }

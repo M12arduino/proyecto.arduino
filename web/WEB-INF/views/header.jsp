@@ -36,7 +36,6 @@
         <script type="text/javascript" src="${base}/resources/js/procesoAlta.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="${base}/resources/libs/dataTables.bootstrap.min.js"></script>
-        
         <!-- MOVER!! CSS SIEMPRE ANTES QUE JS-->  
      </head>
      <body>
