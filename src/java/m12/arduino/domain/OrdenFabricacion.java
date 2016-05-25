@@ -228,7 +228,11 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
     @Override
     @JsonIgnore
     public List<String> getInfo() {
-        return new ArrayList(Arrays.asList(this.getId(), this.getCodigo(), this.getDescripcion(), this.getProridad(), this.getFecha(), this.getProceso(), this.getCantidad(), this.getRobot().getFullName(), this.getEstado(), this.getEquipo().getFullName()));
+        String strEq = "No associado";
+        if (equipo != null) {
+            strEq = equipo.getFullName();
+        }
+        return new ArrayList(Arrays.asList(this.getId(), this.getCodigo(), this.getDescripcion(), this.getProridad(), this.getFecha(), this.getProceso().getFullName(), this.getCantidad(), this.getRobot().getFullName(), this.getEstado(), strEq));
     }
 
     @Override
