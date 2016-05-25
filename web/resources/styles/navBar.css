@@ -13,6 +13,7 @@ and open the template in the editor.
    height: 50px;
 }
 
+
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     font-family: inherit;
     font-weight: 500;
@@ -25,6 +26,18 @@ and open the template in the editor.
     min-height: 50px;
     margin-bottom: 0px;
     border: 0px solid transparent;
+}
+
+.navbar a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: white;
+    white-space: nowrap;
+    background-color: #00979C;
+    text-decoration:none;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form, .navbar-default {
