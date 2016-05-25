@@ -1,9 +1,11 @@
 package m12.arduino.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import m12.arduino.domain.CategoriaTrabajador;
+import m12.arduino.domain.Equipo;
 import m12.arduino.domain.EstadoOrden;
 import m12.arduino.domain.OrdenFabricacion;
 import m12.arduino.domain.Prioridad;
@@ -13,6 +15,8 @@ import m12.arduino.service.ServiceEquipo;
 import m12.arduino.service.ServiceOrdenFabricacion;
 import m12.arduino.service.ServiceProceso;
 import m12.arduino.service.ServiceRobot;
+import m12.arduino.service.ServiceTrabajador;
+import m12.arduino.service.TareasEquipoForm;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.HibernateException;
 import org.springframework.security.core.Authentication;
@@ -39,6 +43,7 @@ public class ControllerOrdenFabricacion {
     private ServiceProceso sP = new ServiceProceso();
     private ServiceRobot sR = new ServiceRobot();
     private ServiceEquipo sE = new ServiceEquipo();
+    private ServiceTrabajador sT = new ServiceTrabajador();
 
     @RequestMapping("/alta")
     public ModelAndView formularioInicial() {
@@ -167,13 +172,33 @@ public class ControllerOrdenFabricacion {
     @RequestMapping("/ordenesEquipo")
     public ModelAndView tareasEquipo() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Trabajador trab = null;
-        if (principal instanceof Trabajador) {
-            trab = (Trabajador) principal;
-        } else {
-            String objectStr = principal.toString();
+        String nif = SecurityContextHolder.getContext().getAuthentication().getName();
+        Equipo eq = sT.buscarTrabajador(nif).getEquipo();
+        List<OrdenFabricacion> ordenes = eq.getOrdenes();
+        System.out.println(ordenes+"#######################");
+        List<TareasEquipoForm> tareas = new ArrayList<TareasEquipoForm>();
+        TareasEquipoForm aux = new TareasEquipoForm();
+        for (OrdenFabricacion orden: ordenes){
+            aux.setCodigo(orden.getCodigo());
+            aux.setDescripcion(orden.getDescripcion());
+            aux.setEquipo(orden.getEquipo().getId_equipo());
+            aux.setEstado(orden.getEstado());
+            aux.setPrioridad(orden.getProridad());
+            aux.setProceso(orden.getProceso().getCodigo());
+            aux.setRobot(orden.getRobot().getId_robot());
+            tareas.add(aux);
         }
-        return new ModelAndView("detalleObjeto","objeto",trab);
+        String ordenesJson;
+        ModelAndView mV = new ModelAndView("tareasEquipo");
+        try {
+            ObjectMapper mapperObj = new ObjectMapper();
+            ordenesJson = mapperObj.writeValueAsString(tareas);
+        } catch (IOException ex) {
+            ordenesJson = ex.getMessage()+"something";
+        }
+        mV.addObject("objeto", eq);
+        mV.addObject("ordenes", ordenesJson);
+        return mV;
     }
 
     @RequestMapping("/cancelarOrden")
