@@ -171,22 +171,24 @@ public class ControllerOrdenFabricacion {
 
     @RequestMapping("/ordenesEquipo")
     public ModelAndView tareasEquipo() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String nif = SecurityContextHolder.getContext().getAuthentication().getName();
-        Equipo eq = sT.buscarTrabajador(nif).getEquipo();
-        List<OrdenFabricacion> ordenes = eq.getOrdenes();
-        System.out.println(ordenes+"#######################");
+        Trabajador trab = sT.buscarTrabajador(nif);
+        Equipo eq = trab.getEquipo();
+        List<OrdenFabricacion> ordenes = sO.listarOrdenes("equipo_id", eq.getId());
         List<TareasEquipoForm> tareas = new ArrayList<TareasEquipoForm>();
-        TareasEquipoForm aux = new TareasEquipoForm();
-        for (OrdenFabricacion orden: ordenes){
-            aux.setCodigo(orden.getCodigo());
-            aux.setDescripcion(orden.getDescripcion());
-            aux.setEquipo(orden.getEquipo().getId_equipo());
-            aux.setEstado(orden.getEstado());
-            aux.setPrioridad(orden.getProridad());
-            aux.setProceso(orden.getProceso().getCodigo());
-            aux.setRobot(orden.getRobot().getId_robot());
-            tareas.add(aux);
+        TareasEquipoForm aux;
+        for (OrdenFabricacion orden : ordenes) {
+            if (orden.getTrabajador() == null) {
+                aux = new TareasEquipoForm();
+                aux.setCodigo(orden.getCodigo());
+                aux.setDescripcion(orden.getDescripcion());
+                aux.setEquipo(orden.getEquipo().getId_equipo());
+                aux.setEstado(orden.getEstado());
+                aux.setPrioridad(orden.getProridad());
+                aux.setProceso(orden.getProceso().getCodigo());
+                aux.setRobot(orden.getRobot().getId_robot());
+                tareas.add(aux);
+            }
         }
         String ordenesJson;
         ModelAndView mV = new ModelAndView("tareasEquipo");
@@ -194,7 +196,7 @@ public class ControllerOrdenFabricacion {
             ObjectMapper mapperObj = new ObjectMapper();
             ordenesJson = mapperObj.writeValueAsString(tareas);
         } catch (IOException ex) {
-            ordenesJson = ex.getMessage()+"something";
+            ordenesJson = ex.getMessage() + "something";
         }
         mV.addObject("objeto", eq);
         mV.addObject("ordenes", ordenesJson);

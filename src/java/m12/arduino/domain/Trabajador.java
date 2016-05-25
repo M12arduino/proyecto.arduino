@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.ObjectMapper;
 //import javax.validation.constraints.Pattern;
@@ -43,12 +44,21 @@ public class Trabajador implements Serializable, Maketable {
     private String movil;
     // @Size(min = 4, max = 20, message = "La contrassenya ha de tenir entre 4 i 20 caracters")
     private String password;
-    @Enumerated (value = EnumType.STRING)
     private CategoriaTrabajador categoria;
     @ManyToOne
     private Equipo equipo;
+    @OneToOne(mappedBy = "trabajador")
+    private OrdenFabricacion orden;
 
-    // GESETS
+    // GESETS    
+    public OrdenFabricacion getOrden() {
+        return orden;
+    }
+
+    public void setOrden(OrdenFabricacion orden) {    
+        this.orden = orden;
+    }
+
     public Equipo getEquipo() {
         return equipo;
     }

@@ -6,6 +6,7 @@
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <script type="text/javascript">
     var ordenes = JSON.parse('${ordenes}');
 </script>
@@ -20,5 +21,8 @@
             </table>
         </div>
     </div>
+    <form name="MyForm" action="${base}/ordenFabricacion" method="POST" id="form">
+        <input name="codigo" id="codigo" value=""/>
+    </form>
 </body>
 </html>

@@ -6,9 +6,8 @@
 var table;
 
 $(document).ready(function () {
-    alert(ordenes);
     rellenaDataTable(ordenes);
-})
+});
 
 function rellenaDataTable(array) {
     if (array.length > 0) {;
@@ -20,5 +19,9 @@ function rellenaDataTable(array) {
             columns: titles,
             destroy: true
         });
-    } 
+    }
+    
+    
 }
+
+

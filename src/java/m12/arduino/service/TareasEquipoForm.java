@@ -83,4 +83,9 @@ public class TareasEquipoForm {
         this.equipo = equipo;
     }
 
+    @Override
+    public String toString() {
+        return "TareasEquipoForm{" + "codigo=" + codigo + ", descripcion=" + descripcion + ", prioridad=" + prioridad + ", proceso=" + proceso + ", robot=" + robot + ", estado=" + estado + ", equipo=" + equipo + '}';
+    }
+
 }

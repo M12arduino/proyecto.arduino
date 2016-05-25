@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -44,11 +45,21 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
     private EstadoOrden estado;
     @ManyToOne
     private Equipo equipo;
+    @OneToOne
+    private Trabajador trabajador;
 
-    {
+    {        
         estado = EstadoOrden.INDEFINIDO;
         fecha = Calendar.getInstance();
         System.out.println(fecha.toString());
+    }
+
+    public Trabajador getTrabajador() {
+        return trabajador;
+    }
+
+    public void setTrabajador(Trabajador trabajador) {
+        this.trabajador = trabajador;
     }
 
     public Equipo getEquipo() {
