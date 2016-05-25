@@ -7,25 +7,25 @@
 var codigo;
 var descripcion;
 var cantidad;
+var editar;
 var myform;
 
 window.onload = function () {
     myform = document.forms['MyForm'];
     codigo = myform['codigo'];
     descripcion = myform['descripcion'];
-    
-    //este no coge el valor.
-    cantidad = myform['cantidadOrden'];
+    cantidad = myform['cantidad'];
     
     editar = myform['editar'];
     
     editar.onclick = OFValidator;
+    
     codigo.onchange = validaElem;
     descripcion.onchange = validaElem;
     cantidad.onchange = validaElem;
     codigo.onkeyup = validaElem;
     descripcion.onkeyup = validaElem;
-    //cantidad.onkeyup = validaElem;
+    cantidad.onkeyup = validaElem;
 };
 
 function validaElem (){
@@ -54,27 +54,27 @@ function valida (elem){
 
 function OFValidator(){
     var error = null;
-	if (!valida(codigo)){
-		error = codigo;
+	
+	if (!valida(cantidad)){
+		error = cantidad;
 	};
-
-	if (!valida(descripcion)){
+        if (!valida(descripcion)){
 		error = descripcion;
 	};
-//	if (!valida(cantidad)){
-//		error = cantidad;
-//	};
+        if (!valida(codigo)){
+		error = codigo;
+	};
 	
 	if (error !== null){
             error.focus();	
             return false;
 	}
+        
         editarOrdenFabricacion();
 	return true;
 }
 
 function esCodigo(elem, idError){
-    alert(elem.value);
     return tractarError(validaCodigo(elem.value),elem,idError);	
 }
 
@@ -83,7 +83,6 @@ function esDescripcion(elem, idError){
 }
 
 function esCantidad(elem, idError){
-    alert(elem.value);
     return tractarError(validaCantidad(elem.value),elem,idError);
 }
 
@@ -93,12 +92,12 @@ function validaCodigo(codigo){
 }
 
 function validaDescripcion(descripcion){
-    var descRegexp = /^[\w\,ñÑáÁéÉíÍóÓúÚ\s]{1,50}$/;
+    var descRegexp = /^[\wñÑáÁéÉíÍóÓúÚ]+[\w\,ñÑáÁéÉíÍóÓúÚ\s0-9]{0,99}$/;
     return descripcion.match(descRegexp);
 }
 
 function validaCantidad(cantidad){
-    var cantRegexp = /^[0-9]{1,4}$/;
+    var cantRegexp = /^[1-9]+[0-9]{0,3}$/;
     return cantidad.match(cantRegexp);
 }
 

@@ -34,8 +34,8 @@
         <!-- authentication from database -->
         <authentication-provider>
             <jdbc-user-service data-source-ref="dataSource"
-                users-by-username-query="select nombre,password, COUNT(id_trab) from trabajador where nombre=? GROUP BY id_trab"
-                authorities-by-username-query="Select nombre, categoria from trabajador where nombre=?" />
+                users-by-username-query="select nif,password, COUNT(id_trab) from trabajador where nif=? GROUP BY id_trab"
+                authorities-by-username-query="Select nif, categoria from trabajador where nif=?" />
         </authentication-provider>
     </authentication-manager>
     

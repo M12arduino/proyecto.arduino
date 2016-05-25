@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="userLogged" value="<%=org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getName()%>"></c:set>
 
 <div class="navbar navbar-default" role="navigation">
     <!--Capçalera de la barra -->
@@ -21,7 +23,7 @@
         <!--Cos de la barra de navegació-->
 
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-left h1">HopeTech Industries</ul>
+            <ul class="nav navbar-nav navbar-left h1"><a href="${base}/main.htm">HopeTech Industries</a></ul>
             <ul class="nav navbar-nav navbar-left">
                 <li>
                     <img class="logos img-responsive" src="${base}/resources/img/spring.png">
@@ -40,13 +42,15 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="${base}/ordenFabricacion/ordenesEquipo.htm" class="btn" role="button">Tareas equipo</a>
-                </li>
-                <li>
                     <a href="${base}/main.htm" class="btn" role="button">Home</a>
                 </li>
-                <li>
-                    <a href="${base}/j_spring_security_logout" class="btn" role="button">Logout</a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">${userLogged}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="">Mi Perfil</a></li>
+                        <li><a href="${base}/ordenFabricacion/ordenesEquipo.htm">Tareas equipo</a></li>
+                        <li><a href="${base}/j_spring_security_logout">Cerrar sesión</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
