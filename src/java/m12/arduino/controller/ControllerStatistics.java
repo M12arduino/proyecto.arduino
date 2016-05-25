@@ -1,5 +1,6 @@
 package m12.arduino.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import m12.arduino.service.ServiceOrdenFabricacion;
 import m12.arduino.service.ServiceProceso;
 import m12.arduino.service.ServiceRobot;
 import m12.arduino.service.ServiceTrabajador;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -64,14 +66,14 @@ public class ControllerStatistics {
                     break;
             }
         }
-        result += "{label: \"Indefinido\", y: " + sIndef + "},";
-        result += "{label: \"Libre\", y: " + sLibre + "},";
-        result += "{label: \"Ocupado\", y: " + sOcup + "},";
-        result += "{label: \"Desconectado\", y: " + sDesc + "},";
-        result += "{label: \"Local\", y: " + sLocal + "}";
+        result += "{\"label\": \"Indefinido\", \"y\": " + sIndef + "},";
+        result += "{\"label\": \"Libre\", \"y\": " + sLibre + "},";
+        result += "{\"label\": \"Ocupado\", \"y\": " + sOcup + "},";
+        result += "{\"label\": \"Desconectado\", \"y\": " + sDesc + "},";
+        result += "{\"label\": \"Local\", \"y\": " + sLocal + "}";
         return result;
     }
-    
+
     public static String getHistorialEquipos() {
         //"{ y: " . $row[1] . ", legendText: \"" . $row[0] . " - " . $row[1] . " Tasks\", indexLabel: \"" . $row[0] . "\" },"
         int realizadas;
@@ -87,11 +89,12 @@ public class ControllerStatistics {
                     noRealizadas++;
                 }
             }
-            resultado += "{ y: " + realizadas + ", legendText: \"" + equipo.getNombre() + " - " + realizadas + " Ordenes realizadas\", indexLabel: \"" + equipo.getNombre() + "\"},";
-            resultado += "{ y: " + noRealizadas + ", legendText: \"" + equipo.getNombre() + " - " + noRealizadas + " Ordenes no realizadas\", indexLabel: \"" + equipo.getNombre() + "\"},";
+            resultado += "{ \"y\": " + realizadas + ", \"legendText\": \"" + equipo.getNombre() + " - " + realizadas + " Ordenes realizadas\", \"indexLabel\": \"" + equipo.getNombre() + "\"},";
+            resultado += "{ \"y\": " + noRealizadas + ", \"legendText\": \"" + equipo.getNombre() + " - " + noRealizadas + " Ordenes no realizadas\", \"indexLabel\": \"" + equipo.getNombre() + "\"},";
         }
-        return resultado.substring(0, resultado.length()-1);
+        return resultado.substring(0, resultado.length() - 1);
     }
+
     @RequestMapping("/getStatsPeriodo")
     public Map intervaloTemporal(int mesA, int mesB, int anoA, int anoB) {
         Map container = new HashMap();
@@ -129,21 +132,37 @@ public class ControllerStatistics {
                 }
             }
         }
-        result += "{label: \"Indefinido\", y: " + sIndef + "},";
-        result += "{label: \"Pendiente\", y: " + sPend + "},";
-        result += "{label: \"Iniciada\", y: " + sIni + "},";
-        result += "{label: \"Realizada\", y: " + sReal + "},";
-        result += "{label: \"No Realizada\", y: " + sNreal + "},";
-        result += "{label: \"Cancelada\", y: " + sCanc + "}";
+        result += "{\"label\": \"Indefinido\", \"y\": " + sIndef + "},";
+        result += "{\"label\": \"Pendiente\", \"y\": " + sPend + "},";
+        result += "{\"label\": \"Iniciada\", \"y\": " + sIni + "},";
+        result += "{\"label\": \"Realizada\", \"y\": " + sReal + "},";
+        result += "{\"label\": \"No Realizada\", \"y\": " + sNreal + "},";
+        result += "{\"label\": \"Cancelada\", \"y\": " + sCanc + "}";
 
         container.put("lista", elements);
-        container.put("String", result);
+        container.put("string", result);
         return container;
     }
 
     @RequestMapping(value = "/ajaxDiagramaA", method = RequestMethod.POST)
     public @ResponseBody
     String filtroAjaxJson(@RequestParam int mesA, @RequestParam int mesB, @RequestParam int anoA, @RequestParam int anoB) {
-        return (String) intervaloTemporal(mesA, mesB, anoA, anoB).get("String");
-    }    
+        return (String) intervaloTemporal(mesA, mesB, anoA, anoB).get("string");
+    }
+
+    @RequestMapping(value = "/ajaxListA", method = RequestMethod.POST)
+    public @ResponseBody
+    String filtroAjaxList(@RequestParam int mesA, @RequestParam int mesB, @RequestParam int anoA, @RequestParam int anoB) {
+        String response = "";
+        List<OrdenFabricacion> ordenF = (List<OrdenFabricacion>) intervaloTemporal(mesA, mesB, anoA, anoB).get("lista");
+        try {
+            ObjectMapper mapperObj = new ObjectMapper();
+            response = mapperObj.writeValueAsString(ordenF);
+        } catch (IOException ex) {
+            response = ex.getMessage();
+        }
+        return response;
+    }
+
 }
+
