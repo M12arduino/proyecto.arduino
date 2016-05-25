@@ -18,9 +18,9 @@ public class OrdenFabricacionForm {
     private String descripcion;
     private Prioridad prioridad;
     private Long equipo_id;
-    private long codigo_proceso;
+    private String codigo_proceso;
     private int cantidad;
-    private long id_robot;
+    private String id_robot;
     // fecha y estado assignadas por defecto
 
     public Long getId() {
@@ -73,21 +73,23 @@ public class OrdenFabricacionForm {
         this.cantidad = cantidad;
     }
 
-    public long getId_robot() {
-        return id_robot;
-    }
-
-    public void setId_robot(long id_robot) {
-        this.id_robot = id_robot;
-    }
-
-    public long getCodigo_proceso() {
+    public String getCodigo_proceso() {
         return codigo_proceso;
     }
 
-    public void setCodigo_proceso(long codigo_proceso) {
+    public void setCodigo_proceso(String codigo_proceso) {
         this.codigo_proceso = codigo_proceso;
     }
+
+    public String getId_robot() {
+        return id_robot;
+    }
+
+    public void setId_robot(String id_robot) {
+        this.id_robot = id_robot;
+    }
+
+
 
 
 

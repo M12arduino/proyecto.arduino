@@ -63,8 +63,10 @@ public class ControllerOrdenFabricacion {
         oF.setProceso(sP.buscarProceso(ofF.getCodigo_proceso()));
         oF.setCantidad(ofF.getCantidad());
         oF.setRobot(sR.buscarRobot(ofF.getId_robot()));
+        
         OrdenFabricacion orden = sO.insertarOrden(oF);
-        ModelAndView mV = new ModelAndView("objetoDetalle");
+        System.err.println(orden.toString());
+        ModelAndView mV = new ModelAndView("detalleObjeto");
         mV.addObject("objeto", orden);
         return mV;
     }
@@ -120,10 +122,10 @@ public class ControllerOrdenFabricacion {
     String buscaOrdenFabricacionAjax(@RequestBody OrdenFabricacionForm ofF) {
         String codigo = ofF.getCodigo();
         String descripcion = ofF.getDescripcion();
-        Long proceso_id = ofF.getCodigo_proceso();
+        Long proceso_id = sP.buscarProceso(ofF.getCodigo_proceso()).getId();
         Long equipo_id = ofF.getEquipo_id();
         Prioridad prioridad = ofF.getPrioridad();
-        Long robot_id = ofF.getId_robot();
+        Long robot_id = sR.buscarRobot(ofF.getId_robot()).getId();
         if (equipo_id == 0) {
             equipo_id = null;
         }

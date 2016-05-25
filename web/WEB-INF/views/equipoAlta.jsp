@@ -36,7 +36,7 @@
                         </label>
                     </div>
                     <br /><br />
-                    <input type="submit" class="btn btn-arduino btn-block" value="Send"/>
+                    <input type="submit" class="btn btn-arduino btn-block" value="Enviar"/>
                 </form:form>
             </div>
         </div>
