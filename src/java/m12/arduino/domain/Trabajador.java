@@ -47,7 +47,7 @@ public class Trabajador implements Serializable, Maketable {
     private CategoriaTrabajador categoria;
     @ManyToOne
     private Equipo equipo;
-    @OneToOne(mappedBy = "trabajador")
+    @OneToOne
     private OrdenFabricacion orden;
 
     // GESETS    
