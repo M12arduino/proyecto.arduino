@@ -25,11 +25,11 @@
             <ul class="nav navbar-nav navbar-left">
                 <li>
                     <img class="logos img-responsive" src="${base}/resources/img/spring.png">
-                    
+
                 </li>
                 <li>
                     <img class="logos img-responsive" src="${base}/resources/img/java.png">
-                    
+
                 </li>
                 <li>
                     <img class="logos img-responsive" src="${base}/resources/img/hibernate.png">
@@ -39,6 +39,9 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="${base}/ordenFabricacion/ordenesEquipo.htm" class="btn" role="button">Tareas equipo</a>
+                </li>
                 <li>
                     <a href="${base}/main.htm" class="btn" role="button">Home</a>
                 </li>

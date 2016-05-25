@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 
-
-
+var table;
 $(document).ready(function () {
-    var table = null;
+
 
     $("#search").on("click", refrescaTabla);
     //$("#editar").on("click", function () {

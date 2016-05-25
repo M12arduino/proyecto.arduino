@@ -13,7 +13,7 @@
 
 
 $(document).ready(function () {
-    var table;
+    
     /*$("#search").on("click", function () {
      var data = {};
      data.id_robot = $("#id_robotSearchVal").val();
@@ -118,13 +118,12 @@ function gestionaResultadoAjax(response) {
         });
         prepareCrudRobot();
     } else {
-        if (table)
-            table.destroy();
+        if (table) table.destroy();
         $("#datatable").html("");
         $("#errorTable").show();
     }
 }
-
+var table;
 function refrescaTabla() {
     var data = {};
     data.id_robot = $("#id_robotSearchVal").val();

@@ -125,7 +125,7 @@ public class ControllerOrdenFabricacion {
         if (proceso_id == 0) {
             proceso_id = null;
         }
-        if (robot_id == 0 ){
+        if (robot_id == 0) {
             robot_id = null;
         }
         if (prioridad == Prioridad.INDEFINIDO) {
@@ -162,6 +162,18 @@ public class ControllerOrdenFabricacion {
         }
 
         return new ModelAndView("main");
+    }
+
+    @RequestMapping("/ordenesEquipo")
+    public ModelAndView tareasEquipo() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Trabajador trab = null;
+        if (principal instanceof Trabajador) {
+            trab = (Trabajador) principal;
+        } else {
+            String objectStr = principal.toString();
+        }
+        return new ModelAndView("detalleObjeto","objeto",trab);
     }
 
     @RequestMapping("/cancelarOrden")

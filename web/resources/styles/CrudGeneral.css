@@ -169,6 +169,12 @@ le tr.odd, #datatable tr.even,#datatable_block{
     padding:0.25em;
     color:#da6f03;
     font-weight:bold;
+    cursor:pointer;
+    transition: color 1s, background-color 1s;
+}
+#trabajadoresModal .itemModal:hover{
+    color:white;
+    background-color:#00979C;
 }
 .modal-body{
     padding:0.5em;

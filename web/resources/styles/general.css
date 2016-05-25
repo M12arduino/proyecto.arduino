@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25-may-2016, 4:42:39
+    Author     : enric
+*/
+@font-face {
+    font-family: DroidSans;
+    src: url(fonts/droid_sans/DroidSans.ttf);
+    font-weight: normal;
+}
+@font-face {
+    font-family: DroidSans;
+    src: url(fonts/droid_sans/DroidSans-Bold.ttf);
+    font-weight: bold;
+}
+@font-face {
+    font-family: DroidSans;
+    src: url(fonts/droid_sans/DroidSans-Bold.ttf);
+    font-weight: bolder;
+}
+@font-face {
+    font-family: Roboto;
+    src: url(fonts/roboto/Roboto-Medium.ttf);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(fonts/roboto/Roboto-Bold.ttf);
+    font-weight: bold;
+}
+@font-face {
+    font-family: Roboto;
+    src: url(fonts/roboto/Roboto-Bold.ttf);
+    font-weight: bolder;
+}
+body{
+    font-family:Roboto!important;
+}
