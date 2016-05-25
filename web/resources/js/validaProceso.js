@@ -96,10 +96,18 @@ function ProcesoValidator(){
 		error = codigo;
 	};
 	
-	if (error !== null){
-            error.focus();	
-            return false;
-	}
+        if (error instanceof NodeList) {
+            if (error[0] != null){
+                error[0].focus();	
+                return false;
+            }
+        }else{
+            if (error != null){
+                error.focus();	
+                return false;
+            }
+        }
+	
         
         prepare();
 	return true;
@@ -114,11 +122,16 @@ function esDescripcion(elem, idError){
 }
 
 function esPos(elem, idError){
-    return tractarError(validaPos(elem.value),elem,idError);
+    return tractarError(validaPos(elem[0].value),elem,idError);
 }
 
 function esPinza(elem, idError){
-    return tractarError(validaPinza(elem.value),elem,idError);
+    if (elem instanceof NodeList) {
+        return tractarError(validaPinza(elem[0].value),elem,idError);
+    }else{
+        return tractarError(validaPinza(elem.value),elem,idError);
+    }
+    
 }
 /////////////////////////////////
 function validaCodigo(cod){
@@ -127,7 +140,7 @@ function validaCodigo(cod){
 }
 
 function validaDescripcion(desc){
-    var descRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]{1,100}\s?$/;
+    var descRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]+[A-Za-zñÑáÁéÉíÍóÓúÚ\s]{0,99}$/;
     return desc.match(descRegexp);
 }
 
