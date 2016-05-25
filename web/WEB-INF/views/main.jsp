@@ -7,6 +7,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp"></jsp:include>
+    <script type="text/javascript" src="../../resources/libs/canvasJS/canvasjs.min.js"></script>
 <jsp:include page="navBar.jsp"></jsp:include>
 <sec:authorize access="hasRole('LEADER')">
     <jsp:include page="adminPanel.jsp"></jsp:include>
@@ -14,6 +15,7 @@
 <sec:authorize access="hasRole('SENIOR')">
     <jsp:include page="workerPanel.jsp"></jsp:include>
 </sec:authorize>
+
 <div class="col-md-4 col-md-push-2">
     <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
 </div>
