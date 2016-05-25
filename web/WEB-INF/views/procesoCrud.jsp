@@ -11,11 +11,12 @@
 <jsp:include page="navBar.jsp"></jsp:include>
 <link rel="stylesheet" href="${base}/resources/styles/CrudGeneral.css"/>
 <script type="text/javascript" src="${base}/resources/js/crudProceso.js"></script>
+<script type="text/javascript" src="${base}/resources/js/validaCrudProceso.js"></script>
     <div class="container">
-        <form:form action="${base}/proceso" method="POST" id="form">
-            <div class="page-header">
-                <h1>Administración de Equipos</h1>
+                    <div class="page-header">
+                <h1>Administración de Procesos</h1>
             </div>
+        <form:form name="MyForm" action="${base}/proceso" method="POST" id="form">
             <div class="row search-form">
                 <div class="col-md-4">
                     <h4 class="colorLabel">Criterios de búsqueda:</h4>
@@ -57,21 +58,24 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="codigo">Codigo Proceso:</label>
                             <div class="col-sm-10">
-                                <form:input path="codigo" id="codigo" placeholder="codigo" class="form-control"/>
+                                <form:input name="codigo" path="codigo" id="codigo" placeholder="codigo" class="form-control"/>
+                                <span class="alert-danger" id="codigo_error">Código erroneo.</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="descripcion">Descripcion:</label>
                             <div class="col-sm-10">
-                                <form:input path="descripcion" id="descripcion" placeholder="descripcion" class="form-control"/>
+                                <form:input name="descripcion" path="descripcion" id="descripcion" placeholder="descripcion" class="form-control"/>
+                                <span class="alert-danger" id="descripcion_error">Descripción erronea.</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2">Acciones: </label>
                             <div class="col-sm-10 " id="acciones_wrapper">
+                            <span class="alert-danger" id="pos_error">Alguna posicion erronea.</span><br />
                             <button id="accionesButton"  type="button" class="btn btn-arduino" >Añadir accion</button><br />
                             </div>
-                        </div>
+                        </div>        
                         <div class="row">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <input type="button" class="btn btn-arduino" value="Editar" id="editar"/>

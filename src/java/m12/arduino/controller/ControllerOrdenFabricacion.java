@@ -9,10 +9,12 @@ import m12.arduino.domain.OrdenFabricacion;
 import m12.arduino.domain.Prioridad;
 import m12.arduino.domain.Trabajador;
 import m12.arduino.service.OrdenFabricacionForm;
+import m12.arduino.service.ServiceEquipo;
 import m12.arduino.service.ServiceOrdenFabricacion;
 import m12.arduino.service.ServiceProceso;
 import m12.arduino.service.ServiceRobot;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.hibernate.HibernateException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -23,20 +25,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /*
-Jordi Puig Puig
-DAW 2
-Curs 2015-2016
+ Jordi Puig Puig
+ DAW 2
+ Curs 2015-2016
 
-@author Jordi
-*/
+ @author Jordi
+ */
 @Controller
 @RequestMapping("/ordenFabricacion")
 public class ControllerOrdenFabricacion {
-    
+
     private ServiceOrdenFabricacion sO = new ServiceOrdenFabricacion();
     private ServiceProceso sP = new ServiceProceso();
     private ServiceRobot sR = new ServiceRobot();
-    
+    private ServiceEquipo sE = new ServiceEquipo();
+
     @RequestMapping("/alta")
     public ModelAndView formularioInicial() {
         ModelAndView mV = new ModelAndView("ordenFabricacionAlta", "command", new OrdenFabricacionForm());
@@ -45,7 +48,7 @@ public class ControllerOrdenFabricacion {
         mV.addObject("robots", sR.listarRobots());
         return mV;
     }
-    
+
     @RequestMapping(value = "/insertar")
     public ModelAndView addOrden(OrdenFabricacionForm ofF) {
         OrdenFabricacion oF = new OrdenFabricacion();
@@ -56,78 +59,95 @@ public class ControllerOrdenFabricacion {
         oF.setCantidad(ofF.getCantidad());
         oF.setRobot(sR.buscarRobot(ofF.getId_robot()));
         OrdenFabricacion orden = sO.insertarOrden(oF);
-        ModelAndView mV = new ModelAndView("objetoDetalle");        
+        ModelAndView mV = new ModelAndView("objetoDetalle");
         mV.addObject("objeto", orden);
         return mV;
     }
-    
-    @RequestMapping(value="/actualizar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
-    public @ResponseBody String actualizarOrdenFabricacion(@RequestBody OrdenFabricacionForm ofF){
+
+    @RequestMapping(value = "/actualizar", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody
+    String actualizarOrdenFabricacion(@RequestBody OrdenFabricacionForm ofF) {
         String msg = "";
         try {
-            OrdenFabricacion of = new OrdenFabricacion();
-            of.setId(ofF.getId());
+            OrdenFabricacion of = sO.buscarOrden("id", ofF.getId());
             of.setCodigo(ofF.getCodigo());
             of.setDescripcion(ofF.getDescripcion());
             of.setCantidad(ofF.getCantidad());
-            of.setProceso(sP.buscarProceso(ofF.getCodigo_proceso()));
+            System.out.println("CODIGOPROCESO:" + ofF.getCodigo_proceso() + "CODIGROGOOT" + ofF.getId_robot() + "###############");
+            of.setProceso(sP.buscarProceso("id", ofF.getCodigo_proceso()));
             of.setProridad(ofF.getPrioridad());
-            of.setRobot(sR.buscarRobot(ofF.getId_robot()));
+            of.setRobot(sR.buscarRobot("id", ofF.getId_robot()));
             sO.actualizarOrden(of);
-            msg = "Fabrication Order updated";
-        } catch (Exception e) {
-            msg = "updated fail "+e.getMessage();
+            msg = "<div class=\"alert alert-success\">La orden de fabricacion se ha actualizado correctamente</div>";
+        } catch (HibernateException e) {
+            msg = "<div class=\"alert alert-error\">Error al actualizar la orden de fabricacion</div>";
         }
         return msg;
     }
-    
-    @RequestMapping(value="/eliminar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
-    public @ResponseBody String eliminarOrdenFabricacion(@RequestBody OrdenFabricacionForm ofF){
+
+    @RequestMapping(value = "/eliminar", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    public @ResponseBody
+    String eliminarOrdenFabricacion(@RequestBody OrdenFabricacionForm ofF) {
         String msg = "";
         try {
             OrdenFabricacion of = new OrdenFabricacion();
             of.setId(ofF.getId());
             sO.eliminarOrden(of);
-            msg = "Fabrication Order deleted";
+            msg = "<div class=\"alert alert-success\">La orden de fabricación se ha eliminado correctamente</div>";
         } catch (Exception e) {
-            msg = "delete fail "+e.getMessage();
+            msg = "<div class=\"alert alert-error\">error al actualizar la orden de fabricacion</div>";;
         }
         return msg;
     }
-    
-    @RequestMapping(value="/administrar")
-    public ModelAndView administrarOrdenFabricacion(){
-        ModelAndView mV = new ModelAndView("ordenFabricacionCrud","command",new OrdenFabricacionForm());
+
+    @RequestMapping(value = "/administrar")
+    public ModelAndView administrarOrdenFabricacion() {
+        ModelAndView mV = new ModelAndView("ordenFabricacionCrud", "command", new OrdenFabricacionForm());
         mV.addObject("prioridades", Prioridad.values());
         mV.addObject("procesos", sP.listarProcesos());
         mV.addObject("robots", sR.listarRobots());
+        mV.addObject("equipos", sE.listarEquipos());
         return mV;
     }
-    
+
     @RequestMapping(value = "/buscar", method = RequestMethod.POST)
-    public @ResponseBody String buscaOrdenFabricacionAjax(@RequestBody OrdenFabricacionForm ofF) {
+    public @ResponseBody
+    String buscaOrdenFabricacionAjax(@RequestBody OrdenFabricacionForm ofF) {
         String codigo = ofF.getCodigo();
         String descripcion = ofF.getDescripcion();
+        Long proceso_id = ofF.getCodigo_proceso();
+        Long equipo_id = ofF.getEquipo_id();
         Prioridad prioridad = ofF.getPrioridad();
-        if (prioridad == Prioridad.INDEFINIDO) prioridad = null;
+        Long robot_id = ofF.getId_robot();
+        if (equipo_id == 0) {
+            equipo_id = null;
+        }
+        if (proceso_id == 0) {
+            proceso_id = null;
+        }
+        if (robot_id == 0) {
+            robot_id = null;
+        }
+        if (prioridad == Prioridad.INDEFINIDO) {
+            prioridad = null;
+        }
         String response = null;
-        //List<OrdenFabricacion> OF = sO.listarOrdenes("codigo",codigo,"descripcion",descripcion);
-        List<OrdenFabricacion> OF = sO.listarOrdenes();
-        if(OF !=null){
-        try {
-            ObjectMapper mapperObj = new ObjectMapper();
-            response = mapperObj.writeValueAsString(OF);
-            System.out.println("Response: "+response);
-        } catch (IOException ex) {
-            response = ex.getMessage();
-        } 
-        }else{
+        List<OrdenFabricacion> OF = sO.listarOrdenes("codigo", codigo, "descripcion", descripcion, "equipo_id", equipo_id, "proceso_id", proceso_id, "robot_id", robot_id, "prioridad", prioridad);
+        // List<OrdenFabricacion> OF = sO.listarOrdenes();
+        if (OF != null) {
+            try {
+                ObjectMapper mapperObj = new ObjectMapper();
+                response = mapperObj.writeValueAsString(OF);
+            } catch (IOException ex) {
+                response = ex.getMessage();
+            }
+        } else {
             response = null;
         }
 
         return response;
     }
-    
+
     @RequestMapping("/ejecutarOrden")
     public ModelAndView ejecutarOrden(String codigo_orden) {
         ModelAndView mV = new ModelAndView("main");
@@ -136,14 +156,26 @@ public class ControllerOrdenFabricacion {
             // CRIDA AL ARDUINO PER INICIAR LA ORDRE
             oF.setEstado(EstadoOrden.INICIADA);
             sO.actualizarOrden(oF);
-            
+
         } else {
             String message = "Para iniciar una orden ésta debe encontrarse en estado 'Pendiente'";
         }
-        
+
         return new ModelAndView("main");
     }
-    
+
+    @RequestMapping("/ordenesEquipo")
+    public ModelAndView tareasEquipo() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Trabajador trab = null;
+        if (principal instanceof Trabajador) {
+            trab = (Trabajador) principal;
+        } else {
+            String objectStr = principal.toString();
+        }
+        return new ModelAndView("detalleObjeto","objeto",trab);
+    }
+
     @RequestMapping("/cancelarOrden")
     public ModelAndView cancelarOrden(String codigo_orden) {
         ModelAndView mV = new ModelAndView("main");
@@ -152,14 +184,14 @@ public class ControllerOrdenFabricacion {
             // CRIDA AL ARDUINO PER Cancelar LA ORDRE?????
             oF.setEstado(EstadoOrden.CANCELADA);
             sO.actualizarOrden(oF);
-            
+
         } else {
             String message = "Ésta orden ya se encuentra en estado 'Cancelada'";
         }
-        
+
         return new ModelAndView("main");
     }
-    
+
     @RequestMapping("/tabla")
     public ModelAndView makeTable() {
         ModelAndView mV = new ModelAndView("tableMaker");

@@ -11,15 +11,17 @@
 <jsp:include page="navBar.jsp"></jsp:include>
 <script src="${base}/resources/js/validaRobot.js" type="text/javascript"></script>
 <link href="${base}/resources/styles/altaGeneral.css" rel="stylesheet">
-    <div class="container">
-        <br /><br />
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Añadir robot</h3>
-                </div>
-                <div class="panel-body">
+<div class="container">
+    <div class="page-header">
+        <h1>Administración de Robots</h1>
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Añadir robot</h3>
+            </div>
+            <div class="panel-body">
                 <form:form name="MyForm" action="${base}/robot/insertar.htm" method="POST" role="form" >
                     <div class="form-group">
                         <label for="idRobot">ID Robot: </label>

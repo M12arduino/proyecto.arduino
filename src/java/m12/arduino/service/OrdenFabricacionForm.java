@@ -1,5 +1,7 @@
 package m12.arduino.service;
 
+import java.util.List;
+import m12.arduino.domain.Equipo;
 import m12.arduino.domain.Prioridad;
 
 /*
@@ -15,9 +17,10 @@ public class OrdenFabricacionForm {
     private String codigo;
     private String descripcion;
     private Prioridad prioridad;
-    private String codigo_proceso;
+    private Long equipo_id;
+    private long codigo_proceso;
     private int cantidad;
-    private String id_robot;
+    private long id_robot;
     // fecha y estado assignadas por defecto
 
     public Long getId() {
@@ -27,6 +30,16 @@ public class OrdenFabricacionForm {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Long getEquipo_id() {
+        return equipo_id;
+    }
+
+    public void setEquipo_id(Long equipo_id) {
+        this.equipo_id = equipo_id;
+    }
+
+
 
     public String getCodigo() {
         return codigo;
@@ -60,21 +73,25 @@ public class OrdenFabricacionForm {
         this.cantidad = cantidad;
     }
 
-    public String getId_robot() {
+    public long getId_robot() {
         return id_robot;
     }
 
-    public void setId_robot(String id_robot) {
+    public void setId_robot(long id_robot) {
         this.id_robot = id_robot;
     }
 
-    public String getCodigo_proceso() {
+    public long getCodigo_proceso() {
         return codigo_proceso;
     }
 
-    public void setCodigo_proceso(String codigo_proceso) {
+    public void setCodigo_proceso(long codigo_proceso) {
         this.codigo_proceso = codigo_proceso;
     }
+
+
+
+
     
  
 }

@@ -54,7 +54,11 @@ public class DaoRobotImpl implements DaoRobot {
         for (Iterator<String> it = keys.iterator(); it.hasNext();) {
             if (it.hasNext()) {
                 String currentKey = it.next();
-                str += currentKey + " LIKE :" + currentKey + " ";
+                String operator = "=";
+                if (whereMap.get(currentKey) instanceof String) {
+                    operator = " LIKE ";
+                }
+                str += currentKey + operator+" :" + currentKey + " ";
             }
             if (it.hasNext()) {
                 str += " and ";

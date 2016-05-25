@@ -3,57 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+var table;
 $(document).ready(function () {
-    var table = null;
+   
 
-    function gestionaResultadoAjax(response) {
-        var array = JSON.parse(response);
-        if (array !== "") {
-            $("#errorTable").hide();
-            var titles = dataTablesDevuelveProps(array);
-            var dataSet = dataTablesDevuelveValues(array);
 
-            table = $("#datatable").DataTable({
-                data: dataSet,
-                columns: titles,
-                destroy: true
-            });
-            prepareCrudOrdenFabricacion();
-        } else {
-            if(table)table.destroy();
-            $("#datatable").html("");
-            $("#errorTable").show();
-        }
-    }
-    
-    function refrescaTabla(){ 
-        var data = {};
-        data.codigo = $("#codigoSearchVal").val();
-        data.descripcion = $("#descripcionSearchVal").val();
-        data.prioridad = $("#prioridadSearchVal").val();
-        data.codigo_proceso = $("#codigo_procesoSearchVal").val();
-        data.cantidad = $("#cantidadSearchVal").val();
-        data.id_robot = $("#id_robotSearchVal").val();
-        var jsonStr = JSON.stringify(data);
-        $.ajax({
-            url: getBasePath() + "ordenFabricacion/buscar.htm",
-            type: "POST",
-            data: jsonStr,
-            contentType: "application/json; charset=utf-8",
-            async: false,
-            cache: false,
-            processData: false,
-            success: gestionaResultadoAjax,
-            error: function (xhr) {
-                var err = eval("(" + xhr.responseText + ")");
-                alert(err.Message + "error");
-            }
-        });
-    }
-    
+
+
     $("#search").on("click", refrescaTabla);
-    //$("#editar").on("click", function 
+    $("#editar").on("click", editarOrdenFabricacion);
 
     $("#eliminar").on("click", function () {
         if (confirm("¿Estás seguro que deseas eliminar esta orden de fabricación?")) {
@@ -68,12 +26,16 @@ $(document).ready(function () {
                 async: false,
                 cache: false,
                 processData: false,
-                success: function(response){
-                    alert(response);
+                success: function (response) {
                     refrescaTabla();
                     cleanCrudOrdenFabricacion();
+                    $("#results_info").html(response);
+                    $(".edit_box .waiting_wrapper").hide();
+                },
+                beforeSend: function () {
+                    $(".edit_box .waiting_wrapper").show();
                 }
-            }); 
+            });
         }
     });
 });
@@ -85,10 +47,10 @@ function prepareCrudOrdenFabricacion() {
         $("#codigo").val($(this).find("td:nth-child(2)").html());
         $("#descripcion").val($(this).find("td:nth-child(3)").html());
         $("#prioridad").val($(this).find("td:nth-child(4)").html());
-        $("#codigo_proceso").val($(this).find("td:nth-child(5)").html());
-        $("#cantidad").val($(this).find("td:nth-child(6)").html());
-        $("#id_robot").val($(this).find("td:nth-child(7)").html());
-
+        $("#codigo_proceso").val($(this).find("td:nth-child(6)").html());
+        $("#cantidad").val($(this).find("td:nth-child(7)").html());
+        $("#id_robot").val($(this).find("td:nth-child(8)").html());
+        $("#results").hide();
     });
 }
 
@@ -103,26 +65,81 @@ function cleanCrudOrdenFabricacion() {
 }
 
 function editarOrdenFabricacion() {
-        var data = {};
-        data.id = $("#id").val();
-        data.codigo = $("#codigo").val();
-        data.descripcion = $("#descripcion").val();
-        data.prioridad = $("#prioridad").val();
-        data.codigo_proceso = $("#codigo_proceso").val();
-        data.cantidad = $("#cantidad").val();
-        data.id_robot = $("#id_robot").val();
-        var jsonStr = JSON.stringify(data);
-        $.ajax({
-            url: getBasePath() + "ordenFabricacion/actualizar.htm",
-            type: "POST",
-            data: jsonStr,
-            contentType: "application/json; charset=utf-8",
-            async: false,
-            cache: false,
-            processData: false,
-            success: function(response){
-                alert(response);
-                refrescaTabla();
-            }
+    var data = {};
+    data.id = $("#id").val();
+    data.codigo = $("#codigo").val();
+    data.descripcion = $("#descripcion").val();
+    data.prioridad = $("#prioridad").val();
+    data.codigo_proceso = $("#codigo_proceso").val();
+    data.cantidad = $("#cantidad").val();
+    data.id_robot = $("#id_robot").val();
+    var jsonStr = JSON.stringify(data);
+    $.ajax({
+        url: getBasePath() + "ordenFabricacion/actualizar.htm",
+        type: "POST",
+        data: jsonStr,
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+            refrescaTabla();
+            $("#results_info").html(response);
+            $(".edit_box .waiting_wrapper").hide();
+        },
+        beforeSend: function () {
+            $(".edit_box .waiting_wrapper").show();
+        }
+    });
+}
+
+function gestionaResultadoAjax(response) {
+    $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
+    $(".datatable-form .waiting_wrapper").hide();
+    var array = JSON.parse(response);
+    ;
+    if (array.length > 0) {
+        $("#errorTable").hide();
+        var titles = dataTablesDevuelveProps(array);
+        var dataSet = dataTablesDevuelveValues(array);
+        table = $("#datatable").DataTable({
+            data: dataSet,
+            columns: titles,
+            destroy: true
         });
+        prepareCrudOrdenFabricacion();
+    } else {
+        if (table)
+            table.destroy();
+        $("#datatable").html("");
+        $("#errorTable").show();
     }
+}
+
+function refrescaTabla() {
+    var data = {};
+    data.codigo = $("#codigoSearchVal").val();
+    data.descripcion = $("#descripcionSearchVal").val();
+    data.prioridad = $("#prioridadSearchVal").val();
+    data.codigo_proceso = $("#codigo_procesoSearchVal").val();
+    data.equipo_id = $("#equipo_idSearchVal").val();
+    data.id_robot = $("#id_robotSearchVal").val();
+    var jsonStr = JSON.stringify(data);
+    $.ajax({
+        url: getBasePath() + "ordenFabricacion/buscar.htm",
+        type: "POST",
+        data: jsonStr,
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        cache: false,
+        processData: false,
+        success: gestionaResultadoAjax,
+        error: function (xhr) {
+            var err = eval("(" + xhr.responseText + ")");
+            alert(err.Message + "error");
+        },
+        beforeSend: function () {
+            $(".datatable-form .waiting_wrapper").show();
+        }
+    });
+}
