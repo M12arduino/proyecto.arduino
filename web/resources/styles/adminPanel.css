@@ -1,10 +1,42 @@
+html,body{
+    height:100%!important;
+}
+.populate{
+    height:100%;
+    width:100%;
+    text-align:center;
+    padding:2em;
+}
+.populate a{
+    background-color:black;
+    height:10em;
+    width:10em;
+    line-height:10em;
+    text-align:center;
+    display:block;
+    color:white;
+    font-weight:bold;
+    border-radius:50%;
+}
+.panel_wrapper{
+    width:17.5%;
+    height:100%;
+    background-color: #0A4F51;
+    float:left;
+}
+.main_wrapper{
+    padding:3em;
+    width:82.5%;
+    float:left;
+}
 .nav-side-menu {
     overflow: auto;
     font-family: sans-serif;
     background-color: #00979C;
-    position: fixed;
-    height: 100%;
     color: #e1ffff;
+}
+.menu-list li{
+    padding:1.25em!important;
 }
 .nav-side-menu .panel-title {
     background-color: #F47A20;
@@ -40,6 +72,7 @@
     list-style: none;
     padding: 0px;
     margin: 0px;
+    background-color: #0A4F51;
     line-height: 35px;
     cursor: pointer;
 }
