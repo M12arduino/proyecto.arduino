@@ -11,9 +11,6 @@
 <jsp:include page="navBar.jsp"></jsp:include>
 <script src="${base}/resources/js/validaTrabajador.js" type="text/javascript"></script>
 <link href="${base}/resources/styles/altaGeneral.css" rel="stylesheet">
-<sec:authorize access="hasRole('rol_admin')">
-    <jsp:include page="adminPanel.jsp"></jsp:include>
-</sec:authorize>
     <div class="container">
         <br /><br />
         <div class="col-md-3"></div>
@@ -23,7 +20,7 @@
                     <h3 class="panel-title">Añadir trabajador</h3>
                 </div>
                 <div class="panel-body">
-                <form:form name="MyForm" action="${base}/trabajador/insertar.htm" method="POST" role="form" >
+                <form:form name="MyForm" action="${base}/trabajador/actualizar.htm" method="POST" role="form" >
                     <div class="form-group">
                         <label for="nifTrabajador">NIF: </label>
                         <form:input name="nif" path="nif" class="form-control" id="nifTrabajador"/>

@@ -6,13 +6,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import m12.arduino.dao.HibernateUtil;
 import m12.arduino.domain.CategoriaTrabajador;
+import m12.arduino.domain.Equipo;
 import m12.arduino.domain.Maketable;
 import m12.arduino.domain.Trabajador;
+import m12.arduino.service.ServiceEquipo;
 import m12.arduino.service.ServiceTrabajador;
 import m12.arduino.service.TrabajadorCrudForm;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.HibernateException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,7 +36,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class ControllerTrabajador {
 
     private ServiceTrabajador sT = new ServiceTrabajador();
-
+    private ServiceEquipo sE = new ServiceEquipo();
+            
     @RequestMapping("/alta")
     public ModelAndView formularioInicial() {
         ModelAndView mV = new ModelAndView("trabajadorAlta", "command", new Trabajador());
@@ -124,7 +129,7 @@ public class ControllerTrabajador {
         return response;
     }
     
-        @RequestMapping(value = "/trabajadores",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/trabajadores",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
     public @ResponseBody String listaTrabajadorAjax() {
         String response = "";
         List<Trabajador> trab = sT.listarTrabajadores();
@@ -142,4 +147,30 @@ public class ControllerTrabajador {
         return response;
     }
 
-}
+    @RequestMapping(value = "/miPerfil")
+    public ModelAndView miPerfil() {
+        ModelAndView mV = new ModelAndView("PerfilUsuario", "command", new TrabajadorCrudForm());
+        String myName = SecurityContextHolder.getContext().getAuthentication().getName();
+        Trabajador trab = sT.buscarTrabajador(myName);
+        mV.addObject("myTrab", trab);
+        return mV;
+    }
+
+    @RequestMapping(value = "/actualizarPerfil", method = RequestMethod.POST)
+    public ModelAndView actualizarPerfil(TrabajadorCrudForm tcf) {
+        ModelAndView mV = new ModelAndView("main");
+ 
+        Trabajador t = new Trabajador();
+        t.setId_trab(tcf.getId_trab());
+        t.setNif(tcf.getNif());
+        t.setNombre(tcf.getNombre());
+        t.setPassword(tcf.getPassword());
+        t.setMovil(tcf.getMovil());
+        t.setEquipo(sE.buscarEquipo(tcf.getId_equipo()));
+        t.setCategoria(tcf.getCategoria());
+        
+        sT.actualizarTrabajador(t);
+
+        return mV;
+    }
+}   

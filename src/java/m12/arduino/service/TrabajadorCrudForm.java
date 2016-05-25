@@ -30,9 +30,19 @@ public class TrabajadorCrudForm {
     // @Size(min = 4, max = 20, message = "La contrassenya ha de tenir entre 4 i 20 caracters")
     private String password;
     private CategoriaTrabajador categoria;
+    private String id_equipo;
     private Equipo equipo;
     private CategoriaTrabajador categoriaSearch;
 
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
+    
     public long getId_trab() {
         return id_trab;
     }
@@ -81,12 +91,12 @@ public class TrabajadorCrudForm {
         this.categoria = categoria;
     }
 
-    public Equipo getEquipo() {
-        return equipo;
+    public String getId_equipo() {
+        return id_equipo;
     }
 
-    public void setEquipo(Equipo equipo) {
-        this.equipo = equipo;
+    public void setId_equipo(String id_equipo) {
+        this.id_equipo = id_equipo;
     }
 
     public CategoriaTrabajador getCategoriaSearch() {
@@ -96,6 +106,10 @@ public class TrabajadorCrudForm {
     public void setCategoriaSearch(CategoriaTrabajador categoriaSearch) {
         this.categoriaSearch = categoriaSearch;
     }
-    
+
+    @Override
+    public String toString() {
+        return "TrabajadorCrudForm{" + "id_trab=" + id_trab + ", nif=" + nif + ", nombre=" + nombre + ", movil=" + movil + ", password=" + password + ", categoria=" + categoria + ", equipo=" + id_equipo + ", categoriaSearch=" + categoriaSearch + '}';
+    }
     
 }
