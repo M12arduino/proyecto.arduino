@@ -7,6 +7,10 @@ and open the template in the editor.
     Created on : 18-may-2016, 17:49:03
     Author     : enric
 */
+.checked_modal{
+    background:#00979C!important;
+    color:white!important;
+}
 #datatable_tareas th{
     background:#00979C;
     color:white;

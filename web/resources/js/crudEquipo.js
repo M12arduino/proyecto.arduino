@@ -133,8 +133,14 @@ function refrescaTabla() {
         }
     });
 }
-function checkThis(obj) {
-    obj.getElementsByTagName("input")[0].checked = true;
+function checkThis(obj,e) {
+    var actual =obj.getElementsByTagName("input")[0].checked;
+    if (actual){
+        obj.getElementsByTagName("input")[0].checked = false;
+    }else{
+        obj.getElementsByTagName("input")[0].checked = true;
+        obj.classname="checked_modal"
+    }
 }
 function prepareCrud() {
     $("#datatable tr").not(":first").on("click", function () {

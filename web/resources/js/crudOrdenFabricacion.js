@@ -94,7 +94,6 @@ function gestionaResultadoAjax(response) {
     $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
     $(".datatable-form .waiting_wrapper").hide();
     var array = JSON.parse(response);
-    ;
     if (array.length > 0) {
         $("#errorTable").hide();
         var titles = dataTablesDevuelveProps(array);
@@ -129,9 +128,9 @@ function refrescaTabla() {
     data.codigo = $("#codigoSearchVal").val();
     data.descripcion = $("#descripcionSearchVal").val();
     data.prioridad = $("#prioridadSearchVal").val();
-    data.codigo_proceso = $("#codigo_procesoSearchVal").val();
+    data.codigo_proceso_id = $("#codigo_procesoSearchVal").val();
     data.equipo_id = $("#equipo_idSearchVal").val();
-    data.id_robot = $("#id_robotSearchVal").val();
+    data.id_robot_id = $("#id_robotSearchVal").val();
     var jsonStr = JSON.stringify(data);
     $.ajax({
         url: getBasePath() + "ordenFabricacion/buscar.htm",
