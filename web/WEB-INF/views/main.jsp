@@ -70,15 +70,15 @@
 
                     </table>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 estadisticas-glob">
                     <p>Estadísticas Globales</p>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-6">
-                        <div id="chartContainer1"></div>
-                    </div>
-                    <div class="col-md-6">
-                        <div id="chartContainer2"></div>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div id="chartContainer1"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="chartContainer2"></div>
+                        </div>
                     </div>
                 </div>
             </div>

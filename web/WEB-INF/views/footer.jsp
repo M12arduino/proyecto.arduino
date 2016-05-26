@@ -6,10 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="${base}/resources/styles/footer.css"/>
-    <footer class="footer">
-        <div class="container">
-            <p class="text-muted">ehehehe.</p>
-        </div>
-    </footer>
+<div class="col-md-12 footer">
+    <p class="pull-right">© 2016 HopeTech Industries - IES Carles Vallbona</p>
+</div>
 </body>
 <html>

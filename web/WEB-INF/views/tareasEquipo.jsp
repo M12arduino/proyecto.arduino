@@ -24,5 +24,4 @@
     <form:form name="MyForm" action="${base}/ordenFabricacion/asignarTrabajador.htm" method="POST" id="form">
         <form:input type="hidden" path="codigo" id="codigo" value=""/>
     </form:form>
-</body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>
