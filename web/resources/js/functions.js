@@ -95,3 +95,43 @@ function dataTablesDevuelvePropsBoton(array) {
     res.push({title: "Assignar"});
     return res;
 }
+
+function dataTablesDevuelvePropsBoton2(array) {
+    var res = [];
+    var aux = array[0];
+    for (var prop in aux) {
+         var obj = {title: prop};
+         res.push(obj);
+    }
+    res.push({title: "Ejecutar"});
+    res.push({title: "Cancelar"});
+    return res;
+}
+
+function dataTablesDevuelveValuesBoton2(array) {
+    var res = [];
+    var result;
+    var aux;
+    var arrayaux = [];
+    for (var i = 0; i < array.length; i++) {
+        aux = array[i];
+        arrayaux = [];
+        for (var prop in aux) {
+            if (typeof aux[prop] == "object") {
+                if (aux[prop] == null) {
+                    result = "No definido";
+                } else {
+                        result = returnFirstProperty(aux[prop]);
+                }
+            } else {
+                result = aux[prop];
+            }
+            arrayaux.push(result);
+        }
+        
+        arrayaux.push('<input name="bEjecutar" type="button" class="assignar btn btn-arduino" value="Ejecutar orden" onclick="setHiddenValueE(this);"/>');
+        arrayaux.push('<input name="bCancelar" type="button" class="assignar btn btn-arduino" value="Cancelar orden" onclick="setHiddenValueC(this);"/>');
+        res.push(arrayaux);
+    }
+    return res;
+}

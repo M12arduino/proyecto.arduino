@@ -23,6 +23,24 @@ public class OrdenFabricacionForm {
     private String id_robot;
     private long codigo_proceso_id;
     private long id_robot_id;
+    private String codigo_eje;
+    private String codigo_can;
+
+    public String getCodigo_eje() {
+        return codigo_eje;
+    }
+
+    public void setCodigo_eje(String codigo_eje) {
+        this.codigo_eje = codigo_eje;
+    }
+
+    public String getCodigo_can() {
+        return codigo_can;
+    }
+
+    public void setCodigo_can(String codigo_can) {
+        this.codigo_can = codigo_can;
+    }
     
     public long getCodigo_proceso_id() {
         return codigo_proceso_id;
