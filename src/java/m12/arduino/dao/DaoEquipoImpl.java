@@ -52,22 +52,32 @@ public class DaoEquipoImpl implements DaoEquipo {
         for (Iterator<String> it = keys.iterator(); it.hasNext();) {
             if (it.hasNext()) {
                 String currentKey = it.next();
-                str += currentKey + " LIKE :" + currentKey + " ";
+                String operator = "=";
+                if (whereMap.get(currentKey) instanceof String) {
+                    operator = " LIKE ";
+                }
+                str += currentKey + operator + " :" + currentKey + " ";
             }
             if (it.hasNext()) {
                 str += " and ";
             }
         }
-        if (str!="") str= "WHERE "+str;
+        if (str != "") {
+            str = "WHERE " + str;
+        }
         // Complete query-string
         Query query = session.createQuery("FROM Equipo " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
-            Object val =  e.getValue();
-            query.setParameter(attr, "%"+val+"%");      
+            Object val = e.getValue();
+            if (val instanceof String) {
+                query.setParameter(attr, "%" + val + "%");
+            } else {
+                query.setParameter(attr, val);
+            };
         }
-        List<Equipo> res= query.list();
+        List<Equipo> res = query.list();
         acabaOperacion();
         return res;
     }

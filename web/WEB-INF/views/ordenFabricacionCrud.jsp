@@ -123,7 +123,14 @@
                             </form:select>
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="id_robot">Equipo:</label>
+                        <div class="col-sm-10">
+                            <form:select path="equipo_id" class="form-control" id="equipo_id">
+                                <form:options itemValue="id" itemLabel="nombre" items="${equipos}" />
+                            </form:select>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-sm-offset-2 col-sm-10">
                             <input type="button" class="btn btn-arduino" value="Editar" id="editar"/>

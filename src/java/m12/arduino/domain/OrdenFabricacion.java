@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,6 +36,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
     private long id;
     private String codigo;
     private String descripcion;
+    @Enumerated (value = EnumType.STRING)
     private Prioridad proridad;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar fecha;
