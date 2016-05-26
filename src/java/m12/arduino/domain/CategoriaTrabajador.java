@@ -15,10 +15,7 @@ public enum CategoriaTrabajador {
     // LIST
     INDEFINIDO(0,"Indefinido"),
     JUNIOR(1,"Junior"),
-    SENIOR(2, "Senior"),
-    LEADER(3, "Leader"),
-    MANAGER(4, "Manager"),
-    ADMINISTRADOR(5, "Administrador");
+    ADMINISTRADOR(2, "Administrador");
     
     // ATTR
     private final int code;
