@@ -73,7 +73,7 @@ function validaId(id){
 }
 
 function validaNombre(nombre){
-    var nombreRegexp = /^[A-Za-z]{1,10}[0-9]{0,2}$/;
+    var nombreRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ0-9]+[A-Za-zñÑáÁéÉíÍóÓúÚ0-9\s]{0,24}$/;
     return nombre.match(nombreRegexp);
 }
 

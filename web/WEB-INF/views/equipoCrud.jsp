@@ -85,7 +85,7 @@
                         <label class="control-label col-sm-2" for="id_equipo">Id Equipo:</label>
                         <div class="col-sm-10">
                             <form:input name="id_equipo" path="id_equipo" id="id_equipo" placeholder="id_equipo" class="form-control"/>
-                            <span class="alert-danger" id="id_equipo_error">ID erroneo.</span>
+                            <span class="alert-danger" id="id_equipo_error">ID erroneo. ejemplo: CV4444</span>
                         </div>
                     </div>
                     <div class="form-group">
