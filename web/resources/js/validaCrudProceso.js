@@ -127,7 +127,7 @@ function validaCodigo(cod){
 }
 
 function validaDescripcion(desc){
-    var descRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]+\s?[A-Za-zñÑáÁéÉíÍóÓúÚ0-9\s]{0,99}$/;
+    var descRegexp = /^[\wñÑáÁéÉíÍóÓúÚ]+[\w\,ñÑáÁéÉíÍóÓúÚ\s0-9]{0,99}$/;
     return desc.match(descRegexp);
 }
 

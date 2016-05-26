@@ -140,7 +140,7 @@ function validaCodigo(cod){
 }
 
 function validaDescripcion(desc){
-    var descRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]+[A-Za-zñÑáÁéÉíÍóÓúÚ\s]{0,99}$/;
+    var descRegexp = /^[\wñÑáÁéÉíÍóÓúÚ]+[\w\,ñÑáÁéÉíÍóÓúÚ\s0-9]{0,99}$/;
     return desc.match(descRegexp);
 }
 

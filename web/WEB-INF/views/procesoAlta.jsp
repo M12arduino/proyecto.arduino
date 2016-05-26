@@ -29,7 +29,7 @@
                     <div class="form-group">
                         <label for="procesoDesc">Descripcion: </label>
                         <form:input name="descripcion" path="descripcion" class="form-control" id="procesoDesc" />
-                        <span class="alert-danger" id="descripcion_error">Descripción erronea.</span>
+                        <span class="alert-danger" id="descripcion_error">La descripción debe contener solo letras y números.</span>
                     </div>
                     <div class="form-group">
                         <label>Acciones: </label>

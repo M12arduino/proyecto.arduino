@@ -86,7 +86,7 @@ function validaCodigo(codigo){
 }
 
 function validaDescripcion(descripcion){
-    var descRegexp = /^[\wñÑáÁéÉíÍóÓúÚ]+[\w\,ñÑáÁéÉíÍóÓúÚ\s]{0,99}$/;
+    var descRegexp = /^[\wñÑáÁéÉíÍóÓúÚ]+[\w\,ñÑáÁéÉíÍóÓúÚ\s0-9]{0,99}$/;
     return descripcion.match(descRegexp);
 }
 
