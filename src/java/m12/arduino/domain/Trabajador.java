@@ -51,6 +51,7 @@ public class Trabajador implements Serializable, Maketable {
     @ManyToOne
     private Equipo equipo;
     @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER,mappedBy = "trabajador")
+    @JsonIgnore
     private List<OrdenFabricacion> ordenes;
 
     // GESETS
