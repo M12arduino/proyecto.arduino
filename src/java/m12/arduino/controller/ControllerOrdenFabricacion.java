@@ -64,7 +64,7 @@ public class ControllerOrdenFabricacion {
         oF.setProceso(sP.buscarProceso(ofF.getCodigo_proceso()));
         oF.setCantidad(ofF.getCantidad());
         oF.setRobot(sR.buscarRobot(ofF.getId_robot()));
-        
+
         OrdenFabricacion orden = sO.insertarOrden(oF);
         System.err.println(orden.toString());
         ModelAndView mV = new ModelAndView("detalleObjeto");
@@ -140,8 +140,8 @@ public class ControllerOrdenFabricacion {
             prioridad = null;
         }
         String response = null;
-        List<OrdenFabricacion> OF = sO.listarOrdenes("codigo", codigo, "descripcion",descripcion,"proceso_id",proceso_id,"robot_id",robot_id,"equipo_id", equipo_id, "prioridad", prioridad);
-         //List<OrdenFabricacion> OF = sO.listarOrdenes();
+        List<OrdenFabricacion> OF = sO.listarOrdenes("codigo", codigo, "descripcion", descripcion, "proceso_id", proceso_id, "robot_id", robot_id, "equipo_id", equipo_id, "prioridad", prioridad);
+        //List<OrdenFabricacion> OF = sO.listarOrdenes();
         if (OF != null) {
             try {
                 ObjectMapper mapperObj = new ObjectMapper();
@@ -156,22 +156,7 @@ public class ControllerOrdenFabricacion {
         return response;
     }
 
-    @RequestMapping("/ejecutarOrden")
-    public ModelAndView ejecutarOrden(String codigo_orden) {
-        ModelAndView mV = new ModelAndView("main");
-        OrdenFabricacion oF = sO.buscarOrden(codigo_orden);
-        if (oF.getEstado() == EstadoOrden.PENDIENTE) {
-            // CRIDA AL ARDUINO PER INICIAR LA ORDRE
-            oF.setEstado(EstadoOrden.INICIADA);
-            sO.actualizarOrden(oF);
-
-        } else {
-            String message = "Para iniciar una orden ésta debe encontrarse en estado 'Pendiente'";
-        }
-
-        return new ModelAndView("main");
-    }
-
+    ////////////////////////////////////////////////////////////////////////////
     @RequestMapping("/ordenesEquipo")
     public ModelAndView tareasEquipo() {
         String nif = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -205,34 +190,107 @@ public class ControllerOrdenFabricacion {
         mV.addObject("ordenes", ordenesJson);
         return mV;
     }
-    
+
     @RequestMapping("/asignarTrabajador")
     public ModelAndView asignarOrden(OrdenFabricacionForm ofF) {
         OrdenFabricacion orden = sO.buscarOrden(ofF.getCodigo());
         String nif = SecurityContextHolder.getContext().getAuthentication().getName();
         Trabajador trab = sT.buscarTrabajador(nif);
-        trab.setMiOrden(orden);
+        trab.addOrden(orden);
         sT.actualizarTrabajador(trab);
         sO.actualizarOrden(orden);
-        
         return new ModelAndView("main");
     }
-
-    @RequestMapping("/cancelarOrden")
-    public ModelAndView cancelarOrden(String codigo_orden) {
-        ModelAndView mV = new ModelAndView("main");
-        OrdenFabricacion oF = sO.buscarOrden(codigo_orden);
-        if (oF.getEstado() != EstadoOrden.CANCELADA) {
-            // CRIDA AL ARDUINO PER Cancelar LA ORDRE?????
-            oF.setEstado(EstadoOrden.CANCELADA);
-            sO.actualizarOrden(oF);
-
-        } else {
-            String message = "Ésta orden ya se encuentra en estado 'Cancelada'";
+/////////////////////////////////////////////////////////////////////////////////
+    @RequestMapping("/ordenesTrabajador")
+    public ModelAndView tareasTrabajador() {
+        String message = "inicialitzat";
+        String nif = SecurityContextHolder.getContext().getAuthentication().getName();
+        Trabajador trab = sT.buscarTrabajador(nif);
+        List<OrdenFabricacion> ordenes = sO.listarOrdenes("trabajador_id_trab", trab.getId_trab());
+        List<TareasEquipoForm> tareas = new ArrayList<TareasEquipoForm>();
+        TareasEquipoForm aux;
+        for (OrdenFabricacion orden : ordenes) {
+            aux = new TareasEquipoForm();
+            aux.setCodigo(orden.getCodigo());
+            aux.setDescripcion(orden.getDescripcion());
+            aux.setEquipo(orden.getEquipo().getId_equipo());
+            aux.setEstado(orden.getEstado());
+            aux.setPrioridad(orden.getProridad());
+            aux.setProceso(orden.getProceso().getCodigo());
+            aux.setRobot(orden.getRobot().getId_robot());
+            tareas.add(aux);
         }
-
-        return new ModelAndView("main");
+        String ordenesJson;
+        ModelAndView mV = new ModelAndView("tareasTrabajador", "command", new OrdenFabricacionForm());
+        try {
+            ObjectMapper mapperObj = new ObjectMapper();
+            ordenesJson = mapperObj.writeValueAsString(tareas);
+        } catch (IOException ex) {
+            ordenesJson = ex.getMessage() + "something";
+        }
+        if (message != null) {
+            mV.addObject("message", message);
+        }
+        mV.addObject("ordenes", ordenesJson);
+        return mV;
     }
+
+    ////// /////// ////// /////// ////// ////// ////// ///// ////// ////// /////
+
+    @RequestMapping("/modificarEstado")
+    public ModelAndView modifyOrden(OrdenFabricacionForm ofF) {
+        OrdenFabricacion orden;
+        String message = "Orden actualizada";
+        if ("undefined".equals(ofF.getCodigo_can())) {
+            orden = sO.buscarOrden(ofF.getCodigo_eje());
+            if (orden.getEstado() == EstadoOrden.PENDIENTE) {
+                orden.setEstado(EstadoOrden.INICIADA);
+                sO.actualizarOrden(orden);
+            } else {
+                message = "Para ejecutar una orden ésta debe estar en 'PENDIENTE'";
+            }
+        } else {
+            orden = sO.buscarOrden(ofF.getCodigo_can());
+            if (orden.getEstado() != EstadoOrden.CANCELADA) {
+                orden.setEstado(EstadoOrden.CANCELADA);
+                sO.actualizarOrden(orden);
+            } else {
+                message = "Esta orden ya esta 'CANCELADA'";
+            }
+        }
+        //return tareasTrabajador(message);
+        
+        return tareasTrabajador();
+    }
+//    
+//    @RequestMapping("/ejecutarOrden")
+//    public ModelAndView ejecutarOrden(String codigo_orden) {
+//        OrdenFabricacion oF = sO.buscarOrden(codigo_orden);
+//        if (oF.getEstado() == EstadoOrden.PENDIENTE) {
+//            WebService.execute
+//            oF.setEstado(EstadoOrden.INICIADA);
+//            sO.actualizarOrden(oF);
+//        } else {
+//            return tareasTrabajador("Para iniciar una orden ésta debe encontrarse en estado 'Pendiente'");
+//        }
+//        return tareasTrabajador(null);
+//    }
+//    
+//    @RequestMapping("/cancelarOrden")
+//    public ModelAndView cancelarOrden(String codigo_orden) {
+//        ModelAndView mV = new ModelAndView("main");
+//        OrdenFabricacion oF = sO.buscarOrden(codigo_orden);
+//        if (oF.getEstado() != EstadoOrden.CANCELADA) {
+//            // CRIDA AL ARDUINO PER Cancelar LA ORDRE?????
+//            oF.setEstado(EstadoOrden.CANCELADA);
+//            sO.actualizarOrden(oF);
+//        } else {
+//            String message = "Ésta orden ya se encuentra en estado 'Cancelada'";
+//        }
+//        return new ModelAndView("main");
+//    }
+////////////////////////////////////////////////////////////////////////////////
 
     @RequestMapping("/tabla")
     public ModelAndView makeTable() {
