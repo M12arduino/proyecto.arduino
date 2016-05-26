@@ -56,7 +56,7 @@
                     <form:input type="hidden" name="categoria" path="categoria" value="${myTrab.getCategoria()}"/>
                     <form:input type="hidden" name="equipo" path="id_equipo" value="${myTrab.getEquipo().getId_equipo()}"/>
                     <form:input type="hidden" name="nif" path="nif" value="${myTrab.getNif()}"/>
-                    <input type="submit" class="btn btn-arduino btn-block" value="Send"/>
+                    <input type="submit" class="btn btn-arduino btn-block" value="Enviar"/>
                 </form:form>
             </div>
         </div>
