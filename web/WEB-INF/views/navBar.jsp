@@ -50,12 +50,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <c:choose>
-                    <c:when test='<%=!userloginNif.equals("admin")%>'>
+                    <c:when test='<%=!userloginNif.equals("admin")%>'>  
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span><img src="${base}/resources/img/user.png"></span>Bienvenido, ${userLoggedName}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="${base}/trabajador/miPerfil.htm">Mi Perfil</a></li>
                                 <li><a href="${base}/ordenFabricacion/ordenesEquipo.htm">Tareas equipo</a></li>
+                                <li><a href="${base}/ordenFabricacion/ordenesTrabajador.htm">Mis tareas</a></li>
                                 <li><a href="${base}/j_spring_security_logout">Cerrar sesión</a></li>
                             </ul>
                         </li>
