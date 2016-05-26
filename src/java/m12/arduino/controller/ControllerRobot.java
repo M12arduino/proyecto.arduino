@@ -94,7 +94,7 @@ public class ControllerRobot {
         return msg;
     }
 
-    @RequestMapping(value = "/buscarRobot",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/buscarRobot", method = RequestMethod.POST)
     public @ResponseBody String buscaRobotAjax(@RequestBody RobotForm rf) {
         String id_robot = rf.getId_robot();
         String nombre = rf.getNombre();
