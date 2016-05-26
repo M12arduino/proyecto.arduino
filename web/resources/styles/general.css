@@ -43,4 +43,5 @@ and open the template in the editor.
 }
 body{
     font-family:Roboto!important;
+    height:100vh!important;
 }
