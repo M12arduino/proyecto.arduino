@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-var nif;
 var nombre;
 var movil;
 var password;
@@ -12,17 +11,14 @@ var myform;
 
 window.onload = function () {
     myform = document.forms['MyForm'];
-    nif = myform['nif'];
     nombre = myform['nombre'];
     movil = myform['movil'];
     password = myform['password'];
 
     myform.onsubmit = TrabajadorValidator;
-    nif.onchange = validaElem;
     nombre.onchange = validaElem;
     movil.onchange = validaElem;
     password.onchange = validaElem;
-    nif.onkeyup = validaElem;
     nombre.onkeyup = validaElem;
     movil.onkeyup = validaElem;
     password.onkeyup = validaElem;
@@ -40,9 +36,6 @@ function valida (elem){
     }
     
     switch (camp){
-        case "nif":
-            return esNif(elem,getIdMsg(elem));
-            break;
         case "nombre":
             return esNombre(elem,getIdMsg(elem));
             break;
@@ -67,10 +60,6 @@ function TrabajadorValidator(){
         if (!valida(nombre)){
 		error = nombre;
 	};
-        alert(error);
-        if (!valida(nif)){
-		error = nif;
-	};
 	
 	if (error !== null){
             alert("why");
@@ -79,10 +68,6 @@ function TrabajadorValidator(){
 	}
         
 	return true;
-}
-
-function esNif(elem, idError){
-    return tractarError(validaNif(elem.value),elem,idError);	
 }
 
 function esNombre(elem, idError){
@@ -97,11 +82,6 @@ function esPassword(elem, idError){
     return tractarError(validaPassword(elem.value),elem,idError);
 }
 /////////////////////////////////
-function validaNif(nif){
-    var nifRegexp = /^[0-9]{8}[A-Z]{1}$/;
-    return nif.match(nifRegexp);
-}
-
 function validaNombre(nombre){
     var nombreRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]{1,50}$/;
     return nombre.match(nombreRegexp);
