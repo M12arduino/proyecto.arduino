@@ -60,7 +60,7 @@ public class ControllerPopulate {
         tr0.setNif("00000000A");
         tr0.setNombre("Trabajador0");
         tr0.setMovil("60000000");
-        tr0.setCategoria(CategoriaTrabajador.LEADER);
+        tr0.setCategoria(CategoriaTrabajador.INDEFINIDO);
         tr0.setPassword("pass0");
 
         Trabajador tr1 = new Trabajador();
@@ -74,7 +74,7 @@ public class ControllerPopulate {
         tr2.setNif("22222222A");
         tr2.setNombre("Trabajador2");
         tr2.setMovil("62222222");
-        tr2.setCategoria(CategoriaTrabajador.SENIOR);
+        tr2.setCategoria(CategoriaTrabajador.ADMINISTRADOR);
         tr2.setPassword("pass2");
 
         sT.insertarTrabajador(tr0);
