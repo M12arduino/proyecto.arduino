@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class WebService {
     private ServiceOrdenFabricacion sO = new ServiceOrdenFabricacion();
 
-    @RequestMapping("/greeting")
+    @RequestMapping("/ejecutaws")
     public String ordenEnJson(@RequestParam(value="codigo", defaultValue ="OF001") String codigo) {
         OrdenFabricacionArduino ordenFab = new OrdenFabricacionArduino();
         OrdenFabricacion buscaOrd = sO.buscarOrden(codigo);

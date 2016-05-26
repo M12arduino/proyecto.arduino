@@ -50,7 +50,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <c:choose>
-                    <c:when test="<%=!userloginNif.equals("admin")%>">
+                    <c:when test='<%=!userloginNif.equals("admin")%>'>
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span><img src="${base}/resources/img/user.png"></span>Bienvenido, ${userLoggedName}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
