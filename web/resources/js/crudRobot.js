@@ -63,7 +63,7 @@ $(document).ready(function () {
                 success: function (response) {
                     refrescaTabla();
                     cleanCrudRobot();
-                    $("#results").html(response);
+                    $("#results_info").html(response);
                     $(".edit_box .waiting_wrapper").hide();
                 },
                 beforeSend: function () {
@@ -93,7 +93,7 @@ function editaRobot(){
         processData: false,
         success: function (response) {
             refrescaTabla();
-            $("#results").html(response);
+            $("#results_info").html(response);
             $(".edit_box .waiting_wrapper").hide();
         },
         beforeSend: function () {

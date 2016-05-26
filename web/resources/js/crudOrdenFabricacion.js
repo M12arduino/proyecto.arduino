@@ -5,9 +5,9 @@
  */
 var table;
 $(document).ready(function () {
-   
+
     $("#search").on("click", refrescaTabla);
-    
+
     //$("#editar").on("click", editarOrdenFabricacion);
 
     $("#eliminar").on("click", function () {
@@ -47,6 +47,7 @@ function prepareCrudOrdenFabricacion() {
         $("#codigo_proceso").val($(this).find("td:nth-child(6)").html());
         $("#cantidad").val($(this).find("td:nth-child(7)").html());
         $("#id_robot").val($(this).find("td:nth-child(8)").html());
+        $("#equipo_id").val($(this).find("td:nth-child(10)").html());
         $("#results").hide();
     });
 }
@@ -65,11 +66,12 @@ function editarOrdenFabricacion() {
     var data = {};
     data.id = $("#id").val();
     data.codigo = $("#codigo").val();
+    data.equipo_id = $("#equipo_id").val();
     data.descripcion = $("#descripcion").val();
     data.prioridad = $("#prioridad").val();
-    data.codigo_proceso = $("#codigo_proceso").val();
+    data.codigo_proceso_id = $("#codigo_proceso").val();
     data.cantidad = $("#cantidad").val();
-    data.id_robot = $("#id_robot").val();
+    data.id_robot_id = $("#id_robot").val();
     var jsonStr = JSON.stringify(data);
     $.ajax({
         url: getBasePath() + "ordenFabricacion/actualizar.htm",

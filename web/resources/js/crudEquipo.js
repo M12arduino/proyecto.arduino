@@ -72,7 +72,7 @@ $(document).ready(function () {
                     refrescaTabla();
                     $("#results_info").html(response);
                     $(".edit_box .waiting_wrapper").hide();
-                    cleanCrud();
+                    cleanCrudEquipo();
                 },
                 beforeSend: function () {
                     $(".edit_box .waiting_wrapper").show();
@@ -199,15 +199,11 @@ function populateTrabajadores(array) {
             $(this).parent().remove();
     });
 }
-function cleanCrudT() {
-    $("#id_equipo").val(null);
-    $("#nif").val(null);
+function cleanCrudEquipo() {
     $("#nombre").val(null);
-    $("#movil").val(null);
-    $("#password").val(null);
-    $("#categoria").val(null);
+    $("#id_equipo").val(null);
+    $("#trabajadores").val(null);
 }
-
 function editaEquipo() {
     var trabajadores = [];
     $("#trabajadores li").each(function () {

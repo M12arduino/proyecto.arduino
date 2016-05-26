@@ -52,7 +52,9 @@ public class DaoProcesoImpl implements DaoProceso {
             if (it.hasNext()) {
                 String currentKey = it.next();
                 String operator = "=";
-                if (whereMap.get(currentKey) instanceof String) operator = " LIKE ";
+                if (whereMap.get(currentKey) instanceof String){
+                    operator = " LIKE ";
+                }
                 str += currentKey +operator+" :" + currentKey + " ";
             }
             if (it.hasNext()) {
