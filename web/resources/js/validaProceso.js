@@ -135,7 +135,7 @@ function esPinza(elem, idError){
 }
 /////////////////////////////////
 function validaCodigo(cod){
-    var codRegexp = /^[A-Z]{1}[0-9]{3}$/;
+    var codRegexp = /^P[0-9]{3}$/;
     return cod.match(codRegexp);
 }
 

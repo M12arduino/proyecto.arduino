@@ -59,7 +59,7 @@
                             <label class="control-label col-sm-2" for="codigo">Codigo Proceso:</label>
                             <div class="col-sm-10">
                                 <form:input name="codigo" path="codigo" id="codigo" placeholder="codigo" class="form-control"/>
-                                <span class="alert-danger" id="codigo_error">Código erroneo.</span>
+                                <span class="alert-danger" id="codigo_error">Código erroneo. ejemplo: P001</span>
                             </div>
                         </div>
                         <div class="form-group">

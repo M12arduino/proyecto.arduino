@@ -81,7 +81,7 @@ function esCantidad(elem, idError){
 }
 
 function validaCodigo(codigo){
-    var coreRegexp = /^[A-Z]{2}[0-9]{3}$/;
+    var coreRegexp = /^OF[0-9]{3}$/;
     return codigo.match(coreRegexp);
 }
 
