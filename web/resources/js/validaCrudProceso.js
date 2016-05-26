@@ -122,12 +122,12 @@ function esPos(elem, idError){
 //}
 /////////////////////////////////
 function validaCodigo(cod){
-    var codRegexp = /^[A-Z]{1}[0-9]{3}$/;
+    var codRegexp = /^P[0-9]{3}$/;
     return cod.match(codRegexp);
 }
 
 function validaDescripcion(desc){
-    var descRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]+\s?[A-Za-zñÑáÁéÉíÍóÓúÚ0-9\s]{0,99}$/;
+    var descRegexp = /^[\wñÑáÁéÉíÍóÓúÚ]+[\w\,ñÑáÁéÉíÍóÓúÚ\s0-9]{0,99}$/;
     return desc.match(descRegexp);
 }
 

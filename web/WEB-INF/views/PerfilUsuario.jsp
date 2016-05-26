@@ -8,7 +8,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
-<script src="${base}/resources/js/validaTrabajador.js" type="text/javascript"></script>
+<script src="${base}/resources/js/validaPerfil.js" type="text/javascript"></script>
 <link href="${base}/resources/styles/altaGeneral.css" rel="stylesheet">
     <div class="container">
         <br /><br />
