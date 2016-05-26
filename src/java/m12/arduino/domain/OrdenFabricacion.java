@@ -45,7 +45,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
     private EstadoOrden estado;
     @ManyToOne
     private Equipo equipo;
-    @OneToOne
+    @ManyToOne
     private Trabajador trabajador;
 
     {        

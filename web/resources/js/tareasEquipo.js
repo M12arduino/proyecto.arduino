@@ -11,7 +11,7 @@ $(document).ready(function () {
 });
 
 function rellenaDataTable(array) {
-    if (array.length > 0) {;
+    if (array.length > 0) {
         var titles = dataTablesDevuelvePropsBoton(array);
         var dataSet = dataTablesDevuelveValuesBoton(array);
 

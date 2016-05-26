@@ -94,7 +94,7 @@ public class ControllerRobot {
         return msg;
     }
 
-    @RequestMapping(value = "/buscarRobot",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/buscarRobot", method = RequestMethod.POST)
     public @ResponseBody String buscaRobotAjax(@RequestBody RobotForm rf) {
         String id_robot = rf.getId_robot();
         String nombre = rf.getNombre();
@@ -103,8 +103,6 @@ public class ControllerRobot {
         if (estado == EstadoRobot.INDEFINIDO) estado = null;
         String response = null;
         List<Robot> rob = sR.listarRobots("id_robot",id_robot,"nombre",nombre,"lugar",lugar,"estado",estado);
-//        List<Trabajador> trab = sT.listarTrabajadores();
-     //     List<Robot> rob = sR.listarRobots();
         if(rob !=null){
                    try {
              ObjectMapper mapperObj = new ObjectMapper();

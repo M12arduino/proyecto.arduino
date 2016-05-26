@@ -24,12 +24,12 @@
                     <div class="form-group">
                         <label for="procesoCodigo">Codigo proceso: </label>
                         <form:input name="codigo" path="codigo" class="form-control" id="procesoCodigo" />
-                        <span class="alert-danger" id="codigo_error">Código erroneo.</span>
+                        <span class="alert-danger" id="codigo_error">Código erroneo. ejemplo: P001</span>
                     </div>
                     <div class="form-group">
                         <label for="procesoDesc">Descripcion: </label>
                         <form:input name="descripcion" path="descripcion" class="form-control" id="procesoDesc" />
-                        <span class="alert-danger" id="descripcion_error">Descripción erronea.</span>
+                        <span class="alert-danger" id="descripcion_error">La descripción debe contener solo letras y números.</span>
                     </div>
                     <div class="form-group">
                         <label>Acciones: </label>

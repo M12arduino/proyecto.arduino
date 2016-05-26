@@ -59,14 +59,14 @@
                             <label class="control-label col-sm-2" for="codigo">Codigo Proceso:</label>
                             <div class="col-sm-10">
                                 <form:input name="codigo" path="codigo" id="codigo" placeholder="codigo" class="form-control"/>
-                                <span class="alert-danger" id="codigo_error">Código erroneo.</span>
+                                <span class="alert-danger" id="codigo_error">Código erroneo. ejemplo: P001</span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="descripcion">Descripcion:</label>
                             <div class="col-sm-10">
                                 <form:input name="descripcion" path="descripcion" id="descripcion" placeholder="descripcion" class="form-control"/>
-                                <span class="alert-danger" id="descripcion_error">Descripción erronea.</span>
+                                <span class="alert-danger" id="descripcion_error">La descripción debe contener solo letras y números.</span>
                             </div>
                         </div>
                         <div class="form-group">

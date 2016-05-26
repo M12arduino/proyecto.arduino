@@ -89,7 +89,7 @@
                         <label class="control-label col-sm-2" for="descripcion">Descripcion:</label>
                         <div class="col-sm-10">
                             <form:input name="descripcion" path="descripcion" id="descripcion" class="form-control" />
-                            <span class="alert-danger" id="descripcion_error">La descripción debe contener solo letras.</span>
+                            <span class="alert-danger" id="descripcion_error">La descripción debe contener solo letras y números.</span>
                         </div>
                     </div>
                     <div class="form-group">

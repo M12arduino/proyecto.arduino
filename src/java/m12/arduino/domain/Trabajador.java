@@ -5,14 +5,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.persistence.CascadeType;
 //import javax.validation.constraints.NotNull;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -47,16 +50,17 @@ public class Trabajador implements Serializable, Maketable {
     private CategoriaTrabajador categoria;
     @ManyToOne
     private Equipo equipo;
-    @OneToOne
-    private OrdenFabricacion orden;
+    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER,mappedBy = "trabajador")
+    @JsonIgnore
+    private List<OrdenFabricacion> ordenes;
 
-    // GESETS    
-    public OrdenFabricacion getOrden() {
-        return orden;
+    // GESETS
+    public List<OrdenFabricacion> getOrdenes() {
+        return ordenes;
     }
 
-    public void setOrden(OrdenFabricacion orden) {    
-        this.orden = orden;
+    public void setOrdenes(List<OrdenFabricacion> ordenes) {
+        this.ordenes = ordenes;
     }
 
     public Equipo getEquipo() {
@@ -121,12 +125,8 @@ public class Trabajador implements Serializable, Maketable {
         String eqName = "No definido";
         if (equipo != null){
             eqName = equipo.getFullName();
-        }
-        String orName = "No definido";
-        if (orden != null){
-            orName = orden.getFullName();
-        }   
-        return "Trabajador{" + "id_trab=" + id_trab + ", nif=" + nif + ", nombre=" + nombre + ", movil=" + movil + ", password=" + password + ", categoria=" + categoria + ", equipo=" + eqName + ", orden=" + orName + '}';
+        }  
+        return "Trabajador{" + "id_trab=" + id_trab + ", nif=" + nif + ", nombre=" + nombre + ", movil=" + movil + ", password=" + password + ", categoria=" + categoria + ", equipo=" + eqName + '}';
     }
     
     
@@ -161,8 +161,8 @@ public class Trabajador implements Serializable, Maketable {
         return this.getNombre();
     }
 
-    public void setMiOrden(OrdenFabricacion orden) {
-        this.setOrden(orden);
+    public void addOrden(OrdenFabricacion orden) {
+        this.ordenes.add(orden);
         orden.setTrabajador(this);
     }
 }

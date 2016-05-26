@@ -29,7 +29,7 @@
                     <div class="form-group">
                         <label for="descripcionOrden">Descripción: </label>
                         <form:input name="descripcion" path="descripcion" class="form-control" id="descripcionOrden" />
-                        <span class="alert-danger" id="descripcion_error">La descripción debe contener solo letras.</span>
+                        <span class="alert-danger" id="descripcion_error">La descripción debe contener solo letras y números.</span>
                     </div>
                     <div class="dropdown">
                         <label for="prioridadOrden">Prioridad: </label>
