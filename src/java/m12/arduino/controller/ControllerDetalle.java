@@ -36,7 +36,7 @@ public class ControllerDetalle {
     public ModelAndView mostrarDetalle(@RequestParam Long unique, @RequestParam String type) {
         Long pk = unique;
         Character tObj = type.charAt(0);
-        ModelAndView mV = new ModelAndView("detalleObjeto");
+        ModelAndView mV = new ModelAndView("detalleObjetoTabla");
         Maketable m = null;
         switch (tObj) {
             case 'T':
