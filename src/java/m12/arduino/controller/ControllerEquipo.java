@@ -53,7 +53,8 @@ public class ControllerEquipo {
     /**
      * 
      * @param eq es un formulario EquipoForm con los datos del Equipo a insertar
-     * @return 
+     * @return Devuelve un objeto ModelAndView (formulario) llamado detalleObjeto 
+     * con los datos del Equipo insertado.
      */
     @RequestMapping("insertar")
     public ModelAndView insertarEquipo(EquipoForm eq) {
