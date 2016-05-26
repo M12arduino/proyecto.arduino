@@ -74,19 +74,21 @@
                     <p>Estadísticas Globales</p>
                 </div>
                 <div class="col-md-12">
-                <div class="col-md-6">
-                    <div id="chartContainer1"></div>
-                </div>
-                <div class="col-md-6">
-                    <div id="chartContainer2"></div>
-                </div>
+                    <div class="col-md-6">
+                        <div id="chartContainer1"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="chartContainer2"></div>
+                    </div>
                 </div>
             </div>
-            <script type="text/javascript" src="${base}/resources/libs/canvasJS/canvasjs.min.js"></script>
-            <script type="text/javascript">
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="${base}/resources/libs/canvasJS/canvasjs.min.js"></script>
+<script type="text/javascript">
                         var chart1Statistics = JSON.parse('[' + '<%= ControllerStatistics.getStatusRobots()%>' + ']');
                         var chart2Statistics = JSON.parse('[' + '<%= ControllerStatistics.getHistorialEquipos()%>' + ']');
-            </script>
-            <script type="text/javascript" src="${base}/resources/js/statistics.js"></script>
-            </body>
-            <html>
+</script>
+<script type="text/javascript" src="${base}/resources/js/statistics.js"></script>
+<jsp:include page="footer.jsp"></jsp:include>
