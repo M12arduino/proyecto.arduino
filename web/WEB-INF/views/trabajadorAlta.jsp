@@ -20,7 +20,7 @@
                     <h3 class="panel-title">Añadir trabajador</h3>
                 </div>
                 <div class="panel-body">
-                <form:form name="MyForm" action="${base}/trabajador/actualizar.htm" method="POST" role="form" >
+                <form:form name="MyForm" action="${base}/trabajador/insertar.htm" method="POST" role="form" >
                     <div class="form-group">
                         <label for="nifTrabajador">NIF: </label>
                         <form:input name="nif" path="nif" class="form-control" id="nifTrabajador"/>
@@ -55,5 +55,4 @@
     </div>
     <div class="col-md-3"></div>
 </div>
-</body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>

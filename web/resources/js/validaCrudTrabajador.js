@@ -103,7 +103,7 @@ function validaNif(nif){
 }
 
 function validaNombre(nombre){
-    var nombreRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]{1,50}$/;
+    var nombreRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]+[A-Za-zñÑáÁéÉíÍóÓúÚ\s]{0,49}$/;
     return nombre.match(nombreRegexp);
 }
 

@@ -19,11 +19,11 @@
                     <h3 class="panel-title">Añadir equipo</h3>
                 </div>
                 <div class="panel-body">
-                <form:form name="MyForm" action="${base}/equipo/insertar.htm" method="GET" role="form" >
+                <form:form name="MyForm" action="${base}/equipo/insertar.htm" method="POST" role="form" >
                     <div class="form-group">
                         <label for="idEquipo">ID_EQUIPO: </label>
                         <form:input name="id_equipo" path="id_equipo" class="form-control" id="idEquipo" />
-                        <span class="alert-danger" id="id_equipo_error">ID erroneo.</span>
+                        <span class="alert-danger" id="id_equipo_error">ID erroneo. ejemplo: CV4444</span>
                     </div>
                     <div class="form-group">
                         <label for="nombreEquipo">Nombre: </label>
@@ -43,5 +43,4 @@
     </div>
     <div class="col-md-3"></div>
 </div>
-</body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>

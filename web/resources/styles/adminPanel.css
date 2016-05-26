@@ -36,7 +36,7 @@ html,body{
     color: #e1ffff;
 }
 .menu-list li{
-    padding:1.25em!important;
+    padding:1em!important;
 }
 .nav-side-menu .panel-title {
     background-color: #F47A20;
@@ -78,7 +78,6 @@ html,body{
 }
 
 .nav-side-menu li span {
-    margin-right: 10px;
     float: right;
 }
 
@@ -136,3 +135,7 @@ html,body{
     display: block;
 }
 
+.estadisticas-glob {
+    width: 100% ;
+    height: 450px
+}

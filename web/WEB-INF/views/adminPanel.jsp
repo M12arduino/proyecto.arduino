@@ -10,7 +10,6 @@
     <div class="menu-list">
         <ul id="menu-content" class="menu-content collapse">
             <li  data-toggle="collapse" data-target="#trabajador" class="collapsed">
-                <div>
                 <a href="#">Gestionar trabajadores</a>
                 <span><img src="${base}/resources/img/worker.ico"></span>
             </li>
@@ -19,7 +18,6 @@
                 <li><a href="${base}/trabajador/alta.htm">Añadir Trabajador</a></li>
                 <li><a href="${base}/trabajador/administrar.htm">Administrar Trabajadores</a></li>
             </ul>
-
             <li data-toggle="collapse" data-target="#robot" class="collapsed">
                 <a href="#">Gestionar robots</a>
                 <span><img src="${base}/resources/img/robot.png"></span>
