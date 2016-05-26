@@ -15,6 +15,7 @@ import m12.arduino.service.RobotForm;
 import m12.arduino.service.ServiceRobot;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.HibernateException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -75,7 +76,7 @@ public class ControllerRobot {
             sR.actualizarRobot(r);
             msg = "<div class=\"alert alert-success\">El Robot se ha actualizado correctamente</div>";
         } catch (Exception e) {
-            msg = "<div class=\"alert alert-error\">Error al actualizar Robot</div>";
+            msg = "<div class=\"alert alert-danger\">Error al actualizar Robot</div>";
         }
         return msg;
     }
@@ -88,8 +89,8 @@ public class ControllerRobot {
             r.setId(rf.getId());
             sR.eliminarRobot(r);
             msg = "<div class=\"alert alert-success\">El Robot se ha eliminado correctamente</div>";;
-        } catch (Exception e) {
-            msg = "<div class=\"alert alert-error\">Error al eliminar Robot</div>";
+        } catch (ConstraintViolationException e) {
+            msg = "<div class=\"alert alert-danger\">Error al eliminar Robot, esta siendo usado en alguna orden</div>";
         }
         return msg;
     }

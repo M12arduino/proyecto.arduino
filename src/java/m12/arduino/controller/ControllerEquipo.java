@@ -18,6 +18,7 @@ import m12.arduino.service.ServiceEquipo;
 import m12.arduino.service.ServiceOrdenFabricacion;
 import m12.arduino.service.ServiceTrabajador;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +48,7 @@ public class ControllerEquipo {
     @RequestMapping("insertar")
     public ModelAndView insertarEquipo(EquipoForm eq) {
         Equipo res = new Equipo();
-        Trabajador treb = new Trabajador();
+        Trabajador treb;
         res.setId_equipo(eq.getId_equipo());
         res.setNombre(eq.getNombre());
         //Insertar equipo para generar un ID
@@ -65,7 +66,7 @@ public class ControllerEquipo {
             }
         }
 
-        ModelAndView mV = new ModelAndView("objetoDetalle");
+        ModelAndView mV = new ModelAndView("detalleObjeto");
         mV.addObject("objeto", res);
         return mV;
     }
@@ -93,8 +94,8 @@ public class ControllerEquipo {
             }
             sE.actualizarEquipo(eq);
             response = "<div class=\"alert alert-success\">El equipo se ha actualizado correctamente</div>";
-        } catch (Exception e) {
-            response = "<div class=\"alert alert-error\">Ha habido un problema al actualizar el equipo</div>";
+        } catch (ConstraintViolationException e) {
+            response = "<div class=\"alert alert-danger\">Ha habido un problema al actualizar el equipo, tiene alguna orden encargada</div>";
         }
         return response;
     }
@@ -111,9 +112,9 @@ public class ControllerEquipo {
                 sT.actualizarTrabajador(trab);
             }
             sE.eliminarEquipo(eq);
-            msg = "equipo eliminado";
-        } catch (Exception e) {
-            msg = "fallo al eliminar equipo " + e.getMessage();
+            msg = "<div class=\"alert alert-success\">El equipo se ha eliminado correctamente</div>";
+        } catch (ConstraintViolationException e) {
+            msg  = "<div class=\"alert alert-danger\">Ha habido un problema al eliminar el equipo, tiene alguna orden encargada</div>";
         }
         return msg;
     }
@@ -129,14 +130,14 @@ public class ControllerEquipo {
 
     @RequestMapping("/altaOrden")
     public ModelAndView altaOrden(EquipoForm eF) {
-        ModelAndView mV = new ModelAndView("main");
+        ModelAndView mV = new ModelAndView("detalleObjeto");
         Equipo e = sE.buscarEquipo(eF.getId_equipo());
         OrdenFabricacion orden = sO.buscarOrden(eF.getCodigo_orden());
         e.addOrden(orden);
         //sE.actualizarEquipo(e);
         orden.setEstado(EstadoOrden.PENDIENTE);
         sO.actualizarOrden(orden);
-        mV.addObject("equipo", e);
+        mV.addObject("objeto", orden);
         return mV;
     }
 

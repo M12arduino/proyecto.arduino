@@ -11,9 +11,6 @@
 <sec:authorize access="hasRole('2')">
     <jsp:include page="adminPanel.jsp"></jsp:include>
 </sec:authorize>
-<sec:authorize access="hasRole('1')">
-    <jsp:include page="workerPanel.jsp"></jsp:include>
-</sec:authorize>
 <div class="main_wrapper">
     <div class="row">
         <div class="col-md-12">

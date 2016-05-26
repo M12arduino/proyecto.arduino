@@ -114,12 +114,12 @@ function validaId(id){
 }
 
 function validaNombre(nombre){
-    var nombreRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]{1,50}$/;
+    var nombreRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]+[A-Za-zñÑáÁéÉíÍóÓúÚ\s]{0,49}$/;
     return nombre.match(nombreRegexp);
 }
 
 function validaLugar(movil){
-    var lugarRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ\s]{1,50}$/;
+    var lugarRegexp = /^[A-Za-zñÑáÁéÉíÍóÓúÚ]+[A-Za-zñÑáÁéÉíÍóÓúÚ\s]{0,49}$/;
     return movil.match(lugarRegexp);
 }
 

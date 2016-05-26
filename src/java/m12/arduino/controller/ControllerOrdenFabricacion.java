@@ -72,19 +72,19 @@ public class ControllerOrdenFabricacion {
         return mV;
     }
 
-    @RequestMapping(value = "/actualizar", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/actualizar",  method = RequestMethod.POST)
     public @ResponseBody
     String actualizarOrdenFabricacion(@RequestBody OrdenFabricacionForm ofF) {
         String msg = "";
-        try {
+       try {
             OrdenFabricacion of = sO.buscarOrden("id", ofF.getId());
             of.setCodigo(ofF.getCodigo());
             of.setDescripcion(ofF.getDescripcion());
+            of.setEquipo(sE.buscarEquipo("id",ofF.getEquipo_id()));
             of.setCantidad(ofF.getCantidad());
-            System.out.println("CODIGOPROCESO:" + ofF.getCodigo_proceso() + "CODIGROGOOT" + ofF.getId_robot() + "###############");
-            of.setProceso(sP.buscarProceso("id", ofF.getCodigo_proceso()));
+            of.setProceso(sP.buscarProceso("id", ofF.getCodigo_proceso_id()));
             of.setProridad(ofF.getPrioridad());
-            of.setRobot(sR.buscarRobot("id", ofF.getId_robot()));
+            of.setRobot(sR.buscarRobot("id", ofF.getId_robot_id()));
             sO.actualizarOrden(of);
             msg = "<div class=\"alert alert-success\">La orden de fabricacion se ha actualizado correctamente</div>";
         } catch (HibernateException e) {
@@ -93,7 +93,7 @@ public class ControllerOrdenFabricacion {
         return msg;
     }
 
-    @RequestMapping(value = "/eliminar", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
+    @RequestMapping(value = "/eliminar",  method = RequestMethod.POST)
     public @ResponseBody
     String eliminarOrdenFabricacion(@RequestBody OrdenFabricacionForm ofF) {
         String msg = "";
@@ -101,7 +101,7 @@ public class ControllerOrdenFabricacion {
             OrdenFabricacion of = new OrdenFabricacion();
             of.setId(ofF.getId());
             sO.eliminarOrden(of);
-            msg = "<div class=\"alert alert-success\">La orden de fabricación se ha eliminado correctamente</div>";
+            msg = "<div class=\"alert alert-success\">La orden de fabricacion se ha eliminado correctamente</div>";
         } catch (Exception e) {
             msg = "<div class=\"alert alert-error\">error al actualizar la orden de fabricacion</div>";;
         }
@@ -140,7 +140,7 @@ public class ControllerOrdenFabricacion {
             prioridad = null;
         }
         String response = null;
-        List<OrdenFabricacion> OF = sO.listarOrdenes("codigo", codigo, "descripcion", descripcion, "proceso_id", proceso_id, "robot_id", robot_id, "equipo_id", equipo_id, "prioridad", prioridad);
+        List<OrdenFabricacion> OF = sO.listarOrdenes("codigo", codigo, "descripcion", descripcion, "proceso_id", proceso_id, "robot_id", robot_id, "equipo_id", equipo_id, "proridad", prioridad);
         //List<OrdenFabricacion> OF = sO.listarOrdenes();
         if (OF != null) {
             try {
