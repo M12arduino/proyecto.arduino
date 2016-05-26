@@ -47,7 +47,7 @@ public class ControllerEquipo {
     @RequestMapping("insertar")
     public ModelAndView insertarEquipo(EquipoForm eq) {
         Equipo res = new Equipo();
-        Trabajador treb = new Trabajador();
+        Trabajador treb;
         res.setId_equipo(eq.getId_equipo());
         res.setNombre(eq.getNombre());
         //Insertar equipo para generar un ID
@@ -65,7 +65,7 @@ public class ControllerEquipo {
             }
         }
 
-        ModelAndView mV = new ModelAndView("objetoDetalle");
+        ModelAndView mV = new ModelAndView("detalleObjeto");
         mV.addObject("objeto", res);
         return mV;
     }
@@ -129,14 +129,14 @@ public class ControllerEquipo {
 
     @RequestMapping("/altaOrden")
     public ModelAndView altaOrden(EquipoForm eF) {
-        ModelAndView mV = new ModelAndView("main");
+        ModelAndView mV = new ModelAndView("detalleObjeto");
         Equipo e = sE.buscarEquipo(eF.getId_equipo());
         OrdenFabricacion orden = sO.buscarOrden(eF.getCodigo_orden());
         e.addOrden(orden);
         //sE.actualizarEquipo(e);
         orden.setEstado(EstadoOrden.PENDIENTE);
         sO.actualizarOrden(orden);
-        mV.addObject("equipo", e);
+        mV.addObject("objeto", orden);
         return mV;
     }
 
