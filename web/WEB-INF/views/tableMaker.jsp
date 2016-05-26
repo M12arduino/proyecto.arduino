@@ -44,12 +44,7 @@
                                         <td>${item}</td>
                                     </c:forEach>
                                         <td>
-                                            <%
-                                                Object obj = new Trabajador();
-                                                ModelAndView mV = new ModelAndView("detalleObjeto");
-                                                mV.addObject("objeto", obj);
-                                            %>
-                                            <button type="button" class="btn-default btn" onclick="window.location.href='<%=mV%>'">Detalle</button>
+                                            <button type="button" class="btn-default btn" onclick="window.location.href='${base}/detalle/detalle.htm?unique=${object.getPK()}&type=${object.getClass().getSimpleName().charAt(0)}'">Detalle</button>
                                         </td>
                                 </tr>
                             </c:forEach>
