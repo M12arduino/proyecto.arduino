@@ -12,7 +12,7 @@
     <jsp:include page="adminPanel.jsp"></jsp:include>
 </sec:authorize>
 <sec:authorize access="hasRole('INDEFINIDO')">
-    <div class="alert alert-warning" role="alert">Su cuenta ha sido suspendida. <a href="#" class="alert-link">Contacte con el administrador del sitio web.</a></div>
+    <div class="alert alert-warning" role="alert">Su cuenta ha sido suspendida. <a href="${base}/contacta/formulario.htm" class="alert-link">Contacte con el administrador del sitio web.</a></div>
 </sec:authorize>
 <sec:authorize access="hasAnyRole('ADMINISTRADOR','JUNIOR')">
     <div class="main_wrapper">
