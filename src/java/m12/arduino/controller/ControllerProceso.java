@@ -26,8 +26,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- *
- * @author Couto
+ * Controlador para los objetos proceso
+ * @author Enric, Pablo, Jordi y Oscar
  */
 @Controller
 @RequestMapping("/proceso")
@@ -35,12 +35,23 @@ public class ControllerProceso {
 
     private ServiceProceso sP = new ServiceProceso();
 
+    /**
+     * Metodo formulario de alta de procesos.
+     * @return Devuelve un objeto ModelAndView (formulario) llamado procesoAlta con 
+     * un objeto ProcesoForm vacio. 
+     */
     @RequestMapping("/alta")
     public ModelAndView formularioInicial() {
         ModelAndView mV = new ModelAndView("procesoAlta", "command", new ProcesoForm());
         return mV;
     }
 
+    /**
+     * Metodo para insertar procesos en la base de datos.
+     * @param pf Objeto ProcesoForm con los datos del proceso a insertar.
+     * @return Devuelve un objeto ModelAndView (vista) llamado detalleObjeto 
+     * con los datos del proceso insertado.
+     */
     @RequestMapping(value = "/insertar")
     public ModelAndView addProceso(ProcesoForm pf) {
         System.out.println(pf.getAccionesJSON());
@@ -65,6 +76,12 @@ public class ControllerProceso {
         return mV;
     }
     
+    /**
+     * Metodo para actualizar procesos en la base de datos.
+     * @param pf objeto ProcesoForm con los datos del proceso a actualizar.
+     * @return Devuelve un String con la confirmación de como ha finalizado la 
+     * operación.
+     */
     @RequestMapping(value="/actualizar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
     public @ResponseBody String actualizarProceso(@RequestBody ProcesoForm pf){
         String msg = "";
@@ -84,6 +101,12 @@ public class ControllerProceso {
         return msg;
     }
     
+    /**
+     * Metodo para eliminar procesos de la base de datos.
+     * @param pf objeto ProcesoForm con los datos del proceso a eliminar.
+     * @return Devuelve un String metido en un div con la confirmación de como
+     * ha finalizado la operación.
+     */
     @RequestMapping(value="/eliminar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
     public @ResponseBody String eliminarProceso(@RequestBody ProcesoForm pf){
         String msg = "";
@@ -98,6 +121,12 @@ public class ControllerProceso {
         return msg;
     }
     
+    /**
+     * Metodo para buscar procesos en la base de datos.
+     * @param pf objeto ProcesoForm con los datos de los procesos a buscar.
+     * @return Devuelve un String con los procesos que coinciden con los 
+     * parámetros del formulario.
+     */
     @RequestMapping(value = "/buscarProceso", method = RequestMethod.POST)
     public @ResponseBody String buscaProcesoAjax(@RequestBody ProcesoForm pf) {
         String codigo = pf.getCodigo();
@@ -115,12 +144,23 @@ public class ControllerProceso {
         return response;
     }
     
+    /**
+     * Metodo para mostrar el editor de procesos.
+     * @return Devuelve un objeto ModelAndView (formulario) llamado procesoCrud
+     * con un objeto vacio ProcesoForm para introducir los datos a cambiar, o elimiar 
+     * del proceso.
+     */
     @RequestMapping(value = "administrar")
     public ModelAndView administraCrudRobot() {
         ModelAndView mV = new ModelAndView("procesoCrud", "command", new ProcesoForm());
         return mV;
     }
     
+    /**
+     * Metodo para mostrar en una tabla los procesos de la base de datos.
+     * @return Devuelve un objeto ModelAndView (vista) con los procesos de la
+     * base de datos.
+     */
     @RequestMapping("/tabla")
     public ModelAndView makeTable() {
         ModelAndView mV = new ModelAndView("tableMaker");

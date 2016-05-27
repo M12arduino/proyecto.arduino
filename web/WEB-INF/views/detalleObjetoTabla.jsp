@@ -35,6 +35,7 @@
                 <br /><br />
             </div>
             <a class="btn btn-arduino btn-block" href="" >Generar PDF</a>
+            <a class="btn btn-arduino btn-block" href="${base}/main.htm" >Home</a>
         </div>
         <div class="col-md-3"></div>
     </div>

@@ -11,7 +11,7 @@
         <ul id="menu-content" class="menu-content collapse">
             <li  data-toggle="collapse" data-target="#trabajador" class="collapsed">
                 <a href="#">Gestionar trabajadores</a>
-                <span><img src="${base}/resources/img/worker.ico"></span>
+                <span><img src="${base}/resources/img/worker.png"></span>
             </li>
             <ul class="sub-menu collapse" id="trabajador">
                 <li><a href="${base}/trabajador/tabla.htm">Mostrar Trabajadores</a></li>

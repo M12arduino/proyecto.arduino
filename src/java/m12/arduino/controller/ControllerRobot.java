@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- *
- * @author Couto
+ * Controlador para los objetos robot
+ * @author Enric, Pablo, Jordi y Oscar
  */
 @Controller
 @RequestMapping("/robot")
@@ -34,6 +34,11 @@ public class ControllerRobot {
 
     private ServiceRobot sR = new ServiceRobot();
 
+    /**
+     * Metodo formulario de alta de robots.
+     * @return Devuelve un objeto ModelAndView (formulario) llamado robotAlta con 
+     * un objeto RobotForm vacio.
+     */
     @RequestMapping("/alta")
     public ModelAndView formularioInicial() {
         ModelAndView mV = new ModelAndView("robotAlta", "command", new RobotForm());
@@ -41,6 +46,12 @@ public class ControllerRobot {
         return mV;
     }
 
+    /**
+     * Metodo para insertar robots en la base de datos.
+     * @param rf Objeto RobotForm con los datos del robot a insertar.
+     * @return Devuelve un objeto ModelAndView (vista) llamado detalleObjeto 
+     * con los datos del robot insertado.
+     */
     @RequestMapping(value = "/insertar")
     public ModelAndView addRobot(RobotForm rf) {
         try {
@@ -61,6 +72,12 @@ public class ControllerRobot {
         }
     }
     
+    /**
+     * Metodo para actualizar robots de la base de datos.
+     * @param rf objeto RobotForm con los datos del robot a actualizar.
+     * @return Devuelve un String metido en un div con la confirmación de como 
+     * ha finalizado la operación.
+     */
     @RequestMapping(value="/actualizar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
     public @ResponseBody String actualizarRobot(@RequestBody RobotForm rf){
         String msg = "";
@@ -81,6 +98,12 @@ public class ControllerRobot {
         return msg;
     }
     
+    /**
+     * Metodo para eliminar robots de la base de datos.
+     * @param rf objeto RobotForm con los datos del robot a eliminar.
+     * @return Devuelve un String metido en un div con la confirmación de como
+     * ha finalizado la operación.
+     */
     @RequestMapping(value="/eliminar",headers = {"Content-type=application/json"}, method = RequestMethod.POST)
     public @ResponseBody String eliminarRobot(@RequestBody RobotForm rf){
         String msg = "";
@@ -94,7 +117,13 @@ public class ControllerRobot {
         }
         return msg;
     }
-
+ 
+    /**
+     * Metodo para buscar robots en la base de datos.
+     * @param rf objeto RobotForm con los datos del robot a eliminar.
+     * @return Devuelve un String con los procesos que coinciden con los 
+     * parámetros del formulario.
+     */
     @RequestMapping(value = "/buscarRobot", method = RequestMethod.POST)
     public @ResponseBody String buscaRobotAjax(@RequestBody RobotForm rf) {
         String id_robot = rf.getId_robot();
@@ -118,6 +147,12 @@ public class ControllerRobot {
         return response;
     }
 
+    /**
+     * Metodo para mostrar el editor de robots.
+     * @return Devuelve un objeto ModelAndView (formulario) llamado robotCrud
+     * con un objeto vacio RobotForm para introducir los datos a cambiar, o elimiar 
+     * del robot.
+     */
     @RequestMapping(value = "administrar")
     public ModelAndView administraCrudRobot() {
         ModelAndView mV = new ModelAndView("robotCrud", "command", new RobotForm());
@@ -152,18 +187,23 @@ public class ControllerRobot {
     }*/
     
     // TO DELETE IN THE FUTURE
-    @RequestMapping("/detalleList")
-    public ModelAndView detalleList() {
-        Robot r = sR.buscarRobot("Rob00");
-        String str = "";
-        for (OrdenFabricacion orden : r.getOrdenes()) {
-            str += orden.toString() + "<br />";
-        }
-        ModelAndView mV = new ModelAndView("robotDetalle");
-        mV.addObject("string", str);
-        return mV;
-    }
+//    @RequestMapping("/detalleList")
+//    public ModelAndView detalleList() {
+//        Robot r = sR.buscarRobot("Rob00");
+//        String str = "";
+//        for (OrdenFabricacion orden : r.getOrdenes()) {
+//            str += orden.toString() + "<br />";
+//        }
+//        ModelAndView mV = new ModelAndView("robotDetalle");
+//        mV.addObject("string", str);
+//        return mV;
+//    }
     
+    /**
+     * Metodo para mostrar en una tabla los robots de la base de datos.
+     * @return Devuelve un objeto ModelAndView (vista) con los robots de la
+     * base de datos.
+     */
     @RequestMapping("/tabla")
     public ModelAndView makeTable() {
         ModelAndView mV = new ModelAndView("tableMaker");

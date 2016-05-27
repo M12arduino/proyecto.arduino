@@ -20,51 +20,68 @@
         <br /><br />
         <c:choose>
             <c:when test="${listado.get(0).getClass().getSimpleName().equals('OrdenFabricacion')}">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
+                <div class="col-md-12">
             </c:when>
             <c:otherwise>
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-            </c:otherwise>
-        </c:choose>
+                </c:otherwise>
+            </c:choose>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Tabla ${listado.get(0).getClass().getSimpleName()}</h3>
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <c:forEach var="field" items="${listado.get(0).getFields()}">
-                                    <td>${field}</td>
-                                </c:forEach>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <c:forEach var="field" items="${listado.get(0).getFields()}">
+                                        <td>${field}</td>
+                                        <%--<c:if test= "${field eq 'Acciones'}">--%>
+                                            <%--<c:set var="acciones" value="true"></c:set>--%>
+                                        <%--</c:if>--%>
+                                    </c:forEach>
                                     <td>
                                         Detalle
                                     </td>
-                            </tr>
-                        </thead>
-                        <tbody>     
-                            <c:forEach var="object" items="${listado}">
-                                <tr>
-                                    <c:forEach var="item" items="${object.getInfo()}">
-                                        <td>${item}</td>
-                                    </c:forEach>
-                                        <td>
-                                            <button type="button" class="btn-default btn" onclick="window.location.href='${base}/detalle/detalle.htm?unique=${object.getPK()}&type=${object.getClass().getSimpleName().charAt(0)}'">Detalle</button>
-                                        </td>
                                 </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>     
+                                <c:forEach var="object" items="${listado}">
+                                    <tr>
+                                        <c:forEach var="item" items="${object.getInfo()}">
+                                            <%--<c:choose>--%>
+                                                <%--<c:when test="${acciones == true}">--%>
+                                                    <td>${item}</td>
+                                                <%--</c:when>--%>
+                                                <%--<c:otherwise>--%>
+                                                    <!--<td>"{item}</td>-->
+                                                <%--</c:otherwise>--%>
+                                            <%--</c:choose>--%>
+                                        </c:forEach>
+                                    <td>
+                                        <button type="button" class="btn-default btn" onclick="window.location.href = '${base}/detalle/detalle.htm?unique=${object.getPK()}&type=${object.getClass().getSimpleName().charAt(0)}'">Detalle</button>
+                                    </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+        <c:choose>
+            <c:when test="${listado.get(0).getClass().getSimpleName().equals('OrdenFabricacion')}">
+                <div class="col-md-1"></div>
+            </c:when>
+            <c:otherwise>
+                <div class="col-md-2"></div>
+            </c:otherwise>
+        </c:choose>
     </div>
     <c:choose>
         <c:when test="${listado.get(0).getClass().getSimpleName().equals('OrdenFabricacion')}">
-            <div class="col-md-1"></div>
         </c:when>
         <c:otherwise>
             <div class="col-md-2"></div>
@@ -72,4 +89,4 @@
     </c:choose>
 </div>
 
-<jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="footer.jsp"></jsp:include>
