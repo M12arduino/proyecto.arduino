@@ -149,7 +149,6 @@ function validaDescripcion(desc){
 }
 
 function validaPos(pos){
-    alert(pos);
     var posRegexp = /^[1-9]{1}[0-9]{0,3}$/;
     return pos.match(posRegexp);
 }

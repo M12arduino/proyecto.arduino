@@ -165,13 +165,11 @@ function validaDescripcion(desc){
 }
 
 function validaPos(pos){
-    alert("pos: "+pos);
     var posRegexp = /^[1-9]{1}[0-9]{0,3}$/;
     return pos.match(posRegexp);
 }
 
 function validaPinza(pinza){
-    alert("pinza: "+pinza)
     var pinzaRegexp = /^[0-1]{1}$/;
     return pinza.match(pinzaRegexp);
 }
