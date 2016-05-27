@@ -57,7 +57,6 @@ function valida (elem){
     
     if (elem instanceof NodeList){
         camp = elem[0].name;
-        alert(elem+":"+camp);
     }else{
         if (elem.name) {
             camp = elem.name;
@@ -96,10 +95,17 @@ function ProcesoValidator(){
 		error = codigo;
 	};
 	
-	if (error !== null){
-            error.focus();	
-            return false;
-	}
+	if (error instanceof NodeList) {
+            if (error[0] != null){
+                error[0].focus();	
+                return false;
+            }
+        }else{
+            if (error != null){
+                error.focus();	
+                return false;
+            }
+        }
         
         editarProceso();
 	return true;
@@ -114,7 +120,18 @@ function esDescripcion(elem, idError){
 }
 
 function esPos(elem, idError){
-    return tractarError(validaPos(elem[0].value),elem,idError);
+    if (elem instanceof NodeList) {
+        var ok = true;
+        for (var i = 0; i < elem.length; i++) {
+            if(!validaPos(elem[i].value)){
+                i = elem.length;
+                ok = false;
+            }
+        }
+        return tractarError(ok,elem,idError);
+    }else{
+        return tractarError(validaPos(elem.value),elem,idError);
+    }
 }
 
 //function esPinza(elem, idError){

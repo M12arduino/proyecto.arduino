@@ -181,7 +181,7 @@ function editarProceso() {
     data.acciones = recuperaAcciones();
     var jsonStr = JSON.stringify(data);
     $.ajax({
-        url: getBasePath() + "trabajador/actualizar.htm",
+        url: getBasePath() + "proceso/actualizar.htm",
         type: "POST",
         data: jsonStr,
         contentType: "application/json; charset=utf-8",

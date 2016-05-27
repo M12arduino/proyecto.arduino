@@ -18,8 +18,16 @@
 <jsp:include page="navBar.jsp"></jsp:include>
     <div class="container">
         <br /><br />
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
+        <c:choose>
+            <c:when test="${listado.get(0).getClass().getSimpleName().equals('OrdenFabricacion')}">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+            </c:when>
+            <c:otherwise>
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+            </c:otherwise>
+        </c:choose>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Tabla ${listado.get(0).getClass().getSimpleName()}</h3>
@@ -54,6 +62,14 @@
             </div>
         </div>
     </div>
-    <div class="col-md-2"></div>
+    <c:choose>
+        <c:when test="${listado.get(0).getClass().getSimpleName().equals('OrdenFabricacion')}">
+            <div class="col-md-1"></div>
+        </c:when>
+        <c:otherwise>
+            <div class="col-md-2"></div>
+        </c:otherwise>
+    </c:choose>
 </div>
+
 <jsp:include page="footer.jsp"></jsp:include>

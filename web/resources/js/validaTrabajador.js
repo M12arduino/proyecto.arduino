@@ -56,7 +56,6 @@ function valida (elem){
 }
 
 function TrabajadorValidator(){
-    alert("peneerg");
     var error = null;
         if (!valida(password)){
 		error = password;
@@ -67,13 +66,11 @@ function TrabajadorValidator(){
         if (!valida(nombre)){
 		error = nombre;
 	};
-        alert(error);
         if (!valida(nif)){
 		error = nif;
 	};
 	
 	if (error !== null){
-            alert("why");
             error.focus();	
             return false;
 	}
