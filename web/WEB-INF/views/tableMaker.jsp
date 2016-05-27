@@ -20,8 +20,7 @@
         <br /><br />
         <c:choose>
             <c:when test="${listado.get(0).getClass().getSimpleName().equals('OrdenFabricacion')}">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
+                <div class="col-md-12">
             </c:when>
             <c:otherwise>
                 <div class="col-md-2"></div>
@@ -64,7 +63,6 @@
     </div>
     <c:choose>
         <c:when test="${listado.get(0).getClass().getSimpleName().equals('OrdenFabricacion')}">
-            <div class="col-md-1"></div>
         </c:when>
         <c:otherwise>
             <div class="col-md-2"></div>
