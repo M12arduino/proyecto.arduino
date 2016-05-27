@@ -23,13 +23,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Controlador para los objetos Equipo
+ * Controlador para los envios de mails
  * @author Enric, Pablo, Jordi y Oscar
  */
 @Controller
 @RequestMapping("/contacta")
 public class ControllerContacta {
 
+    /**
+     * Metodo que visulaiza el formulario de contacto.
+     * @return Devuelve un objeto ModelAndView (formulario) llamado contactaForm con 
+     * un objeto ContactaForm vacio y un desplegable de motivos.
+     */
     @RequestMapping(value = "/formulario")
     public ModelAndView mostrarFormulario() {
         ModelAndView mV = new ModelAndView("contactaForm", "command", new ContactaForm());
@@ -43,6 +48,12 @@ public class ControllerContacta {
         return mV;
     }
 
+    /**
+     * Metodo para enviar correo contacto.
+     * @param contacta Objeto ContactaForm que contiene los datos del correo.
+     * @return Devuelve un objeto ModelAndView (main, vuelve a la home)
+     * @throws UnsupportedEncodingException 
+     */
     @RequestMapping(value = "/enviarCorreo")
     public ModelAndView enviarEmail(ContactaForm contacta) throws UnsupportedEncodingException {
 
