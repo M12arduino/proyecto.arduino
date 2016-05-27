@@ -162,11 +162,14 @@ public class ControllerOrdenFabricacion {
         String nif = SecurityContextHolder.getContext().getAuthentication().getName();
         Trabajador trab = sT.buscarTrabajador(nif);
         Equipo eq = trab.getEquipo();
+        if (eq == null) {
+            eq = new Equipo();
+        }
         List<OrdenFabricacion> ordenes = sO.listarOrdenes("equipo_id", eq.getId());
         List<TareasEquipoForm> tareas = new ArrayList<TareasEquipoForm>();
         TareasEquipoForm aux;
         for (OrdenFabricacion orden : ordenes) {
-            if (orden.getTrabajador() == null) {
+            if (orden.getTrabajador() == null && orden.getEstado() == EstadoOrden.PENDIENTE) {
                 aux = new TareasEquipoForm();
                 aux.setCodigo(orden.getCodigo());
                 aux.setDescripcion(orden.getDescripcion());

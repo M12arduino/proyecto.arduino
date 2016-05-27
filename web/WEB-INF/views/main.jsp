@@ -72,7 +72,7 @@
                         </table>
                     </div>
                     <div class="col-md-12 estadisticas-glob">
-                        <p>Estadísticas Globales</p>
+                        <h4 class="colorLabel">Estadísticas Globales</h4>
                         <div class="col-md-12">
                             <div class="col-md-6">
                                 <div id="chartContainer1"></div>

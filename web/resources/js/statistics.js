@@ -7,6 +7,8 @@
 
 window.onload = initJS;
 function initJS() {
+    document.getElementById("datatable_block").style.display = "none";
+    document.getElementById("chartContainerA").style.display = "none";
     var chart1 = new CanvasJS.Chart("chartContainer1", {
         theme: "theme1", //theme1
         title: {
@@ -43,7 +45,8 @@ function initJS() {
     chart2.render();
 }
 function searchStatistics() {
-    var dataInfo = "hi";
+    document.getElementById("datatable_block").style.display = "block";
+    document.getElementById("chartContainerA").style.display = "block";
     var dropMesA = document.getElementById("dropMesA").value;
     var dropMesB = document.getElementById("dropMesB").value;
     var dropAnoA = document.getElementById("dropAnoA").value;

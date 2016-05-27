@@ -7,7 +7,6 @@ var table;
 
 $(document).ready(function () {
     rellenaDataTable(ordenes);
-
 });
 
 function rellenaDataTable(array) {
@@ -20,6 +19,8 @@ function rellenaDataTable(array) {
             columns: titles,
             destroy: true
         });
+    } else {
+        document.getElementById("errorTable").style.display = "inline";
     }    
 }
 

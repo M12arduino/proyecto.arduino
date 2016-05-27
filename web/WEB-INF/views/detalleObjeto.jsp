@@ -7,6 +7,7 @@
 <%@page import="m12.arduino.domain.Equipo"%>
 <%@page import="m12.arduino.domain.CategoriaTrabajador"%>
 <%@page import="m12.arduino.domain.Trabajador"%>
+<%@page import="m12.arduino.domain.Maketable"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,7 +31,14 @@
                 <c:forEach var="i" items="${objeto.getFields()}" varStatus="status">
 
                     <div class="text-left col-md-2">${i}</div>
-                    <div class="text-right col-md-10">${objeto.getInfo()[status.index]}</div>
+                    <c:choose>
+                        <c:when test="'xRobotEquipoTrabajadorProcesoOrdenFabricacion'.indexOf(${i})">
+                            <div class="text-right col-md-10">${objeto.getInfo()[status.index]}</div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="text-right col-md-10">${objeto.getInfo()[status.index]}</div>
+                        </c:otherwise>
+                    </c:choose>
                     <br />
                 </c:forEach>
                 <br /><br />
