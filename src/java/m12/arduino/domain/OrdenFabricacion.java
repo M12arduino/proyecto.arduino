@@ -105,7 +105,8 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
     public void setProridad(Prioridad proridad) {
         this.proridad = proridad;
     }
-
+    
+    @JsonIgnore
     public Calendar getFechaFormat() {
         return fecha;
     }
