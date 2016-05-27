@@ -30,7 +30,6 @@ public class ServiceOrdenFabricacion {
     public List<OrdenFabricacion> listarOrdenes() {
         return dO.obtenerListaOrdenes();
     }
-
     public List<OrdenFabricacion> listarOrdenes(Object... vars) {
         Map<String, Object> condiciones = constructConditions(vars);
         return dO.obtenerListaOrdenes(condiciones);
