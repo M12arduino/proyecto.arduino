@@ -1,11 +1,14 @@
 package m12.arduino.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,6 +37,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
     private long id;
     private String codigo;
     private String descripcion;
+    @Enumerated (value = EnumType.STRING)
     private Prioridad proridad;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar fecha;
@@ -102,8 +106,14 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
         this.proridad = proridad;
     }
 
-    public Calendar getFecha() {
+    public Calendar getFechaFormat() {
         return fecha;
+    }
+    
+    public String getFecha() {
+        SimpleDateFormat formatter=new SimpleDateFormat("dd-MMM-yyyy");
+        String currentDate = formatter.format(fecha.getTime());
+        return currentDate;
     }
 
     public void setFecha(Calendar fecha) {
@@ -162,10 +172,10 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
         if (this.getProridad() != oF.getProridad()) {                           // Si no coinciden ordenarà por prioridad
             return this.getProridad().getCode() - oF.getProridad().getCode();   
         } else {
-            if (this.getFecha().equals(oF.getFecha())) {                        // Si coinciden las fechas, ordenará por id
+            if (this.getFechaFormat().equals(oF.getFechaFormat())) {                        // Si coinciden las fechas, ordenará por id
                 return (int) (this.getId() - oF.getId());
             } else {                                                            // Sinó, ordenará por fecha
-                return this.getFecha().compareTo(oF.getFecha());
+                return this.getFechaFormat().compareTo(oF.getFechaFormat());
             }
         }
         // Ordenacion: En primer lugar por prioridad, si éstas coinciden, por fecha y 

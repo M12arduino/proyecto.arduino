@@ -53,38 +53,43 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
         for (Iterator<String> it = keys.iterator(); it.hasNext();) {
             if (it.hasNext()) {
                 String currentKey = it.next();
-                str += currentKey + " LIKE :" + currentKey + " ";
+                String operator = "=";
+                if (whereMap.get(currentKey) instanceof String) {
+                    operator = " LIKE ";
+                }
+                str += currentKey + operator + " :" + currentKey + " ";
             }
             if (it.hasNext()) {
                 str += " and ";
             }
         }
-        if (str!="") str= "WHERE "+str;
+        if (str != "") {
+            str = "WHERE " + str;
+        }
         // Complete query-string
         Query query = session.createQuery("FROM Trabajador " + str);
         //set parameters
         for (Map.Entry e : whereMap.entrySet()) {
             String attr = (String) e.getKey();
-            Object val =  e.getValue();
-            if (val instanceof String){
-                query.setParameter(attr,"%"+ val+"%");
-            }else{
+            Object val = e.getValue();
+            if (val instanceof String) {
+                query.setParameter(attr, "%" + val + "%");
+            } else {
                 query.setParameter(attr, val);
-            }      
+            }
         }
-        List<Trabajador> res= query.list();
+        List<Trabajador> res = query.list();
         acabaOperacion();
         return res;
     }
 
-    
     @Override
-    public void eliminarTrabajador(Trabajador trab){
+    public void eliminarTrabajador(Trabajador trab) {
         iniciaOperacion();
         session.delete(trab);
         acabaOperacion();
     }
-    
+
     @Override
     public List<Trabajador> obtenerListaTrabajadores() {
         iniciaOperacion();
@@ -114,5 +119,5 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
     public Trabajador buscarTrabajador(Map<String, Object> whereMap) {
         return obtenerListaTrabajadores(whereMap).get(0);
     }
-    
+
 }

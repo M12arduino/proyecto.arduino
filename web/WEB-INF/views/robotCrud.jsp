@@ -114,6 +114,9 @@
                         </div>
                     </div>
                 </div>
+                <div id="results_info">
+
+                </div>
             </div>
         </form:form>
         <div class="row datatable-form">
@@ -129,4 +132,5 @@
             </div>
         </div>
     </div>
+</div>
 <jsp:include page="footer.jsp"></jsp:include>

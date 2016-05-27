@@ -18,6 +18,7 @@ import m12.arduino.service.ServiceEquipo;
 import m12.arduino.service.ServiceOrdenFabricacion;
 import m12.arduino.service.ServiceTrabajador;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- *
- * @author enric
+ * Controlador para los objetos Equipo
+ * @author Enric, Pablo, Jordi y Oscar
  */
 @Controller
 @RequestMapping("/equipo")
@@ -37,6 +38,11 @@ public class ControllerEquipo {
     private ServiceEquipo sE = new ServiceEquipo();
     private ServiceOrdenFabricacion sO = new ServiceOrdenFabricacion();
 
+    /**
+     * Metodo formulario de alta
+     * @return Devuelve un objeto ModelAndView (formulario) llamado equipoAlta con 
+     * un objeto EquipoForm vacio y una lista de trabajadores. 
+     */
     @RequestMapping("alta")
     public ModelAndView initFormAlta() {
         ModelAndView mV = new ModelAndView("equipoAlta", "command", new EquipoForm());
@@ -44,6 +50,12 @@ public class ControllerEquipo {
         return mV;
     }
 
+    /**
+     * 
+     * @param eq es un formulario EquipoForm con los datos del Equipo a insertar
+     * @return Devuelve un objeto ModelAndView (formulario) llamado detalleObjeto 
+     * con los datos del Equipo insertado.
+     */
     @RequestMapping("insertar")
     public ModelAndView insertarEquipo(EquipoForm eq) {
         Equipo res = new Equipo();
@@ -93,8 +105,8 @@ public class ControllerEquipo {
             }
             sE.actualizarEquipo(eq);
             response = "<div class=\"alert alert-success\">El equipo se ha actualizado correctamente</div>";
-        } catch (Exception e) {
-            response = "<div class=\"alert alert-error\">Ha habido un problema al actualizar el equipo</div>";
+        } catch (ConstraintViolationException e) {
+            response = "<div class=\"alert alert-danger\">Ha habido un problema al actualizar el equipo, tiene alguna orden encargada</div>";
         }
         return response;
     }
@@ -111,9 +123,9 @@ public class ControllerEquipo {
                 sT.actualizarTrabajador(trab);
             }
             sE.eliminarEquipo(eq);
-            msg = "equipo eliminado";
-        } catch (Exception e) {
-            msg = "fallo al eliminar equipo " + e.getMessage();
+            msg = "<div class=\"alert alert-success\">El equipo se ha eliminado correctamente</div>";
+        } catch (ConstraintViolationException e) {
+            msg  = "<div class=\"alert alert-danger\">Ha habido un problema al eliminar el equipo, tiene alguna orden encargada</div>";
         }
         return msg;
     }
