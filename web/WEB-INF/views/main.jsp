@@ -6,6 +6,12 @@
 <%@page import="m12.arduino.controller.ControllerStatistics"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<sec:authorize access="isAnonymous()">
+    <%
+    session.invalidate();
+    response.sendRedirect("login.jsp");
+    %>
+</sec:authorize>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navBar.jsp"></jsp:include>
 <sec:authorize access="hasRole('ADMINISTRADOR')">

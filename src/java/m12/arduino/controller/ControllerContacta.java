@@ -43,8 +43,54 @@ public class ControllerContacta {
         return mV;
     }
 
+    @RequestMapping(value = "/formularioAnonimo")
+    public ModelAndView mostrarFormularioAnonimo() {
+        ModelAndView mV = new ModelAndView("contactaFormAnonimo", "command", new ContactaForm());
+        ArrayList<String> motivos = new ArrayList<String>();
+        motivos.add("Credenciales invalidas");
+        motivos.add("Pedir registro");
+        motivos.add("Pedir informacion");
+        motivos.add("Otro motivo");
+        mV.addObject("motivos", motivos);
+        return mV;
+    }
+
     @RequestMapping(value = "/enviarCorreo")
     public ModelAndView enviarEmail(ContactaForm contacta) throws UnsupportedEncodingException {
+        ModelAndView mV = new ModelAndView("main");
+
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+
+        Session mailSession = Session.getInstance(props, null);
+        Message msg = new MimeMessage(mailSession);
+
+        try {
+            msg.setSubject("El usuario " + contacta.getNombre() + " se ha puesto en contacto por: " + contacta.getMotivo());
+            msg.addRecipients(Message.RecipientType.TO, new InternetAddress[]{new InternetAddress("m12.proyecto.arduino@gmail.com")});
+            DataHandler dh = new DataHandler("El usuario " + contacta.getNombre() + " se ha puesto en contacto con usted desde el correo " + contacta.getEmail() + ".\n\n"
+                    + "Motivo del contacto: " + contacta.getMotivo() + ".\n\n" + "Cuerpo del mensaje: " + contacta.getMensaje() + ".", "text/plain");
+            msg.setDataHandler(dh);
+            Transport.send(msg, "m12.proyecto.arduino@gmail.com", "root1234");
+        } catch (MessagingException ex) {
+            Logger.getLogger(ControllerContacta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return mV;
+    }
+
+    @RequestMapping(value = "/enviarCorreoAnonimo")
+    public ModelAndView enviarEmailAnonimo(ContactaForm contacta) throws UnsupportedEncodingException {
+        ModelAndView mV = new ModelAndView("invalidCredentials");
+        
+        if (contacta == null) {
+            return mV;
+        }
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -61,15 +107,14 @@ public class ControllerContacta {
         try {
             msg.setSubject("El usuario " + contacta.getNombre() + " se ha puesto en contacto por: " + contacta.getMotivo());
             msg.addRecipients(Message.RecipientType.TO, new InternetAddress[]{new InternetAddress("m12.proyecto.arduino@gmail.com")});
-            DataHandler dh = new DataHandler("El usuario " + contacta.getNombre() + " se ha puesto en contacto con usted desde el correo " + contacta.getEmail()+ ".\n\n" +
-                "Motivo del contacto: " + contacta.getMotivo() + ".\n\n" + "Cuerpo del mensaje: " + contacta.getMensaje() + "." , "text/plain");
+            DataHandler dh = new DataHandler("El usuario " + contacta.getNombre() + " se ha puesto en contacto con usted desde el correo " + contacta.getEmail() + ".\n\n"
+                    + "Motivo del contacto: " + contacta.getMotivo() + ".\n\n" + "Cuerpo del mensaje: " + contacta.getMensaje() + ".", "text/plain");
             msg.setDataHandler(dh);
             Transport.send(msg, "m12.proyecto.arduino@gmail.com", "root1234");
         } catch (MessagingException ex) {
             Logger.getLogger(ControllerContacta.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        ModelAndView mV = new ModelAndView("main");
         return mV;
     }
 
