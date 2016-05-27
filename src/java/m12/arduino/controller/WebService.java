@@ -44,7 +44,7 @@ public class WebService {
 
         for (OrdenFabricacion or : robotRecivido.getOrdenes()) {
             if (or.getEstado() == EstadoOrden.INICIADA) {
-                if (or.getFecha().getTimeInMillis() < ordenToSend.getFecha().getTimeInMillis()) {
+                if (or.getFechaFormat().getTimeInMillis() < ordenToSend.getFechaFormat().getTimeInMillis()) {
                     ordenToSend = or;
                 }
             }
