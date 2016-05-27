@@ -9,23 +9,26 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-/*
- Jordi Puig Puig
- DAW 2
- Curs 2015-2016
-
- @author Jordi
+/**
+ * Controlador para los objetos OrdenFabricacion.
+ * @author Enric, Pablo, Jordi y Oscar
  */
 public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
 
     private Session session;
     private Transaction tx;
 
+    /**
+     * Metodo que abre la sesion e inicia la transaccion.
+     */
     public void iniciaOperacion() {
         session = HibernateUtil.getSessionFactory().openSession();
         tx = session.beginTransaction();
     }
 
+    /**
+     * Metodo que hace el commit y cierra la conexion.
+     */
     public void acabaOperacion() {
         tx.commit();
         session.close();

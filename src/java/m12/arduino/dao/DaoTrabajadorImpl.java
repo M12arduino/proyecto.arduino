@@ -16,24 +16,35 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
- *
- * @author enric
+ * Controlador para los objetos Trabajador.
+ * @author Enric, Pablo, Jordi y Oscar
  */
 public class DaoTrabajadorImpl implements DaoTrabajador {
 
     private Session session;
     private Transaction tx;
 
+    /**
+     * Metodo que abre la sesion e inicia la transaccion.
+     */
     public void iniciaOperacion() {
         session = HibernateUtil.getSessionFactory().openSession();
         tx = session.beginTransaction();
     }
 
+    /**
+     * Metodo que hace el commit y cierra la conexion.
+     */
     public void acabaOperacion() {
         tx.commit();
         session.close();
     }
 
+    /**
+     * Metodo para buscar un trabajador en la base de datos.
+     * @param nif String con el nif del trabajador a buscar.
+     * @return Devuelve un Objeto Trabajador correspondiente al nif proporcionado.
+     */
     @Override
     public Trabajador buscarTrabajador(String nif) {
         iniciaOperacion();
@@ -44,6 +55,12 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
         return res;
     }
 
+    /**
+     * Metodo para buscar trabajadores en la base de datos.
+     * @param whereMap objeto Map con la información para buscar trabajadores. 
+     * @return Devuelve un Objeto List de los trabajadores que coinciden con la 
+     * información proporcionada.
+     */
     @Override
     public List<Trabajador> obtenerListaTrabajadores(Map<String, Object> whereMap) {
         iniciaOperacion();
@@ -83,6 +100,10 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
         return res;
     }
 
+    /**
+     * Metodo para eliminar trabajadores de la base de datos.
+     * @param trab objeto Trabajador a eliminar.
+     */
     @Override
     public void eliminarTrabajador(Trabajador trab) {
         iniciaOperacion();
@@ -90,6 +111,10 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
         acabaOperacion();
     }
 
+    /**
+     * Metodo para listar los trabajadores de la base de datos.
+     * @return Devuelve un Objeto List con los trabajadores de la base de datos.
+     */
     @Override
     public List<Trabajador> obtenerListaTrabajadores() {
         iniciaOperacion();
@@ -99,6 +124,11 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
         return res;
     }
 
+    /**
+     * Metodo para guardar trabajadores en la base de datos.
+     * @param trab objeto Trabajador a guardar.
+     * @return Devuelve el objeto Trabajador guardado.
+     */
     @Override
     public Trabajador guardarTrabajador(Trabajador trab) {
         iniciaOperacion();
@@ -107,6 +137,11 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
         return this.buscarTrabajador(trab.getNif());
     }
 
+    /**
+     * Metodo para actualizar trabajadores de la base de datos.
+     * @param trab objeto Trabajador a actualizar.
+     * @return Devuelve el objeto Trabajador actualizado.
+     */
     @Override
     public Trabajador actualizarTrabajador(Trabajador trab) {
         iniciaOperacion();
@@ -115,6 +150,12 @@ public class DaoTrabajadorImpl implements DaoTrabajador {
         return trab;
     }
 
+    /**
+     * Metodo para buscar trabajadores en la base de datos.
+     * @param whereMap objeto Map con la información para buscar trabajadores. 
+     * @return Devuelve un Objeto Trabajador que coincide con la información 
+     * proporcionada.
+     */
     @Override
     public Trabajador buscarTrabajador(Map<String, Object> whereMap) {
         return obtenerListaTrabajadores(whereMap).get(0);

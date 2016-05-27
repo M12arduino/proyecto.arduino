@@ -17,24 +17,35 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
- *
- * @author couto
+ * Controlador para los objetos Robot.
+ * @author Enric, Pablo, Jordi y Oscar
  */
 public class DaoRobotImpl implements DaoRobot {
 
     private Session session;
     private Transaction tx;
 
+    /**
+     * Metodo que abre la sesion e inicia la transaccion.
+     */
     public void iniciaOperacion() {
         session = HibernateUtil.getSessionFactory().openSession();
         tx = session.beginTransaction();
     }
 
+    /**
+     * Metodo que hace el commit y cierra la conexion.
+     */
     public void acabaOperacion() {
         tx.commit();
         session.close();
     }
 
+    /**
+     * Metodo para buscar un robot en la base de datos.
+     * @param id_robot String con el id_robot del robot a buscar.
+     * @return Devuelve un Objeto Robot correspondiente al id_robot proporcionado.
+     */
     @Override
     public Robot buscarRobot(String id_robot) {
         iniciaOperacion();
@@ -45,6 +56,13 @@ public class DaoRobotImpl implements DaoRobot {
         return res;
     }
 
+    /**
+     * Metodo para listar los robots de la base de datos.
+     * @param whereMap objeto Map con la información para obtener la lista de
+     * robots. 
+     * @return Devuelve un objeto List de los robots que coinciden con la 
+     * información proporcionada.
+     */
     @Override
     public List<Robot> obtenerListaRobots(Map<String, Object> whereMap) {
         iniciaOperacion();
@@ -84,6 +102,10 @@ public class DaoRobotImpl implements DaoRobot {
         return res;
     }
 
+    /**
+     * Metodo para listar los robots de la base de datos.
+     * @return Devuelve un Objeto List con los robots de la base de datos.
+     */
     @Override
     public List<Robot> obtenerListaRobots() {
         iniciaOperacion();
@@ -93,6 +115,11 @@ public class DaoRobotImpl implements DaoRobot {
         return res;
     }
 
+    /**
+     * Metodo para guardar robots en la base de datos.
+     * @param rob objeto Robot a guardar.
+     * @return Devuelve el objeto Robot guardado.
+     */
     @Override
     public Robot guardarRobot(Robot rob) {
         iniciaOperacion();
@@ -101,6 +128,11 @@ public class DaoRobotImpl implements DaoRobot {
         return this.buscarRobot(rob.getId_robot());
     }
 
+    /**
+     * Metodo para actualizar robots de la base de datos.
+     * @param rob objeto Robot a actualizar.
+     * @return Devuelve el objeto Robot actualizado.
+     */
     @Override
     public Robot actualizarRobot(Robot rob) {
         iniciaOperacion();
@@ -109,11 +141,20 @@ public class DaoRobotImpl implements DaoRobot {
         return rob;
     }
 
+    /**
+     * Metodo para buscar robots en la base de datos.
+     * @param whereMap objeto Map con la información para buscar robots. 
+     * @return Devuelve un Objeto Robot que coincide con la información proporcionada.
+     */
     @Override
     public Robot buscarRobot(Map<String, Object> whereMap) {
         return obtenerListaRobots(whereMap).get(0);
     }
 
+    /**
+     * Metodo para eliminar robots de la base de datos.
+     * @param rob objeto Robot a eliminar.
+     */
     @Override
     public void eliminarRobot(Robot rob) {
         iniciaOperacion();
