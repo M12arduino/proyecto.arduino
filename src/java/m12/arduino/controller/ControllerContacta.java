@@ -38,6 +38,7 @@ public class ControllerContacta {
         motivos.add("Error de funcionalidad");
         motivos.add("Duda general sobre la aplicación");
         motivos.add("Me interesa su producto");
+        motivos.add("Otro motivo");
         mV.addObject("motivos", motivos);
         return mV;
     }
@@ -58,9 +59,10 @@ public class ControllerContacta {
         Message msg = new MimeMessage(mailSession);
 
         try {
-            msg.setSubject(contacta.getNombre() + "/" + contacta.getMotivo());
+            msg.setSubject("El usuario " + contacta.getNombre() + " se ha puesto en contacto por: " + contacta.getMotivo());
             msg.addRecipients(Message.RecipientType.TO, new InternetAddress[]{new InternetAddress("m12.proyecto.arduino@gmail.com")});
-            DataHandler dh = new DataHandler(contacta.getMensaje(), "text/plain");
+            DataHandler dh = new DataHandler("El usuario " + contacta.getNombre() + " se ha puesto en contacto con usted desde el correo " + contacta.getEmail()+ ".\n\n" +
+                "Motivo del contacto: " + contacta.getMotivo() + ".\n\n" + "Cuerpo del mensaje: " + contacta.getMensaje() + "." , "text/plain");
             msg.setDataHandler(dh);
             Transport.send(msg, "m12.proyecto.arduino@gmail.com", "root1234");
         } catch (MessagingException ex) {

@@ -46,7 +46,7 @@
                         <label>Mensaje: </label>
                         <form:textarea name="mensaje" path="mensaje" class="form-control" cols="40" rows="6" /> 
                     </div> 
-                    <input type="submit" class="btn btn-arduino btn-block" value="Enviar"/>
+                    <input type="submit" class="btn btn-arduino btn-block" value="Enviar" onClick="alert('Su mensaje ha sido enviado al administrador satisfactoriamente.')"/>
                 </form:form>
             </div>
         </div>
