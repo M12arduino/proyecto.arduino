@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- *
- * @author enric
+ * Controlador para los objetos Equipo
+ * @author Enric, Pablo, Jordi y Oscar
  */
 @Controller
 @RequestMapping("/equipo")
@@ -38,6 +38,11 @@ public class ControllerEquipo {
     private ServiceEquipo sE = new ServiceEquipo();
     private ServiceOrdenFabricacion sO = new ServiceOrdenFabricacion();
 
+    /**
+     * Metodo formulario de alta
+     * @return Devuelve un objeto ModelAndView (formulario) llamado equipoAlta con 
+     * un objeto EquipoForm vacio y una lista de trabajadores. 
+     */
     @RequestMapping("alta")
     public ModelAndView initFormAlta() {
         ModelAndView mV = new ModelAndView("equipoAlta", "command", new EquipoForm());
@@ -45,6 +50,12 @@ public class ControllerEquipo {
         return mV;
     }
 
+    /**
+     * 
+     * @param eq es un formulario EquipoForm con los datos del Equipo a insertar
+     * @return Devuelve un objeto ModelAndView (formulario) llamado detalleObjeto 
+     * con los datos del Equipo insertado.
+     */
     @RequestMapping("insertar")
     public ModelAndView insertarEquipo(EquipoForm eq) {
         Equipo res = new Equipo();

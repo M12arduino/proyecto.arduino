@@ -107,8 +107,8 @@ public class ControllerStatistics {
         int sNreal = 0;
         int sCanc = 0;
         for (OrdenFabricacion orden : sO.listarOrdenes()) {
-            if (orden.getFecha().get(Calendar.MONTH) >= mesA && orden.getFecha().get(Calendar.MONTH) <= mesB
-                    && orden.getFecha().get(Calendar.YEAR) >= anoA && orden.getFecha().get(Calendar.YEAR) <= anoB) {
+            if (orden.getFechaFormat().get(Calendar.MONTH) >= mesA && orden.getFechaFormat().get(Calendar.MONTH) <= mesB
+                    && orden.getFechaFormat().get(Calendar.YEAR) >= anoA && orden.getFechaFormat().get(Calendar.YEAR) <= anoB) {
                 elements.add(orden);
                 switch (orden.getEstado()) {
                     case INDEFINIDO:

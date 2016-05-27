@@ -84,16 +84,18 @@ function ProcesoValidator(){
     var error = null;
 	
         if (!valida(pinzas)){
-		error = pinzas;
+            error = pinzas;
 	};
+        
         if (!valida(acciones)){
 		error = acciones;
 	};
+        
         if (!valida(descripcion)){
-		error = descripcion;
+            error = descripcion;
 	};
         if (!valida(codigo)){
-		error = codigo;
+            error = codigo;
 	};
 	
         if (error instanceof NodeList) {
@@ -122,12 +124,30 @@ function esDescripcion(elem, idError){
 }
 
 function esPos(elem, idError){
-    return tractarError(validaPos(elem[0].value),elem,idError);
+    if (elem instanceof NodeList) {
+        var ok = true;
+        for (var i = 0; i < elem.length; i++) {
+            if(!validaPos(elem[i].value)){
+                i = elem.length;
+                ok = false;
+            }
+        }
+        return tractarError(ok,elem,idError);
+    }else{
+        return tractarError(validaPos(elem.value),elem,idError);
+    }
 }
 
 function esPinza(elem, idError){
     if (elem instanceof NodeList) {
-        return tractarError(validaPinza(elem[0].value),elem,idError);
+        var ok = true;
+        for (var i = 0; i < elem.length; i++) {
+            if(!validaPinza(elem[i].value)){
+                i = elem.length;
+                ok = false;
+            }
+        }
+        return tractarError(ok,elem,idError);
     }else{
         return tractarError(validaPinza(elem.value),elem,idError);
     }
@@ -173,6 +193,7 @@ function tractarError(noError, elem, idError){
         ocultaError(idError);
         return true;
     }else{
+        alert("error");
         mostraError(idError);
         //elem.focus();
         return false;
