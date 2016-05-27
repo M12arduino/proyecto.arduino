@@ -23,12 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/*
- Jordi Puig Puig
- DAW 2
- Curs 2015-2016
-
- @author Jordi
+/**
+ * Controlador para las estadisticas.
+ * @author Enric, Pablo, Jordi y Oscar
  */
 @Controller
 @RequestMapping("/stats")
@@ -40,6 +37,11 @@ public class ControllerStatistics {
     private final static ServiceTrabajador sT = new ServiceTrabajador();
     private final static ServiceEquipo sE = new ServiceEquipo();
 
+    /**
+     * Metodo para la estadistica del estado de los robots.
+     * @return Devuelve un String con el codigo para generar una gráfica del estado 
+     * de los robots.
+     */
     public static String getStatusRobots() {
         int sIndef = 0;
         int sLibre = 0;
@@ -74,6 +76,11 @@ public class ControllerStatistics {
         return result;
     }
 
+    /**
+     * Metodo para la estadistica del estado de los equipos.
+     * @return Devuelve un String con el codigo para generar una gráfica del 
+     * historial de los equipos.
+     */
     public static String getHistorialEquipos() {
         //"{ y: " . $row[1] . ", legendText: \"" . $row[0] . " - " . $row[1] . " Tasks\", indexLabel: \"" . $row[0] . "\" },"
         int realizadas;
@@ -95,7 +102,16 @@ public class ControllerStatistics {
         return resultado.substring(0, resultado.length() - 1);
     }
 
-    @RequestMapping("/getStatsPeriodo")
+    /**
+     * Metodo para la estadistica del estado de las ordenes de fabricacion.
+     * @param mesA un integer con el mes desde. 
+     * @param mesB un integer con el mes hasta.
+     * @param anoA un integer con el año desde.
+     * @param anoB un integer con el año hasta.
+     * @return Devuelve un Map con la información de los estados de las ordenes 
+     * de fabricación.
+     */
+    //@RequestMapping("/getStatsPeriodo")
     public Map intervaloTemporal(int mesA, int mesB, int anoA, int anoB) {
         Map container = new HashMap();
         List<OrdenFabricacion> elements = new ArrayList();
@@ -144,15 +160,33 @@ public class ControllerStatistics {
         return container;
     }
 
+    /**
+     * Metodo para generar la gráfica de los estados de las ordenes de fabricación.
+     * @param mesA un integer con el mes desde. 
+     * @param mesB un integer con el mes hasta.
+     * @param anoA un integer con el año desde.
+     * @param anoB un integer con el año hasta.
+     * @return Devuelve un String con los datos para generar una gráfica de los 
+     * estados de las ordenes de fabricación.
+     */
     @RequestMapping(value = "/ajaxDiagramaA", method = RequestMethod.POST)
     public @ResponseBody
     String filtroAjaxJson(@RequestParam int mesA, @RequestParam int mesB, @RequestParam int anoA, @RequestParam int anoB) {
         return (String) intervaloTemporal(mesA, mesB, anoA, anoB).get("string");
     }
 
+    /**
+     * Metodo para generar una tabla con las ordenes de fabricación por periodos 
+     * de tiempo.
+     * @param mesA un integer con el mes desde. 
+     * @param mesB un integer con el mes hasta.
+     * @param anoA un integer con el año desde.
+     * @param anoB un integer con el año hasta.
+     * @return Devuelve un String con la información para generar una tabla con 
+     * las ordenes de fabricacion por periodos de tiempo.
+     */
     @RequestMapping(value = "/ajaxListA", method = RequestMethod.POST)
-    public @ResponseBody
-    String filtroAjaxList(@RequestParam int mesA, @RequestParam int mesB, @RequestParam int anoA, @RequestParam int anoB) {
+    public @ResponseBody String filtroAjaxList(@RequestParam int mesA, @RequestParam int mesB, @RequestParam int anoA, @RequestParam int anoB) {
         String response = "";
         List<OrdenFabricacion> ordenF = (List<OrdenFabricacion>) intervaloTemporal(mesA, mesB, anoA, anoB).get("lista");
         try {

@@ -7,7 +7,12 @@ package m12.arduino.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import m12.arduino.domain.EstadoOrden;
+import m12.arduino.domain.EstadoRobot;
 import m12.arduino.domain.OrdenFabricacion;
+import m12.arduino.domain.Robot;
 import m12.arduino.service.OrdenFabricacionArduino;
 import m12.arduino.service.ServiceOrdenFabricacion;
 import m12.arduino.service.ServiceRobot;
@@ -17,35 +22,94 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
- * @author enric
+ * Controlador del WebService
+ * @author Enric, Pablo, Jordi y Oscar
  */
 @RestController
 public class WebService {
-    private final ServiceOrdenFabricacion sO = new ServiceOrdenFabricacion();
-    private final ServiceRobot sR = new ServiceRobot();
 
-//    @RequestMapping("/ejecutaws")
-//    public String ordenEnJson(@RequestParam(value="codigoOrden") String codigoOrden, @RequestParam(value="codigoRobot") String codigoRobot) {
-//        //OrdenFabricacionArduino ordenFab = new OrdenFabricacionArduino();
-////        OrdenFabricacion ordenRecivida = sO.buscarOrden("codigo", codigoOrden, "robot_id", codigoRobot);
-////        ordenFab.setAcciones(buscaOrd.getProceso().getAcciones());
-////        ordenFab.setCodigo(buscaOrd.getCodigo());
-////        ordenFab.setProridad(buscaOrd.getProridad());
-////        ordenFab.setId(buscaOrd.getId());
-////        ordenFab.setDescripcion(buscaOrd.getDescripcion());
-////        String response = "No hay nada";
-////            try {
-////                ObjectMapper mapperObj = new ObjectMapper();
-////                response = mapperObj.writeValueAsString(ordenFab);
-////            } catch (IOException ex) {
-////                response = ex.getMessage();
-////            }
-//////        return response;
-////    }
-////    
-//    public void renuevaEstadosRobot() {
-//        
-//    }
+    private static final ServiceOrdenFabricacion sO = new ServiceOrdenFabricacion();
+    private static final ServiceRobot sR = new ServiceRobot();
+    private static List<Robot> myRobots;
+
+    /**
+     * Metodo para actualizar la cola de trabajo de robot.
+     * @param codigoOrden String con el codigo de la orden a finalizar.
+     * @param codigoRobot String con el codigo del robot al que libera o asigna 
+     * la siguiente orden de fabricacion en cola.
+     * @return Devuelve un String que contiene los datos de la siguiente orden de
+     * fabricacion de la cola del robot o el texto "No hay más órdenes" en caso
+     * de que en cola no queden más órdenes de fabricación.
+     */
+    @RequestMapping("/ordenFinalizada")
+    public String ordenFinalizada(@RequestParam(value = "codigoOrden") String codigoOrden, @RequestParam(value = "codigoRobot") String codigoRobot) {
+        OrdenFabricacion ordenRecivida = sO.buscarOrden(codigoOrden);
+        Robot robotRecivido = sR.buscarRobot(codigoRobot);
+
+        ordenRecivida.setEstado(EstadoOrden.REALIZADA);
+        robotRecivido.setEstado(EstadoRobot.LIBRE);
+
+        OrdenFabricacion ordenToSend = new OrdenFabricacion();
+
+        for (OrdenFabricacion or : robotRecivido.getOrdenes()) {
+            if (or.getEstado() == EstadoOrden.INICIADA) {
+                if (or.getFechaFormat().getTimeInMillis() < ordenToSend.getFechaFormat().getTimeInMillis()) {
+                    ordenToSend = or;
+                }
+            }
+        }
+
+        if (ordenToSend.getId() != 0) {
+            String response;
+            try {
+                ObjectMapper mapperObj = new ObjectMapper();
+                response = mapperObj.writeValueAsString(ordenRecivida);
+            } catch (IOException ex) {
+                response = ex.getMessage();
+            }
+            return response;
+        }
+        return "No hay mas ordenes";
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    public static void webServiceUp() {
+        while (true) {
+            renewListRobots();
+            for (int i = 0; i < 5; i++) {
+                checkStatusRobots();
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(WebService.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    private static void renewListRobots() {
+        myRobots = sR.listarRobots();
+    }
+
+    private static void checkStatusRobots() {
+        for (Robot myRobot : myRobots) {
+            getHTML("sda");
+        }
+    }
+    
+    public static String getHTML(String urlToRead){
+//      StringBuilder result = new StringBuilder();
+//      URL url = new URL(urlToRead);
+//      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//      conn.setRequestMethod("GET");
+//      BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+//      String line;
+//      while ((line = rd.readLine()) != null) {
+//         result.append(line);
+//      }
+//      rd.close();
+//      return result.toString();
+        return "hi";
+   }
+
 }
-

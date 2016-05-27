@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- *
- * @author Couto
+ * Controlador para para las vistas detalle.
+ * @author Enric, Pablo, Jordi y Oscar
  */
 @Controller
 @RequestMapping("/detalle")
@@ -32,6 +32,13 @@ public class ControllerDetalle {
     private ServiceProceso sP = new ServiceProceso();
     private ServiceRobot sR = new ServiceRobot();
 
+    /**
+     * Metodo que muestra la vista detalle.
+     * @param unique atributo unico para la busqueda en la base de datos.
+     * @param type tipo de objeto a buscar.
+     * @return Devuelve un objeto ModelAndView (vista) llamado detalleObjetoTabla
+     * con los detalles del objeto buscado.
+     */
     @RequestMapping(value=("/detalle"), method = RequestMethod.GET)
     public ModelAndView mostrarDetalle(@RequestParam Long unique, @RequestParam String type) {
         Long pk = unique;

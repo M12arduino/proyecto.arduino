@@ -23,13 +23,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- *
- * @author couto
+ * Controlador para los envios de mails
+ * @author Enric, Pablo, Jordi y Oscar
  */
 @Controller
 @RequestMapping("/contacta")
 public class ControllerContacta {
 
+    /**
+     * Metodo que visulaiza el formulario de contacto.
+     * @return Devuelve un objeto ModelAndView (formulario) llamado contactaForm con 
+     * un objeto ContactaForm vacio y un desplegable de motivos.
+     */
     @RequestMapping(value = "/formulario")
     public ModelAndView mostrarFormulario() {
         ModelAndView mV = new ModelAndView("contactaForm", "command", new ContactaForm());

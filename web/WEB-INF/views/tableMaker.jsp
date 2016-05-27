@@ -18,10 +18,9 @@
 <jsp:include page="navBar.jsp"></jsp:include>
     <div class="container">
         <br /><br />
-    <c:choose>
-        <c:when test="${listado.get(0).getClass().getSimpleName().equals('OrdenFabricacion')}">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
+        <c:choose>
+            <c:when test="${listado.get(0).getClass().getSimpleName().equals('OrdenFabricacion')}">
+                <div class="col-md-12">
             </c:when>
             <c:otherwise>
                 <div class="col-md-2"></div>
@@ -81,5 +80,13 @@
             </c:otherwise>
         </c:choose>
     </div>
+    <c:choose>
+        <c:when test="${listado.get(0).getClass().getSimpleName().equals('OrdenFabricacion')}">
+        </c:when>
+        <c:otherwise>
+            <div class="col-md-2"></div>
+        </c:otherwise>
+    </c:choose>
+</div>
 
     <jsp:include page="footer.jsp"></jsp:include>

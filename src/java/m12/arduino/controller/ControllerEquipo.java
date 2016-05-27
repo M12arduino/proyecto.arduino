@@ -39,7 +39,7 @@ public class ControllerEquipo {
     private ServiceOrdenFabricacion sO = new ServiceOrdenFabricacion();
 
     /**
-     * Metodo formulario de alta
+     * Metodo formulario de alta de equipos.
      * @return Devuelve un objeto ModelAndView (formulario) llamado equipoAlta con 
      * un objeto EquipoForm vacio y una lista de trabajadores. 
      */
@@ -51,9 +51,9 @@ public class ControllerEquipo {
     }
 
     /**
-     * 
-     * @param eq es un formulario EquipoForm con los datos del Equipo a insertar
-     * @return Devuelve un objeto ModelAndView (formulario) llamado detalleObjeto 
+     * Metodo para insertar equipos en la base de datos
+     * @param eq Objeto EquipoForm con los datos del Equipo a insertar
+     * @return Devuelve un objeto ModelAndView (vista) llamado detalleObjeto 
      * con los datos del Equipo insertado.
      */
     @RequestMapping("insertar")
@@ -82,9 +82,14 @@ public class ControllerEquipo {
         return mV;
     }
 
+    /**
+     * Metodo para actializar equipos de la base de datos.
+     * @param eqForm Objeto EquipoForm con los datos del equipo a actualizar.
+     * @return Devuelve un String metido en un div con la confirmación de como
+     * ha finalizado la operación.
+     */
     @RequestMapping(value = "/actualizar", method = RequestMethod.POST)
-    public @ResponseBody
-    String actualizarEquipo(@RequestBody EquipoForm eqForm) {
+    public @ResponseBody String actualizarEquipo(@RequestBody EquipoForm eqForm) {
         Equipo eq = new Equipo();
         eq.setId(eqForm.getId());
         eq.setId_equipo(eqForm.getId_equipo());
@@ -111,9 +116,14 @@ public class ControllerEquipo {
         return response;
     }
 
+    /**
+     * Metodo para eliminar equipos de la base de datos.
+     * @param eqForm objeto EquipoForm con los datos del equipo a eliminar.
+     * @return Devuelve un String metido en un div con la confirmación de como
+     * ha finalizado la operación.
+     */
     @RequestMapping(value = "/eliminar", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
-    public @ResponseBody
-    String eliminarEquipo(@RequestBody EquipoForm eqForm) {
+    public @ResponseBody String eliminarEquipo(@RequestBody EquipoForm eqForm) {
         String msg = "";
         try {
             Equipo eq = new Equipo();
@@ -130,6 +140,12 @@ public class ControllerEquipo {
         return msg;
     }
 
+    /**
+     * Metodo para asignar ordenes a equipos.
+     * @return Devuelve un objeto ModelAndView (vista) llamado equipoAsignarOrden
+     * con un objeto vacio EquipoForm y dos deplegables, (equipos y ordenes) 
+     * para poder seleccionarlos.
+     */
     @RequestMapping("/asignarOrden")
     public ModelAndView asignarOrden() {
         EquipoForm eF = new EquipoForm();
@@ -139,6 +155,12 @@ public class ControllerEquipo {
         return mV;
     }
 
+    /**
+     * Metodo para asignar ordenes a equipos.
+     * @param eF objeto EquipoForm con los datos de la orden y el equipo.
+     * @return un objeto ModelAndView (vista) con los detalles de la orden y el 
+     * equipo.
+     */
     @RequestMapping("/altaOrden")
     public ModelAndView altaOrden(EquipoForm eF) {
         ModelAndView mV = new ModelAndView("detalleObjeto");
@@ -152,6 +174,12 @@ public class ControllerEquipo {
         return mV;
     }
 
+    /**
+     * Metodo para mostrar el editor de equipos.
+     * @return Devuelve un objeto ModelAndView (formulario) llamado equipoCrud
+     * con un objeto vacio EquipoForm para introducir los datos a cambiar, o elimiar 
+     * del equipo.
+     */
     @RequestMapping("/administrar")
     public ModelAndView administrarEquipo() {
         return new ModelAndView("equipoCrud", "command", new EquipoForm());
@@ -165,9 +193,14 @@ public class ControllerEquipo {
      return str;
      }*/
 
+    /**
+     * Metodo para buscar equipos en la base de datos.
+     * @param eqForm objeto EquipoForm con los datos de los equipos a buscar.
+     * @return Devuelve un String con los equipos que coinciden con los parámetros
+     * del formulario.
+     */
     @RequestMapping(value = "/buscar", method = RequestMethod.POST)
-    public @ResponseBody
-    String buscaEquipo(@RequestBody EquipoForm eqForm) {
+    public @ResponseBody String buscaEquipo(@RequestBody EquipoForm eqForm) {
         String id_equipo = eqForm.getId_equipo();
         String nombre = eqForm.getNombre();
         String response = null;
@@ -186,9 +219,14 @@ public class ControllerEquipo {
         return response;
     }
 
+    /**
+     * Metodo para buscar trabajadores en la base de datos.
+     * @param eqForm objeto EquipoForm con los datos del equipo.
+     * @return Devuelve un objeto String con los datos de los trabajadores 
+     * pertenecientes al equipo facilitado en el formulario.
+     */
     @RequestMapping(value = "/trabajadores", headers = {"Content-type=application/json"}, method = RequestMethod.POST)
-    public @ResponseBody
-    String devuelveTrabajadoresAjax(@RequestBody EquipoForm eqForm) {
+    public @ResponseBody String devuelveTrabajadoresAjax(@RequestBody EquipoForm eqForm) {
         String id_equipo = eqForm.getId_equipo();
         String response = "";
         Equipo eq = sE.buscarEquipo(id_equipo);
@@ -207,6 +245,11 @@ public class ControllerEquipo {
         return response;
     }
     
+    /**
+     * Metodo para mostrar en una tabla los equipos de la base de datos.
+     * @return Devuelve un objeto ModelAndView (vista) con los equipos de la
+     * base de datos.
+     */
     @RequestMapping("/tabla")
     public ModelAndView makeTable() {
         ModelAndView mV = new ModelAndView("tableMaker");

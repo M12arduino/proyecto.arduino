@@ -8,63 +8,6 @@ $(document).ready(function () {
 
     var table;
     $("#accionesButton").on("click", añadirAccion);
-    function gestionaResultadoAjax(response) {
-        $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
-        $(".datatable-form .waiting_wrapper").hide();
-        var array = JSON.parse(response);
-        actions = array;
-        if (array.length > 0) {
-            $("#errorTable").hide();
-            var titles = dataTablesDevuelveProps(array);
-            var dataSet = dataTablesDevuelveValues(array);
-
-            table = $("#datatable").DataTable({
-                data: dataSet,
-                columns: titles,
-                destroy: true,
-                language: {
-                    lengthMenu: "Muestra _MENU_ registros por página",
-                    info: "Mostrando _START_ hasta _END_ de un total de _TOTAL_ entradas",
-                    search: "Búsqueda",
-                    paginate: {
-                        first: "Primero",
-                        last: "Último",
-                        next: "Siguiente",
-                        previous: "Previo"
-                }
-            }
-            });
-            prepareCrudProceso();
-        } else {
-            if (table)
-                table.destroy();
-            $("#datatable").html("");
-            $("#errorTable").show();
-        }
-    }
-    function refrescaTabla() {
-        var data = {};
-        data.codigo = $("#codigoSearchVal").val();
-        data.descripcion = $("#descripcionSearchVal").val();
-        var jsonStr = JSON.stringify(data);
-        $.ajax({
-            url: getBasePath() + "proceso/buscarProceso.htm",
-            type: "POST",
-            data: jsonStr,
-            contentType: "application/json; charset=utf-8",
-            cache: false,
-            processData: false,
-            success: gestionaResultadoAjax,
-            error: function (xhr) {
-                var err = eval("(" + xhr.responseText + ")");
-                alert(err.Message + "error");
-
-            },
-            beforeSend: function () {
-                $(".datatable-form .waiting_wrapper").hide();
-            }
-        });
-    }
 
     $("#search").on("click", refrescaTabla);
 
@@ -98,6 +41,65 @@ $(document).ready(function () {
         }
     });
 });
+
+function gestionaResultadoAjax(response) {
+        $("#results").html("Haz click sobre un resultado de la lista para administrarlo");
+        $(".datatable-form .waiting_wrapper").hide();
+        var array = JSON.parse(response);
+        actions = array;
+        if (array.length > 0) {
+            $("#errorTable").hide();
+            var titles = dataTablesDevuelveProps(array);
+            var dataSet = dataTablesDevuelveValues(array);
+
+            table = $("#datatable").DataTable({
+                data: dataSet,
+                columns: titles,
+                destroy: true,
+                language: {
+                    lengthMenu: "Muestra _MENU_ registros por página",
+                    info: "Mostrando _START_ hasta _END_ de un total de _TOTAL_ entradas",
+                    search: "Búsqueda",
+                    paginate: {
+                        first: "Primero",
+                        last: "Último",
+                        next: "Siguiente",
+                        previous: "Previo"
+                }
+            }
+            });
+            prepareCrudProceso();
+        } else {
+            if (table)
+                table.destroy();
+            $("#datatable").html("");
+            $("#errorTable").show();
+        }
+    }
+    
+    function refrescaTabla() {
+        var data = {};
+        data.codigo = $("#codigoSearchVal").val();
+        data.descripcion = $("#descripcionSearchVal").val();
+        var jsonStr = JSON.stringify(data);
+        $.ajax({
+            url: getBasePath() + "proceso/buscarProceso.htm",
+            type: "POST",
+            data: jsonStr,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            processData: false,
+            success: gestionaResultadoAjax,
+            error: function (xhr) {
+                var err = eval("(" + xhr.responseText + ")");
+                alert(err.Message + "error");
+
+            },
+            beforeSend: function () {
+                $(".datatable-form .waiting_wrapper").hide();
+            }
+        });
+    }
 
 function prepareCrudProceso() {
     $("#datatable tr").not(":first").on("click", function () {
