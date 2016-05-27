@@ -7,13 +7,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%
-        String userloginName = "Admin";
-        String userloginNif = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getName();
-        m12.arduino.service.ServiceTrabajador sT = new m12.arduino.service.ServiceTrabajador();
-        if (!userloginNif.equals("admin")){
-            userloginName = sT.buscarTrabajador(userloginNif).getNombre();
-        }
+    String userloginName = "Admin";
+    String userloginNif = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getName();
+    m12.arduino.service.ServiceTrabajador sT = new m12.arduino.service.ServiceTrabajador();
+    if (!userloginNif.equals("admin")) {
+        userloginName = sT.buscarTrabajador(userloginNif).getNombre();
+    }
 %>
 <c:set var="userLoggedName" value="<%=userloginName%>"></c:set>
 <c:set var="userLoggedNif" value="<%=userloginNif%>"></c:set>
@@ -49,20 +50,26 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+
                 <c:choose>
                     <c:when test='<%=!userloginNif.equals("admin")%>'>  
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span><img src="${base}/resources/img/user.png"></span>Bienvenido, ${userLoggedName}<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="${base}/trabajador/miPerfil.htm">Mi Perfil</a></li>
-                                <li><a href="${base}/ordenFabricacion/ordenesEquipo.htm">Tareas equipo</a></li>
-                                <li><a href="${base}/ordenFabricacion/ordenesTrabajador.htm">Mis tareas</a></li>
-                                <li><a href="${base}/j_spring_security_logout">Cerrar sesión</a></li>
-                            </ul>
-                        </li>
+                        <sec:authorize access="hasAnyRole('ADMINISTRADOR','JUNIOR')">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span><img src="${base}/resources/img/user.png"></span>Bienvenido, ${userLoggedName}<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="${base}/trabajador/miPerfil.htm">Mi Perfil</a></li>
+                                    <li><a href="${base}/ordenFabricacion/ordenesEquipo.htm">Tareas equipo</a></li>
+                                    <li><a href="${base}/ordenFabricacion/ordenesTrabajador.htm">Mis tareas</a></li>
+                                    <li><a href="${base}/j_spring_security_logout">Cerrar sesión</a></li>
+                                </ul>
+                            </li>
+                        </sec:authorize> 
+                        <sec:authorize access="hasRole('INDEFINIDO')">
+                            <li><a href="${base}/j_spring_security_logout">Cerrar sesión</a></li>
+                        </sec:authorize>
                     </c:when>
                     <c:otherwise>
-                       <li><a href="${base}/j_spring_security_logout">Cerrar sesión</a></li>
+                        <li><a href="${base}/j_spring_security_logout">Cerrar sesión</a></li>
                     </c:otherwise>
                 </c:choose>
             </ul>
