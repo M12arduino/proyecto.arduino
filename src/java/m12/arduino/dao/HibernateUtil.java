@@ -3,9 +3,15 @@ package m12.arduino.dao;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
+ /**
+  * Clase HibernateUtil
+  * @author Enric, Pablo, Jordi y Oscar
+  */
 public class HibernateUtil {
 
+    /**
+     * Atributo SessionFactory
+     */
     private static final SessionFactory sessionFactory;
 
     static {
@@ -17,6 +23,10 @@ public class HibernateUtil {
         }
     }
 
+    /**
+     * Getter del atributo SessionFactory
+     * @return Devuelve el atributo SessionFactory
+     */
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }

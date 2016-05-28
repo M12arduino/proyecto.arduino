@@ -48,6 +48,11 @@ public class ControllerContacta {
         return mV;
     }
 
+    /**
+     * Metodo que visulaiza el formulario de contacto para usuarios anónimos.
+     * @return Devuelve un objeto ModelAndView (formulario) llamado contactaForm con 
+     * un objeto ContactaForm vacio y un desplegable de motivos.
+     */
     @RequestMapping(value = "/formularioAnonimo")
     public ModelAndView mostrarFormularioAnonimo() {
         ModelAndView mV = new ModelAndView("contactaFormAnonimo", "command", new ContactaForm());
@@ -59,7 +64,16 @@ public class ControllerContacta {
         mV.addObject("motivos", motivos);
         return mV;
     }
-
+    
+    /**
+     * Metodo que envia el correo de contacto.
+     * @param contacta objeto ContactaForm con los datos a introducir en el correo
+     * de contacto.
+     * @return Devuelve un objeto ModelAndView (vista) después de enviar el correo,
+     * redirecciona a la home.
+     * @throws UnsupportedEncodingException en caso de fallo al crear o enviar
+     * el correo de contacto.
+     */
     @RequestMapping(value = "/enviarCorreo")
     public ModelAndView enviarEmail(ContactaForm contacta) throws UnsupportedEncodingException {
         ModelAndView mV = new ModelAndView("main");
@@ -89,6 +103,15 @@ public class ControllerContacta {
         return mV;
     }
 
+    /**
+     * Metodo que envia el correo de contacto para usuarios anónimos.
+     * @param contacta objeto ContactaForm con los datos a introducir en el correo
+     * de contacto.
+     * @return Devuelve un objeto ModelAndView (vista) después de enviar el correo,
+     * redirecciona a la pagina "invalidCredentials". (sin permisos)
+     * @throws UnsupportedEncodingException en caso de fallo al crear o enviar
+     * el correo de contacto.
+     */
     @RequestMapping(value = "/enviarCorreoAnonimo")
     public ModelAndView enviarEmailAnonimo(ContactaForm contacta) throws UnsupportedEncodingException {
         ModelAndView mV = new ModelAndView("invalidCredentials");
@@ -122,5 +145,4 @@ public class ControllerContacta {
 
         return mV;
     }
-
 }

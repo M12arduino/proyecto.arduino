@@ -1,13 +1,8 @@
 package m12.arduino.domain;
-/*
- Jordi Puig Puig
- DAW 2
- Curs 2015-2016
- pendent, iniciada, realitzada, no realitzada,
- cancel·lada)
- @author Jordi
+/**
+ * Clase EstadoOrden
+ * @author Enric, Pablo, Jordi y Oscar
  */
-
 public enum EstadoOrden {
 
     // LIST
@@ -19,20 +14,40 @@ public enum EstadoOrden {
     CANCELADA(5, "Cancelada");
 
     // ATTR
+    /**
+     * Codigo del estado de la orden
+     */
     private final int code;
+    
+    /**
+     * Nombre del estado de la orden
+     */
     private final String name;
 
     // CONST
+    /**
+     * Constructor del estado de la orden
+     * @param code codigo del estado de la orden
+     * @param name nombre del estado de la orden
+     */
     private EstadoOrden(int code, String name) {
         this.code = code;
         this.name = name;
     }
 
     // GESETS
+    /**
+     * Getter del codigo del estado de la orden
+     * @return codigo del estado de la orden
+     */
     public int getCode() {
         return code;
     }
 
+    /**
+     * Getter del nombre del estado de la orden
+     * @return nombre del estado de la orden
+     */
     public String getName() {
         return name;
     }

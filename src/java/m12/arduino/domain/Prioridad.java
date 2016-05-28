@@ -1,12 +1,8 @@
 package m12.arduino.domain;
-/*
- Jordi Puig Puig
- DAW 2
- Curs 2015-2016
-
- @author Jordi
+/**
+ * Clase Prioridad
+ * @author Enric, Pablo, Jordi y Oscar
  */
-
 public enum Prioridad {
 
     // LIST
@@ -16,20 +12,40 @@ public enum Prioridad {
     ALTA(3, "Alta");
 
     // ATTR
+    /**
+     * Codigo de la prioridad
+     */
     private final int code;
+    
+    /**
+     * Nombre de la prioridad
+     */
     private final String name;
 
     // CONST
+    /**
+     * Constructor de prioridad
+     * @param code codigo de la prioridad
+     * @param name nombre de la prioridad
+     */
     private Prioridad(int code, String name) {
         this.code = code;
         this.name = name;
     }
 
     // GESETS
+    /**
+     * Getter del codigo de la prioridad
+     * @return 
+     */
     public int getCode() {
         return code;
     }
 
+    /**
+     * Getter del nombre de la prioridad
+     * @return 
+     */
     public String getName() {
         return name;
     }
