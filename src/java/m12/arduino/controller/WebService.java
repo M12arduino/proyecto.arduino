@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
- * @author enric
+ * Controlador del WebService
+ * @author Enric, Pablo, Jordi y Oscar
  */
 @RestController
 public class WebService {
@@ -32,6 +32,15 @@ public class WebService {
     private static final ServiceRobot sR = new ServiceRobot();
     private static List<Robot> myRobots;
 
+    /**
+     * Metodo para actualizar la cola de trabajo de robot.
+     * @param codigoOrden String con el codigo de la orden a finalizar.
+     * @param codigoRobot String con el codigo del robot al que libera o asigna 
+     * la siguiente orden de fabricacion en cola.
+     * @return Devuelve un String que contiene los datos de la siguiente orden de
+     * fabricacion de la cola del robot o el texto "No hay más órdenes" en caso
+     * de que en cola no queden más órdenes de fabricación.
+     */
     @RequestMapping("/ordenFinalizada")
     public String ordenFinalizada(@RequestParam(value = "codigoOrden") String codigoOrden, @RequestParam(value = "codigoRobot") String codigoRobot) {
         OrdenFabricacion ordenRecivida = sO.buscarOrden(codigoOrden);
@@ -60,7 +69,7 @@ public class WebService {
             }
             return response;
         }
-        return "No more";
+        return "No hay mas ordenes";
     }
 
     ////////////////////////////////////////////////////////////////////////////

@@ -7,6 +7,7 @@
 <%@page import="m12.arduino.domain.Equipo"%>
 <%@page import="m12.arduino.domain.CategoriaTrabajador"%>
 <%@page import="m12.arduino.domain.Trabajador"%>
+<%@page import="m12.arduino.domain.Maketable"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,7 +28,6 @@
             <div class="panel-body">
                 <div class="lead">${objeto.getClass().getSimpleName()}</div>
                 <c:forEach var="i" items="${objeto.getFields()}" varStatus="status">
-
                     <div class="text-left col-md-2">${i}</div>
                     <div class="text-right col-md-10">${objeto.getInfo()[status.index]}</div>
                     <br />
@@ -35,6 +35,7 @@
                 <br /><br />
             </div>
             <a class="btn btn-arduino btn-block" href="" >Generar PDF</a>
+            <a class="btn btn-arduino btn-block" href="${base}/main.htm" >Home</a>
         </div>
         <div class="col-md-3"></div>
     </div>

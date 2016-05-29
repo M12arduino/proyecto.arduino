@@ -7,8 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <jsp:include page="header.jsp"></jsp:include>
-<jsp:include page="navBar.jsp"></jsp:include>
+<jsp:include page="navBar.jsp"></jsp:include>    
 <%
     String userloginName = "Admin";
     String userloginNif = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getName();
@@ -29,12 +30,24 @@
                 <form:form name="MyForm" action="${base}/contacta/enviarCorreo.htm" method="POST" role="form" >
                     <div class="form-group">
                         <label>Nombre: </label>
-                        <input name="nombre" class="form-control" type="text" disabled value="${userLoggedName}" /> 
-                        <form:input name="nombre" path="nombre" type="hidden" value="${userLoggedName}" /> 
+                        <sec:authorize access="isAuthenticated()">
+                            <input name="nombre" class="form-control" type="text" disabled value="${userLoggedName}" /> 
+                            <form:input name="nombre" path="nombre" type="hidden" value="${userLoggedName}" /> 
+                        </sec:authorize>
+                        <sec:authorize access="isAnonymous()">
+                            <input name="nombre" class="form-control" type="text" disabled value="Anonimo" /> 
+                            <form:input name="nombre" path="nombre" type="hidden" value="Anonimo" /> 
+                        </sec:authorize>
                     </div> 
                     <div class="form-group">
                         <label>Email: </label>
-                        <form:input name="email" path="email" type="email" class="form-control" placeholder="${userLoggedName}@ejemplo.com" /> 
+                        <sec:authorize access="isAuthenticated()">
+                            <form:input name="email" path="email" type="email" class="form-control" placeholder="${userLoggedName}@ejemplo.com" /> 
+                        </sec:authorize>
+                        <sec:authorize access="isAnonymous()">
+                            <form:input name="email" path="email" type="email" class="form-control" placeholder="Anonimo@ejemplo.com" /> 
+                        </sec:authorize>
+
                     </div> 
                     <div class="dropdown">
                         <label>Motivo del contacto: </label>
@@ -46,7 +59,7 @@
                         <label>Mensaje: </label>
                         <form:textarea name="mensaje" path="mensaje" class="form-control" cols="40" rows="6" /> 
                     </div> 
-                    <input type="submit" class="btn btn-arduino btn-block" value="Enviar" onClick="alert('Su mensaje ha sido enviado al administrador satisfactoriamente.')"/>
+                    <input type="submit" class="btn btn-arduino btn-block" value="Enviar" />
                 </form:form>
             </div>
         </div>

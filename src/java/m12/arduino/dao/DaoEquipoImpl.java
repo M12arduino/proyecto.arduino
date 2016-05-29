@@ -15,24 +15,35 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 /**
- *
- * @author enric
+ * Controlador para los objetos equipo
+ * @author Enric, Pablo, Jordi y Oscar
  */
 public class DaoEquipoImpl implements DaoEquipo {
 
     private Session session;
     private Transaction tx;
 
+    /**
+     * Metodo que abre la sesion e inicia la transaccion.
+     */
     public void iniciaOperacion() {
         session = HibernateUtil.getSessionFactory().openSession();
         tx = session.beginTransaction();
     }
 
+    /**
+     * Metodo que hace el commit y cierra la conexion.
+     */
     public void acabaOperacion() {
         tx.commit();
         session.close();
     }
 
+    /**
+     * Metodo para buscar un equipo en la base de datos.
+     * @param id_equipo String con el id_equipo del equipo a buscar.
+     * @return Devuelve un Objeto Equipo correspondiente al id_equipo proporcionado.
+     */
     @Override
     public Equipo buscarEquipo(String id_equipo) {
         iniciaOperacion();
@@ -43,6 +54,13 @@ public class DaoEquipoImpl implements DaoEquipo {
         return res;
     }
 
+    /**
+     * Metodo para listar los equipos de la base de datos.
+     * @param whereMap objeto Map con la información para obtener la lista de
+     * equipos. 
+     * @return Devuelve un objeto List de los equipos que coinciden con la 
+     * información proporcionada.
+     */
     @Override
     public List<Equipo> obtenerListaEquipos(Map<String, Object> whereMap) {
         iniciaOperacion();
@@ -82,6 +100,10 @@ public class DaoEquipoImpl implements DaoEquipo {
         return res;
     }
 
+    /**
+     * Metodo para listar los equipos de la base de datos.
+     * @return Devuelve un Objeto List con los equipos de la base de datos.
+     */
     @Override
     public List<Equipo> obtenerListaEquipos() {
         iniciaOperacion();
@@ -91,27 +113,46 @@ public class DaoEquipoImpl implements DaoEquipo {
         return res;
     }
 
+    /**
+     * Metodo para guardar equipos en la base de datos.
+     * @param equ objeto Equipo a guardar.
+     * @return Devuelve el objeto Equipo guardado.
+     */
     @Override
-    public Equipo guardarEquipo(Equipo eq) {
+    public Equipo guardarEquipo(Equipo equ) {
         iniciaOperacion();
-        session.save(eq);
+        session.save(equ);
         acabaOperacion();
-        return this.buscarEquipo(eq.getId_equipo());
+        return this.buscarEquipo(equ.getId_equipo());
     }
 
+    /**
+     * Metodo para actualizar equipos de la base de datos.
+     * @param equ objeto Equipo a actualizar.
+     * @return Devuelve el objeto Equipo actualizado.
+     */
     @Override
-    public Equipo actualizarEquipo(Equipo eq) {
+    public Equipo actualizarEquipo(Equipo equ) {
         iniciaOperacion();
-        session.update(eq);
+        session.update(equ);
         acabaOperacion();
-        return eq;
+        return equ;
     }
 
+    /**
+     * Metodo para buscar equipos en la base de datos.
+     * @param whereMap objeto Map con la información para buscar equipos. 
+     * @return Devuelve un Objeto Equipo que coincide con la información proporcionada.
+     */
     @Override
     public Equipo buscarEquipo(Map<String, Object> whereMap) {
         return obtenerListaEquipos(whereMap).get(0);
     }
 
+    /**
+     * Metodo para eliminar equipos de la base de datos.
+     * @param equ objeto Equipo a eliminar.
+     */
     @Override
     public void eliminarEquipo(Equipo equ) {
         iniciaOperacion();

@@ -6,10 +6,9 @@
 package m12.arduino.domain;
 
 /**
- *
- * @author Jordi
+ * Clase CategoriaTrabajador
+ * @author Enric, Pablo, Jordi y Oscar
  */
-
 public enum CategoriaTrabajador { 
     
     // LIST
@@ -18,20 +17,40 @@ public enum CategoriaTrabajador {
     ADMINISTRADOR(2, "Administrador");
     
     // ATTR
+    /**
+     * Codigo de la categoria
+     */
     private final int code;
+    
+    /**
+     * Nombre de la categoria
+     */
     private final String name;
     
     // CONST
+    /**
+     * Constructor de la categoria
+     * @param code codigo de la categoria
+     * @param name nombre de la categoria
+     */
     private CategoriaTrabajador(int code, String name) {
         this.code = code;
         this.name = name;
     }
     
     // GESETS
+    /**
+     * Getter de codigo de categoria
+     * @return codigo de la categoria
+     */
     public int getCode() {
         return code;
     }
 
+    /**
+     * Getter de nombre de categoria
+     * @return nombre de la categoria
+     */
     public String getName() {
         return name;
     }

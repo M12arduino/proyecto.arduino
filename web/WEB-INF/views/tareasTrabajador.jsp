@@ -10,9 +10,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <script type="text/javascript">
     var ordenes = JSON.parse('${ordenes}');
-    if ('${message}' !== null) {
-        alert('${message}');
-    }
 </script>
 <script type="text/javascript" src="${base}/resources/js/tareasTrabajador.js"></script>
 <!DOCTYPE html>
@@ -20,7 +17,7 @@
 <body>
     <div class="row datatable-form">
         <div class="col-md-12">
-            <p id="errorTable" class="error"> El tienes ordenes assignadas, ¡día festivo!</p>
+            <p id="errorTable" class="error">No tienes ordenes assignadas, ¡día festivo!</p>
             <table id="datatable_tareas" class="table table-bordered table-striped">
             </table>
         </div>

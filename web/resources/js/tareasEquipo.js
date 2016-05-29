@@ -20,7 +20,9 @@ function rellenaDataTable(array) {
             columns: titles,
             destroy: true
         });
-    }    
+    } else {
+        document.getElementById("errorTable").style.display = "inline";
+    }  
 }
 
 function setHiddenValue(elem) {

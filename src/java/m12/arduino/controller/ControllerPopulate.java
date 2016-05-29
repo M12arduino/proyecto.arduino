@@ -20,17 +20,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-/*
- Jordi Puig Puig
- DAW 2
- Curs 2015-2016
-
- @author Jordi
+/**
+ * Controlador para llenar la base de datos (populate).
+ * @author Enric, Pablo, Jordi y Oscar
  */
 @Controller
 @RequestMapping("/populate")
 public class ControllerPopulate {
 
+    /**
+     * Metodo que rellena la base de datos.
+     * @return Devuelve un objeto ModelAndView "vista" (redirecciona a la home 
+     * despues de rellenar la base de datos).
+     */
     @RequestMapping("/populate")
     public ModelAndView populate() {
         ModelAndView mV = new ModelAndView("main");
