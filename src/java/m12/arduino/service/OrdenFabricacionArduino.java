@@ -5,21 +5,15 @@
  */
 package m12.arduino.service;
 
-import java.util.Calendar;
 import java.util.List;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import m12.arduino.domain.Accion;
-import m12.arduino.domain.Equipo;
-import m12.arduino.domain.EstadoOrden;
 import m12.arduino.domain.Prioridad;
-import m12.arduino.domain.Proceso;
-import m12.arduino.domain.Robot;
-import m12.arduino.domain.Trabajador;
 
 /**
  * Clase OrdenFabricacionArduino
@@ -38,16 +32,19 @@ public class OrdenFabricacionArduino {
     /**
      * Codigo
      */
+    @Pattern(regexp = "(OF[0-9]{3})", message = "Formato del codigo de la Orden de fabricacion incorrecto")
     private String codigo;
     
     /**
      * Descripcion
      */
+    @Size(min = 1, max = 144, message = "La descripcion tiene un maximo de 144 caracteres")
     private String descripcion;
     
     /**
      * Prioridad
      */
+    @NotNull(message = "Es obligatorio establecer una prioridad")
     private Prioridad proridad;
     
     /**

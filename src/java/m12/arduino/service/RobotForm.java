@@ -1,9 +1,14 @@
 package m12.arduino.service;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import m12.arduino.domain.EstadoRobot;
+import org.hibernate.validator.constraints.Range;
 
 /**
  * Clase RobotForm
+ *
  * @author Enric, Pablo, Jordi y Oscar
  */
 public class RobotForm {
@@ -13,37 +18,43 @@ public class RobotForm {
      * Identificador
      */
     private Long id;
-    
+
     /**
      * Identificador de robot
      */
+    @Pattern(regexp = "([A-Za-z0-9]{0,10)", message = "Formato del id del robot incorrecto")
     private String id_robot;
-    
+
     /**
      * Nombre
      */
+    @Size(min = 1, max = 50, message = "El nombre tiene un maximo de 50 caracteres")
     private String nombre;
-    
+
     /**
      * Lugar
      */
+    @Size(min = 1, max = 50, message = "El nombre tiene un maximo de 50 caracteres")
     private String lugar;
-    
+
     /**
      * Coordenada X
      */
+    @Range(min = 0, max = 10000, message = "La coordenada 'X' debe ser positiva y hasta 9999,99")
     private float coorX;
-    
+
     /**
      * Coordenada Y
      */
+    @Range(min = 0, max = 10000, message = "La coordenada 'Y' debe ser positiva y hasta 9999,99")
     private float coorY;
-    
+
     /**
      * Estado del robot
      */
+    @NotNull(message = "Es obligado seleccionar un Estado de robot")
     private EstadoRobot estado;
-    
+
     /**
      * Estado a buscar
      */
@@ -54,18 +65,20 @@ public class RobotForm {
      */
     public RobotForm() {
     }
-    
+
     // GESETS
     /**
      * Getter del identificador
+     *
      * @return identificador
      */
-    public Long getId() {    
+    public Long getId() {
         return id;
     }
 
     /**
      * Setter del identificador
+     *
      * @param id identificador
      */
     public void setId(Long id) {
@@ -74,6 +87,7 @@ public class RobotForm {
 
     /**
      * Getter del estado a buscar
+     *
      * @return estado a buscar
      */
     public EstadoRobot getEstadoSearch() {
@@ -82,6 +96,7 @@ public class RobotForm {
 
     /**
      * Setter del estado a buscar
+     *
      * @param estadoSearch estado a buscar
      */
     public void setEstadoSearch(EstadoRobot estadoSearch) {
@@ -90,6 +105,7 @@ public class RobotForm {
 
     /**
      * Getter del identificador del robot
+     *
      * @return identificador del robot
      */
     public String getId_robot() {
@@ -98,6 +114,7 @@ public class RobotForm {
 
     /**
      * Setter del identificador del robot
+     *
      * @param id_robot identificador del robot
      */
     public void setId_robot(String id_robot) {
@@ -106,6 +123,7 @@ public class RobotForm {
 
     /**
      * Getter del nombre
+     *
      * @return nombre
      */
     public String getNombre() {
@@ -114,6 +132,7 @@ public class RobotForm {
 
     /**
      * Setter del nombre
+     *
      * @param nombre nombre
      */
     public void setNombre(String nombre) {
@@ -122,6 +141,7 @@ public class RobotForm {
 
     /**
      * Getter del lugar
+     *
      * @return lugar
      */
     public String getLugar() {
@@ -130,6 +150,7 @@ public class RobotForm {
 
     /**
      * Setter del lugar
+     *
      * @param lugar lugar
      */
     public void setLugar(String lugar) {
@@ -138,6 +159,7 @@ public class RobotForm {
 
     /**
      * Getter de la coordenada X
+     *
      * @return coordenada X
      */
     public float getCoorX() {
@@ -146,6 +168,7 @@ public class RobotForm {
 
     /**
      * Setter de la coordenada X
+     *
      * @param coorX coordenada X
      */
     public void setCoorX(float coorX) {
@@ -154,6 +177,7 @@ public class RobotForm {
 
     /**
      * Getter de la coordenada Y
+     *
      * @return coordenada Y
      */
     public float getCoorY() {
@@ -162,6 +186,7 @@ public class RobotForm {
 
     /**
      * Setter de la coordenada Y
+     *
      * @param coorY coordenada Y
      */
     public void setCoorY(float coorY) {
@@ -170,6 +195,7 @@ public class RobotForm {
 
     /**
      * Getter del estado del robot
+     *
      * @return estado del robot
      */
     public EstadoRobot getEstado() {
@@ -178,6 +204,7 @@ public class RobotForm {
 
     /**
      * Setter del estado del robot
+     *
      * @param estado estado del robot
      */
     public void setEstado(EstadoRobot estado) {
@@ -186,6 +213,7 @@ public class RobotForm {
 
     /**
      * Metodo toString para devolver informacion del objeto RobotForm
+     *
      * @return información del objeto RobotForm
      */
     @Override

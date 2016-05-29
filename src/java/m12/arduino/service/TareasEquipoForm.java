@@ -5,13 +5,12 @@
  */
 package m12.arduino.service;
 
-import java.util.List;
 import m12.arduino.domain.EstadoOrden;
-import m12.arduino.domain.OrdenFabricacion;
 import m12.arduino.domain.Prioridad;
 
 /**
  * Clase TareasEquipoForm
+ *
  * @author Enric, Pablo, Jordi y Oscar
  */
 public class TareasEquipoForm {
@@ -20,32 +19,32 @@ public class TareasEquipoForm {
      * Codigo
      */
     private String codigo;
-    
+
     /**
      * Descripcion
      */
     private String descripcion;
-    
+
     /**
      * Prioridad
      */
     private Prioridad prioridad;
-    
+
     /**
      * Proceso
      */
     private String proceso;
-    
+
     /**
      * Robot
      */
     private String robot;
-    
+
     /**
-     * Estado 
+     * Estado
      */
     private EstadoOrden estado;
-    
+
     /**
      * Equipo
      */
@@ -59,6 +58,7 @@ public class TareasEquipoForm {
 
     /**
      * Getter del codigo
+     *
      * @return codigo
      */
     public String getCodigo() {
@@ -67,6 +67,7 @@ public class TareasEquipoForm {
 
     /**
      * Setter del codigo
+     *
      * @param codigo codigo
      */
     public void setCodigo(String codigo) {
@@ -75,6 +76,7 @@ public class TareasEquipoForm {
 
     /**
      * Getter de la descripcion
+     *
      * @return descripcion
      */
     public String getDescripcion() {
@@ -83,6 +85,7 @@ public class TareasEquipoForm {
 
     /**
      * Setter de la descripcion
+     *
      * @param descripcion descripcion
      */
     public void setDescripcion(String descripcion) {
@@ -91,6 +94,7 @@ public class TareasEquipoForm {
 
     /**
      * Getter de la prioridad
+     *
      * @return prioridad
      */
     public Prioridad getPrioridad() {
@@ -99,6 +103,7 @@ public class TareasEquipoForm {
 
     /**
      * Setter de la prioridad
+     *
      * @param prioridad prioridad
      */
     public void setPrioridad(Prioridad prioridad) {
@@ -107,6 +112,7 @@ public class TareasEquipoForm {
 
     /**
      * Getter del Proceso
+     *
      * @return proceso
      */
     public String getProceso() {
@@ -115,6 +121,7 @@ public class TareasEquipoForm {
 
     /**
      * Setter del proceso
+     *
      * @param proceso proceso
      */
     public void setProceso(String proceso) {
@@ -123,6 +130,7 @@ public class TareasEquipoForm {
 
     /**
      * Geter del robot
+     *
      * @return robot
      */
     public String getRobot() {
@@ -131,6 +139,7 @@ public class TareasEquipoForm {
 
     /**
      * Setter del robot
+     *
      * @param robot robot
      */
     public void setRobot(String robot) {
@@ -139,6 +148,7 @@ public class TareasEquipoForm {
 
     /**
      * Getter del estado
+     *
      * @return estado
      */
     public EstadoOrden getEstado() {
@@ -147,6 +157,7 @@ public class TareasEquipoForm {
 
     /**
      * Setter del estado
+     *
      * @param estado estado
      */
     public void setEstado(EstadoOrden estado) {
@@ -155,6 +166,7 @@ public class TareasEquipoForm {
 
     /**
      * Getter del equipo
+     *
      * @return equipo
      */
     public String getEquipo() {
@@ -163,6 +175,7 @@ public class TareasEquipoForm {
 
     /**
      * Setter del equipo
+     *
      * @param equipo equipo
      */
     public void setEquipo(String equipo) {
@@ -171,6 +184,7 @@ public class TareasEquipoForm {
 
     /**
      * Metodo toString para devolver informacion del objeto TareasEquipoForm
+     *
      * @return información del objeto TareasEquipoForm
      */
     @Override

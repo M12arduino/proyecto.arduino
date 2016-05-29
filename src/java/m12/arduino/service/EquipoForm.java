@@ -6,44 +6,50 @@
 package m12.arduino.service;
 
 import java.util.List;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import m12.arduino.domain.Trabajador;
 
 /**
  * Clase EquipoForm
+ *
  * @author Enric, Pablo, Jordi y Oscar
  */
 public class EquipoForm {
-    
+
     /**
      * Identificador
      */
     private long id;
-    
+
     /**
      * Identificador de equipo
      */
+    @Pattern(regexp = "([A-Z]{2}[0-9]{4})", message = "Formato del id del equipo incorrecto")
     private String id_equipo;
-    
+
     /**
      * Nombre
      */
+    @Size(min = 1, max = 50, message = "El nombre tiene un maximo de 50 caracteres")
     private String nombre;
-    
+
     /**
      * Lista de trabajadores
      */
     private List<Trabajador> trabajadores;
-    
+
     /**
      * Lista de nif's
      */
     private List<String> nifs;
-    
+
     /**
      * Código de la orden de fabricación
      */
+    @Pattern(regexp = "(OF[0-9]{3})", message = "Formato del codigo de la Orden de fabricacion incorrecto")
     private String codigo_orden;
-    
+
     /**
      * Nombre completo
      */
@@ -54,9 +60,10 @@ public class EquipoForm {
      */
     public EquipoForm() {
     }
-    
+
     /**
      * Getter de la lista de trabajadores
+     *
      * @return lista de trabajadores
      */
     public List<Trabajador> getTrabajadores() {
@@ -65,14 +72,16 @@ public class EquipoForm {
 
     /**
      * Setter de la lista de trabajadores
+     *
      * @param trabajadores lista de trabajadores
      */
     public void setTrabajadores(List<Trabajador> trabajadores) {
         this.trabajadores = trabajadores;
     }
-    
+
     /**
      * Getter del identificador
+     *
      * @return identificador
      */
     public long getId() {
@@ -81,6 +90,7 @@ public class EquipoForm {
 
     /**
      * Setter del identificador
+     *
      * @param id identificador
      */
     public void setId(long id) {
@@ -89,6 +99,7 @@ public class EquipoForm {
 
     /**
      * Getter del codigo de la orden de fabricación
+     *
      * @return codigo de la orden de fabricación
      */
     public String getCodigo_orden() {
@@ -97,14 +108,16 @@ public class EquipoForm {
 
     /**
      * Setter del codigo de la orden de fabricación
+     *
      * @param codigo_orden codigo de la orden de fabricación
      */
     public void setCodigo_orden(String codigo_orden) {
         this.codigo_orden = codigo_orden;
     }
-    
+
     /**
      * Getter del identificador del equipo
+     *
      * @return identificador del equipo
      */
     public String getId_equipo() {
@@ -113,6 +126,7 @@ public class EquipoForm {
 
     /**
      * Setter del identificador del equipo
+     *
      * @param id_equipo identificador del equipo
      */
     public void setId_equipo(String id_equipo) {
@@ -121,6 +135,7 @@ public class EquipoForm {
 
     /**
      * Getter del nombre
+     *
      * @return nombre
      */
     public String getNombre() {
@@ -129,6 +144,7 @@ public class EquipoForm {
 
     /**
      * Setter del nombre
+     *
      * @param nombre nombre
      */
     public void setNombre(String nombre) {
@@ -137,6 +153,7 @@ public class EquipoForm {
 
     /**
      * Getter de la lista de nif's
+     *
      * @return lista de nif's
      */
     public List<String> getNifs() {
@@ -145,6 +162,7 @@ public class EquipoForm {
 
     /**
      * Setter de la lista de nif's
+     *
      * @param nifs lista de nif's
      */
     public void setNifs(List<String> nifs) {
@@ -153,6 +171,7 @@ public class EquipoForm {
 
     /**
      * Metodo toString para devolver informacion del objeto EquipoForm
+     *
      * @return información del objeto EquipoForm
      */
     @Override

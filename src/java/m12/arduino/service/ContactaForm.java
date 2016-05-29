@@ -5,30 +5,39 @@
  */
 package m12.arduino.service;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
+
 /**
  * Clase ContactaForm
+ *
  * @author Enric, Pablo, Jordi y Oscar
  */
 public class ContactaForm {
-    
+
     /**
      * Nombre
      */
+    @NotNull(message = "El campo nombre es obligatorio")
     private String nombre;
-    
+
     /**
      * Email
      */
+    @Email
     private String email;
-    
+
     /**
      * Motivo
      */
+    @Size(min = 1, max = 144, message = "Maximo 144 caracteres en el motivo")
     private String motivo;
-    
+
     /**
      * Mensaje
      */
+    @Size(min = 1, max = 144, message = "Maximo 144 caracteres en el cuerpo de mensaje")
     private String mensaje;
 
     /**
@@ -39,6 +48,7 @@ public class ContactaForm {
 
     /**
      * Getter del nombre
+     *
      * @return nombre
      */
     public String getNombre() {
@@ -47,6 +57,7 @@ public class ContactaForm {
 
     /**
      * Setter del nombre
+     *
      * @param nombre nombre
      */
     public void setNombre(String nombre) {
@@ -55,6 +66,7 @@ public class ContactaForm {
 
     /**
      * Getter del email
+     *
      * @return email
      */
     public String getEmail() {
@@ -63,6 +75,7 @@ public class ContactaForm {
 
     /**
      * Setter del email
+     *
      * @param email email
      */
     public void setEmail(String email) {
@@ -71,6 +84,7 @@ public class ContactaForm {
 
     /**
      * Getter del motivo
+     *
      * @return motivo
      */
     public String getMotivo() {
@@ -79,6 +93,7 @@ public class ContactaForm {
 
     /**
      * Setter del motivo
+     *
      * @param motivo motivo
      */
     public void setMotivo(String motivo) {
@@ -87,6 +102,7 @@ public class ContactaForm {
 
     /**
      * Getter del mensaje
+     *
      * @return mensaje
      */
     public String getMensaje() {
@@ -95,6 +111,7 @@ public class ContactaForm {
 
     /**
      * Setter del mensaje
+     *
      * @param mensaje mensaje
      */
     public void setMensaje(String mensaje) {
@@ -103,6 +120,7 @@ public class ContactaForm {
 
     /**
      * Metodo toString para devolver informacion del objeto ContactaForm
+     *
      * @return información del objeto ContactaForm
      */
     @Override
