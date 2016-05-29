@@ -84,7 +84,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="password">Password:</label>
                         <div class="col-sm-10">
-                            <form:input name="password" path="password" id="password" placeholder="password" class="form-control"/>
+                            <form:input name="password" path="password" id="password" type="password" placeholder="password" class="form-control"/>
                             <span class="alert-danger" id="password_error">Password erroneo.</span>
                         </div>
                     </div>   
