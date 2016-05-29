@@ -3,14 +3,14 @@
 <hibernate-configuration>
   <session-factory>
     <!-- parametros para la conexion a la base de datos -->
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost/proyecto</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://localhost:5432/proyecto</property>
         <property name="connection.username">root</property>
         <property name="connection.password">root1234</property>
         <!-- Configuracion del pool interno -->
         <property name="connection.pool_size">1</property>
         <!-- Dialecto de la base de datos -->
-        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <!-- Otras propiedades importantes -->
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">create-drop</property>
