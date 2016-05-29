@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group">
                         <label for="passTrabajador">Password: </label>
-                        <form:input name="password" path="password" class="form-control" id="passTrabajador" />
+                        <form:input name="password" path="password" type="password" class="form-control" id="passTrabajador" />
                         <span class="alert-danger" id="password_error">Password erroneo.</span>
                     </div>
                     <div class="dropdown">
