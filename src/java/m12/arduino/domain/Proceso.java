@@ -57,7 +57,6 @@ public class Proceso implements Serializable, Maketable {
     public void setId(long id) {
         this.id = id;
     }
-
     public String getCodigo() {
         return codigo;
     }
