@@ -8,8 +8,9 @@ package m12.arduino.domain;
 import java.util.List;
 
 /**
- *
- * @author Jordi
+ * Clase Maketable
+ * Implementable
+ * @author Enric, Pablo, Jordi y Oscar
  */
 public interface Maketable {
     List<String> getFields();

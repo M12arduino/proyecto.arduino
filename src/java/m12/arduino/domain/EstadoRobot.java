@@ -6,8 +6,8 @@
 package m12.arduino.domain;
 
 /**
- *
- * @author Jordi
+ * Clase EstadoRobot
+ * @author Enric, Pablo, Jordi y Oscar
  */
 public enum EstadoRobot {
     
@@ -19,20 +19,40 @@ public enum EstadoRobot {
     LOCAL(4, "Local");
     
     // ATTR
+    /**
+     * Codigo del estado del robot
+     */
     private final int code;
+    
+    /**
+     * Nombre del estado del robot
+     */
     private final String name;
 
     // CONST
+    /**
+     * Constructor del estado del robot
+     * @param code codigo del estado del robot
+     * @param name nombre del estado del robot
+     */
     private EstadoRobot(int code, String name) {
         this.code = code;
         this.name = name;
     }
 
     // GESETS
+    /**
+     * Getter del codigo del robot
+     * @return codigo del robot
+     */
     public int getCode() {
         return code;
     }
 
+    /**
+     * Getter del nombre del robot
+     * @return nombre del robot
+     */
     public String getName() {
         return name;
     }

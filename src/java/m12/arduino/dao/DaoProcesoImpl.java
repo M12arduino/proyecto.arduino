@@ -10,28 +10,36 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-/*
- Jordi Puig Puig
- DAW 2
- Curs 2015-2016
-
- @author Jordi
+/**
+ * Controlador para los objetos Proceso.
+ * @author Enric, Pablo, Jordi y Oscar
  */
 public class DaoProcesoImpl implements DaoProceso {
 
     private Session session;
     private Transaction tx;
 
+    /**
+     * Metodo que abre la sesion e inicia la transaccion.
+     */
     public void iniciaOperacion() {
         session = HibernateUtil.getSessionFactory().openSession();
         tx = session.beginTransaction();
     }
 
+    /**
+     * Metodo que hace el commit y cierra la conexion.
+     */
     public void acabaOperacion() {
         tx.commit();
         session.close();
     }
 
+    /**
+     * Metodo para buscar un proceso en la base de datos.
+     * @param codigo String con el codigo del proceso a buscar.
+     * @return Devuelve un Objeto Proceso correspondiente al codigo proporcionado.
+     */
     @Override
     public Proceso buscarProceso(String codigo) {
         iniciaOperacion();
@@ -42,6 +50,13 @@ public class DaoProcesoImpl implements DaoProceso {
         return res;
     }
 
+    /**
+     * Metodo para listar los procesos de la base de datos.
+     * @param whereMap objeto Map con la información para obtener la lista de
+     * procesos. 
+     * @return Devuelve un objeto List de los procesos que coinciden con la 
+     * información proporcionada.
+     */
     @Override
     public List<Proceso> obtenerListaProcesos(Map<String, Object> whereMap) {
         iniciaOperacion();
@@ -81,6 +96,10 @@ public class DaoProcesoImpl implements DaoProceso {
         return res;
     }
 
+    /**
+     * Metodo para listar los procesos de la base de datos.
+     * @return Devuelve un Objeto List con los procesos de la base de datos.
+     */
     @Override
     public List<Proceso> obtenerListaProcesos() {
         iniciaOperacion();
@@ -90,6 +109,11 @@ public class DaoProcesoImpl implements DaoProceso {
         return res;
     }
 
+    /**
+     * Metodo para guardar procesos en la base de datos.
+     * @param pro objeto Proceso a guardar.
+     * @return Devuelve el objeto Proceso guardado.
+     */
     @Override
     public Proceso guardarProceso(Proceso pro) {
         iniciaOperacion();
@@ -98,6 +122,11 @@ public class DaoProcesoImpl implements DaoProceso {
         return this.buscarProceso(pro.getCodigo());
     }
 
+    /**
+     * Metodo para actualizar procesos de la base de datos.
+     * @param pro objeto Proceso a actualizar.
+     * @return Devuelve el objeto Proceso actualizado.
+     */
     @Override
     public Proceso actualizarProceso(Proceso pro) {
         iniciaOperacion();
@@ -106,11 +135,20 @@ public class DaoProcesoImpl implements DaoProceso {
         return pro;
     }
 
+    /**
+     * Metodo para buscar procesos en la base de datos.
+     * @param whereMap objeto Map con la información para buscar procesos. 
+     * @return Devuelve un Objeto Proceso que coincide con la información proporcionada.
+     */
     @Override
     public Proceso buscarProceso(Map<String, Object> whereMap) {
         return obtenerListaProcesos(whereMap).get(0);
     }
 
+    /**
+     * Metodo para eliminar procesos de la base de datos.
+     * @param pro objeto Proceso a eliminar.
+     */
     @Override
     public void eliminarProceso(Proceso pro) {
         iniciaOperacion();

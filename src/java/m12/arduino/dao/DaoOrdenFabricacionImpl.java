@@ -9,28 +9,36 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-/*
- Jordi Puig Puig
- DAW 2
- Curs 2015-2016
-
- @author Jordi
+/**
+ * Controlador para los objetos OrdenFabricacion.
+ * @author Enric, Pablo, Jordi y Oscar
  */
 public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
 
     private Session session;
     private Transaction tx;
 
+    /**
+     * Metodo que abre la sesion e inicia la transaccion.
+     */
     public void iniciaOperacion() {
         session = HibernateUtil.getSessionFactory().openSession();
         tx = session.beginTransaction();
     }
 
+    /**
+     * Metodo que hace el commit y cierra la conexion.
+     */
     public void acabaOperacion() {
         tx.commit();
         session.close();
     }
 
+    /**
+     * Metodo para buscar una orden de fabricacion en la base de datos.
+     * @param codigo String con el codigo de la orden de fabricacion a buscar.
+     * @return Devuelve un Objeto OrdenFabricacion correspondiente al codigo proporcionado.
+     */
     @Override
     public OrdenFabricacion buscarOrden(String codigo) {
         iniciaOperacion();
@@ -41,11 +49,24 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
         return ord;
     }
 
+    /**
+     * Metodo para buscar ordenes de fabricacion en la base de datos.
+     * @param whereMap objeto Map con la información para buscar ordenes de fabricacion. 
+     * @return Devuelve un Objeto OrdenFabricacion que coincide con la información 
+     * proporcionada.
+     */
     @Override
     public OrdenFabricacion buscarOrden(Map<String, Object> whereMap) {
         return obtenerListaOrdenes(whereMap).get(0);
     }
 
+    /**
+     * Metodo para listar las ordenes de fabricacion de la base de datos.
+     * @param whereMap objeto Map con la información para obtener la lista de
+     * ordenes de fabricacion. 
+     * @return Devuelve un objeto List de las ordenes de fabricacion que coinciden con la 
+     * información proporcionada.
+     */
     @Override
     public List<OrdenFabricacion> obtenerListaOrdenes(Map<String, Object> whereMap) {
         iniciaOperacion();
@@ -85,6 +106,10 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
         return res;
     }
 
+    /**
+     * Metodo para listar las ordenes de fabricacion de la base de datos.
+     * @return Devuelve un Objeto List con las ordenes de fabricacion de la base de datos.
+     */
     @Override
     public List<OrdenFabricacion> obtenerListaOrdenes() {
         iniciaOperacion();
@@ -95,6 +120,11 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
         return res;
     }
 
+    /**
+     * Metodo para guardar ordenes de fabricacion en la base de datos.
+     * @param ord objeto OrdenFabricacion a guardar.
+     * @return Devuelve el objeto OrdenFabricacion guardado.
+     */
     @Override
     public OrdenFabricacion guardarOrden(OrdenFabricacion ord) {
         iniciaOperacion();
@@ -103,6 +133,11 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
         return this.buscarOrden(ord.getCodigo());
     }
 
+    /**
+     * Metodo para actualizar ordenes de fabricacion de la base de datos.
+     * @param ord objeto OrdenFabricacion a actualizar.
+     * @return Devuelve el objeto OrdenFabricacion actualizado.
+     */
     @Override
     public OrdenFabricacion actualizarOrden(OrdenFabricacion ord) {
         iniciaOperacion();
@@ -111,6 +146,10 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
         return ord;
     }
 
+    /**
+     * Metodo para eliminar ordenes de fabricacion de la base de datos.
+     * @param ord objeto OrdenFabricacion a eliminar.
+     */
     @Override
     public void eliminarOrden(OrdenFabricacion ord) {
         iniciaOperacion();
