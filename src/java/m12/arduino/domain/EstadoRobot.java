@@ -7,23 +7,24 @@ package m12.arduino.domain;
 
 /**
  * Clase EstadoRobot
+ *
  * @author Enric, Pablo, Jordi y Oscar
  */
 public enum EstadoRobot {
-    
+
     // LIST
-    INDEFINIDO(0,"Indefinido"),
+    INDEFINIDO(0, "Indefinido"),
     LIBRE(1, "Libre"),
     OCUPADO(2, "Ocupado"),
     DESCONECTADO(3, "Desconectado"),
     LOCAL(4, "Local");
-    
+
     // ATTR
     /**
      * Codigo del estado del robot
      */
     private final int code;
-    
+
     /**
      * Nombre del estado del robot
      */
@@ -32,6 +33,7 @@ public enum EstadoRobot {
     // CONST
     /**
      * Constructor del estado del robot
+     *
      * @param code codigo del estado del robot
      * @param name nombre del estado del robot
      */
@@ -43,6 +45,7 @@ public enum EstadoRobot {
     // GESETS
     /**
      * Getter del codigo del robot
+     *
      * @return codigo del robot
      */
     public int getCode() {
@@ -51,12 +54,11 @@ public enum EstadoRobot {
 
     /**
      * Getter del nombre del robot
+     *
      * @return nombre del robot
      */
     public String getName() {
         return name;
     }
-    
-    
-    
+
 }

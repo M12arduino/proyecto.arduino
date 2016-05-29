@@ -1,12 +1,14 @@
 package m12.arduino.domain;
+
 /**
  * Clase Prioridad
+ *
  * @author Enric, Pablo, Jordi y Oscar
  */
 public enum Prioridad {
 
     // LIST
-    INDEFINIDO(0,"Indefinido"),
+    INDEFINIDO(0, "Indefinido"),
     BAJA(1, "Baja"),
     MEDIA(2, "Media"),
     ALTA(3, "Alta");
@@ -16,7 +18,7 @@ public enum Prioridad {
      * Codigo de la prioridad
      */
     private final int code;
-    
+
     /**
      * Nombre de la prioridad
      */
@@ -25,6 +27,7 @@ public enum Prioridad {
     // CONST
     /**
      * Constructor de prioridad
+     *
      * @param code codigo de la prioridad
      * @param name nombre de la prioridad
      */
@@ -36,6 +39,7 @@ public enum Prioridad {
     // GESETS
     /**
      * Getter del codigo de la prioridad
+     *
      * @return codigo de la prioridad
      */
     public int getCode() {
@@ -44,6 +48,7 @@ public enum Prioridad {
 
     /**
      * Getter del nombre de la prioridad
+     *
      * @return nombre de la prioridad
      */
     public String getName() {

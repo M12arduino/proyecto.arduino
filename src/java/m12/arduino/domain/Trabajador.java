@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.persistence.CascadeType;
-//import javax.validation.constraints.NotNull;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,15 +15,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.ObjectMapper;
-//import javax.validation.constraints.Pattern;
-//import javax.validation.constraints.Size;
 
 /**
- * Clase Trabajador
- * Inplementa Serializable y Maketable
+ * Clase Trabajador Inplementa Serializable y Maketable
+ *
  * @author Enric, Pablo, Jordi y Oscar
  */
 @Entity
@@ -39,54 +37,54 @@ public class Trabajador implements Serializable, Maketable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_trab;
-    
+
     /**
      * Nif
      */
     // @Pattern(regexp = "(^\\d{8})([\\s-]?)([a-zA-Z]$)", message = "Format del DNI incorrecte")
-    // @NotNull(message = "El camp dni no pot estar buit")
     private String nif;
-    
+
     /**
      * Nombre
      */
-    //  @Pattern(regexp = "(^[\\w\\s]{2,15})", message = "Format del Nom incorrecte")
+    @Size(min = 1, max = 50, message = "El nombre tiene un maximo de 50 caracteres")
     private String nombre;
-    
+
     /**
      * Movil
      */
-    //@Pattern(regexp = "(^[6-7])(\\d{8})$", message = "Format del MOBIL incorrecte")
+    @Pattern(regexp = "(^[6-7])(\\d{8})$", message = "Formato del MOBIL incorrecto")
     private String movil;
-    
+
     /**
      * Password
      */
-    // @Size(min = 4, max = 20, message = "La contrassenya ha de tenir entre 4 i 20 caracters")
+    @Size(min = 4, max = 20, message = "La contraseña ha de tener entre 4 y 20 caracteres")
     private String password;
-    
+
     /**
      * Categoria del trabajador
      */
-    @Enumerated (value = EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private CategoriaTrabajador categoria;
-    
+
     /**
      * Equipo
      */
     @ManyToOne
     private Equipo equipo;
-    
+
     /**
      * Lista de ordenes de fabricacion
      */
-    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER,mappedBy = "trabajador")
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "trabajador")
     @JsonIgnore
     private List<OrdenFabricacion> ordenes;
 
     // GESETS
     /**
      * Getter de la lista de ordenes de fabricacion
+     *
      * @return lista de ordenes de fabricacion
      */
     public List<OrdenFabricacion> getOrdenes() {
@@ -95,6 +93,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Setter de la lista de ordenes de fabricacion
+     *
      * @param ordenes lista de ordenes de fabricacion
      */
     public void setOrdenes(List<OrdenFabricacion> ordenes) {
@@ -103,6 +102,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Getter de equipo
+     *
      * @return equipo
      */
     public Equipo getEquipo() {
@@ -111,6 +111,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Setter de equipo
+     *
      * @param equipo equipo
      */
     public void setEquipo(Equipo equipo) {
@@ -119,6 +120,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Getter del identificador del trabajador
+     *
      * @return identificador del trabajador
      */
     public long getId_trab() {
@@ -127,22 +129,25 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Setter del identificador del trabajador
+     *
      * @param id_trab identificador del trabajador
      */
     public void setId_trab(long id_trab) {
         this.id_trab = id_trab;
     }
-    
+
     /**
      * Getter de la categoria
+     *
      * @return categoria
      */
     public CategoriaTrabajador getCategoria() {
         return categoria;
     }
-    
+
     /**
      * Setter de la categoria
+     *
      * @param categoria categoria
      */
     public void setCategoria(CategoriaTrabajador categoria) {
@@ -151,6 +156,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Getter del nif
+     *
      * @return nif
      */
     public String getNif() {
@@ -159,6 +165,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Setter del nif
+     *
      * @param nif nif
      */
     public void setNif(String nif) {
@@ -167,6 +174,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Getter del nombre
+     *
      * @return nombre
      */
     public String getNombre() {
@@ -175,6 +183,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Setter del nombre
+     *
      * @param nombre nombre
      */
     public void setNombre(String nombre) {
@@ -183,6 +192,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Getter del movil
+     *
      * @return movil
      */
     public String getMovil() {
@@ -191,6 +201,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Setter del movil
+     *
      * @param movil movil
      */
     public void setMovil(String movil) {
@@ -199,6 +210,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Getter del password
+     *
      * @return password
      */
     public String getPassword() {
@@ -207,6 +219,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Setter del password
+     *
      * @param password password
      */
     public void setPassword(String password) {
@@ -216,30 +229,33 @@ public class Trabajador implements Serializable, Maketable {
     // OTHER METHODS
     /**
      * Metodo toString para devolver la informacion del trabajador
+     *
      * @return la informacion del trabajador
      */
     @Override
     public String toString() {
         String eqName = "No definido";
-        if (equipo != null){
+        if (equipo != null) {
             eqName = equipo.getFullName();
-        }  
+        }
         return "Trabajador{" + "id_trab=" + id_trab + ", nif=" + nif + ", nombre=" + nombre + ", movil=" + movil + ", password=" + password + ", categoria=" + categoria + ", equipo=" + eqName + '}';
     }
-    
+
     /**
      * Metodo de conversion a JSon
+     *
      * @return String parseado
      * @throws IOException eb casi de fallo del parseo
      */
-    public String toJson() throws IOException{
+    public String toJson() throws IOException {
         ObjectMapper mapperObj = new ObjectMapper();
         String jsonStr = mapperObj.writeValueAsString(this);
         return jsonStr;
     }
-    
+
     /**
      * Metodo para devolver los campos del trabajador
+     *
      * @return campos del trabajador
      */
     @JsonIgnore
@@ -247,23 +263,25 @@ public class Trabajador implements Serializable, Maketable {
     public List<String> getFields() {
         return new ArrayList(Arrays.asList("ID", "Nif", "Nombre", "Movil", "Categoria", "Equipo"));
     }
-    
+
     /**
      * Metodo para devolver la informacion del trabajador
+     *
      * @return informacion del trabajador
      */
     @JsonIgnore
     @Override
     public List<String> getInfo() {
         String eqName = "No definido";
-        if (equipo != null){
+        if (equipo != null) {
             eqName = equipo.getNombre();
-        }               
-        return new ArrayList(Arrays.asList(id_trab, nif, nombre, movil, categoria.toString(),eqName));   
+        }
+        return new ArrayList(Arrays.asList(id_trab, nif, nombre, movil, categoria.toString(), eqName));
     }
-    
+
     /**
      * Metodo para la clave primaria
+     *
      * @return identificador del trabajador
      */
     @JsonIgnore
@@ -274,6 +292,7 @@ public class Trabajador implements Serializable, Maketable {
 
     /**
      * Metodo de nombre completo
+     *
      * @return nombre del trabajador (nombre completo)
      */
     @Override
@@ -283,7 +302,9 @@ public class Trabajador implements Serializable, Maketable {
     }
 
     /**
-     * Metodo para añadir ordenes de fabricacion a la lista de ordenes de fabricacion
+     * Metodo para añadir ordenes de fabricacion a la lista de ordenes de
+     * fabricacion
+     *
      * @param orden orden de fabricacion a añadir
      */
     public void addOrden(OrdenFabricacion orden) {
