@@ -16,9 +16,9 @@ window.onload = function () {
     edita = myform['editar']
 
     edita.onclick = EquipoValidator;
-    id_equipo.onchange = validaElem;
+   // id_equipo.onchange = validaElem;
     nombre.onchange = validaElem;
-    id_equipo.onkeyup = validaElem;
+    //id_equipo.onkeyup = validaElem;
     nombre.onkeyup = validaElem;
 };
 
