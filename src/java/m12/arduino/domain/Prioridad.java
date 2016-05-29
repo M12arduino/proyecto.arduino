@@ -36,7 +36,7 @@ public enum Prioridad {
     // GESETS
     /**
      * Getter del codigo de la prioridad
-     * @return 
+     * @return codigo de la prioridad
      */
     public int getCode() {
         return code;
@@ -44,7 +44,7 @@ public enum Prioridad {
 
     /**
      * Getter del nombre de la prioridad
-     * @return 
+     * @return nombre de la prioridad
      */
     public String getName() {
         return name;

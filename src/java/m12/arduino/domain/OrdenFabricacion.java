@@ -62,9 +62,10 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
      */
     @ManyToOne
     private Proceso proceso;
-     /**
-      * Cantidad
-      */
+    
+    /**
+     * Cantidad
+     */
     private int cantidad;
     
     /**
@@ -326,7 +327,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * HashCode
-     * @return 
+     * @return hashcode
      */
     @Override
     public int hashCode() {

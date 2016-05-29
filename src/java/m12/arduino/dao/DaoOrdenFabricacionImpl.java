@@ -147,7 +147,7 @@ public class DaoOrdenFabricacionImpl implements DaoOrdenFabricacion {
     }
 
     /**
-     * Metodo implementable para eliminar ordenes de fabricacion de la base de datos.
+     * Metodo para eliminar ordenes de fabricacion de la base de datos.
      * @param ord objeto OrdenFabricacion a eliminar.
      */
     @Override
