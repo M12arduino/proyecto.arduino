@@ -11,15 +11,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
- * Clase Equipo
- * Inplementa Serializable y Maketable
+ * Clase Equipo Inplementa Serializable y Maketable
+ *
  * @author Enric, Pablo, Jordi y Oscar
  */
 @Entity
 public class Equipo implements Serializable, Maketable {
+
     private static final long serialVersionUID = -9193035208662365731L;
 
     // ATTR
@@ -27,33 +30,35 @@ public class Equipo implements Serializable, Maketable {
      * Identificador
      */
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     /**
      * Identificador de equipo
      */
+    @Pattern(regexp = "([A-Z]{2}[0-9]{4})", message = "Formato del id del equipo incorrecto")
     private String id_equipo;
-    
+
     /**
      * Nombre
      */
+    @Size(min = 1, max = 50, message = "El nombre tiene un maximo de 50 caracteres")
     private String nombre;
-    
+
     /**
      * Lista de trabajadores
      */
-    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER,mappedBy="equipo")
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "equipo")
     @JsonIgnore
     private List<Trabajador> trabajadores;
-    
+
     /**
      * Lista de ordenes de fabricacion
      */
-    @OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER,mappedBy = "equipo")
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "equipo")
     @JsonIgnore
     private List<OrdenFabricacion> ordenes;
-    
+
     {
         ordenes = new ArrayList<OrdenFabricacion>();
         trabajadores = new ArrayList<Trabajador>();
@@ -61,6 +66,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Getter de lista de ordenes
+     *
      * @return lista de ordenes
      */
     public List<OrdenFabricacion> getOrdenes() {
@@ -69,14 +75,16 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Setter de lista de ordenes
+     *
      * @param ordenes lista de ordenes
      */
     public void setOrdenes(List<OrdenFabricacion> ordenes) {
         this.ordenes = ordenes;
     }
-    
+
     /**
      * Getter de identificador
+     *
      * @return identificador
      */
     public long getId() {
@@ -85,6 +93,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Setter de identificador
+     *
      * @param id identificador
      */
     public void setId(long id) {
@@ -93,6 +102,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Getter de indentificador de equipo
+     *
      * @return indentificador de equipo
      */
     public String getId_equipo() {
@@ -101,6 +111,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Setter de indentificador de equipo
+     *
      * @param id_equipo indentificador de equipo
      */
     public void setId_equipo(String id_equipo) {
@@ -109,6 +120,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Getter del nombre
+     *
      * @return nombre
      */
     public String getNombre() {
@@ -117,6 +129,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Setter del nombre
+     *
      * @param nombre nombre
      */
     public void setNombre(String nombre) {
@@ -125,6 +138,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Gettere de lista de trabajadores
+     *
      * @return lista de trabajadores
      */
     public List<Trabajador> getTrabajadores() {
@@ -133,18 +147,20 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Setter de lista de trabajadores
+     *
      * @param trabajadores lista de trabajadores
      */
     public void setTrabajadores(List<Trabajador> trabajadores) {
         this.trabajadores = trabajadores;
     }
-    
+
     /**
      * Metodo para añadir trabajador a la lista de trabajadores
+     *
      * @param treb trabajador a añadir a la lista de trabajadores
      * @return objeto Trabajador añadido a la lista
      */
-    public Trabajador addTrabajador(Trabajador treb){
+    public Trabajador addTrabajador(Trabajador treb) {
         this.getTrabajadores().add(treb);
         treb.setEquipo(this);
         return treb;
@@ -152,6 +168,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Metodo toString para mostrar información del objeto.
+     *
      * @return un String con información del objeto.
      */
     @Override
@@ -161,6 +178,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Metodo para añadir ordenes a la lista de ordenes de fabricacion
+     *
      * @param orden orden de fabricacion
      */
     public void addOrden(OrdenFabricacion orden) {
@@ -170,6 +188,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Metodo para la devolucion de los campos de equipo
+     *
      * @return campos de equipo
      */
     @Override
@@ -180,6 +199,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Metodo para la devolucion de la informacion de equipo
+     *
      * @return informacion de equipo
      */
     @Override
@@ -190,6 +210,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Getter de clave primaria
+     *
      * @return identificador
      */
     @Override
@@ -200,6 +221,7 @@ public class Equipo implements Serializable, Maketable {
 
     /**
      * Metodo de nombre completo
+     *
      * @return identificador de equipo + nombre (nombre completo)
      */
     @Override
@@ -207,5 +229,5 @@ public class Equipo implements Serializable, Maketable {
     public String getFullName() {
         return this.getId_equipo() + " - " + this.getNombre();
     }
-    
+
 }

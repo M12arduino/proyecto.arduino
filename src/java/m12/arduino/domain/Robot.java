@@ -16,11 +16,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
- * Clase Robot
- * Inplementa Serializable y Maketable
+ * Clase Robot Inplementa Serializable y Maketable
+ *
  * @author Enric, Pablo, Jordi y Oscar
  */
 @Entity
@@ -35,29 +37,31 @@ public class Robot implements Serializable, Maketable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     /**
      * Identificador del robot
      */
+    @Pattern(regexp = "([A-Za-z0-9]{0,10)", message = "Formato del id del robot incorrecto")
     private String id_robot;
-    
+
     /**
      * Nombre
      */
+    @Size(min = 1, max = 50, message = "El nombre tiene un maximo de 50 caracteres")
     private String nombre;
-    
+
     /**
      * Ubicacion
      */
     @Embedded
     private Ubicacion ubicacion;
-    
+
     /**
      * Estado del robot
      */
-    @Enumerated (value = EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private EstadoRobot estado;
-    
+
     /**
      * Lista de ordenes de fabricacion (TreeSet)
      */
@@ -72,6 +76,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Getter de la coordenada X
+     *
      * @return coordenada X
      */
     public float getCoorX() {
@@ -80,6 +85,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Getter de la coordenada Y
+     *
      * @return coordenada Y
      */
     public float getCoorY() {
@@ -88,6 +94,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Getter de la lista de ordenes
+     *
      * @return lista de ordenes (TreeSet)
      */
     public Set<OrdenFabricacion> getOrdenes() {
@@ -96,6 +103,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Setter de la lista de ordenes
+     *
      * @param ordenes lista de ordenes (TreeSet)
      */
     public void setOrdenes(Set<OrdenFabricacion> ordenes) {
@@ -104,6 +112,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Getter del identificador
+     *
      * @return identificador
      */
     public long getId() {
@@ -112,6 +121,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Setter del identificador
+     *
      * @param id identificador
      */
     public void setId(long id) {
@@ -120,6 +130,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Getter del identificador del robot
+     *
      * @return identificador del robot
      */
     public String getId_robot() {
@@ -128,6 +139,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Setter del identificador del robot
+     *
      * @param id_robot identificador del robot
      */
     public void setId_robot(String id_robot) {
@@ -136,6 +148,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Gatter del nombre
+     *
      * @return nombre
      */
     public String getNombre() {
@@ -144,6 +157,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Setter del nombre
+     *
      * @param nombre nombre
      */
     public void setNombre(String nombre) {
@@ -152,6 +166,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Getter de la ubicacio del robot
+     *
      * @return ubicacion del robot
      */
     public Ubicacion getUbicacion() {
@@ -160,6 +175,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Setter de la ubicacion del robot
+     *
      * @param ubicacion ubicacion del robot
      */
     public void setUbicacion(Ubicacion ubicacion) {
@@ -168,6 +184,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Getter del estado del robot
+     *
      * @return estado del robot
      */
     public EstadoRobot getEstado() {
@@ -176,6 +193,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Setter del estado del robot
+     *
      * @param estado estado del robot
      */
     public void setEstado(EstadoRobot estado) {
@@ -183,7 +201,9 @@ public class Robot implements Serializable, Maketable {
     }
 
     /**
-     * Metodo para añadir ordenes de fabricacion a la lista de ordenes de fabricacion
+     * Metodo para añadir ordenes de fabricacion a la lista de ordenes de
+     * fabricacion
+     *
      * @param oF orden de fabricacion a añadir
      */
     public void addOrden(OrdenFabricacion oF) {
@@ -192,6 +212,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Metodo para la devolucion de los campos del robot
+     *
      * @return campos del robot
      */
     @Override
@@ -202,6 +223,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Metodo para la devolucion de informacion del robot
+     *
      * @return informacion del robot
      */
     @Override
@@ -212,6 +234,7 @@ public class Robot implements Serializable, Maketable {
 
     /**
      * Getter de clave primaria
+     *
      * @return identificador
      */
     @Override
@@ -219,9 +242,10 @@ public class Robot implements Serializable, Maketable {
     public long getPK() {
         return this.getId();
     }
-    
+
     /**
      * Metodo de nombre completo
+     *
      * @return id del robot + nombre (nombre completo)
      */
     @Override

@@ -13,13 +13,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.validator.constraints.Range;
 
 /**
- * Clase OrdenFabricacion
- * Inplementa Serializable, Comparable y Maketable
+ * Clase OrdenFabricacion Inplementa Serializable, Comparable y Maketable
+ *
  * @author Enric, Pablo, Jordi y Oscar
  */
 @Entity
@@ -34,64 +36,67 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     /**
      * codigo
      */
+    @Pattern(regexp = "(OF[0-9]{3})", message = "Formato del codigo de la Orden de fabricacion incorrecto")
     private String codigo;
-    
+
     /**
      * Descripcion
      */
+    @Size(min = 1, max = 144, message = "La descripcion tiene un maximo de 144 caracteres")
     private String descripcion;
-    
+
     /**
      * Prioridad
      */
-    @Enumerated (value = EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private Prioridad proridad;
-    
+
     /**
      * Fecha
      */
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar fecha;
-    
+
     /**
      * Proceso
      */
     @ManyToOne
     private Proceso proceso;
-    
+
     /**
      * Cantidad
      */
+    @Range(min = 1, max = 1000, message = "La cantidad debe ser superior a 0 e inferior a 1000")
     private int cantidad;
-    
+
     /**
      * Robot
      */
     @ManyToOne
     private Robot robot;
-    
+
     /**
      * estado de la orden
      */
     private EstadoOrden estado;
-    
+
     /**
      * Equipo
      */
     @ManyToOne
     private Equipo equipo;
-    
+
     /**
      * Trabajador
      */
     @ManyToOne
     private Trabajador trabajador;
 
-    {        
+    {
         estado = EstadoOrden.INDEFINIDO;
         fecha = Calendar.getInstance();
         System.out.println(fecha.toString());
@@ -99,6 +104,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Getter de trabajador
+     *
      * @return el trabajador
      */
     public Trabajador getTrabajador() {
@@ -107,6 +113,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Setter de trabajador
+     *
      * @param trabajador trabajador
      */
     public void setTrabajador(Trabajador trabajador) {
@@ -115,6 +122,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Getter del equipo
+     *
      * @return equipo
      */
     public Equipo getEquipo() {
@@ -123,6 +131,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Setter del equipo
+     *
      * @param equipo equipo
      */
     public void setEquipo(Equipo equipo) {
@@ -131,6 +140,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Getter de indentificado
+     *
      * @return identificador
      */
     public long getId() {
@@ -139,6 +149,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Setter de identificador
+     *
      * @param id identificador
      */
     public void setId(long id) {
@@ -147,6 +158,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Getter de codigo
+     *
      * @return docigo
      */
     public String getCodigo() {
@@ -155,6 +167,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Setter de codigo
+     *
      * @param codigo codigo
      */
     public void setCodigo(String codigo) {
@@ -163,6 +176,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Getter de descripcion
+     *
      * @return descripcion
      */
     public String getDescripcion() {
@@ -171,6 +185,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Setter de descripcion
+     *
      * @param descripcion descripcion
      */
     public void setDescripcion(String descripcion) {
@@ -179,6 +194,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Getter de prioridad
+     *
      * @return prioridad
      */
     public Prioridad getProridad() {
@@ -187,33 +203,37 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Setter de prioridad
+     *
      * @param proridad prioridad
      */
     public void setProridad(Prioridad proridad) {
         this.proridad = proridad;
     }
-    
+
     /**
      * Getter de fecha en formato Calendar
+     *
      * @return fecha en formato Calendar
      */
     @JsonIgnore
     public Calendar getFechaFormat() {
         return fecha;
     }
-    
+
     /**
      * Getter de fecha en formato String
+     *
      * @return fecha en formato String
      */
     public String getFecha() {
-        SimpleDateFormat formatter=new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
         String currentDate = formatter.format(fecha.getTime());
         return currentDate;
     }
 
     /**
      * Setter de fecha en formato Calendar
+     *
      * @param fecha fecha en formato Calendar
      */
     public void setFecha(Calendar fecha) {
@@ -222,6 +242,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Getter de proceso
+     *
      * @return proceso
      */
     public Proceso getProceso() {
@@ -230,6 +251,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Setter de proceso
+     *
      * @param proceso proceso
      */
     public void setProceso(Proceso proceso) {
@@ -238,6 +260,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Getter de cantidad
+     *
      * @return cantidad
      */
     public int getCantidad() {
@@ -246,6 +269,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Setter de cantidad
+     *
      * @param cantidad cantidad
      */
     public void setCantidad(int cantidad) {
@@ -254,6 +278,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Getter de robot
+     *
      * @return robot
      */
     public Robot getRobot() {
@@ -262,15 +287,17 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Setter de robot
+     *
      * @param robot robot
      */
     public void setRobot(Robot robot) {
         this.robot = robot;
         robot.addOrden(this);
     }
-    
+
     /**
      * Getter de estado de la orden
+     *
      * @return estado de la orden
      */
     public EstadoOrden getEstado() {
@@ -279,6 +306,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Setter de estado de la orden
+     *
      * @param estado estado de la orden
      */
     public void setEstado(EstadoOrden estado) {
@@ -287,6 +315,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Metodo toString para mostrar información de la orden
+     *
      * @return información de la orden
      */
     @Override
@@ -304,10 +333,11 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Metodo compareTo para ordenar las ordenes
-     * 
-     * Ordenacion: En primer lugar por prioridad, si éstas coinciden, por fecha y 
-     * si éstas TAMBIÉN coinciden, ordenará por ID que es imposible que coincida.
-     * 
+     *
+     * Ordenacion: En primer lugar por prioridad, si éstas coinciden, por fecha
+     * y si éstas TAMBIÉN coinciden, ordenará por ID que es imposible que
+     * coincida.
+     *
      * @param o objeto a comparar para la ordenacion
      * @return resultado de la comparacion para la ordenacion
      */
@@ -315,7 +345,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
     public int compareTo(Object o) {
         OrdenFabricacion oF = (OrdenFabricacion) o;
         if (this.getProridad() != oF.getProridad()) {                           // Si no coinciden ordenarà por prioridad
-            return this.getProridad().getCode() - oF.getProridad().getCode();   
+            return this.getProridad().getCode() - oF.getProridad().getCode();
         } else {
             if (this.getFechaFormat().equals(oF.getFechaFormat())) {                        // Si coinciden las fechas, ordenará por id
                 return (int) (this.getId() - oF.getId());
@@ -327,6 +357,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * HashCode
+     *
      * @return hashcode
      */
     @Override
@@ -347,6 +378,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Equals
+     *
      * @param obj objeto a igualar
      * @return resultado boolean según la igualación
      */
@@ -394,6 +426,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Metodo para la devolucion de los campos de la orden de fabricacion
+     *
      * @return campos de la orden de fabricacion
      */
     @Override
@@ -401,9 +434,10 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
     public List<String> getFields() {
         return new ArrayList(Arrays.asList("ID", "Codigo", "Descripcion", "Prioridad", "Fecha", "Proceso", "Cantidad", "Robot", "Estado", "Equipo"));
     }
-  
+
     /**
      * Metodo para la devolucion de la informacion de la orden de fabricacion
+     *
      * @return informacion de la orden de fabricacion
      */
     @Override
@@ -418,6 +452,7 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Getter de clave primaria
+     *
      * @return identificador
      */
     @Override
@@ -428,7 +463,9 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
 
     /**
      * Metodo de nombre completo
-     * @return texto "Orden -" + codigo de la orden de fabricacion (nombre completo)
+     *
+     * @return texto "Orden -" + codigo de la orden de fabricacion (nombre
+     * completo)
      */
     @Override
     @JsonIgnore
@@ -436,5 +473,4 @@ public class OrdenFabricacion implements Serializable, Comparable, Maketable {
         return "Orden - " + this.getCodigo();
     }
 
-    
 }

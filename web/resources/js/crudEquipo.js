@@ -191,7 +191,7 @@ function populateTrabajadores(array) {
             }
         });
         if (check)
-            $("#trabajadores").append('<li class="col-md-3 col-xs-12 col-sm-6"><span class="hiddendata" >' + JSON.stringify(array[i]) + '</span><p>' + fullName + '</p><span class="glyphicon glyphicon-remove-sign deletebutton"></span></li>');
+            $("#trabajadores").append('<li class="col-md-3 col-xs-12 col-sm-6"><span class="hiddendata" >' + JSON.stringify(array[i]) + '</span><p>' + fullName + '</p><span class="glyphicon glyphicon-trash deletebutton"></span></li>');
     }
 
     $(".deletebutton").on("click", function () {

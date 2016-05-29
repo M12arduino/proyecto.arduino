@@ -11,11 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
- * Clase Proceso
- * Inplementa Serializable y Maketable
+ * Clase Proceso Inplementa Serializable y Maketable
+ *
  * @author Enric, Pablo, Jordi y Oscar
  */
 @Entity
@@ -30,27 +32,30 @@ public class Proceso implements Serializable, Maketable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    
+
     /**
      * Codigo
      */
+    @Pattern(regexp = "(P[0-9]{3})", message = "Formato del codigo de proceso incorrecto")
     private String codigo;
-    
+
     /**
      * Descripcion
      */
+    @Size(min = 1, max = 144, message = "La descripcion tiene un maximo de 144 caracteres")
     private String descripcion;
-    
+
     /**
      * Lista de acciones
      */
+    @Size(min = 1, message = "El proceso debe tener por lo menos una accion")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "proceso", orphanRemoval = true)
     private List<Accion> acciones;
-    
+
     /**
      * Lista de ordenes de fabricacion
      */
-    @OneToMany( fetch = FetchType.EAGER, mappedBy = "proceso")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "proceso")
     @JsonIgnore
     private List<OrdenFabricacion> ordenes;
 
@@ -60,6 +65,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Getter de lista de ordenes
+     *
      * @return lista de ordenes
      */
     public List<OrdenFabricacion> getOrdenes() {
@@ -68,6 +74,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Setter de lista de ordenes
+     *
      * @param ordenes lista de ordenes
      */
     public void setOrdenes(List<OrdenFabricacion> ordenes) {
@@ -76,6 +83,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Getter del identificador
+     *
      * @return identificador
      */
     public long getId() {
@@ -84,6 +92,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Setter del identificador
+     *
      * @param id identificador
      */
     public void setId(long id) {
@@ -92,6 +101,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Getter del codigo
+     *
      * @return codigo
      */
     public String getCodigo() {
@@ -100,6 +110,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Setter del codigo
+     *
      * @param codigo codigo
      */
     public void setCodigo(String codigo) {
@@ -108,6 +119,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Getter de la descripcion
+     *
      * @return descripcion
      */
     public String getDescripcion() {
@@ -116,6 +128,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Setter de la descripcion
+     *
      * @param descripcion descripcion
      */
     public void setDescripcion(String descripcion) {
@@ -124,6 +137,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Getter de la lista de acciones
+     *
      * @return lista de acciones
      */
     public List<Accion> getAcciones() {
@@ -132,6 +146,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Setter de la lista de acciones
+     *
      * @param acciones lista de acciones
      */
     public void setAcciones(List<Accion> acciones) {
@@ -140,6 +155,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Metodo para añadir acciones a la lista de acciones
+     *
      * @param ac accion a añadir
      */
     public void addAccion(Accion ac) {
@@ -149,6 +165,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Metodo toString para mostrar la información del proceso
+     *
      * @return informacion del proceso
      */
     @Override
@@ -158,6 +175,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Metodo para la devolucion de los campos del proceso
+     *
      * @return campos del proceso
      */
     @Override
@@ -168,6 +186,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Metodo para la devolucion de la indormacion del proceso
+     *
      * @return informacion del proceso
      */
     @Override
@@ -182,6 +201,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Getter de clave primaria
+     *
      * @return identificador
      */
     @Override
@@ -192,6 +212,7 @@ public class Proceso implements Serializable, Maketable {
 
     /**
      * Metodo de nombre completo
+     *
      * @return el texto "Proceso -" + codigo del proceso (nombre completo)
      */
     @Override
