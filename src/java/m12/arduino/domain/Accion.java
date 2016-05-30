@@ -49,6 +49,7 @@ public class Accion implements Serializable {
     /**
      * Estado de la pinza True = abierto False = cerrado
      */
+    
     private boolean abrirPinza;
 
     /**
