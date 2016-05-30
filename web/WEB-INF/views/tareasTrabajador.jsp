@@ -25,6 +25,7 @@
     <form:form name="MyForm" action="${base}/ordenFabricacion/modificarEstado.htm" method="POST" id="form">
         <form:input type="hidden" path="codigo_eje" id="codigoE" value="undefined"/>
         <form:input type="hidden" path="codigo_can" id="codigoC" value="undefined"/>
+        <form:input type="hidden" path="codigo_rea" id="codigoR" value="undefined"/>
     </form:form>
 </body>
 </html>

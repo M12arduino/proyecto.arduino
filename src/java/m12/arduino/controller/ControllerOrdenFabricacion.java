@@ -31,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Controlador para los objetos orden de fabricacion
+ *
  * @author Enric, Pablo, Jordi y Oscar
  */
 @Controller
@@ -45,8 +46,10 @@ public class ControllerOrdenFabricacion {
 
     /**
      * Metodo formulario de alta de ordenes de fabricacion
-     * @return Devuelve un objeto ModelAndView (formulario) llamado ordenFabricacionAlta con 
-     * un objeto OrdenFabricacionForm vacio y tres listas (prioridades, robots y procesos. 
+     *
+     * @return Devuelve un objeto ModelAndView (formulario) llamado
+     * ordenFabricacionAlta con un objeto OrdenFabricacionForm vacio y tres
+     * listas (prioridades, robots y procesos.
      */
     @RequestMapping("/alta")
     public ModelAndView formularioInicial() {
@@ -59,10 +62,11 @@ public class ControllerOrdenFabricacion {
 
     /**
      * Metodo para insertar ordenes de fabricación en la base de datos.
+     *
      * @param ofF Objeto OrdenFabricacionForm con los datos de la orden de
      * fabricacion a insertar.
-     * @return Devuelve un objeto ModelAndView (vista) llamado detalleObjeto 
-     * con los datos de la orden de fabricacion insertada.
+     * @return Devuelve un objeto ModelAndView (vista) llamado detalleObjeto con
+     * los datos de la orden de fabricacion insertada.
      */
     @RequestMapping(value = "/insertar")
     public ModelAndView addOrden(OrdenFabricacionForm ofF) {
@@ -83,19 +87,21 @@ public class ControllerOrdenFabricacion {
 
     /**
      * Metodo para actualizar ordenes de fabricación en la base de datos.
+     *
      * @param ofF Objeto OrdenFabricacionForm con los datos de la orden de
      * fabricacion a actualizar.
      * @return Devuelve un String metido en un div con la confirmación de como
      * ha finalizado la operación.
      */
-    @RequestMapping(value = "/actualizar",  method = RequestMethod.POST)
-    public @ResponseBody String actualizarOrdenFabricacion(@RequestBody OrdenFabricacionForm ofF) {
+    @RequestMapping(value = "/actualizar", method = RequestMethod.POST)
+    public @ResponseBody
+    String actualizarOrdenFabricacion(@RequestBody OrdenFabricacionForm ofF) {
         String msg = "";
-       try {
+        try {
             OrdenFabricacion of = sO.buscarOrden("id", ofF.getId());
             of.setCodigo(ofF.getCodigo());
             of.setDescripcion(ofF.getDescripcion());
-            of.setEquipo(sE.buscarEquipo("id",ofF.getEquipo_id()));
+            of.setEquipo(sE.buscarEquipo("id", ofF.getEquipo_id()));
             of.setCantidad(ofF.getCantidad());
             of.setProceso(sP.buscarProceso("id", ofF.getCodigo_proceso_id()));
             of.setProridad(ofF.getPrioridad());
@@ -110,13 +116,15 @@ public class ControllerOrdenFabricacion {
 
     /**
      * Metodo para eliminar ordenes de fabricacion de la base de datos.
+     *
      * @param ofF Objeto OrdenFabricacionForm con los datos de la orden de
      * fabricacion a eliminar.
      * @return Devuelve un String metido en un div con la confirmación de como
      * ha finalizado la operación.
      */
-    @RequestMapping(value = "/eliminar",  method = RequestMethod.POST)
-    public @ResponseBody String eliminarOrdenFabricacion(@RequestBody OrdenFabricacionForm ofF) {
+    @RequestMapping(value = "/eliminar", method = RequestMethod.POST)
+    public @ResponseBody
+    String eliminarOrdenFabricacion(@RequestBody OrdenFabricacionForm ofF) {
         String msg = "";
         try {
             OrdenFabricacion of = new OrdenFabricacion();
@@ -131,9 +139,10 @@ public class ControllerOrdenFabricacion {
 
     /**
      * Metodo para mostrar el editor de ordenes de fabricacion.
-     * @return Devuelve un objeto ModelAndView (formulario) llamado ordenFabricacionCrud
-     * con un objeto vacio OrdenFabricacionForm para introducir los datos a cambiar, o elimiar 
-     * de la orden de fabricacion. 
+     *
+     * @return Devuelve un objeto ModelAndView (formulario) llamado
+     * ordenFabricacionCrud con un objeto vacio OrdenFabricacionForm para
+     * introducir los datos a cambiar, o elimiar de la orden de fabricacion.
      */
     @RequestMapping(value = "/administrar")
     public ModelAndView administrarOrdenFabricacion() {
@@ -147,13 +156,15 @@ public class ControllerOrdenFabricacion {
 
     /**
      * Metodo para buscar ordenes de fabricacion en la base de datos.
-     * @param ofF objeto OrdenFabricacionForm con los datos de las ordenes de 
+     *
+     * @param ofF objeto OrdenFabricacionForm con los datos de las ordenes de
      * fabricacion a buscar.
-     * @return Devuelve un String con las ordenes de fabricacion que coinciden 
+     * @return Devuelve un String con las ordenes de fabricacion que coinciden
      * con los parámetros del formulario.
      */
     @RequestMapping(value = "/buscar", method = RequestMethod.POST)
-    public @ResponseBody String buscaOrdenFabricacionAjax(@RequestBody OrdenFabricacionForm ofF) {
+    public @ResponseBody
+    String buscaOrdenFabricacionAjax(@RequestBody OrdenFabricacionForm ofF) {
         String codigo = ofF.getCodigo();
         String descripcion = ofF.getDescripcion();
         Long proceso_id = ofF.getCodigo_proceso_id();
@@ -192,9 +203,10 @@ public class ControllerOrdenFabricacion {
     ////////////////////////////////////////////////////////////////////////////
     /**
      * Metodo para mostrar las ordenes de fabricacion asignadas por equipo.
-     * @return Devuelve un objeto ModelAndView (vista) llamado tareasEquipo con 
-     * un objeto OrdenFabricacionForm vacio y las ordenes de fabricacion asignadas 
-     * a cada equipo.
+     *
+     * @return Devuelve un objeto ModelAndView (vista) llamado tareasEquipo con
+     * un objeto OrdenFabricacionForm vacio y las ordenes de fabricacion
+     * asignadas a cada equipo.
      */
     @RequestMapping("/ordenesEquipo")
     public ModelAndView tareasEquipo() {
@@ -235,9 +247,10 @@ public class ControllerOrdenFabricacion {
 
     /**
      * Metodo para asignar ordenes de fabricacion a trabajadores
-     * @param ofF objeto OrdenFabricacionForm con los datos de la orden de fabricacion
-     * que el trabajador se quiere asignar.
-     * @return Devuelve un objeto ModelAndView "main" (redirige a la home)
+     *
+     * @param ofF objeto OrdenFabricacionForm con los datos de la orden de
+     * fabricacion que el trabajador se quiere asignar.
+     * @return Devuelve un objeto ModelAndView (redirige a la pantalla de tareas de equipo)
      */
     @RequestMapping("/asignarTrabajador")
     public ModelAndView asignarOrden(OrdenFabricacionForm ofF) {
@@ -247,13 +260,16 @@ public class ControllerOrdenFabricacion {
         trab.addOrden(orden);
         sT.actualizarTrabajador(trab);
         sO.actualizarOrden(orden);
-        return new ModelAndView("main");
+        return tareasEquipo();
     }
 /////////////////////////////////////////////////////////////////////////////////
+
     /**
      * Metodo para vilualizar las odenes asignadas por trabajador.
-     * @return Devuelve un objeto ModelAndView (vista) con un objeto OrdenFabricacionForm
-     * vacio y una lista con las ordenes de fabricacion asignadas al trabajador.
+     *
+     * @return Devuelve un objeto ModelAndView (vista) con un objeto
+     * OrdenFabricacionForm vacio y una lista con las ordenes de fabricacion
+     * asignadas al trabajador.
      */
     @RequestMapping("/ordenesTrabajador")
     public ModelAndView tareasTrabajador() {
@@ -290,25 +306,36 @@ public class ControllerOrdenFabricacion {
     }
 
     ////// /////// ////// /////// ////// ////// ////// ///// ////// ////// /////
-
     /**
-     * Metodo para modificar el estado de las ordenes de fabricacion de cada trabajador
-     * @param ofF objeto OrdenFabricacionForm con los datos de la orden de fabricacion
-     * a la que se le quiere modificar el estado.
-     * @return Devuelve un objeto ModelAndView (vista) con un mensaje sobre como ha
-     * transcurrido la operacion. (redirige a "tareasTrabajador")
+     * Metodo para modificar el estado de las ordenes de fabricacion de cada
+     * trabajador
+     *
+     * @param ofF objeto OrdenFabricacionForm con los datos de la orden de
+     * fabricacion a la que se le quiere modificar el estado.
+     * @return Devuelve un objeto ModelAndView (vista) con un mensaje sobre como
+     * ha transcurrido la operacion. (redirige a "tareasTrabajador")
      */
     @RequestMapping("/modificarEstado")
     public ModelAndView modifyOrden(OrdenFabricacionForm ofF) {
         OrdenFabricacion orden;
         String message = "Orden actualizada";
         if ("undefined".equals(ofF.getCodigo_can())) {
-            orden = sO.buscarOrden(ofF.getCodigo_eje());
-            if (orden.getEstado() == EstadoOrden.PENDIENTE) {
-                orden.setEstado(EstadoOrden.INICIADA);
-                sO.actualizarOrden(orden);
+            if ("undefined".equals(ofF.getCodigo_rea())) {
+                orden = sO.buscarOrden(ofF.getCodigo_eje());
+                if (orden.getEstado() == EstadoOrden.PENDIENTE) {
+                    orden.setEstado(EstadoOrden.INICIADA);
+                    sO.actualizarOrden(orden);
+                } else {
+                    message = "Para ejecutar una orden ésta debe estar en 'PENDIENTE'";
+                }
             } else {
-                message = "Para ejecutar una orden ésta debe estar en 'PENDIENTE'";
+                orden = sO.buscarOrden(ofF.getCodigo_rea());
+                if (orden.getEstado() != EstadoOrden.REALIZADA) {
+                    orden.setEstado(EstadoOrden.REALIZADA);
+                    sO.actualizarOrden(orden);
+                } else {
+                    message = "Para ejecutar una orden ésta no debe estar 'CANCELADA' o marcada ya como 'REALIZADA'";
+                }
             }
         } else {
             orden = sO.buscarOrden(ofF.getCodigo_can());
@@ -320,7 +347,7 @@ public class ControllerOrdenFabricacion {
             }
         }
         //return tareasTrabajador(message);
-        
+
         return tareasTrabajador();
     }
 //    
@@ -353,9 +380,11 @@ public class ControllerOrdenFabricacion {
 ////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Metodo para mostrar en una tabla las ordenes de fabricacion de la base de datos.
-     * @return Devuelve un objeto ModelAndView (vista) con las ordenes de fabricacion
-     * de la base de datos.
+     * Metodo para mostrar en una tabla las ordenes de fabricacion de la base de
+     * datos.
+     *
+     * @return Devuelve un objeto ModelAndView (vista) con las ordenes de
+     * fabricacion de la base de datos.
      */
     @RequestMapping("/tabla")
     public ModelAndView makeTable() {

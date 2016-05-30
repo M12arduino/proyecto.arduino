@@ -71,7 +71,7 @@ public class OrdenFabricacionForm {
     private long id_robot_id;
 
     /**
-     * Codigo del eje
+     * Codigo de ejecucion
      */
     private String codigo_eje;
 
@@ -79,26 +79,49 @@ public class OrdenFabricacionForm {
      * Codigo de cancelacion
      */
     private String codigo_can;
+    
+    /**
+     * Codigo de realizacion
+     */
+    private String codigo_rea;
 
     /**
      * Constructor vacio
      */
     public OrdenFabricacionForm() {
     }
+    
+    /**
+     * Getter del codigo de realizacion
+     *
+     * @return codigo de realizacion
+     */
+    public String getCodigo_rea() {
+        return codigo_rea;
+    }
 
     /**
-     * Getter del codigo del eje
+     * Setter del codigo de realizacion
      *
-     * @return codigo del eje
+     * @param codigo_rea codigo de realizacion
+     */
+    public void setCodigo_rea(String codigo_rea) {
+        this.codigo_rea = codigo_rea;
+    }
+
+    /**
+     * Getter del codigo de ejecucion
+     *
+     * @return codigo de ejecucion
      */
     public String getCodigo_eje() {
         return codigo_eje;
     }
 
     /**
-     * Setter del codigo del eje
+     * Setter del codigo de ejecucion
      *
-     * @param codigo_eje codigo del eje
+     * @param codigo_eje codigo de ejecucion
      */
     public void setCodigo_eje(String codigo_eje) {
         this.codigo_eje = codigo_eje;

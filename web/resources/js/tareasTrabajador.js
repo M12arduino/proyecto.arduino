@@ -29,8 +29,15 @@ function setHiddenValueE(elem) {
     document.getElementById("codigoE").value = codigo;
     document.getElementById("form").submit();
 }
+
 function setHiddenValueC(elem) {
     var codigo = elem.parentNode.parentNode.firstChild.innerHTML;
     document.getElementById("codigoC").value = codigo;
+    document.getElementById("form").submit();
+}
+
+function setHiddenValueR(elem) {
+    var codigo = elem.parentNode.parentNode.firstChild.innerHTML;
+    document.getElementById("codigoR").value = codigo;
     document.getElementById("form").submit();
 }

@@ -29,7 +29,7 @@ function dataTablesDevuelveValues(array) {
                 if (aux[prop] == null) {
                     result = "No definido";
                 } else {
-                        result = returnFirstProperty(aux[prop]);
+                    result = returnFirstProperty(aux[prop]);
                 }
             } else {
                 result = aux[prop];
@@ -42,9 +42,9 @@ function dataTablesDevuelveValues(array) {
 }
 
 function returnFirstProperty(obj) {
-    if (typeof obj[Object.keys(obj)[0]] == "object"){
+    if (typeof obj[Object.keys(obj)[0]] == "object") {
         return obj.length;
-    }else{
+    } else {
         return obj[Object.keys(obj)[0]];
     }
 }
@@ -71,14 +71,14 @@ function dataTablesDevuelveValuesBoton(array) {
                 if (aux[prop] == null) {
                     result = "No definido";
                 } else {
-                        result = returnFirstProperty(aux[prop]);
+                    result = returnFirstProperty(aux[prop]);
                 }
             } else {
                 result = aux[prop];
             }
             arrayaux.push(result);
         }
-        
+
         arrayaux.push('<input name="bEscoger" type="button" class="assignar btn btn-arduino" value="Escoger orden" onclick="setHiddenValue(this);"/>');
         res.push(arrayaux);
     }
@@ -89,8 +89,8 @@ function dataTablesDevuelvePropsBoton(array) {
     var res = [];
     var aux = array[0];
     for (var prop in aux) {
-         var obj = {title: prop};
-         res.push(obj);
+        var obj = {title: prop};
+        res.push(obj);
     }
     res.push({title: "Assignar"});
     return res;
@@ -100,10 +100,11 @@ function dataTablesDevuelvePropsBoton2(array) {
     var res = [];
     var aux = array[0];
     for (var prop in aux) {
-         var obj = {title: prop};
-         res.push(obj);
+        var obj = {title: prop};
+        res.push(obj);
     }
     res.push({title: "Ejecutar"});
+    res.push({title: "Marcar Realizada"});
     res.push({title: "Cancelar"});
     return res;
 }
@@ -114,25 +115,37 @@ function dataTablesDevuelveValuesBoton2(array) {
     var aux;
     var arrayaux = [];
     for (var i = 0; i < array.length; i++) {
-        
+
         aux = array[i];
         arrayaux = [];
         for (var prop in aux) {
-            alert(aux[prop]);
+
             if (typeof aux[prop] == "object") {
                 if (aux[prop] == null) {
                     result = "No definido";
                 } else {
-                        result = returnFirstProperty(aux[prop]);
+                    result = returnFirstProperty(aux[prop]);
                 }
             } else {
                 result = aux[prop];
             }
             arrayaux.push(result);
         }
-        
-        arrayaux.push('<input name="bEjecutar" type="button" class="assignar btn btn-arduino" value="Ejecutar orden" onclick="setHiddenValueE(this);"/>');
-        arrayaux.push('<input name="bCancelar" type="button" class="assignar btn btn-arduino" value="Cancelar orden" onclick="setHiddenValueC(this);"/>');
+        if (aux["estado"] === "PENDIENTE") {
+            arrayaux.push('<input name="bEjecutar" type="button" class="assignar btn btn-arduino" value="Ejecutar orden" onclick="setHiddenValueE(this);"/>');
+        } else {
+            arrayaux.push('<input name="bEjecutar" type="button" class="assignar btn btn-arduino" value="Ejecutar orden" onclick="setHiddenValueE(this);" disabled/>');
+        }
+        if (aux["estado"] === "REALIZADA") {
+            arrayaux.push('<input name="bEjecutar" type="button" class="assignar btn btn-arduino" value="Marcar Realizada" onclick="setHiddenValueR(this);" disabled/>');
+        } else {
+            arrayaux.push('<input name="bEjecutar" type="button" class="assignar btn btn-arduino" value="Marcar Realizada" onclick="setHiddenValueR(this);"/>');
+        }
+        if (aux["estado"] === "CANCELADA" || aux["estado"] === "REALIZADA" || aux["estado"] === "NO_REALIZADA") {
+            arrayaux.push('<input name="bCancelar" type="button" class="assignar btn btn-arduino" value="Cancelar orden" onclick="setHiddenValueC(this);" disabled/>');
+        } else {
+            arrayaux.push('<input name="bCancelar" type="button" class="assignar btn btn-arduino" value="Cancelar orden" onclick="setHiddenValueC(this);"/>');
+        }
         res.push(arrayaux);
     }
     return res;
