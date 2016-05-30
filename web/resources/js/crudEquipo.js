@@ -26,6 +26,7 @@ $(document).ready(function () {
     //$("#editar").on("click", function () {
 
     $("#addTrabajador").on("click", function () {
+        alert("hi");
         $.ajax({
             url: getBasePath() + "trabajador/trabajadores.htm",
             type: "POST",
@@ -35,6 +36,7 @@ $(document).ready(function () {
             success: function (response) {
                 var array = JSON.parse(response);
                 var actual = [];
+                alert(response);
                 $("#trabajadores li").each(function () {
                     actual.push($(this).find("p").html());
                 });
