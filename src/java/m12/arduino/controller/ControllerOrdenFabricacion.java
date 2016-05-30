@@ -35,7 +35,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Enric, Pablo, Jordi y Oscar
  */
 @Controller
-@RequestMapping("/ordenFabricacion")
+@RequestMapping(value = {"/ordenFabricacion", "/ordenfabricacion"})
 public class ControllerOrdenFabricacion {
 
     private ServiceOrdenFabricacion sO = new ServiceOrdenFabricacion();

@@ -245,6 +245,7 @@ public class ControllerEquipo {
         return response;
     }
     
+    
     /**
      * Metodo para mostrar en una tabla los equipos de la base de datos.
      * @return Devuelve un objeto ModelAndView (vista) con los equipos de la

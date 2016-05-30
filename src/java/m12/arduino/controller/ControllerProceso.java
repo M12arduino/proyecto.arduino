@@ -6,6 +6,7 @@
 package m12.arduino.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -87,9 +88,16 @@ public class ControllerProceso {
         String msg = "";
         try {
             Proceso p = sP.buscarProceso("id",pf.getId());
+//            Eliminem les accions actuals (bidireccional. cada accio es al mateix temps nullat el seu proces)
+            for (Accion acc : p.getAcciones()){
+                p.remAccion(acc);
+            } 
+            
             p.setCodigo(pf.getCodigo());
             p.setDescripcion(pf.getDescripcion());
+//            p.setAcciones(new ArrayList());            
             List<Accion> acciones = pf.getAcciones();
+//            afegim les noves
             for (Accion acc : acciones){
                 p.addAccion(acc);
             }
