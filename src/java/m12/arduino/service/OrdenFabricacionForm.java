@@ -39,7 +39,7 @@ public class OrdenFabricacionForm {
     /**
      * Identificador del equipo
      */
-    @Pattern(regexp = "([A-Z]{2}[0-9]{4})", message = "Formato del id del equipo incorrecto")
+    //@Pattern(regexp = "([A-Z]{2}[0-9]{4})", message = "Formato del id del equipo incorrecto")
     private Long equipo_id;
 
     /**
