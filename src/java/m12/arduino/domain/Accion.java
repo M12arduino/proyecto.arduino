@@ -49,7 +49,6 @@ public class Accion implements Serializable {
     /**
      * Estado de la pinza True = abierto False = cerrado
      */
-    @Range(min = 0, max = 1)
     private boolean abrirPinza;
 
     /**

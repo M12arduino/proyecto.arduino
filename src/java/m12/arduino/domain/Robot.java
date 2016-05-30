@@ -41,7 +41,7 @@ public class Robot implements Serializable, Maketable {
     /**
      * Identificador del robot
      */
-    @Pattern(regexp = "([A-Za-z0-9]{0,10)", message = "Formato del id del robot incorrecto")
+    @Pattern(regexp = "([A-Za-z0-9]{0,10})", message = "Formato del id del robot incorrecto")
     private String id_robot;
 
     /**

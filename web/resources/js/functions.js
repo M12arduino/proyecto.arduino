@@ -114,9 +114,11 @@ function dataTablesDevuelveValuesBoton2(array) {
     var aux;
     var arrayaux = [];
     for (var i = 0; i < array.length; i++) {
+        
         aux = array[i];
         arrayaux = [];
         for (var prop in aux) {
+            alert(aux[prop]);
             if (typeof aux[prop] == "object") {
                 if (aux[prop] == null) {
                     result = "No definido";

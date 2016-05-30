@@ -193,7 +193,6 @@ function tractarError(noError, elem, idError){
         ocultaError(idError);
         return true;
     }else{
-        alert("error");
         mostraError(idError);
         //elem.focus();
         return false;

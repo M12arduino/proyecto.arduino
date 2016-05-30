@@ -61,21 +61,21 @@ public class ControllerPopulate {
         Trabajador tr0 = new Trabajador();
         tr0.setNif("00000000A");
         tr0.setNombre("Trabajador0");
-        tr0.setMovil("60000000");
+        tr0.setMovil("600000000");
         tr0.setCategoria(CategoriaTrabajador.INDEFINIDO);
         tr0.setPassword("pass0");
 
         Trabajador tr1 = new Trabajador();
         tr1.setNif("11111111A");
         tr1.setNombre("Trabajador1");
-        tr1.setMovil("61111111");
+        tr1.setMovil("611111111");
         tr1.setCategoria(CategoriaTrabajador.JUNIOR);
         tr1.setPassword("pass1");
 
         Trabajador tr2 = new Trabajador();
         tr2.setNif("22222222A");
         tr2.setNombre("Trabajador2");
-        tr2.setMovil("62222222");
+        tr2.setMovil("622222222");
         tr2.setCategoria(CategoriaTrabajador.ADMINISTRADOR);
         tr2.setPassword("pass2");
 
