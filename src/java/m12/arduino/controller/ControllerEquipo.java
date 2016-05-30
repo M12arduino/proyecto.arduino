@@ -163,7 +163,7 @@ public class ControllerEquipo {
      */
     @RequestMapping("/altaOrden")
     public ModelAndView altaOrden(EquipoForm eF) {
-        ModelAndView mV = new ModelAndView("detalleObjeto");
+        ModelAndView mV = new ModelAndView("detalleObjetoTabla");
         Equipo e = sE.buscarEquipo(eF.getId_equipo());
         OrdenFabricacion orden = sO.buscarOrden(eF.getCodigo_orden());
         e.addOrden(orden);
