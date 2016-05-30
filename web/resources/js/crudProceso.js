@@ -132,7 +132,7 @@ function añadirAccionesPre(arrayAcciones) {
         str += "<div class='col-md-3'>Pos Y: <input name='pos' type='number' class='form-control posY' value='" + arrayAcciones[i].posY + "'/></div>";
         str += "<div class='col-md-3'>Pos Z: <input name='pos' type='number' class='form-control posZ' value='" + arrayAcciones[i].posZ + "'/></div>";
         str += "<div class='col-md-3'>Pinza: <select class='form-control abP'>\n\
-        <option value='1' " + ab + ">Abierta</option><option value='0' " + ce + ">Cerrada</option></select></div>";
+        <option value='true' " + ab + ">Abierta</option><option value='false' " + ce + ">Cerrada</option></select></div>";
         str += "</div>";
         $("#pos_error").before(str);
         asignaManejadores();
@@ -145,7 +145,7 @@ function añadirAccion() {
     newInput += "<div class='col-md-3'>Pos Y: <input name='pos' type='number' class='form-control posY' /></div>";
     newInput += "<div class='col-md-3'>Pos Z: <input name='pos' type='number' class='form-control posZ' /></div>";
     newInput += "<div class='col-md-3'>Pinza:<select class='form-control abP'>\n\
-        <option value='1' >Abierta</option><option value='0' selected>Cerrada</option></select></div>";
+        <option value='true' >Abierta</option><option value='false' selected>Cerrada</option></select></div>";
 
     $("#pos_error").before(newInput);
     
@@ -182,6 +182,7 @@ function editarProceso() {
     data.descripcion = $("#descripcion").val();
     data.acciones = recuperaAcciones();
     var jsonStr = JSON.stringify(data);
+    alert(jsonStr);
     $.ajax({
         url: getBasePath() + "proceso/actualizar.htm",
         type: "POST",

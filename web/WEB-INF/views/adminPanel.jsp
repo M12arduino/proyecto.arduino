@@ -58,9 +58,9 @@
                 <li><a href="${base}/ordenFabricacion/alta.htm">Añadir Ordenes</a></li>
                 <li><a href="${base}/ordenFabricacion/administrar.htm">Administrar Ordenes</a></li>
             </ul>
-            <div class="populate">
+<!--            <div class="populate">
             <a href="${base}/populate/populate.htm">Populate</a>
-            </div>
+            </div>-->
         </ul>
     </div>
 </div>

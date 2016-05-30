@@ -162,6 +162,16 @@ public class Proceso implements Serializable, Maketable {
         this.getAcciones().add(ac);
         ac.setProceso(this);
     }
+    
+    /**
+     * Metodo para eliminar acciones de la lista de acciones
+     *
+     * @param ac accion a eliminar
+     */
+    public void remAccion(Accion ac) {
+        this.getAcciones().remove(ac);
+        ac.setProceso(null);
+    }
 
     /**
      * Metodo toString para mostrar la información del proceso
