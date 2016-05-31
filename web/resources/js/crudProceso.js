@@ -182,7 +182,6 @@ function editarProceso() {
     data.descripcion = $("#descripcion").val();
     data.acciones = recuperaAcciones();
     var jsonStr = JSON.stringify(data);
-    alert(jsonStr);
     $.ajax({
         url: getBasePath() + "proceso/actualizar.htm",
         type: "POST",
