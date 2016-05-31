@@ -87,7 +87,7 @@ public class ControllerProceso {
     public @ResponseBody String actualizarProceso(@RequestBody ProcesoForm pf){
         String msg = "";
         try {
-            Proceso p = sP.buscarProceso("id",pf.getId());
+            Proceso p = sP.buscarProceso(pf.getCodigo());
 //            Eliminem les accions actuals (bidireccional. cada accio es al mateix temps nullat el seu proces)
             for (Accion acc : p.getAcciones()){
                 p.remAccion(acc);
@@ -101,6 +101,7 @@ public class ControllerProceso {
             for (Accion acc : acciones){
                 p.addAccion(acc);
             }
+            
             sP.actualizarProceso(p);
             msg = "Proces updated";
         } catch (Exception e) {
